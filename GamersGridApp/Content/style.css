@@ -1,0 +1,54 @@
+body {
+	font: 'Sigmar One', sans-serif;
+    color: rgba(242, 189, 255, 0.5);
+    /* text-align: center; */
+    /* text-transform: uppercase; */
+    letter-spacing: .1em;
+    /*top: 15%;*/
+    padding: 0;
+    background: linear-gradient(to right, rgb(49, 49, 49) , rgb(87, 104, 134)); 
+    /* background-image: url("imgs/GGlogo.jpg"); */
+}
+
+.row {
+    margin-top: 10px;
+}
+
+.dark {
+    background-color: black;
+}
+
+.grid {
+    display: inline-grid;
+    justify-content: space-around;
+    grid-column-gap: 20px;
+    grid-row-gap: 10px;
+    grid-template-columns: auto auto auto;
+}
+
+.center-item {
+    text-align: center;
+}
+
+.aButton {
+    margin-top: 20px;
+    align-self: center;
+}
+.profilePhoto {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+.socialIcon {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+.galleryPhotos {
+    max-width: 250px;
+    max-height: 200px;
+}
+
+
+
+

@@ -2,30 +2,270 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<style>
+    body {
+        background-color: skyblue !important;
+    }
+
+    #socialRowid {
+        flex-direction: reverse;
+    }
+
+    .login-form {
+        right: -280px !important;
+        width: 340px;
+        margin: 50px auto;
+    }
+
+    .collapse {
+        left: 0;
+    }
+
+    .login-form form {
+        margin-bottom: 15px;
+        background: #f7f7f7;
+        box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+        padding: 30px;
+    }
+
+    .login-form h2 {
+        margin: 0 0 15px;
+    }
+
+    .form-control,
+    .btn {
+        min-height: 38px;
+        border-radius: 2px;
+    }
+
+    .btn {
+        font-size: 15px;
+        font-weight: bold;
+    }
+</style>
+
+
+
+
+<!-- Social -->
+<style>
+    .icon-bar {
+        position: fixed;
+        top: 50%;
+        -webkit-transform: translateY(-50%);
+        -ms-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+
+        /* Style the icon bar links */
+        .icon-bar a {
+            display: block;
+            text-align: center;
+            padding: 16px;
+            transition: all 0.3s ease;
+            color: white;
+            font-size: 20px;
+        }
+
+            /* Style the social media icons with color, if you want */
+            .icon-bar a:hover {
+                background-color: #000;
+            }
+</style>
+
+
+
+
+<!-- SomeQuote -->
+<div class="container ">
+    <div class="jumbotron text-white" style="background-color: skyblue;">
+        <h1>Gamers Assemble</h1>
+        <h5>Social network made by gamers for gamers</h5>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+
+<div class="card-deck mt-0 mr-1" style="width: 95%;">
+    <!-- cards -->
+    <div class="card bg-primary text-white ml-5">
+        <img class="card-img-top" src="~/Content/Images/Games1.jpg" alt="Card image cap">
+        <div class="card-body ">
+            <h3 class="card-title">Top Streamers</h3>
+            <div class="card-text">
+                <h5>Get updates on your favourite Streamers or promote your own streams</h5>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div class="card bg-primary text-white">
+        <img class="card-img-top" src="~/Content/Images/Games1.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h3 class="card-title">Top Plays</h3>
+            <div class="card-text">
+                <h5>Stay on the pulse and see best plays of your eSport, or upload your own</h5>
+            </div>
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+
+    <div class="card bg-primary text-white">
+        <img class="card-img-top" src="~/Content/Images/Games1.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h3 class="card-title">Games</h3>
+            <div class="card-text">
+                <h5>Join communities of your favourite eSports and find your team</h5>
+            </div>
+        </div>
     </div>
+</div>
+
+
+<!-- jumbo1 -->
+<div class="container-fluid  mt-4 ">
+    <div id="jumboRow">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="row pl-3 ml-1">
+                <div class="col-6 ">
+                    <h1 class="display-4">Our community</h1>
+                    <p class="lead">
+                        GamersGrid is a community made by gamers for gamers. </br> Place where you can track your
+                        stats for your favourite eSports. </br> Compare them with others and find ways to improve your
+                        performance.
+                    </p>
+                    <hr class="my-2">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Join now!</a>
+                    </p>
+                </div>
+                <div class="col-6">
+                    <img class="img h-3" src="~/Content/Images/championship600x403.jpg" alt="championships">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jumbo2 -->
+<div class="container-fluid mt-4">
+    <div id="jumboRow">
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="row pl-3 ml-1">
+                <div class="col-6">
+                    <img class="img-thumbnail w-200" src="~/Content/Images/championship600x403.jpg" alt="championships">
+                </div>
+                <div class="col-6">
+                    <h1 class="display-4">Our teams</h1>
+                    <p class="lead">
+                        Here you will be able to find a perfect team for you. </br> Casual playing, ladder or
+                        tournament </br> you are covered. Just check the stats of a player.
+                    </p>
+                    <hr class="my-2">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Find your team</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  </div>
+
+<!-- jumbo3 -->
+<div class="container-fluid mr-0">
+    <div id="jumboRow">
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="row pl-3 ml-1">
+                <div class="col-6 ">
+                    <h1 class="display-4">Our Streamers</h1>
+                    <p class="lead">
+                        Check the schedule of your favourite streamers or explore new once. </br> Just check their
+                        profiles to see if they are streaming right now </br> or else open their calendar to see when they most
+                        probably will stream
+                    </p>
+                    <hr class="my-2">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">See who is live now</a>
+                    </p>
+                </div>
+                <div class="col-6">
+                    <img class="img-thumbnail w-200" src="~/Content/Images/championship600x403.jpg" alt="championships">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jumbo4 -->
+
+
+<div class="container-fluid ml-0">
+    <div id="jumboRow">
+        <div class="jumbotron jumbotron-fluid ">
+            <div class="row pl-3 ml-1">
+                <div class="col-6">
+                    <img class="img-thumbnail w-200" src="~/Content/Images/championship600x403.jpg" alt="championships">
+                </div>
+                <div class="col-6 ">
+                    <h1 class="display-4">Our coaches</h1>
+                    <p class="lead">
+                        If you are looking for boosting your skills fast <br> find a coach, check his stats nad
+                        start your lessons.<br> Good yourself? Maybe you would want to become a coach yourself <br> and teach
+                        others how to play
+                    </p>
+                    <hr class="my-2">
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Check out coaches</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- carousel -->
+<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <div class="container">
+                <img class="d-block w-100 img-thumbnail" src="~/Content/Images/gamers600x400.jpg" alt="gamers">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Find friends and teammates</h1>
+                    <p1>Find your new team and conquer the ladder.</p1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <img class="d-block w-100 img-thumbnail" src="~/Content/Images/championship600x403.jpg" alt="championships">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Tournament time</h1>
+                    <p1>Check if there are any registered tournamenets in your locations. Lacking a team? We got you covered.</p1>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <div class="container">
+                <img class="d-block w-100 img-thumbnail border border-grey-dark" src="~/Content/Images/streamer640x362.jpg"
+                     alt="streamers">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Streamer Challenge</h1>
+                    <p1>New contest for streamers added recently. Check details for more info</p1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
 </div>

@@ -13,5 +13,10 @@ namespace GamersGridApp.Controllers
         {
             return View();
         }
+
+        public ActionResult ProfilePage()
+        {
+            return View();
+        }
     }
 }
