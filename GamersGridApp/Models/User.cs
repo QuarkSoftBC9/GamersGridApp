@@ -23,15 +23,32 @@ namespace GamersGridApp.Models
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
+        public string Email { get; set; }
 
-        public string FullName => FirstName + " " + LastName;
+        [StringLength(255)]
+        public string ProfilePhoto { get; set; }
+
+        public List<Game> FavouriteGame { get; set; }
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        public string NickName { get; set; }
+        public string Country { get; set; }
 
-        [StringLength(255)]
-        public string Description { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        public string City { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        public string Street_Name { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        public int  Street_Number { get; set; }
+
+
+        public string FullName => FirstName + " " + LastName;
+
 
         public ICollection<User> Followers { get; set; }
         public ICollection<User> Followees { get; set; }

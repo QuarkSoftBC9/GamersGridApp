@@ -18,5 +18,15 @@ namespace GamersGridApp.Controllers
         {
             return View();
         }
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Save()
+        {
+            return View();
+        }
     }
 }
