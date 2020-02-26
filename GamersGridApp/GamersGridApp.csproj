@@ -208,6 +208,10 @@
     <Compile Include="Migrations\202002211337279_UserAddedIdentityAccount.Designer.cs">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002261938374_UserMoreProperties.cs" />
+    <Compile Include="Migrations\202002261938374_UserMoreProperties.Designer.cs">
+      <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -430,6 +434,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002211337279_UserAddedIdentityAccount.resx">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261938374_UserMoreProperties.resx">
+      <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

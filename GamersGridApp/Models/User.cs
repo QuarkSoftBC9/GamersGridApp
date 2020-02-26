@@ -23,7 +23,11 @@ namespace GamersGridApp.Models
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        public string Email { get; set; }
+        public string NickName { get; set; }
+
+       
+        [StringLength(255, MinimumLength = 1)]
+        public string Description { get; set; }
 
         [StringLength(255)]
         public string ProfilePhoto { get; set; }
@@ -42,9 +46,8 @@ namespace GamersGridApp.Models
         [StringLength(50, MinimumLength = 1)]
         public string Street_Name { get; set; }
 
-        [Required]
-        [StringLength(50, MinimumLength = 1)]
-        public int  Street_Number { get; set; }
+
+        public int Street_Number { get; set; }
 
 
         public string FullName => FirstName + " " + LastName;
