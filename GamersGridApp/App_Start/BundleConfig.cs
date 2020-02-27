@@ -23,7 +23,7 @@ namespace GamersGridApp
                       "~/Scripts/bootstrap.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
+                      "~/Content/bootstrapFlatly.css",
                       "~/Content/site.css"));
         }
     }

@@ -52,9 +52,8 @@ namespace GamersGridApp.Models
 
         public string FullName => FirstName + " " + LastName;
 
-
-        public ICollection<User> Followers { get; set; }
-        public ICollection<User> Followees { get; set; }
+        public ICollection<Follow> Followers { get; set; }
+        public ICollection<Follow> FollowedBy { get; set; }
 
         //User Games N-N Relation
         public ICollection<UserGame> UserGames { get; set; }

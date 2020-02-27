@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web;
+using GamersGridApp.Models;
 
 namespace GamersGridApp.Models
 {
@@ -14,6 +15,7 @@ namespace GamersGridApp.Models
         public DbSet<UserGame> UserGameRelations { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Video> Videos { get; set; }
+        public DbSet<Follow> Follows { get; set; }
 
 
         public ApplicationDbContext()
@@ -27,18 +29,42 @@ namespace GamersGridApp.Models
         }
 
 
-  
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
+
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Followers)
-                .WithMany(u => u.Followees)
-                .Map(t => t.MapLeftKey("UserID")
-                .MapRightKey("FollowerID")
-                .ToTable("Followers"));
+                .WithRequired(f => f.User)
+                .WillCascadeOnDelete(false);
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.FollowedBy)
+                .WithRequired(f => f.Follower)
+                .WillCascadeOnDelete(false);
 
+            //modelBuilder.Entity<Follower>()
+            // .HasKey(k => new { k.UserId, k.FollowerId });
+
+
+
+
+            //.Map(cs =>
+            //{
+            //    cs.MapLeftKey("StudentRefId");
+            //    cs.MapRightKey("CourseRefId");
+            //    cs.ToTable("StudentCourse");
+            //});
+            //modelBuilder.Entity<Follower>()
+            //    .HasOne(u => u.User)
+            //    .WithMany()
+            //    .HasForeignKey(e => e.UserId);
+
+            //modelBuilder.Entity<Follower>()
+            //    .HasOne(e => e.)
+            //    .WithMany(e => e.RelatedFrom)
+            //    .HasForeignKey(e => e.ToId);
 
 
         }

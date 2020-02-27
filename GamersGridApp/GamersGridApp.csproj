@@ -212,10 +212,19 @@
     <Compile Include="Migrations\202002261938374_UserMoreProperties.Designer.cs">
       <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002271627451_SomethingToAdd.cs" />
+    <Compile Include="Migrations\202002271627451_SomethingToAdd.Designer.cs">
+      <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.cs" />
+    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.Designer.cs">
+      <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -232,6 +241,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapFlatly.css" />
     <Content Include="Content\Images\championship600x403.jpg" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\gamer.jfif" />
@@ -401,6 +411,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
+    <None Include="Views\Shared\_LayoutAfterLogincshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -437,6 +448,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002261938374_UserMoreProperties.resx">
       <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271627451_SomethingToAdd.resx">
+      <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271949346_UserFollowNNAdjust.resx">
+      <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
