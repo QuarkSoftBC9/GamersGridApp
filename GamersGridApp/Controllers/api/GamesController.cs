@@ -5,6 +5,8 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using AutoMapper;
+using GamersGridApp.Dtos;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -17,12 +19,18 @@ namespace GamersGridApp.Controllers.api
         }
 
         //GET : /api/games
-
+        [HttpGet]
         public IHttpActionResult GetGames(string query = null)
         {
+            var gamesQuery = dbContext.Games.AsQueryable();
 
+            if (!String.IsNullOrEmpty(query))
+                gamesQuery = gamesQuery.Where(g => g.Title.Contains(query));
 
-            return Ok();
+            var games = gamesQuery.ToList()
+                .Select(Mapper.Map<Game, GameDto>);
+
+            return Ok(games);
         }
     }
 }
