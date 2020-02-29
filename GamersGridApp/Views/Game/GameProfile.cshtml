@@ -1,4 +1,4 @@
-﻿
+﻿@model GamersGridApp.Models.Game
 @{
     ViewBag.Title = "GameProfile";
 }
@@ -10,22 +10,12 @@
         <img src="imgs/LOLclassic.jpg" class="img-fluid rounder float-left" alt="">
     </div>
     <div class="col-md-8">
-        <h1>League Of Legends</h1>
+        <h1>@Model.Title</h1>
         <br>
         <h6>The Game:</h6>
+        <p>Released: @Model.ReleaseDate.ToShortDateString()</p>
         <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Aliquid praesentium magnam dolor, facere
-            possimus ipsa assumenda est cum inventore deserunt quae animi accusantium minima consectetur nulla
-            repellendus necessitatibus doloremque eum. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            At consequuntur aliquam inventore minima est ab dolor quia ullam vitae deleniti culpa itaque, soluta
-            atque dicta. Sed unde ut odio adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit.
-            Soluta, reiciendis eveniet tempora hic laborum explicabo quasi tenetur. Odio, aliquam? Ea maxime
-            totam, consequuntur praesentium ipsum illum nisi velit eum vero. Lorem ipsum dolor sit amet
-            consectetur adipisicing elit. Consequatur molestiae in laudantium culpa tempore esse tempora illum
-            ratione, omnis, maiores laborum libero, voluptatibus quaerat amet illo error ullam magni
-            exercitationem. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Similique, sunt a.
-            Architecto voluptatem quam, quo necessitatibus nulla non a est inventore deleniti itaque? Veniam id
-            facilis sequi quibusdam, deserunt doloremque?
+            @Model.Description
         </p>
     </div>
     <div class="col-md-2">
