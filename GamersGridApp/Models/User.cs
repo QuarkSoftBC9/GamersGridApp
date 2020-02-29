@@ -32,7 +32,7 @@ namespace GamersGridApp.Models
         [StringLength(255)]
         public string ProfilePhoto { get; set; }
 
-        public List<Game> FavouriteGame { get; set; }
+       
 
         [Required]
         [StringLength(50, MinimumLength = 1)]

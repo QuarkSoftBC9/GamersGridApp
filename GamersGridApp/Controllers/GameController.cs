@@ -15,7 +15,7 @@ namespace GamersGridApp.Controllers
         }
 
 
-        public ActionResult ProfileIndex()
+        public ActionResult GameProfile()
         {
             return View();
         }

@@ -9,11 +9,14 @@ namespace GamersGridApp.Models
 {
     public class UserGame
     {
-        [Key]
-        [Column(Order = 1)]
+
+        public int Id { get; set; }
+
+        //[Key]
+        //[Column(Order = 1)]
         public int UserId { get; set; }
-        [Key]
-        [Column(Order = 2)]
+        // [Key]
+        //[Column(Order = 2)]
         public int GameID { get; set; }
 
         public User User { get; set; }

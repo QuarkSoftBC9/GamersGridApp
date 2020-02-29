@@ -229,6 +229,14 @@
     <Compile Include="Migrations\202002291533563_GameDescriptionPropertyAdded.Designer.cs">
       <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.cs" />
+    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.Designer.cs">
+      <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.cs" />
+    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.Designer.cs">
+      <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -421,7 +429,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
-    <Content Include="Views\Game\Profile.cshtml" />
+    <Content Include="Views\Game\GameProfile.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogincshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -471,6 +479,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002291533563_GameDescriptionPropertyAdded.resx">
       <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291609313_UserGamesRelationAdjust.resx">
+      <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291614071_UserListCoursesRemmoved.resx">
+      <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
