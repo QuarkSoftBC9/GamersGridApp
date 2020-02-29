@@ -220,6 +220,10 @@
     <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.Designer.cs">
       <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.cs" />
+    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.Designer.cs">
+      <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -454,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002271949346_UserFollowNNAdjust.resx">
       <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291447168_FollowUniqueIndexFix.resx">
+      <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

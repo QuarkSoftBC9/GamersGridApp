@@ -12,11 +12,9 @@ namespace GamersGridApp.Models
         public int ID { get; set; }
 
         [Required]
-        [Index( Order =2, IsUnique = true)]
         public int UserId { get; set; }
 
         [Required]
-        [Index(Order =3 ,IsUnique = true)]
         public int FollowerId { get; set; }
 
         public User User { get; set; }

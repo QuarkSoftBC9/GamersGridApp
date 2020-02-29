@@ -34,7 +34,7 @@ namespace GamersGridApp.Models
         {
             base.OnModelCreating(modelBuilder);
 
-
+            //schema builder for "Follows" table
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Followers)
                 .WithRequired(f => f.User)
@@ -43,12 +43,11 @@ namespace GamersGridApp.Models
                 .HasMany(u => u.FollowedBy)
                 .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
+            modelBuilder.Entity<Follow>()
+                .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
 
             //modelBuilder.Entity<Follower>()
             // .HasKey(k => new { k.UserId, k.FollowerId });
-
-
-
 
             //.Map(cs =>
             //{
