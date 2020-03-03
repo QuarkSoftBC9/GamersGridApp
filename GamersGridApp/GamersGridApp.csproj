@@ -487,7 +487,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\IndexOld.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -524,7 +524,7 @@
     <Content Include="Views\User\UserFormRegister.cshtml" />
     <Content Include="Views\User\RegisterStrange.cshtml" />
     <Content Include="Views\Game\GameProfile.cshtml" />
-    <Content Include="Views\Home\IndexCopy.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogincshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
