@@ -265,6 +265,10 @@
     <Compile Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.Designer.cs">
       <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003032257148_UserPropertiesSetToNullable.cs" />
+    <Compile Include="Migrations\202003032257148_UserPropertiesSetToNullable.Designer.cs">
+      <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -278,7 +282,7 @@
     <Compile Include="Models\Video.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\RegisterStrangeViewModel.cs" />
+    <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
   </ItemGroup>
@@ -599,6 +603,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.resx">
       <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003032257148_UserPropertiesSetToNullable.resx">
+      <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

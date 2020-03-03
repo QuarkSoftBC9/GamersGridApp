@@ -48,7 +48,7 @@ namespace GamersGridApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveRegisterStrange(RegisterStrangeViewModel userViewModel)
+        public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel)
         {
             var newUser = new User()
             {

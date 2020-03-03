@@ -13,15 +13,15 @@ namespace GamersGridApp.Models
         //[Required]
         //public ApplicationUser UserAccount { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string NickName { get; set; }
 
@@ -34,11 +34,11 @@ namespace GamersGridApp.Models
 
        
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string Country { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string City { get; set; }
 
