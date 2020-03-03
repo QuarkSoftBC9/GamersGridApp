@@ -8,6 +8,13 @@ namespace GamersGridApp.Controllers
 {
     public class UserController : Controller
     {
+        private ApplicationDbContext context = new ApplicationDbContext();
+
+        public UserController()
+        {
+            context = new ApplicationDbContext();
+        }
+
         // GET: User
         public ActionResult Index()
         {
@@ -18,15 +25,41 @@ namespace GamersGridApp.Controllers
         {
             return View();
         }
+
         public ActionResult Register()
         {
-            return View();
+            var viewmodel = new UserFormViewModel();
+
+            return View("UserForm",viewmodel);
         }
 
         [HttpPost]
-        public ActionResult Save()
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(User user)
         {
-            return View();
+            if (user.id == 0)
+            {
+                var newUser = new User()
+                {
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    Email = user.Email
+
+                };
+                context.GamersGridUsers.Add(newUser);
+            }
+            else
+            {
+                var userInDb = context.GamersGridUsers.Single(u => u.Id == user.id);
+
+                FirstName = user.FirstName;
+                LastName = user.LastName;
+                Email = user.Email;
+            }
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
+
         }
     }
 }
