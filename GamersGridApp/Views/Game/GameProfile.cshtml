@@ -1,0 +1,41 @@
+﻿@model GamersGridApp.Models.Game
+@{
+    ViewBag.Title = "GameProfile";
+}
+
+
+<div class="row">
+    <div class="col-md-2">
+        <img src="imgs/LOLclassic.jpg" class="img-fluid rounder float-left" alt="">
+    </div>
+    <div class="col-md-8">
+        <h1>@Model.Title</h1>
+        <br>
+        <h6>The Game:</h6>
+        <p>Released: @Model.ReleaseDate.ToShortDateString()</p>
+        <p>
+            @Model.Description
+        </p>
+    </div>
+    <div class="col-md-2">
+        <h4>Social</h4>
+        <img src="imgs/LOLclassic.jpg" class="img-fluid " alt="">
+        <img src="imgs/LOLclassic.jpg" class="img-fluid " alt="">
+        <h4>Links</h4>
+        <ul class="list-group">
+            <li class="list-group-item">official</li>
+            <li class="list-group-item">fb</li>
+            <li class="list-group-item">youtube</li>
+            <li class="list-group-item">twitch</li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+
+    </div>
+
+    <div class="col-md-6">
+
+    </div>
+</div>

@@ -4,12 +4,12 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-
+    @Styles.Render("~/Content/Bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/css")
+
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
             <img src="~/Content/Images/logo_small.png" alt="LOGO" style="height:36px;">
             Gamer's Grid
@@ -18,33 +18,28 @@
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
             <ul class="navbar-nav ml-auto">
+
                 <li class="nav-item">
-                    <div>
-                        <input id="Search" class="form-control" />
-                    </div>
-                    @*@using (Html.BeginForm("Search", "User", FormMethod.Get))
-                        {
-                            @Html.TextBox("searchString", null, new { @class = "form-control" })
-                        }*@
+                    <a class="nav-link" href="#">Games</a>
                 </li>
                 <li class="nav-item">
-                    @Html.ActionLink("Games", "GetTopGames", null, new { @class = "nav-link" })
+                    <a class="nav-link" href="#">How it works</a>
                 </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
-                </li>
+
             </ul>
 
+            @using (Html.BeginForm("Search", "User", FormMethod.Get))
+            {
+                @Html.TextBox("searchString", null, new { @class = "form-control" })
+            }
+
+            <a class="nav-link" href="#">
+                <img src="~/Content/Images/settings.png" alt="Settings" style="height:20px;">
+            </a>
         </div>
     </nav>
-    <br />
-    <br />
-    <div class="container-fluid body-content">
+    <div class="container body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -53,10 +48,7 @@
     </div>
 
     @Scripts.Render("~/bundles/mainLib")
-
-    @*custom js for typeahead*@
-    @Scripts.Render("~/bundles/TypeAheadSearchBar")
-
+    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>

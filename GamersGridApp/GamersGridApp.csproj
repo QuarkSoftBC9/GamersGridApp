@@ -47,16 +47,28 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.7\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.7\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -167,12 +179,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\OrganizationProfile.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\GamesController.cs" />
+    <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,10 +225,43 @@
     <Compile Include="Migrations\202002211337279_UserAddedIdentityAccount.Designer.cs">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002261938374_UserMoreProperties.cs" />
+    <Compile Include="Migrations\202002261938374_UserMoreProperties.Designer.cs">
+      <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271627451_SomethingToAdd.cs" />
+    <Compile Include="Migrations\202002271627451_SomethingToAdd.Designer.cs">
+      <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.cs" />
+    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.Designer.cs">
+      <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.cs" />
+    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.Designer.cs">
+      <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291533563_GameDescriptionPropertyAdded.cs" />
+    <Compile Include="Migrations\202002291533563_GameDescriptionPropertyAdded.Designer.cs">
+      <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.cs" />
+    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.Designer.cs">
+      <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.cs" />
+    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.Designer.cs">
+      <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002291619105_LeagueProfileStandard.cs" />
+    <Compile Include="Migrations\202002291619105_LeagueProfileStandard.Designer.cs">
+      <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Photo.cs" />
@@ -265,6 +315,7 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\bootstrapFlatly.css" />
     <Content Include="Content\Images\championship600x403.jpg" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\gamer.jfif" />
@@ -274,19 +325,24 @@
     <Content Include="Content\Images\Instagram.svg" />
     <Content Include="Content\Images\keyboard.jpg" />
     <Content Include="Content\Images\logo_small.png" />
+    <Content Include="Content\Images\LOLclassic.jpg" />
     <Content Include="Content\Images\robot.png" />
     <Content Include="Content\Images\settings.png" />
     <Content Include="Content\Images\setup.jpg" />
     <Content Include="Content\Images\streamer640x362.jpg" />
     <Content Include="Content\Images\twitter.svg" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bloodhound.js" />
+    <Content Include="Scripts\bloodhound.min.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\Custom\TypeAheadSearchBar.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -401,6 +457,10 @@
     <Content Include="Scripts\src\utils\setAttributes.js" />
     <Content Include="Scripts\src\utils\setStyles.js" />
     <Content Include="Scripts\src\utils\setupEventListeners.js" />
+    <Content Include="Scripts\typeahead.bundle.js" />
+    <Content Include="Scripts\typeahead.bundle.min.js" />
+    <Content Include="Scripts\typeahead.jquery.js" />
+    <Content Include="Scripts\typeahead.jquery.min.js" />
     <Content Include="Scripts\umd\popper-utils.js" />
     <Content Include="Scripts\umd\popper-utils.min.js" />
     <Content Include="Scripts\umd\popper.js" />
@@ -454,6 +514,8 @@
     <Content Include="Views\User\UserFormEdit.cshtml" />
     <Content Include="Views\User\UserFormRegister.cshtml" />
     <Content Include="Views\User\RegisterStrange.cshtml" />
+    <Content Include="Views\Game\GameProfile.cshtml" />
+    <None Include="Views\Shared\_LayoutAfterLogincshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -487,6 +549,30 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002211337279_UserAddedIdentityAccount.resx">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002261938374_UserMoreProperties.resx">
+      <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271627451_SomethingToAdd.resx">
+      <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002271949346_UserFollowNNAdjust.resx">
+      <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291447168_FollowUniqueIndexFix.resx">
+      <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291533563_GameDescriptionPropertyAdded.resx">
+      <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291609313_UserGamesRelationAdjust.resx">
+      <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291614071_UserListCoursesRemmoved.resx">
+      <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002291619105_LeagueProfileStandard.resx">
+      <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
