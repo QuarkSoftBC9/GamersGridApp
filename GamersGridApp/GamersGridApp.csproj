@@ -257,6 +257,14 @@
     <Compile Include="Migrations\202002291619105_LeagueProfileStandard.Designer.cs">
       <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003032154203_AppUserIncludeUser.cs" />
+    <Compile Include="Migrations\202003032154203_AppUserIncludeUser.Designer.cs">
+      <DependentUpon>202003032154203_AppUserIncludeUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.cs" />
+    <Compile Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.Designer.cs">
+      <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -585,6 +593,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002291619105_LeagueProfileStandard.resx">
       <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003032154203_AppUserIncludeUser.resx">
+      <DependentUpon>202003032154203_AppUserIncludeUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.resx">
+      <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

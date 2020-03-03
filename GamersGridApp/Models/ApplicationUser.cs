@@ -19,9 +19,10 @@ namespace GamersGridApp.Models
             return userIdentity;
         }
 
-      
 
-    
+        public User UserAccount { get; set; }
+
+
 
 
 
