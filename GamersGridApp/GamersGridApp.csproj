@@ -279,21 +279,30 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapFlatly.css" />
+    <Content Include="Content\Images\anthony.png" />
     <Content Include="Content\Images\championship600x403.jpg" />
+    <Content Include="Content\Images\data.png" />
+    <Content Include="Content\Images\data2.png" />
     <Content Include="Content\Images\facebook.svg" />
     <Content Include="Content\Images\gamer.jfif" />
     <Content Include="Content\Images\gamers600x400.jpg" />
     <Content Include="Content\Images\Games1.jpg" />
     <Content Include="Content\Images\GGlogo.jpg" />
+    <Content Include="Content\Images\Group 1.png" />
     <Content Include="Content\Images\Instagram.svg" />
     <Content Include="Content\Images\keyboard.jpg" />
     <Content Include="Content\Images\logo_small.png" />
     <Content Include="Content\Images\LOLclassic.jpg" />
+    <Content Include="Content\Images\pie.png" />
     <Content Include="Content\Images\robot.png" />
     <Content Include="Content\Images\settings.png" />
     <Content Include="Content\Images\setup.jpg" />
     <Content Include="Content\Images\streamer640x362.jpg" />
+    <Content Include="Content\Images\topGamers.png" />
+    <Content Include="Content\Images\topGames.png" />
+    <Content Include="Content\Images\topPlays.png" />
     <Content Include="Content\Images\twitter.svg" />
+    <Content Include="Content\Images\Union.png" />
     <Content Include="Content\style.css" />
     <Content Include="Content\typeahead.css" />
     <Content Include="favicon.ico" />
@@ -458,7 +467,10 @@
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\User\Register.cshtml" />
     <Content Include="Views\Game\GameProfile.cshtml" />
+    <Content Include="Views\Home\IndexCopy.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogincshtml" />
+    <Content Include="Views\Shared\_NavBar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

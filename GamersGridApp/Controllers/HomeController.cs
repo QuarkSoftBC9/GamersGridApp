@@ -10,7 +10,7 @@ namespace GamersGridApp.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("IndexCopy");
         }
 
         public ActionResult About()
