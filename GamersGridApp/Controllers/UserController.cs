@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GamersGridApp.Models;
+using GamersGridApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -28,38 +30,48 @@ namespace GamersGridApp.Controllers
 
         public ActionResult Register()
         {
-            var viewmodel = new UserFormViewModel();
+            var viewmodel = new UserRegisterViewModel();
 
-            return View("UserForm",viewmodel);
+            return View("UserFormRegister", viewmodel);
+        }
+
+        public ActionResult Edit()
+        {
+            var viewmodel = new UserFormEditViewModel();
+
+            return View("UserFormEdit", viewmodel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveRegister(UserRegisterViewModel userViewModel)
+        {
+            var newUser = new User()
+            {
+                FirstName = userViewModel.FirstName,
+                LastName = userViewModel.LastName,
+                Email = userViewModel.Email
+
+            };
+            context.GamersGridUsers.Add(newUser);
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Save(User user)
+        public ActionResult SaveEdit(User user)
         {
-            if (user.id == 0)
-            {
-                var newUser = new User()
-                {
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    Email = user.Email
+            //Edit
+            var userInDb = context.GamersGridUsers.Single(u => u.ID == user.ID);
 
-                };
-                context.GamersGridUsers.Add(newUser);
-            }
-            else
-            {
-                var userInDb = context.GamersGridUsers.Single(u => u.Id == user.id);
-
-                FirstName = user.FirstName;
-                LastName = user.LastName;
-                Email = user.Email;
-            }
-
+            userInDb.FirstName = user.FirstName;
+            userInDb.LastName = user.LastName;
+            userInDb.Email = user.Email;
             context.SaveChanges();
             return RedirectToAction("Index");
-
         }
     }
 }
