@@ -35,11 +35,36 @@ namespace GamersGridApp.Controllers
             return View("UserFormRegister", viewmodel);
         }
 
+        public ActionResult RegisterStrange()
+        {
+            return View();
+        }
+
         public ActionResult Edit()
         {
             var viewmodel = new UserFormEditViewModel();
 
             return View("UserFormEdit", viewmodel);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult SaveRegisterStrange(RegisterStrangeViewModel userViewModel)
+        {
+            var newUser = new User()
+            {
+                FirstName = userViewModel.FirstName,
+                LastName = userViewModel.LastName,
+                Street_Name = userViewModel.StreetName,
+                Street_Number = userViewModel.StreetNumber,
+                Country = userViewModel.Country,
+                City = userViewModel.City,
+                Email = userViewModel.Email
+            };
+            newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);
+            context.GamersGridUsers.Add(newUser);
+
+            context.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 
