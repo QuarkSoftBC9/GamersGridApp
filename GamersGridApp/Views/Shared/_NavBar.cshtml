@@ -1,4 +1,7 @@
-﻿<nav class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color: hsl(225, 40%, 18%);">
+﻿@{
+    ViewBag.SearchResult = "";
+}
+<nav class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color: hsl(225, 40%, 18%);">
     <a class="navbar-brand" href="#">
         <img src="~/Content/Images/logo_small.png" alt="LOGO" style="height:36px;">
         Gamer's Grid
@@ -11,7 +14,10 @@
         <ul class="navbar-nav ml-auto">
             <li class="nav-item">
                 <div>
-                    <input id="Search" class="form-control" />
+                    @using (Html.BeginForm())
+                    {
+                        <input type="text" name="search" onclick="submit" />
+                    }
                 </div>
                 @*@using (Html.BeginForm("Search", "User", FormMethod.Get))
                     {
