@@ -139,7 +139,7 @@ namespace GamersGridApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return View("~/Views/User/RegisterStrange.cshtml");
         }
 
         //
@@ -147,15 +147,17 @@ namespace GamersGridApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModel model)
+        public async Task<ActionResult> Register(ViewModels.RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
-                var result = await UserManager.CreateAsync(user, model.Password);
+            {   //Passing basic user data
+                var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country };
+                //Creating Application User + passing user object inside
+                var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email,UserAccount = user };
+                var result = await UserManager.CreateAsync(AppUser, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    await SignInManager.SignInAsync(AppUser, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link

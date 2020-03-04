@@ -48,19 +48,19 @@ namespace GamersGridApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveRegisterStrange(RegisterStrangeViewModel userViewModel)
+        public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel)
         {
             var newUser = new User()
             {
                 FirstName = userViewModel.FirstName,
                 LastName = userViewModel.LastName,
-                Street_Name = userViewModel.StreetName,
-                Street_Number = userViewModel.StreetNumber,
+                //Street_Name = userViewModel.StreetName,
+                //Street_Number = userViewModel.StreetNumber,
                 Country = userViewModel.Country,
                 City = userViewModel.City,
-                
+               // Email = userViewModel.Email
             };
-            
+            //newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);
             context.GamersGridUsers.Add(newUser);
 
             context.SaveChanges();
@@ -76,7 +76,7 @@ namespace GamersGridApp.Controllers
             {
                 FirstName = userViewModel.FirstName,
                 LastName = userViewModel.LastName,
-                
+                //Email = userViewModel.Email
 
             };
             context.GamersGridUsers.Add(newUser);
@@ -94,7 +94,7 @@ namespace GamersGridApp.Controllers
 
             userInDb.FirstName = user.FirstName;
             userInDb.LastName = user.LastName;
-            
+            //userInDb.Email = user.Email;
             context.SaveChanges();
             return RedirectToAction("Index");
         }

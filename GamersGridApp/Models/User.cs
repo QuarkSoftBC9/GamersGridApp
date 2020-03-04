@@ -10,18 +10,18 @@ namespace GamersGridApp.Models
     {
         public int ID { get; set; }
 
-        [Required]
-        public ApplicationUser UserAccount { get; set; }
+        //[Required]
+        //public ApplicationUser UserAccount { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string FirstName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string LastName { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string NickName { get; set; }
 
@@ -34,20 +34,20 @@ namespace GamersGridApp.Models
 
        
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string Country { get; set; }
 
-        [Required]
+        //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string City { get; set; }
 
-        [Required]
-        [StringLength(50, MinimumLength = 1)]
-        public string Street_Name { get; set; }
+       // [Required]
+        //[StringLength(50, MinimumLength = 1)]
+        //public string Street_Name { get; set; }
 
 
-        public int Street_Number { get; set; }
+        //public int Street_Number { get; set; }
 
 
         public string FullName => FirstName + " " + LastName;

@@ -1,12 +1,13 @@
 ﻿using GamersGridApp.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
 namespace GamersGridApp.ViewModels
 {
-    public class RegisterStrangeViewModel
+    public class RegisterViewModel
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -67,8 +68,12 @@ namespace GamersGridApp.ViewModels
             set { cs = value; }
         }
 
-        public string StreetName { get; set; }
-        public int StreetNumber { get; set; }
+        public string NickName { get; set; }
+
+        [Required]
+        [StringLength(16,MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public List<Game> FavouriteGames { get; set; }
