@@ -39,13 +39,16 @@ namespace GamersGridApp
                  "~/Content/IndexStyle.css"));
 
 
+
+
+
+            bundles.Add(new StyleBundle("~/Content/SiteCss").Include(
+                 "~/Content/Site.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
 
 
                       "~/Content/bootstrapFlatly.css",
                       "~/Content/typeahead.css"));
-
-                      //"~/Content/Site.css"));
         }
     }
 }
