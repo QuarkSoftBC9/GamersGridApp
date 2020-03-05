@@ -1,0 +1,43 @@
+﻿
+.container-fluid {
+    padding: 0px;
+}
+
+.card-body {
+    background-color: hsl(225, 40%, 18%);
+}
+
+.card {
+    border: none;
+    background-color: transparent !important;
+}
+
+#jumboHeader {
+    text-align: center;
+}
+
+.card-img-top {
+    filter: brightness(150%);
+    background-color: none;
+}
+
+#cardTitle {
+    align-items: center;
+}
+
+body {
+    font-family: 'Alata';
+}
+
+#imageID {
+    width: 40%;
+    height: 40%;
+    position: relative;
+    padding-left: 40px;
+    margin-left: 40px;
+    justify-content: center;
+}
+
+.view {
+    background-image: url("/Content/Images/anthony.png")
+}
