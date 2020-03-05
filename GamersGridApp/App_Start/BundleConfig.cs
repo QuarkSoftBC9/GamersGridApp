@@ -43,9 +43,9 @@ namespace GamersGridApp
 
 
                       "~/Content/bootstrapFlatly.css",
-                      "~/Content/typeahead.css",
+                      "~/Content/typeahead.css"));
 
-                      "~/Content/Site.css"));
+                      //"~/Content/Site.css"));
         }
     }
 }
