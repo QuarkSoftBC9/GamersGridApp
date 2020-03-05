@@ -45,26 +45,26 @@ namespace GamersGridApp.Controllers
 
             return View();
         }
-        public ActionResult Search(string searchString)
-        {
-            SearchViewModel searchviewModel = new SearchViewModel() { };
+        //public ActionResult Search(string searchString)
+        //{
+        //    //SearchViewModel searchviewModel = new SearchViewModel() { };
 
-            List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
-            List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
+        //    List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
+        //    List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
 
-            if(games.Count > 0)
-            {
-                searchviewModel.Games.AddRange(games);
-                searchviewModel.HasGames = true;
-            }
+        //    //if(games.Count > 0)
+        //    //{
+        //    //    searchviewModel.Games.AddRange(games);
+        //    //    searchviewModel.HasGames = true;
+        //    //}
                 
-            if (users.Count > 0)
-            {
-                searchviewModel.Users.AddRange(users);
-                searchviewModel.HasUsers = true;
-            }
+        //    //if (users.Count > 0)
+        //    //{
+        //    //    searchviewModel.Users.AddRange(users);
+        //    //    searchviewModel.HasUsers = true;
+        //    //}
 
-            return View(searchviewModel);
-        }
+        //    //return View(searchviewModel);
+        //}
     }
 }
