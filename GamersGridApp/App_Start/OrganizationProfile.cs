@@ -14,6 +14,9 @@ namespace GamersGridApp.App_Start
         {
             CreateMap<Game, GameDto>();
             CreateMap<GameDto, Game>();
+
+            CreateMap<User, UserDto>();
+            CreateMap<UserDto, User>();
         }
     }
 }

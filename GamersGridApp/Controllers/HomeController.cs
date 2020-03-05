@@ -47,11 +47,16 @@ namespace GamersGridApp.Controllers
         }
         //public ActionResult Search(string searchString)
         //{
+<<<<<<< Updated upstream
         //    //SearchViewModel searchviewModel = new SearchViewModel() { };
+=======
+        //    SearchViewModel searchviewModel = new SearchViewModel() { };
+>>>>>>> Stashed changes
 
         //    List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
         //    List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
 
+<<<<<<< Updated upstream
         //    //if(games.Count > 0)
         //    //{
         //    //    searchviewModel.Games.AddRange(games);
@@ -65,6 +70,21 @@ namespace GamersGridApp.Controllers
         //    //}
 
         //    //return View(searchviewModel);
+=======
+        //    if(games.Count > 0)
+        //    {
+        //        searchviewModel.Games.AddRange(games);
+        //        searchviewModel.HasGames = true;
+        //    }
+                
+        //    if (users.Count > 0)
+        //    {
+        //        searchviewModel.Users.AddRange(users);
+        //        searchviewModel.HasUsers = true;
+        //    }
+
+        //    return View(searchviewModel);
+>>>>>>> Stashed changes
         //}
     }
 }
