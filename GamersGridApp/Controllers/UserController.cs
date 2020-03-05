@@ -18,10 +18,11 @@ namespace GamersGridApp.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+                return View("UsersList");
         }
+
 
         public ActionResult ProfilePage()
         {
@@ -46,6 +47,7 @@ namespace GamersGridApp.Controllers
 
             return View("UserFormEdit", viewmodel);
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel)

@@ -1,0 +1,48 @@
+﻿@model IEnumerable<GamersGridApp.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Users</h2>
+
+<table id="users" class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nickname</th>
+            <th>Country</th>
+            <th>City</th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+</table>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/mainLib")
+
+
+    <script>
+        $(document).ready(function () {
+            var table = $("#users").DataTable({
+                ajax: {
+                    url: "/api/users/",
+                    // οtan exw polla objects vazw kai dataSrc, twra den xreiazetai
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "nickName",
+                    },
+                    {
+                        data: "country",
+                    },
+                    {
+                        data: "city",
+                    }
+                ]
+            });
+        });
+    </script>
+}
