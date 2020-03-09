@@ -12,14 +12,17 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <ul class="navbar-nav ml-auto ">
-            <li class="nav-item" >
+            <li class="nav-item">
 
 
-                    <input  id="Search" class="typeahead form-control"type="text" />
+                <input id="Search" class="typeahead form-control" type="text" />
 
             </li>
             <li class="nav-item">
-                @Html.ActionLink("Games", "GetTopGames", null, new { @class = "nav-link" })
+                @Html.ActionLink("Users", "Index", "User", null, new { @class = "nav-link" })
+            </li>
+            <li class="nav-item">
+                @Html.ActionLink("Games", "Index", "Game", null, new { @class = "nav-link" })
             </li>
             <li class="nav-item">
                 @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })

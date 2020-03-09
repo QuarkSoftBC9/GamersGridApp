@@ -17,9 +17,9 @@ namespace GamersGridApp.Controllers
             dbContext = new ApplicationDbContext();
         }
         // GET: Game
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            return View("GamesList");
         }
 
 

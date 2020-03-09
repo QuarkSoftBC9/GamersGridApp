@@ -10,12 +10,12 @@ namespace GamersGridApp
         {
             bundles.Add(new ScriptBundle("~/bundles/mainLib").Include(
                         "~/Scripts/jquery-{version}.js",
+                        "~/Scripts/bootstrap.js",
+                         "~/Scripts/Datatables/jquery.dataTables.js",
                         "~/Scripts/typeahead.bundle.js",
-                        "~/Scripts/typeahead.jquery.js",
-                        "~/Scripts/bootstrap.js"
+                        "~/Scripts/typeahead.jquery.js"
                         //"~/Scripts/popper.js"
-
-                        ));
+                        )) ;
 
             bundles.Add(new ScriptBundle("~/bundles/popper").Include(
                         "~/Scripts/umd/popper.js"
@@ -38,16 +38,11 @@ namespace GamersGridApp
                 "~/Content/fontawesome-all.css",
                  "~/Content/IndexStyle.css"));
 
-
-
-
-
             bundles.Add(new StyleBundle("~/Content/SiteCss").Include(
                  "~/Content/Site.css"));
             bundles.Add(new StyleBundle("~/Content/css").Include(
-
-
                       "~/Content/bootstrapFlatly.css",
+                      "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/typeahead.css"));
         }
     }

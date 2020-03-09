@@ -18,9 +18,9 @@ namespace GamersGridApp.Controllers
         }
 
         // GET: User
-        public ActionResult Index()
+        public ViewResult Index()
         {
-            return View();
+            return View("UsersList");
         }
 
         public ActionResult ProfilePage()
