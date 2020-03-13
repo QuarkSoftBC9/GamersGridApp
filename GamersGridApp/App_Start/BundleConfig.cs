@@ -15,13 +15,17 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/typeahead.jquery.js"
                         //"~/Scripts/popper.js"
-                        )) ;
+                        ));
 
             bundles.Add(new ScriptBundle("~/bundles/popper").Include(
                         "~/Scripts/umd/popper.js"
 
                         ));
-
+            bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
+                        "~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js",
+                        "~/Scripts/RegisterJs/jquery.bootstrap.wizard.js",
+                         "~/Scripts/RegisterJs/jquery.validate.min.js"
+                        ));
             bundles.Add(new ScriptBundle("~/bundles/TypeAheadSearchBar").Include(
                         "~/Scripts/Custom/TypeAheadSearchBar.js"));
 
@@ -44,6 +48,12 @@ namespace GamersGridApp
                       "~/Content/bootstrapFlatly.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/typeahead.css"));
+
+            bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(
+                "~/Content/bootstrapFlatly.css",
+             "~/Content/RegisterCss/avraam2NotAll.css",
+             "~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css",
+             "~/Content/PROFILE_GG.css"));
         }
     }
 }

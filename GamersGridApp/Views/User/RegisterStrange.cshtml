@@ -19,15 +19,10 @@
     <!--     Fonts and icons     -->
     <script src="https://kit.fontawesome.com/0cde2950cb.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-
-    <link href="~/Content/RegisterCss/avraam2NotAll.css" rel="stylesheet" />
-
-    <link rel="stylesheet" href="~/Content/RegisterCss/PROFILE_GG.css">
     <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/RegisterCss")
 
-    <link href="~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css" rel="stylesheet" />
 
 </head>
 
@@ -230,6 +225,8 @@
 
 
     </div>
+
+    @Scripts.Render("~/bundles/RegisterJs")
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
