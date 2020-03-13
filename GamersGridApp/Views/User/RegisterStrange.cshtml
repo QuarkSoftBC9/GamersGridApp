@@ -9,8 +9,10 @@
 
 <head>
     <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="~/AssetsAvraamRegister/img/apple-icon.png">
-    <link rel="icon" type="image/png" href="~/AssetsAvraamRegister/img/favicon.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="~/Content/Images/apple-icon.png">
+
+    <link rel="icon" type="image/png" href="~/Content/Images/favicon.png">
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <title>Gamers Grid</title>
 
@@ -35,7 +37,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">
-            <img src="~/AssetsAvraamRegister/img/logo_small.png" alt="LOGO" style="height:36px;">
+            <img src="~/Content/Images/logo_small.png" alt="LOGO" style="height:36px;">
             <a class="nav-link" href="#" style="color: black;"><strong>GAMERS' GRID</strong></a>
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -75,12 +77,12 @@
                 <button class="btn btn-dark" type="submit">Search</button>
             </form>
             <a class="nav-link" href="#">
-                <img src="~/AssetsAvraamRegister/img/settings.png" alt="Settings" style="height:20px;">
+                <img src="~/Content/Images/settings.png" alt="Settings" style="height:20px;">
             </a>
         </div>
     </nav>
     <div class="image-container set-full-height"
-         style="background-image: url('/AssetsAvraamRegister/img/wizard.jpg')">
+        style="background-image: url('/Content/Images/wizard.jpg')">
 
         <!--   Big avraam-container   -->
         <div class="avraam-container">
@@ -93,133 +95,134 @@
                         <div class="card wizard-card" data-color="blue" id="wizardProfile">
                             @using (Html.BeginForm("Register", "Account"))
                             {
-                                @Html.AntiForgeryToken()
-                                <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+                            @Html.AntiForgeryToken()
+ <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
 
-                                <div class="wizard-header">
-                                    <h3>
-                                        <b>BUILD</b> YOUR PROFILE <br>
-                                        <small>This information will let us know more about you.</small>
-                                    </h3>
-                                </div>
+                            <div class="wizard-header">
+                                <h3>
+                                    <b>BUILD</b> YOUR PROFILE <br>
+                                    <small>This information will let us know more about you.</small>
+                                </h3>
+                            </div>
 
-                                <div class="wizard-navigation">
-                                    <ul>
-                                        <li class="avraamli"><a href="#about" data-toggle="tab">About</a></li>
-                                        <li class="avraamli"><a href="#account" data-toggle="tab">Account</a></li>
-                                        <li class="avraamli"><a href="#address" data-toggle="tab">Address</a></li>
-                                    </ul>
+                            <div class="wizard-navigation">
+                                <ul>
+                                    <li class="avraamli"><a href="#about" data-toggle="tab">About</a></li>
+                                    <li class="avraamli"><a href="#account" data-toggle="tab">Account</a></li>
+                                    <li class="avraamli"><a href="#address" data-toggle="tab">Address</a></li>
+                                </ul>
 
-                                </div>
+                            </div>
 
-                                <div class="avraam-tab-content">
-                                    <div class="avraam-tab-pane" id="about">
-                                        <div class="avraam-row">
-                                            <h4 class="info-text"> Let's start with the basic information</h4>
-                                            <div class="avraam-col-sm-4 avraam-col-sm-offset-1">
-                                                <div class="picture-container">
-                                                    <div class="picture">
-                                                        <img src="~/AssetsAvraamRegister/img/default-avatar.png" class="picture-src"
-                                                             id="wizardPicturePreview" title="" />
-                                                        <input type="file" id="wizard-picture">
-                                                    </div>
-                                                    <h6>Choose Picture</h6>
+                            <div class="avraam-tab-content">
+                                <div class="avraam-tab-pane" id="about">
+                                    <div class="avraam-row">
+                                        <h4 class="info-text"> Let's start with the basic information</h4>
+                                        <div class="avraam-col-sm-4 avraam-col-sm-offset-1">
+                                            <div class="picture-container">
+                                                <div class="picture">
+                                                  <img src="~/Content/Images/default-avatar.png" class="picture-src"
+
+                                                         id="wizardPicturePreview" title="" />
+                                                    <input type="file" id="wizard-picture">
                                                 </div>
-                                            </div>
-                                            <div class="avraam-col-sm-6">
-                                                <div class="avraam-form-group">
-                                                    <label>Email <small>(required)</small></label>
-                                                    @Html.TextBoxFor(v => v.Email, new { @class = "avraam-form-control", required = "required" })
-                                                </div>
-                                            </div>
-                                            <div class="avraam-col-sm-6">
-                                                <div class="avraam-form-group">
-                                                    <label>Password <small>(required)</small></label>
-                                                    @Html.TextBoxFor(v => v.Password, new { @class = "avraam-form-control", required = "required" })
-                                                </div>
-                                            </div>
-                                            <div class="avraam-form-group col-sm-10 avraam-col-sm-offset-1">
-                                                <label>NickName <small>(required)</small></label>
-                                                @Html.TextBoxFor(v => v.NickName, new { @class = "avraam-form-control", required = "required" })
+                                                <h6>Choose Picture</h6>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="avraam-tab-pane" id="account">
-                                        <h4 class="info-text"> What is your Favorite Game? </h4>
-                                        <div class="avraam-row">
-
-                                            <div class="col-sm-10 avraam-col-sm-offset-1">
-                                                <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Dota, new { @class = "avraam-form-control" })
-                                                        <div class="icon">
-                                                            <i class="fab fa-old-republic"></i>
-                                                        </div>
-                                                        <h6>Dota 2</h6>
-                                                    </div>
-                                                </div>
-                                                <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Lol, new { @class = "avraam-form-control" })
-                                                        <div class="icon">
-                                                            <i class="fas fa-fist-raised"></i>
-                                                        </div>
-                                                        <h6>League Of Legends</h6>
-                                                    </div>
-
-                                                </div>
-                                                <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Cs, new { @class = "avraam-form-control" })
-                                                        <div class="icon">
-                                                            <i class="fas fa-crosshairs"></i>
-                                                        </div>
-                                                        <h6>Counter Strike</h6>
-                                                    </div>
-
-                                                </div>
+                                        <div class="avraam-col-sm-6">
+                                            <div class="avraam-form-group">
+                                                <label>Email <small>(required)</small></label>
+                                                @Html.TextBoxFor(v => v.Email, new { @class = "avraam-form-control", required = "required" })
                                             </div>
-
                                         </div>
-                                    </div>
-                                    <div class="avraam-tab-pane" id="address">
-                                        <div class="avraam-row">
-                                            <div class="avraam-col-sm-12">
-                                                <h4 class="info-text"> Are you living in a nice area? </h4>
+                                        <div class="avraam-col-sm-6">
+                                            <div class="avraam-form-group">
+                                                <label>Password <small>(required)</small></label>
+                                                @Html.TextBoxFor(v => v.Password, new { @class = "avraam-form-control", required = "required" })
                                             </div>
-                                            <div class="avraam-col-sm-5 avraam-col-sm-offset-1">
-                                                <div class="avraam-form-group">
-                                                    <label>City</label>
-                                                    @Html.TextBoxFor(v => v.City, new { @class = "avraam-form-control", required = "required" })
-                                                </div>
-                                            </div>
-                                            <div class="avraam-col-sm-5">
-                                                <div class="avraam-form-group">
-                                                    <label>Country</label><br>
-                                                    <select id="Country" name="Country" class="form-control"></select>
-                                                </div>
-                                            </div>
+                                        </div>
+                                        <div class="avraam-form-group col-sm-10 avraam-col-sm-offset-1">
+                                            <label>NickName <small>(required)</small></label>
+                                            @Html.TextBoxFor(v => v.NickName, new { @class = "avraam-form-control", required = "required" })
                                         </div>
                                     </div>
                                 </div>
-                                <div class="wizard-footer height-wizard">
-                                    <div class="pull-right-avraam">
-                                        <input type='button' style='background-color:blue'
-                                               class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next'
-                                               value='Next' />
-                                        <input type='submit' style='background-color:blue'
-                                               class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish'
-                                               value='Finish' />
+                                <div class="avraam-tab-pane" id="account">
+                                    <h4 class="info-text"> What is your Favorite Game? </h4>
+                                    <div class="avraam-row">
+
+                                        <div class="col-sm-10 avraam-col-sm-offset-1">
+                                            <div class="avraam-col-sm-4">
+                                                <div class="choice" data-toggle="wizard-checkbox">
+                                                    @Html.CheckBoxFor(v => v.Dota, new { @class = "avraam-form-control" })
+                                                    <div class="icon">
+                                                        <i class="fab fa-old-republic"></i>
+                                                    </div>
+                                                    <h6>Dota 2</h6>
+                                                </div>
+                                            </div>
+                                            <div class="avraam-col-sm-4">
+                                                <div class="choice" data-toggle="wizard-checkbox">
+                                                    @Html.CheckBoxFor(v => v.Lol, new { @class = "avraam-form-control" })
+                                                    <div class="icon">
+                                                        <i class="fas fa-fist-raised"></i>
+                                                    </div>
+                                                    <h6>League Of Legends</h6>
+                                                </div>
+
+                                            </div>
+                                            <div class="avraam-col-sm-4">
+                                                <div class="choice" data-toggle="wizard-checkbox">
+                                                    @Html.CheckBoxFor(v => v.Cs, new { @class = "avraam-form-control" })
+                                                    <div class="icon">
+                                                        <i class="fas fa-crosshairs"></i>
+                                                    </div>
+                                                    <h6>Counter Strike</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
 
                                     </div>
-
-                                    <div class="pull-left-avraam">
-                                        <input type='button' style='background-color:blue'
-                                               class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous'
-                                               value='Previous' />
-                                    </div>
-                                    <div class="clearfix"></div>
                                 </div>
+                                <div class="avraam-tab-pane" id="address">
+                                    <div class="avraam-row">
+                                        <div class="avraam-col-sm-12">
+                                            <h4 class="info-text"> Are you living in a nice area? </h4>
+                                        </div>
+                                        <div class="avraam-col-sm-5 avraam-col-sm-offset-1">
+                                            <div class="avraam-form-group">
+                                                <label>City</label>
+                                                @Html.TextBoxFor(v => v.City, new { @class = "avraam-form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="avraam-col-sm-5">
+                                            <div class="avraam-form-group">
+                                                <label>Country</label><br>
+                                                <select id="Country" name="Country" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wizard-footer height-wizard">
+                                <div class="pull-right-avraam">
+                                    <input type='button' style='background-color:blue'
+                                           class='btn btn-next btn-fill btn-warning btn-wd btn-sm' name='next'
+                                           value='Next' />
+                                    <input type='submit' style='background-color:blue'
+                                           class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish'
+                                           value='Finish' />
+
+                                </div>
+
+                                <div class="pull-left-avraam">
+                                    <input type='button' style='background-color:blue'
+                                           class='btn btn-previous btn-fill btn-default btn-wd btn-sm' name='previous'
+                                           value='Previous' />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
 
                             }
                         </div>
