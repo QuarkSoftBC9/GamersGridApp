@@ -204,6 +204,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExtraMethods.cs" />
     <Compile Include="Migrations\202002210115245_InitialModel.cs" />
     <Compile Include="Migrations\202002210115245_InitialModel.Designer.cs">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>

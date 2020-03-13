@@ -1,4 +1,5 @@
-﻿using GamersGridApp.Models;
+﻿using GamersGridApp.Helpers;
+using GamersGridApp.Models;
 using GamersGridApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -48,8 +49,12 @@ namespace GamersGridApp.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel)
+        public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel, HttpPostedFileBase file)
         {
+
+            var fileName = ExtraMethods.UploadPhoto(file);
+            userViewModel.Avatar = fileName;
+
             var newUser = new User()
             {
                 FirstName = userViewModel.FirstName,
@@ -58,6 +63,7 @@ namespace GamersGridApp.Controllers
                 //Street_Number = userViewModel.StreetNumber,
                 Country = userViewModel.Country,
                 City = userViewModel.City,
+                Avatar = userViewModel.Avatar
                // Email = userViewModel.Email
             };
             //newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);

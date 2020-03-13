@@ -76,6 +76,8 @@ namespace GamersGridApp.ViewModels
         public string Password { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
+        public string Avatar { get; set; }
+
         public List<Game> FavouriteGames { get; set; }
     }
 }

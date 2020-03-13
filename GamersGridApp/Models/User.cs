@@ -41,8 +41,10 @@ namespace GamersGridApp.Models
         //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string City { get; set; }
+        public string Avatar { get; set; }
 
-       // [Required]
+
+        // [Required]
         //[StringLength(50, MinimumLength = 1)]
         //public string Street_Name { get; set; }
 

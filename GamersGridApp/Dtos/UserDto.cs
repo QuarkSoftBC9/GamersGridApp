@@ -34,6 +34,7 @@ namespace GamersGridApp.Dtos
         //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string City { get; set; }
+        public string Avatar { get; set; }
 
         // [Required]
         //[StringLength(50, MinimumLength = 1)]
