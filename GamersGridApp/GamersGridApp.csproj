@@ -281,6 +281,10 @@
     <Compile Include="Migrations\202003032257148_UserPropertiesSetToNullable.Designer.cs">
       <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003131856223_InlcudeAvatarStringPath.cs" />
+    <Compile Include="Migrations\202003131856223_InlcudeAvatarStringPath.Designer.cs">
+      <DependentUpon>202003131856223_InlcudeAvatarStringPath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -874,6 +878,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003032257148_UserPropertiesSetToNullable.resx">
       <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003131856223_InlcudeAvatarStringPath.resx">
+      <DependentUpon>202003131856223_InlcudeAvatarStringPath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
