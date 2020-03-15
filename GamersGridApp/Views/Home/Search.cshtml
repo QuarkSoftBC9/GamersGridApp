@@ -1,7 +1,33 @@
-﻿
+﻿@model GamersGridApp.ViewModels.SearchViewModel
 @{
     ViewBag.Title = "Search";
 }
+{<div class="container-fluid">
+    @if (Model.HasGames) 
+    { 
 
-<h2>SearchResult</h2>
+        foreach (var game in Model.Games)
+        {
+            <div class="row">
+                <div class="jumbotron col-12">
+                    <h1 class="display-3">@game.Title</h1>
+                    <hr class="my-2">
+                    <p>@game.Description</p>
+                    <p class="lead">
+                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Add to your games</a>
+                    </p>
+                </div>
+            </div>
+
+        }
+    }
+    @if (Model.HasUsers)
+    {
+        foreach (var user in Model.Users)
+        {
+
+        }
+    }
+</div>
+<h2>Search</h2>
 

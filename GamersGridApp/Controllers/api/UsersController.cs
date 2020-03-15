@@ -32,20 +32,33 @@ namespace GamersGridApp.Controllers.api
                 .Select(Mapper.Map<User, UserDto>);
 
 
-            //Typeahead train data 
+            //Typeahead and DataTables train data 
             var usersTrain = new List<User>()
             {
-                new User(){FirstName = "Stanislav", LastName = "Novikov", NickName = "LeagueWarrior"},
-                new User(){FirstName = "John", LastName = "Lezhino", NickName = "JohnLez"},
-                new User(){FirstName = "Chris", LastName = "Antonopoulos", NickName = "ChrisA"},
-                new User(){FirstName = "Maria", LastName = "Ntourmetaki", NickName = "Leaguer"},
-                new User(){FirstName = "Avraam", LastName = "Liautsis", NickName = "Lincoln"}
+                new User(){ID = 1, FirstName = "Stanislav", LastName = "Novikov", NickName = "LeagueWarrior", City = "Vladivostok", Country = "Russia"},
+                new User(){ID = 2, FirstName = "John", LastName = "Lezhino", NickName = "JohnLez", City = "Angers", Country = "France"},
+                new User(){ID = 3, FirstName = "Chris", LastName = "Antonopoulos", NickName = "ChrisA", City = "Athens", Country ="Greece"},
+                new User(){ID = 4, FirstName = "Maria", LastName = "Ntourmetaki", NickName = "Leaguer", City = "Heraklion", Country = "Greece"},
+                new User(){ID = 5, FirstName = "Avraam", LastName = "Liautsis", NickName = "Lincoln", City = "New York", Country = "USA"}
             };
+            
+            IEnumerable<UserDto> search;
             //We check if the search string is contained in NickName/FirstName/LastName and take the first 5 elements
-            var search = usersTrain.Where(u => u.NickName.Contains(query) || u.FirstName.Contains(query) || u.LastName.Contains(query))
+            if (String.IsNullOrEmpty(query))
+            {
+                search = usersTrain
                 .Take(5)
                 .ToList()
                 .Select(Mapper.Map<User, UserDto>);
+            }
+            else //If search string IS NULL then we just take the first 5 elements 
+            {
+                search = usersTrain.Where(u => u.NickName.Contains(query) || u.FirstName.Contains(query) || u.LastName.Contains(query))
+                .Take(5)
+                .ToList()
+                .Select(Mapper.Map<User, UserDto>);
+            }
+            
 
             return Ok(search);
         }
