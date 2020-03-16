@@ -13,10 +13,10 @@
 
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item">
-                
+
                 @*@using (Html.BeginForm("Save", "Costumer"))
-                {@Html.TextBox() }*@
-                    <input id="Search" class="typeahead form-control" type="text" onkeyup=""/>
+            {@Html.TextBox() }*@
+                <input id="Search" class="typeahead form-control" type="text" onkeyup="" />
 
             </li>
             <li class="nav-item">
@@ -25,12 +25,23 @@
             <li class="nav-item">
                 @Html.ActionLink("Games", "Index", "Game", null, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
-                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
-            </li>
+
+            @if (Request.IsAuthenticated)
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                </li>
+            }
+
         </ul>
 
     </div>
