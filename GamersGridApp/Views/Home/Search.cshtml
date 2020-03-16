@@ -6,7 +6,9 @@
 
 <h2>Search Results</h2>
 @Styles.Render("~/Content/SearchCss")
-<div class="jumbotron"></div>
+<div class="jumbotron searchContainer">
+    <div class="display-4 pageTitle">Search Results</div>
+</div>
 
 @if (Model.HasGames)
 {
@@ -24,10 +26,15 @@
         //AS CARD
         <div class="card gameCard">
                 <img class="card-img-top gameIcon" src="@game.SearchIconPath" alt="">
-                <div class="card-body gamrCardBody">
-                    <h4 class="card-title gameCardTitle">@game.Title</h4>
+                <div class="card-body gameCardBody">
+                    <h1 class="card-title h2 gameCardTitle"><strong>@game.Title</strong></h1>
                 </div>
+                <div class="button_cont">
+                    <div class="btnAddGame">Add to your Games</div>
+                </div>
+            
             </div>
+            <hr/>
         //As rows
         @*<div class="row">
             <div class="col-2">

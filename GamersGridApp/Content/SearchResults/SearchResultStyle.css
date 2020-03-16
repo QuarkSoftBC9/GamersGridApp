@@ -61,7 +61,46 @@ hr {
     /*max-width: 1000px;
     max-height: 130px;*/
 }
+.gameCardTitle{
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    
+}
 
+.button_cont{
+    position: absolute;
+    left:30px;
+    top: 20px;
+}
+
+.btnAddGame {
+    margin-top: 20px;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: hsl(197, 93%, 29%);
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border-style: solid;
+    border-color: hsl(106, 95%, 51%);
+    transition: all 0.4s ease 0s;
+}
+    .btnAddGame:hover {
+        background: hsl(106, 95%, 51%);
+        letter-spacing: 0px;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.4s ease 0s;
+        border-color: hsl(197, 93%, 29%);
+    }
+
+.searchContainer{
+    background-color: darkslategray;
+}
+.pageTitle {
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
 /*.jumbotronGame {
     font-family: 'Montserrat', sans-serif;
     padding: 100px;
