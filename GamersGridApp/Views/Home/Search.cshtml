@@ -2,32 +2,103 @@
 @{
     ViewBag.Title = "Search";
 }
-{<div class="container-fluid">
-    @if (Model.HasGames) 
-    { 
+@*@Styles.Render("~/Content/css")*@
 
-        foreach (var game in Model.Games)
-        {
-            <div class="row">
-                <div class="jumbotron col-12">
-                    <h1 class="display-3">@game.Title</h1>
-                    <hr class="my-2">
-                    <p>@game.Description</p>
-                    <p class="lead">
-                        <a class="btn btn-primary btn-lg" href="Jumbo action link" role="button">Add to your games</a>
-                    </p>
+<h2>Search Results</h2>
+@Styles.Render("~/Content/SearchCss")
+<div class="jumbotron"></div>
+
+@if (Model.HasGames)
+{
+
+    foreach (var game in Model.Games)
+    {
+        //background: url("LandingImages/lol.jpg") center center; was in css
+
+        //As JUMBO
+        @*<section class="jumbotron-fluid jumbotronGame" style="background: url(@game.SearchIconPath)">
+                <h1>@game.Title</h1>
+                <a href="#" class="button buttonGame">Add to my games now</a>
+            </section>*@
+
+        //AS CARD
+        <div class="card gameCard">
+                <img class="card-img-top gameIcon" src="@game.SearchIconPath" alt="">
+                <div class="card-body gamrCardBody">
+                    <h4 class="card-title gameCardTitle">@game.Title</h4>
                 </div>
             </div>
+        //As rows
+        @*<div class="row">
+            <div class="col-2">
 
-        }
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col">
+
+            </div>
+            <div class="col-2">
+
+            </div>
+        </div>*@
+
+
     }
-    @if (Model.HasUsers)
+}
+else
+{
+    <h3>No games were Found</h3>
+}
+@if (Model.HasUsers)
+{
+    foreach (var user in Model.Users)
     {
-        foreach (var user in Model.Users)
-        {
 
-        }
-    }
+<div class="row userRow">
+    <div class="col-2">
+        <img class="img-fluid userImage" src="@user.Avatar" />
+    </div>
+    <div class="col userNickname">
+        <h4>@user.NickName</h4>
+        <span class="userLocation">@user.City, @user.Country</span>
+    </div>
+    <div class="col userCity">
+        <span></span>
+    </div>
+    <div class="col userGames">
+        <span>Add Users Games here as a list</span>
+    </div>
+    <div class="col userCity">
+        <span>Add mmr or Achevements here</span>
+    </div>
+    <div class="col-2">
+        <div class="button_cont" align="center">
+            <a class="btnFollow" href="add-action-here">Follow</a>
+        </div>
+    </div>
 </div>
-<h2>Search</h2>
+        <hr/>
+
+
+        //As carsd
+        @*<div class="card">
+                <img class="card-img-top" src="@user.Avatar" alt="">
+                <div class="card-body">
+                    <h4 class="card-title">@user.NickName</h4>
+                    <p class="card-text">@user.City</p>
+                </div>
+            </div>*@
+    }
+}
+else
+{
+    <section>
+        <h3> No users were found</h3>
+    </section>
+
+}
+
+
 

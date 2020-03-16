@@ -49,22 +49,28 @@ namespace GamersGridApp.Controllers
         {
             SearchViewModel searchviewModel = new SearchViewModel() { };
 
-            List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
-            List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
-
+            //ERROR The specified type member 'FullName' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
+            //List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
+            //List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
+            var games = context.Games.ToList();
+            var users = GamersGridApp.Models.User.GetUsers();
             if (games.Count > 0)
             {
-                searchviewModel.Games.Concat(games);
+                searchviewModel.Games= games;
                 searchviewModel.HasGames = true;
-            }
 
+            }
+            searchviewModel.Games.Add(games[0]);
             if (users.Count > 0)
             {
-                searchviewModel.Users.Concat(users);
+                searchviewModel.Users = users;
                 searchviewModel.HasUsers = true;
             }
 
+            //testing game 
+            //searchviewModel.Games = context.Games;
             return View(searchviewModel);
+            //return View(searchviewModel);
         }
     }
 }

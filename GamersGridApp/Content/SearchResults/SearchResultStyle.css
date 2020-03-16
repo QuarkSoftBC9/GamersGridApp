@@ -1,0 +1,115 @@
+﻿.body{
+    font-size:small;
+    color:aqua;
+}
+
+.userRow{
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.userImage {
+    max-width: 10px;
+    max-height: 130px;
+    max-width: 110%;
+    height: auto;
+    border-radius: 50px 50px 5px 5px;
+}
+
+.userNickname > h4 {
+    text-align:left;
+    padding-top:30px;
+    font-size:xx-large;
+    font-style:normal;
+}
+
+.userLocation{
+    font-size:large;
+}
+.btnFollow {
+    margin-top: 20px;
+    color: #fff !important;
+    text-transform: uppercase;
+    text-decoration: none;
+    background: darkgray;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    border: none;
+    transition: all 0.4s ease 0s;
+}
+    .btnFollow:hover {
+        background: #434343;
+        letter-spacing: 1px;
+        -webkit-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        -moz-box-shadow: 0px 5px 40px -10px rgba(0,0,0,0.57);
+        box-shadow: 5px 40px -10px rgba(0,0,0,0.57);
+        transition: all 0.4s ease 0s;
+    }
+
+hr {
+    display: block;
+    height: 10px;
+    border: 10px;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.gameIcon {
+    position: center;
+    /*max-width: 1000px;
+    max-height: 130px;*/
+}
+
+/*.jumbotronGame {
+    font-family: 'Montserrat', sans-serif;
+    padding: 100px;
+    margin: 10px;
+    margin-right: 100px;
+    margin-top:40px;
+    height: 150px;
+    background-size: auto;
+    background-repeat: no-repeat !important;
+    border-style:solid;
+    border-width: 2px;
+    border-radius: 10px;
+    border-color: darkblue;
+    text-align: left;
+    color: #fff;
+    position: relative;
+    top: 10px;
+}
+
+    .jumbotronGame h1 {
+        position: relative;
+        font-size: 70px;
+        margin-bottom: 0;
+    }
+
+    .jumbotronGame p {
+        position: relative;
+        font-family: serif;
+        font-size: 30px;
+        font-style: italic;
+        margin: 0 0 30px;
+    }
+
+.buttonGame {
+    display: inline-block;
+    border: 2px solid #fff;
+    padding: 10px 20px;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+    position: absolute;
+    width: 100px;
+    height: 50px;
+    top: 50px;
+    right: 70px;
+}
+
+    .buttonGame:hover {
+        background: #fff;
+        color: #000;
+    }*/

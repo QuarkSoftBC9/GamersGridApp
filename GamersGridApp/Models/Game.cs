@@ -17,5 +17,7 @@ namespace GamersGridApp.Models
         public DateTime ReleaseDate { get; set; }
         public Genre Type { get; set; }
         public string SearchIconPath { get; set; }
+        
+            
     }
 }

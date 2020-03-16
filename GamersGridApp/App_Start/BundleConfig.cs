@@ -54,6 +54,12 @@ namespace GamersGridApp
              "~/Content/RegisterCss/avraam2NotAll.css",
              "~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css",
              "~/Content/PROFILE_GG.css"));
+
+            //Adding my css bundle for search results Stanislav
+            bundles.Add(new StyleBundle("~/Content/SearchCss").Include(
+                "~/Content/SearchResults/SearchResultStyle.css"
+                ));
+
         }
     }
 }

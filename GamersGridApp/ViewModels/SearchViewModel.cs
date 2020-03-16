@@ -9,15 +9,15 @@ namespace GamersGridApp.ViewModels
 {
     public class SearchViewModel
     {
-        public Collection<User> Users { get; set; }
-        public Collection<Game> Games { get; set; }
+        public List<User> Users { get; set; }
+        public List<Game> Games { get; set; }
         public bool HasUsers { get; set; }
         public bool HasGames { get; set; }
 
         public SearchViewModel()
         {
-            Users = new Collection<User>() { };
-            Games = new Collection<Game>() { };
+            Users = new List<User>() { };
+            Games = new List<Game>() { };
         }
     }
 }

@@ -309,6 +309,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Images\Games\lol.jpg" />
+    <Content Include="Content\Images\Games\lol2.jpg" />
+    <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
+    <Content Include="Content\Images\UserAvatars\girlAvatar.png" />
     <Content Include="Content\RegisterCss\avraam2NotAll.css" />
     <Content Include="Content\RegisterCss\gsdk-bootstrap-wizardAllagi.css" />
     <Content Include="Content\RegisterCss\Old CSS\avraam.css" />
@@ -323,6 +326,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\wizard.jpg" />
+    <Content Include="Content\SearchResults\SearchResultStyle.css" />
     <Content Include="Scripts\RegisterJs\gsdk-bootstrap-wizard.js" />
     <Content Include="Scripts\RegisterJs\jquery.bootstrap.wizard.js" />
     <Content Include="Scripts\RegisterJs\jquery.validate.min.js" />
