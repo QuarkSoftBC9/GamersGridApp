@@ -47,30 +47,27 @@ namespace GamersGridApp.Controllers
         }
         public ActionResult Search(string searchString)
         {
-            SearchViewModel searchviewModel = new SearchViewModel() { };
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                List<User> usersSearched = context.GamersGridUsers
+                    .Where(u => u.NickName.Contains(searchString)
+                || u.FirstName.Contains(searchString)
+                || u.LastName.Contains(searchString))
+                    .Take(40)
+                    .ToList();
+                List<Game> gamesSearched = context.Games
+                    .Where(g => g.Title.Contains(searchString))
+                    .ToList();
+                SearchViewModel searchviewModel = new SearchViewModel(usersSearched, gamesSearched, (usersSearched.Count > 0), (gamesSearched.Count > 0)) { };
+                return View(searchviewModel);
+            }
 
-            //ERROR The specified type member 'FullName' is not supported in LINQ to Entities. Only initializers, entity members, and entity navigation properties are supported.
-            //List<User> users = context.GamersGridUsers.Where(u => u.NickName.Contains(searchString) || u.FullName.Contains(searchString)).Take(50).ToList();
-            //List<Game> games = context.Games.Where(g => g.Title.Contains(searchString)).ToList();
             var games = context.Games.ToList();
-            var users = GamersGridApp.Models.User.GetUsers();
-            if (games.Count > 0)
-            {
-                searchviewModel.Games= games;
-                searchviewModel.HasGames = true;
+            //var users = context.Users.ToList().Take(40);
+            var users = GamersGridApp.Models.User.GetUsers(); // Just as a test data for now 
+            var searchviewModelEmpty = new SearchViewModel(users, games, true, true);
 
-            }
-            searchviewModel.Games.Add(games[0]);
-            if (users.Count > 0)
-            {
-                searchviewModel.Users = users;
-                searchviewModel.HasUsers = true;
-            }
-
-            //testing game 
-            //searchviewModel.Games = context.Games;
-            return View(searchviewModel);
-            //return View(searchviewModel);
+            return View(searchviewModelEmpty);
         }
     }
 }

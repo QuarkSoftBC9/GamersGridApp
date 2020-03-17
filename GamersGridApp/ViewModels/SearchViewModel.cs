@@ -19,5 +19,12 @@ namespace GamersGridApp.ViewModels
             Users = new List<User>() { };
             Games = new List<Game>() { };
         }
+        public SearchViewModel(List<User> users , List<Game> games , bool hasUsers, bool hasGames)
+        {
+            Users = users;
+            HasUsers = hasUsers;
+            Games = games;
+            HasGames = hasGames;
+        }
     }
 }

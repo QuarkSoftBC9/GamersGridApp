@@ -12,16 +12,8 @@
 
 @if (Model.HasGames)
 {
-
     foreach (var game in Model.Games)
     {
-        //background: url("LandingImages/lol.jpg") center center; was in css
-
-        //As JUMBO
-        @*<section class="jumbotron-fluid jumbotronGame" style="background: url(@game.SearchIconPath)">
-                <h1>@game.Title</h1>
-                <a href="#" class="button buttonGame">Add to my games now</a>
-            </section>*@
 
         //AS CARD
         <div class="card gameCard">
@@ -35,23 +27,6 @@
             
             </div>
             <hr/>
-        //As rows
-        @*<div class="row">
-            <div class="col-2">
-
-            </div>
-            <div class="col">
-
-            </div>
-            <div class="col">
-
-            </div>
-            <div class="col-2">
-
-            </div>
-        </div>*@
-
-
     }
 }
 else
