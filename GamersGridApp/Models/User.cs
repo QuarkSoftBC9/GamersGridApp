@@ -63,6 +63,8 @@ namespace GamersGridApp.Models
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Video> Videos { get; set; }
 
+        public ICollection<MessageChat> MessageChats { get; set; }
+
         public static List<User> GetUsers() //Users repo 
         {
             return new List<User>()

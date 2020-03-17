@@ -17,6 +17,10 @@ namespace GamersGridApp.Models
         public DbSet<Video> Videos { get; set; }
         public DbSet<Follow> Follows { get; set; }
 
+        public DbSet<MessageChat> MessageChats { get; set; }
+
+        public DbSet<Message> Messages { get; set; }
+
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)

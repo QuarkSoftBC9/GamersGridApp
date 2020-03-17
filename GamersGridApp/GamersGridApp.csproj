@@ -59,6 +59,12 @@
     <Reference Include="Google.Apis.PlatformServices, Version=1.44.0.0, Culture=neutral, PublicKeyToken=4b01fa6e34db77ab, processorArchitecture=MSIL">
       <HintPath>..\packages\Google.Apis.1.44.0\lib\net45\Google.Apis.PlatformServices.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.Core.2.4.1\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.SignalR.SystemWeb, Version=2.4.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.SignalR.SystemWeb.2.4.1\lib\net45\Microsoft.AspNet.SignalR.SystemWeb.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -69,6 +75,7 @@
     <Reference Include="System.Net.Http.Formatting, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -198,6 +205,7 @@
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
@@ -289,6 +297,10 @@
     <Compile Include="Migrations\202003151939229_IconPathPropertyForGamesAdded.Designer.cs">
       <DependentUpon>202003151939229_IconPathPropertyForGamesAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003171150459_ImplimentMessagesFirstTry.cs" />
+    <Compile Include="Migrations\202003171150459_ImplimentMessagesFirstTry.Designer.cs">
+      <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -296,12 +308,16 @@
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Message.cs" />
+    <Compile Include="Models\MessageChat.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
     <Compile Include="Models\Video.cs" />
+    <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
@@ -327,6 +343,8 @@
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\wizard.jpg" />
     <Content Include="Content\SearchResults\SearchResultStyle.css" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.js" />
+    <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\RegisterJs\gsdk-bootstrap-wizard.js" />
     <Content Include="Scripts\RegisterJs\jquery.bootstrap.wizard.js" />
     <Content Include="Scripts\RegisterJs\jquery.validate.min.js" />
@@ -805,6 +823,7 @@
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Game\GamesList.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Message\MessageBoard.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogincshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -895,6 +914,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003151939229_IconPathPropertyForGamesAdded.resx">
       <DependentUpon>202003151939229_IconPathPropertyForGamesAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003171150459_ImplimentMessagesFirstTry.resx">
+      <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
