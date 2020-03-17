@@ -28,12 +28,19 @@
 
             @if (Request.IsAuthenticated)
             {
-                <li class="nav-item">
-                    @Html.ActionLink("Logout", "Logout", "Account", null, new { @class = "nav-link" })
-                </li>
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <li class="nav-item">
+                   <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                    </li>
+                }
             }
             else
             {
+
                 <li class="nav-item">
                     @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
                 </li>
