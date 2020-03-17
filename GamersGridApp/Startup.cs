@@ -8,6 +8,7 @@ namespace GamersGridApp
     {
         public void Configuration(IAppBuilder app)
         {
+            app.MapSignalR();
             ConfigureAuth(app);
         }
     }

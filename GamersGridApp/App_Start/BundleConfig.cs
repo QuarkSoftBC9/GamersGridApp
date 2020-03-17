@@ -9,6 +9,8 @@ namespace GamersGridApp
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/mainLib").Include(
+                        "~/Scripts/jquery.signalR-2.4.1.js",
+                         "~/Scripts/jquery.signalR-2.4.1.min.js",
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/bootstrap.js",
                          "~/Scripts/Datatables/jquery.dataTables.js",
