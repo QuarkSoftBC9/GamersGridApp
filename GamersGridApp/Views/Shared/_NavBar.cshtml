@@ -10,14 +10,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
+        @{ 
+            string url = "/Home/Search/";
+        }
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item">
-
-                @*@using (Html.BeginForm("Save", "Costumer"))
-            {@Html.TextBox() }*@
-                <input id="Search" class="typeahead form-control" type="text" onkeyup="" />
-
+                <form action= @url >
+                    <input id="Search" class="typeahead form-control searchBar" type="text" name="searchString" />
+                    <input type="submit" style="display: none" />
+                </form>
+                    @*@Html.TextBox("search", null, new { @class = "typeahead form-control searchBar", id = "Search" })*@
             </li>
             <li class="nav-item">
                 @Html.ActionLink("Users", "Index", "User", null, new { @class = "nav-link" })
@@ -34,7 +36,7 @@
 
 
                     <li class="nav-item">
-                   <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                        <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
                     </li>
                 }
             }
@@ -53,5 +55,28 @@
 
     </div>
 </nav>
+@section Scripts{
+    <script>
+        function SearchSmth() {
+            document.getElementsByClassName('searchBar').keydown(function (event) {
+                console.log('log1')
+                var search = ('.searchBar').value;
+                if (event.which == 13) {
+                    window.location.href = window.document + '/home/search?searchString=' + search;
+                    location.href = window.document.codeform.code.value + '.html';
+                }
+            })
+        };
+//        var url = document.getElementsByClassName("searchBar").value;
+//console.log(url);
+//console.log('Hello World!');
+//function() {
+//    console.log(10);
+//}
+    </script>
+
+}
+
+
 
 

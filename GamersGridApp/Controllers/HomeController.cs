@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using GamersGridApp.ViewModels;
 using GamersGridApp.Models;
+using System.Web.Http;
 
 namespace GamersGridApp.Controllers
 {
@@ -45,7 +46,7 @@ namespace GamersGridApp.Controllers
 
             return View();
         }
-        public ActionResult Search(string searchString)
+        public ActionResult Search([FromBody]string searchString)
         {
             if (!String.IsNullOrEmpty(searchString))
             {

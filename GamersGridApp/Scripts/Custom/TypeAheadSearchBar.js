@@ -1,4 +1,21 @@
-﻿//Stanislav typeahead
+﻿//Search
+//var x = document.getElementById('Search').addEventListener('keypress', function (e) {
+//    if (e.key === 'Enter') {
+//        var search = ('#Search').value;
+//        window.location.href = window.document + '/home/search?searchString=' + search;
+//    }
+//});
+
+//$(function () {
+//    $('#Search').keypress(function () {
+//        var search = ('#Search').value;
+//        if (code == 13) {
+//            window.location.href = window.document + '/home/search?searchString=' + search;
+//        }
+//    });
+//});
+
+//Stanislav typeahead
 $(document).ready(function () {
     var searchGame = new Bloodhound({ //*
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
@@ -35,6 +52,7 @@ $(document).ready(function () {
 
 });
 
+//John Function
 //$(document).ready(function () {
 //    var games = new Bloodhound({
 //        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
