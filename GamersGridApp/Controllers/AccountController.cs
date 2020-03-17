@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GamersGridApp.Models;
+using System.Web.Security;
 
 namespace GamersGridApp.Controllers
 {
@@ -385,6 +386,11 @@ namespace GamersGridApp.Controllers
 
             ViewBag.ReturnUrl = returnUrl;
             return View(model);
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
 
         //

@@ -13,10 +13,10 @@
 
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item">
-                
+
                 @*@using (Html.BeginForm("Save", "Costumer"))
-                {@Html.TextBox() }*@
-                    <input id="Search" class="typeahead form-control" type="text" onkeyup=""/>
+            {@Html.TextBox() }*@
+                <input id="Search" class="typeahead form-control" type="text" onkeyup="" />
 
             </li>
             <li class="nav-item">
@@ -25,12 +25,30 @@
             <li class="nav-item">
                 @Html.ActionLink("Games", "Index", "Game", null, new { @class = "nav-link" })
             </li>
-            <li class="nav-item">
-                @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
-            </li>
-            <li class="nav-item">
-                @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
-            </li>
+
+            @if (Request.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                {
+                    @Html.AntiForgeryToken()
+
+
+                    <li class="nav-item">
+                   <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                    </li>
+                }
+            }
+            else
+            {
+
+                <li class="nav-item">
+                    @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
+                    @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                </li>
+            }
+
         </ul>
 
     </div>
