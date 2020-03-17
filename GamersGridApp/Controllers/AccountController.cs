@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GamersGridApp.Models;
 using System.Web.Security;
+using GamersGridApp.ViewModels;
 
 namespace GamersGridApp.Controllers
 {
@@ -140,7 +141,8 @@ namespace GamersGridApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View("~/Views/User/RegisterStrange.cshtml");
+            RegisterViewModelAvraam model = new RegisterViewModelAvraam() { };
+            return View("~/Views/User/RegisterStrange.cshtml", model);
         }
 
         //
@@ -148,14 +150,20 @@ namespace GamersGridApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(ViewModels.RegisterViewModel model)
+        public async Task<ActionResult> Register(RegisterViewModelAvraam model)
         {
-            if (ModelState.IsValid)
-            {   //Passing basic user data
+            RegisterViewModel registerModel = new RegisterViewModel()
+            {
+                Email = model.Email,
+                Password = model.Password,
+                ConfirmPassword = model.Password
+            };
+            //if (ModelState.IsValid) { } //Testing
+               //Passing basic user data
                 var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country };
                 //Creating Application User + passing user object inside
                 var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email,UserAccount = user };
-                var result = await UserManager.CreateAsync(AppUser, model.Password);
+                var result = await UserManager.CreateAsync(AppUser, registerModel.Password);
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(AppUser, isPersistent:false, rememberBrowser:false);
@@ -169,7 +177,7 @@ namespace GamersGridApp.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
-            }
+            
 
             // If we got this far, something failed, redisplay form
             return View(model);

@@ -25,16 +25,17 @@ namespace GamersGridApp.Controllers
 
         public ActionResult GameProfile(string gameName)
         {
-            if (gameName == null)
-                return RedirectToAction("Index");
+            //if (gameName == null)
+            //    return RedirectToAction("Index");
 
-            var game = dbContext.Games.SingleOrDefault(g => g.Title == gameName);
+            //var game = dbContext.Games.SingleOrDefault(g => g.Title == gameName);
 
-            if(game == null)
-                return RedirectToAction("Index");
+            //if(game == null)
+            //    return RedirectToAction("Index");
 
-
-            return View(game);
+            //testing
+            var gameTest = dbContext.Games.SingleOrDefault();
+            return View(gameTest);
         }
     }
 }

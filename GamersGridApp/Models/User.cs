@@ -32,8 +32,6 @@ namespace GamersGridApp.Models
         [StringLength(255)]
         public string ProfilePhoto { get; set; }
 
-       
-
         //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string Country { get; set; }

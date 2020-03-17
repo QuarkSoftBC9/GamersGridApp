@@ -29,66 +29,23 @@ namespace GamersGridApp.Controllers
             return View();
         }
 
-        public ActionResult Register()
-        {
-            var viewmodel = new UserRegisterViewModel();
+        //public ActionResult Register()
+        //{
+        //    var viewmodel = new UserRegisterViewModel();
 
-            return View("UserFormRegister", viewmodel);
-        }
+        //    return View("UserFormRegister", viewmodel);
+        //}
 
-        public ActionResult RegisterStrange()
-        {
-            return View();
-        }
+        //public ActionResult RegisterStrange()
+        //{
+        //    return View();
+        //}
 
         public ActionResult Edit()
         {
             var viewmodel = new UserFormEditViewModel();
 
             return View("UserFormEdit", viewmodel);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel, HttpPostedFileBase file)
-        {
-
-            var fileName = ExtraMethods.UploadPhoto(file);
-            userViewModel.Avatar = fileName;
-
-            var newUser = new User()
-            {
-                FirstName = userViewModel.FirstName,
-                LastName = userViewModel.LastName,
-                //Street_Name = userViewModel.StreetName,
-                //Street_Number = userViewModel.StreetNumber,
-                Country = userViewModel.Country,
-                City = userViewModel.City,
-                Avatar = userViewModel.Avatar
-               // Email = userViewModel.Email
-            };
-            //newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);
-            context.GamersGridUsers.Add(newUser);
-
-            context.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SaveRegister(UserRegisterViewModel userViewModel)
-        {
-            var newUser = new User()
-            {
-                FirstName = userViewModel.FirstName,
-                LastName = userViewModel.LastName,
-                //Email = userViewModel.Email
-
-            };
-            context.GamersGridUsers.Add(newUser);
-
-            context.SaveChanges();
-            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -104,5 +61,50 @@ namespace GamersGridApp.Controllers
             context.SaveChanges();
             return RedirectToAction("Index");
         }
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel, HttpPostedFileBase file)
+        //{
+
+        //    var fileName = ExtraMethods.UploadPhoto(file);
+        //    userViewModel.Avatar = fileName;
+
+        //    var newUser = new User()
+        //    {
+        //        FirstName = userViewModel.FirstName,
+        //        LastName = userViewModel.LastName,
+        //        //Street_Name = userViewModel.StreetName,
+        //        //Street_Number = userViewModel.StreetNumber,
+        //        Country = userViewModel.Country,
+        //        City = userViewModel.City,
+        //        Avatar = userViewModel.Avatar
+        //       // Email = userViewModel.Email
+        //    };
+        //    //newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);
+        //    context.GamersGridUsers.Add(newUser);
+
+        //    context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult SaveRegister(UserRegisterViewModel userViewModel)
+        //{
+        //    var newUser = new User()
+        //    {
+        //        FirstName = userViewModel.FirstName,
+        //        LastName = userViewModel.LastName,
+        //        //Email = userViewModel.Email
+
+        //    };
+        //    context.GamersGridUsers.Add(newUser);
+
+        //    context.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
+
+
     }
 }

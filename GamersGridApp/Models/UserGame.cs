@@ -22,7 +22,6 @@ namespace GamersGridApp.Models
         public User User { get; set; }
         public Game Game { get; set; }
 
-
         public bool IsFavoriteGame { get; set; }
 
 

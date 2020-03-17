@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GamersGridApp.ViewModels
 {
-    public class RegisterViewModel
+    public class RegisterViewModelAvraam
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

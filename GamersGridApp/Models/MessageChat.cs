@@ -17,7 +17,5 @@ namespace GamersGridApp.Models
         {
             ChatHistory = new List<Message>();
         }
-            
-
     }
 }
