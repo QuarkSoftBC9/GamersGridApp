@@ -22,6 +22,8 @@ namespace GamersGridApp.Models
         
         public User UserAccount { get; set; }
 
+        [Index(IsUnique = true)]
+        public int UserId { get; set; }
     }
 
     

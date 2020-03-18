@@ -301,6 +301,10 @@
     <Compile Include="Migrations\202003171150459_ImplimentMessagesFirstTry.Designer.cs">
       <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs" />
+    <Compile Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.Designer.cs">
+      <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -916,6 +920,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003171150459_ImplimentMessagesFirstTry.resx">
       <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.resx">
+      <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
