@@ -11,6 +11,7 @@ using Microsoft.Owin.Security;
 using GamersGridApp.Models;
 using System.Web.Security;
 using GamersGridApp.ViewModels;
+using GamersGridApp.Helpers;
 
 namespace GamersGridApp.Controllers
 {
@@ -150,13 +151,14 @@ namespace GamersGridApp.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Register(RegisterViewModelAvraam model)
+        public async Task<ActionResult> Register(RegisterViewModelAvraam model, HttpPostedFileBase file)
         {
 
             if (ModelState.IsValid)
-            {  
-              
-                var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country };
+            {
+                var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
+
+                var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country ,Avatar = fileName};
                 //Creating Application User + passing user object inside
                 var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email, UserAccount = user };
                 var result = await UserManager.CreateAsync(AppUser, model.Password);

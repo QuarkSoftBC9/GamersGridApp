@@ -85,7 +85,7 @@
                     <div class="wizard-container">
 
                         <div class="card wizard-card" data-color="blue" id="wizardProfile">
-                            @using (Html.BeginForm("Register", "Account"))
+                            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
                             {
                                 @Html.AntiForgeryToken()
                                 <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
