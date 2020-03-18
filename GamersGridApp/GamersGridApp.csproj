@@ -305,6 +305,10 @@
     <Compile Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.Designer.cs">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.cs" />
+    <Compile Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.Designer.cs">
+      <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -923,6 +927,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.resx">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.resx">
+      <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
