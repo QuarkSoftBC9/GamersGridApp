@@ -19,7 +19,7 @@ namespace GamersGridApp.Models
             // Add custom user claims here
             return userIdentity;
         }
-        [Index(IsUnique = true)]
+        
         public User UserAccount { get; set; }
 
     }
