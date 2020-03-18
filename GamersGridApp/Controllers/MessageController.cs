@@ -24,7 +24,11 @@ namespace GamersGridApp.Controllers
 
             var viewmodel = new MessageBoardViewModel
             {
-                MessageChats = db.MessageChats.Include(m => m.Users).Include(m => m.ChatHistory).Where(m => m.Users.Contains(db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).FirstOrDefault())).ToList(),
+                MessageChats = db.MessageChats
+                .Include(m => m.Users)
+                .Include(m => m.ChatHistory)
+                .Where(m => m.Users.Contains(db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).FirstOrDefault()))
+                .ToList(),
                 CurrentUserNickName = currentUser.NickName,
                 CurrentChatID = 1
 

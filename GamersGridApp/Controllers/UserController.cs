@@ -24,9 +24,16 @@ namespace GamersGridApp.Controllers
             return View("UsersList");
         }
 
-        public ActionResult ProfilePage()
+        public ActionResult ProfilePage(string nickname)
         {
-            return View();
+            var user = context.GamersGridUsers.SingleOrDefault(u => u.NickName.Contains(nickname));
+
+            if (user == null)
+                return HttpNotFound();
+
+
+
+            return View(user);
         }
 
         //public ActionResult Register()
