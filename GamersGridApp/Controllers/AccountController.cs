@@ -24,7 +24,7 @@ namespace GamersGridApp.Controllers
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
@@ -36,9 +36,9 @@ namespace GamersGridApp.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -122,7 +122,7 @@ namespace GamersGridApp.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -152,22 +152,18 @@ namespace GamersGridApp.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModelAvraam model)
         {
-            RegisterViewModel registerModel = new RegisterViewModel()
-            {
-                Email = model.Email,
-                Password = model.Password,
-                ConfirmPassword = model.Password
-            };
-            //if (ModelState.IsValid) { } //Testing
-               //Passing basic user data
+
+            if (ModelState.IsValid)
+            {  
+              
                 var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country };
                 //Creating Application User + passing user object inside
-                var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email,UserAccount = user };
-                var result = await UserManager.CreateAsync(AppUser, registerModel.Password);
+                var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email, UserAccount = user };
+                var result = await UserManager.CreateAsync(AppUser, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(AppUser, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(AppUser, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -177,7 +173,7 @@ namespace GamersGridApp.Controllers
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
-            
+            }
 
             // If we got this far, something failed, redisplay form
             return View(model);
