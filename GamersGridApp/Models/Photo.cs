@@ -12,5 +12,10 @@ namespace GamersGridApp.Models
         public int? GameId { get; set; }
         public string Path { get; set; }
         public DateTime? DateUploaded { get; set; }
+
+        public Photo()
+        {
+            DateUploaded = DateTime.Now;
+        }
     }
 }

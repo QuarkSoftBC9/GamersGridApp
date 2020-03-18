@@ -313,6 +313,10 @@
     <Compile Include="Migrations\202003181314389_AddingDotaAndCS.Designer.cs">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.cs" />
+    <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.Designer.cs">
+      <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -937,6 +941,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181314389_AddingDotaAndCS.resx">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181406490_PhotosAddedToGamesModel.resx">
+      <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

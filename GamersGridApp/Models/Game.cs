@@ -17,7 +17,12 @@ namespace GamersGridApp.Models
         public DateTime ReleaseDate { get; set; }
         public Genre Type { get; set; }
         public string SearchIconPath { get; set; }
-        
-            
+
+        public ICollection<Photo> Photos { get; set; }
+
+        public Game()
+        {
+            Photos = new List<Photo>() { };
+        }
     }
 }
