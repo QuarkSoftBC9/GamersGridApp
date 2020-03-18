@@ -321,6 +321,10 @@
     <Compile Include="Migrations\202003181531299_UserDefaultAvatar.Designer.cs">
       <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003181546212_SearchIconsForGames.cs" />
+    <Compile Include="Migrations\202003181546212_SearchIconsForGames.Designer.cs">
+      <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -344,6 +348,8 @@
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Images\Games\cs.png" />
+    <Content Include="Content\Images\Games\dota2.jpg" />
     <Content Include="Content\Images\Games\lol.jpg" />
     <Content Include="Content\Images\Games\lol2.jpg" />
     <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
@@ -951,6 +957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181531299_UserDefaultAvatar.resx">
       <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003181546212_SearchIconsForGames.resx">
+      <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
