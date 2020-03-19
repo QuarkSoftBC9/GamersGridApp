@@ -3,6 +3,7 @@
     ViewBag.Title = "MessageBoard";
 }
 
+
 <div class="container">
     <h3 class=" text-center">Messaging</h3>
     <div class="messaging">
@@ -25,7 +26,7 @@
 
                     @foreach (var messagechat in Model.MessageChats)
                     {
-                        <div class="chat_list " @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
+                        <div class="chat_list chatLeft" id="@messagechat.ID" @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
                             <div class="chat_people">
                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                 <div class="chat_ib">
@@ -37,15 +38,12 @@
                                 </div>
                             </div>
                         </div>
-
                     }
-
                 </div>
             </div>
-
-            <div class="mesgs" id="chatbox">
+            <div class="mesgs" id="chatbox" >
                 <div class="msg_history" id="messageboard">
-                    @foreach (var message in Model.MessageChats.FirstOrDefault().ChatHistory.OrderBy(c => c.Time))
+                    @foreach (var message in Model.MessageChats.FirstOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.OrderBy(c => c.Time))
                     {
                         if (Model.CurrentUserNickName != message.User.NickName)
                         {
@@ -72,21 +70,15 @@
                                     <span class="time_date">  @message.Time</span>
                                 </div>
                             </div>
-
                         }
-
-
                     }
-
-
-
 
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
                         @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
                         @*<input type="text" id="type" class="write_msg" autocomplete="off" />*@
-                        <button class="msg_send_btn" type="button" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+                        <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                     </div>
                 </div>
             </div>
@@ -94,14 +86,18 @@
     </div>
 </div>
 
-@section scripts{
-    <script src="~/signalr/hubs" type="text/javascript"></script>
-    <script type="text/javascript">
 
-        $(function () { //This section will run whenever we call Chat.cshtml page
+@section scripts{
+
+    <script src="~/signalr/hubs"></script>
+
+    <script>
+
+        $(document).ready(function () { //This section will run whenever we call Chat.cshtml page
 
             var objHub = $.connection.chatHub;
-
+                var chatid = $("#btnSendMessage").attr("data-chat-id");
+            
 
             objHub.client.getMessages = function (userName, message, time) {
                 var div1class = "";
@@ -115,72 +111,52 @@
                     div1class = "received_msg";
                     div2class = "received_withd_msg";
                 };
-               $("#txtMessage").val('');
+                $("#txtMessage").val('');
                 $('#messageboard').append(' <div class="' +
                     div1class +
-                    '"><div class="' + div2class+'"> <p>'+ message + '</p> <span class="time_date">' +time+'</div> </div>');
+                    '"><div class="' + div2class + '"> <p>' + message + '</p> <span class="time_date">' + time + '</div> </div>');
 
-               var height = $('#messageboard')[0].scrollHeight;
-                 $('#messageboard').scrollTop(height);
-
-
-           }
-
-            $.connection.hub.start().done(function () {
-
-                objHub.server.connect(@Model.CurrentChatID);
-
-               $('#btnSendMessage').click(function () {
-
-               var msg = $("#txtMessage").val();
-
-               if (msg.length > 0) {
+                var height = $('#messageboard')[0].scrollHeight;
+                $('#messageboard').scrollTop(height);
 
 
-                   // <<<<<-- ***** Return to Server [  SendMessageToGroup  ] *****
-                   objHub.server.sendMessageToGroup("@Model.CurrentUserNickName",msg,1);
-                   }
-               $("#txtMessage").val("");
-           });
+            }
+
+
+
+            $(document).on("click", ".msg_send_btn", function () {
+
+                var msg = $("#txtMessage").val();
+                var chatboxid = $("#btnSendMessage").attr("data-chat-id");
+                
+                if (msg.length > 0) {
+
+
+                    // <<<<<-- ***** Return to Server [  SendMessageToGroup  ] *****
+                    objHub.server.sendMessageToGroup("@Model.CurrentUserNickName", msg, chatboxid);
+                }
+                $("#txtMessage").val("");
+            });
+
+        
+            $(".chatLeft").on("click",function (e) {
+
+                var messageChatId = $(e.target).attr("id");
+                
+                
+                $(".mesgs").load("/Message/GetPartial?chatId=" + messageChatId);
+                objHub.server.connect(messageChatId);
 
             });
+
+            $.connection.hub.start().done(function () {
+                objHub.server.connect(chatid);
+            });
         });
-
-       // function loadEvents(objHub) {
-
-       //    $('#btnSendMessage').click(function () {
-
-       //        var msg = $("#txtMessage").val();
-
-       //        if (msg.length > 0) {
-
-
-       //            // <<<<<-- ***** Return to Server [  SendMessageToGroup  ] *****
-       //            objHub.server.sendMessageToGroup(msg);
-       //        }
-       //    });
-
-       // }
-
-       //  function loadClientMethods(objHub) {
-
-
-
-       //    objHub.client.getMessages = function (userName, message) {
-
-       //        $("#txtMessage").val('');
-       //        $('#messageboard').append('<div><p>' +
-       //        userName + ': ' + message + '</p></div>');
-
-       //        var height = $('#messageboard')[0].scrollHeight;
-       //        $('#divMessage').scrollTop(height);
-       //    }
-
-
-       //}
     </script>
 
 }
+
 
 
 
