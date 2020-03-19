@@ -325,16 +325,23 @@
     <Compile Include="Migrations\202003181546212_SearchIconsForGames.Designer.cs">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.cs" />
+    <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.Designer.cs">
+      <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameAccounts\AccountLOL.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
     <Compile Include="Models\Photo.cs" />
+    <Compile Include="Enums\LolRegions.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
     <Compile Include="Models\Video.cs" />
@@ -867,6 +874,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\User\UsersList.cshtml" />
+    <Content Include="Views\User\LolApi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -960,6 +968,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181546212_SearchIconsForGames.resx">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003191421179_AddingLolApiToUserAccount.resx">
+      <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

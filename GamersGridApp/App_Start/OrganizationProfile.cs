@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using GamersGridApp.Models;
 using GamersGridApp.Dtos;
+using GamersGridApp.Models.GameAccounts;
+using GamersGridApp.Dtos.ApiAcountsDtos;
 
 namespace GamersGridApp.App_Start
 {
@@ -17,6 +19,9 @@ namespace GamersGridApp.App_Start
 
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
+
+            CreateMap<LOLDto, AccountLOL>();
+            CreateMap<AccountLOL, LOLDto>();
         }
     }
 }

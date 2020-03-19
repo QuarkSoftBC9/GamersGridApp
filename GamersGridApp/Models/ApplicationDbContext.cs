@@ -5,6 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using GamersGridApp.Models;
+using GamersGridApp.Models.GameAccounts;
 
 namespace GamersGridApp.Models
 {
@@ -16,6 +17,7 @@ namespace GamersGridApp.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Video> Videos { get; set; }
         public DbSet<Follow> Follows { get; set; }
+        public DbSet<AccountLOL> LolAccount { get; set; }
 
         public DbSet<MessageChat> MessageChats { get; set; }
 

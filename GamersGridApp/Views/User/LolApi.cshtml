@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "LolApi";
+}
+
+<h2>LolApi</h2>
+<div class="jumbotron"> Something</div>
+@using (Html.BeginForm("LolApi", "User"))
+{
+    @Html.Label("Enter your Area here.")
+    @Html.TextBox("region", null, new { @class = "form-control" })
+
+    @Html.Label("Enter your UserName here.")
+    @Html.TextBox("userName", null, new { @class = "form-control" })
+
+    <button type="submit" class="btn btn-secondary">Save</button>
+}

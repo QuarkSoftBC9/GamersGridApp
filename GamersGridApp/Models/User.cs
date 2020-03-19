@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamersGridApp.Models.GameAccounts;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -41,6 +42,8 @@ namespace GamersGridApp.Models
         public string City { get; set; }
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
+        //Lol Account
+        public AccountLOL AccountLOL { get; set; }
 
         // [Required]
         //[StringLength(50, MinimumLength = 1)]
