@@ -19,60 +19,116 @@
     <!--     Fonts and icons     -->
     <script src="https://kit.fontawesome.com/0cde2950cb.js" crossorigin="anonymous"></script>
     <!-- CSS Files -->
-
     <link href="https://fonts.googleapis.com/css?family=Alata&display=swap" rel="stylesheet">
-    @Styles.Render("~/Content/RegisterCss")
 
+    @Styles.Render("~/Content/RegisterCss")
 
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    @*<nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="~/Content/Images/logo_small.png" alt="LOGO" style="height:36px;">
+                <a class="nav-link" href="#" style="color: black;"><strong>GAMERS' GRID</strong></a>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">PROFILE <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">WALL</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            STATS
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">TOP GAMES</a>
+                            <a class="dropdown-item" href="#">TOP PLAYERS</a>
+                            <a class="dropdown-item" href="#">TOP CLANS</a>
+                        </div>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            CLAN
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">MY CLAN</a>
+                            <a class="dropdown-item" href="#">FIND A CLAN</a>
+                            <a class="dropdown-item" href="#">CREATE A CLAN</a>
+                    </li>
+
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-dark" type="submit">Search</button>
+                </form>
+                <a class="nav-link" href="#">
+                    <img src="~/Content/Images/settings.png" alt="Settings" style="height:20px;">
+                </a>
+            </div>
+        </nav>*@
+    <nav class="navbar navbar-expand-lg navbar-dark  fixed-top" style="background-color: hsl(225, 40%, 18%);">
         <a class="navbar-brand" href="#">
             <img src="~/Content/Images/logo_small.png" alt="LOGO" style="height:36px;">
-            <a class="nav-link" href="#" style="color: black;"><strong>GAMERS' GRID</strong></a>
+            Gamer's Grid
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ml-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">PROFILE <span class="sr-only">(current)</span></a>
+            @{
+                string url = "/Home/Search/";
+            }
+            <ul class="navbar-nav ml-auto ">
+                <li class="nav-item">
+                    <form action=@url>
+                        <input id="Search" class="typeahead form-control searchBar" type="text" name="searchString" />
+                        <input type="submit" style="display: none" />
+                    </form>
+                    @*@Html.TextBox("search", null, new { @class = "typeahead form-control searchBar", id = "Search" })*@
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">WALL</a>
+                    @Html.ActionLink("Users", "Index", "User", null, new { @class = "nav-link" })
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        STATS
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">TOP GAMES</a>
-                        <a class="dropdown-item" href="#">TOP PLAYERS</a>
-                        <a class="dropdown-item" href="#">TOP CLANS</a>
-                    </div>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        CLAN
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">MY CLAN</a>
-                        <a class="dropdown-item" href="#">FIND A CLAN</a>
-                        <a class="dropdown-item" href="#">CREATE A CLAN</a>
+                <li class="nav-item">
+                    @Html.ActionLink("Games", "Index", "Game", null, new { @class = "nav-link" })
                 </li>
 
+                @if (Request.IsAuthenticated)
+                {
+                    <li class="nav-item">
+                        @Html.ActionLink("Messages", "MessageBoard", "Message", null, new { @class = "nav-link" })
+                    </li>
+
+                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                    {
+                        @Html.AntiForgeryToken()
+
+
+                        <li class="nav-item">
+                            <a href="javascript:document.getElementById('logoutForm').submit()" class="nav-link">Log off</a>
+                        </li>
+                    }
+                }
+                else
+                {
+
+
+                    <li class="nav-item">
+                        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
+                    </li>
+                }
+
             </ul>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-dark" type="submit">Search</button>
-            </form>
-            <a class="nav-link" href="#">
-                <img src="~/Content/Images/settings.png" alt="Settings" style="height:20px;">
-            </a>
+
         </div>
     </nav>
+
     <div class="image-container set-full-height"
          style="background-image: url('/Content/Images/wizard.jpg')">
 
@@ -115,7 +171,7 @@
                                                     <div class="picture">
                                                         <img src="~/Content/Images/default-avatar.png" class="picture-src"
                                                              id="wizardPicturePreview" title="" />
-                                                        <input type='file' name="file" id="wizard-picture"  accept=".png, .jpg, .jpeg">
+                                                        <input type='file' name="file" id="wizard-picture" accept=".png, .jpg, .jpeg">
                                                     </div>
                                                     <h6>Choose Picture</h6>
                                                 </div>
