@@ -28,12 +28,11 @@ namespace GamersGridApp.Controllers
 
         public ActionResult ProfilePage(string nickname)
         {
+            
             var user = context.GamersGridUsers.SingleOrDefault(u => u.NickName.Contains(nickname));
 
             if (user == null)
                 return HttpNotFound();
-
-
 
             return View(user);
         }

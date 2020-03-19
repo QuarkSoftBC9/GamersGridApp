@@ -87,7 +87,7 @@ namespace GamersGridApp.Controllers
             {
                 case SignInStatus.Success:
                     //return RedirectToAction("ProfilePage", "User", new {nickname = userContent.NickName });
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal(returnUrl, model.Email);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -462,15 +462,31 @@ namespace GamersGridApp.Controllers
             }
         }
 
+        private ActionResult RedirectToLocal(string returnUrl, string email )
+        {
+            var userID = context.Users
+                .Where(u => u.Email == email)
+                .Select(u => u.UserId)
+                .Single();
+
+            var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == userID);
+
+            if (Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            
+            return RedirectToAction("ProfilePage", "User", new { nickname = userContent.NickName});
+            
+        }
         private ActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }
-            
+
             return RedirectToAction("ProfilePage", "User");
-            
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
