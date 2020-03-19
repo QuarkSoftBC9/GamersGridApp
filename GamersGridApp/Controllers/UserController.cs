@@ -1,6 +1,7 @@
 ﻿using GamersGridApp.Helpers;
 using GamersGridApp.Models;
 using GamersGridApp.ViewModels;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +22,7 @@ namespace GamersGridApp.Controllers
         // GET: User
         public ViewResult Index()
         {
+
             return View("UsersList");
         }
 

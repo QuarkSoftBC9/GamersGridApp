@@ -15,9 +15,9 @@
 //    });
 //});
 
-//Stanislav typeahead
+//New typeahead
 $(document).ready(function () {
-    var searchGame = new Bloodhound({ //*
+    var searchGames = new Bloodhound({ //*
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
@@ -25,7 +25,7 @@ $(document).ready(function () {
             wildcard: '%QUERY'
         }
     });
-    var searchPlayer = new Bloodhound({ //*
+    var searchPlayers = new Bloodhound({ //*
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nickName'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
@@ -42,17 +42,54 @@ $(document).ready(function () {
         {
             name: 'title',
             display: 'title',
-            source: searchGame //*
+            source: searchGames //*
         },
         {
             name: 'nickName',
             display: 'nickName',
-            source: searchPlayer //*
+            source: searchPlayers //*
         })
+        .on("typeahead:select", function (e, search) {
+
+            if (search.title == null) {
+                window.location.href = "/User/ProfilePage?nickname=" + search.nickName;
+            }
+            else {
+                window.location.href = "/Game/GameProfile?gameName=" + search.title;
+            }
+            
+        });
 
 });
 
-//John Function
+//Old Function
+//$(document).ready(function () {
+//    var games = new Bloodhound({
+//        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+//        queryTokenizer: Bloodhound.tokenizers.whitespace,
+//        remote: {
+//            url: '/api/games?query=%QUERY',
+//            wildcard: '%QUERY'
+//        }
+//    });
+
+//    $("#Search").typeahead({
+//        hint: true,
+//        minLength: 2,
+//        highlight: true
+//    },
+//        {
+//            name: 'games',
+//            display: 'title',
+//            source: games
+//        })
+//        .on("typeahead:select", function (e, game) {
+//            window.location.href = "https://www.google.com/" /*"/Game/GameProfile?gameName=" + game.title*/;
+//        });
+//});
+//console.log(5);
+
+//Old Function
 //$(document).ready(function () {
 //    var games = new Bloodhound({
 //        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
