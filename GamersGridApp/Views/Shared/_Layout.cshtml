@@ -4,7 +4,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-
     @Scripts.Render("~/bundles/modernizr")
     @Styles.Render("~/Content/css")
 </head>
@@ -12,9 +11,9 @@
     @Html.Partial("_NavBar")
 
     <div class="container-fluid body-content">
-    @RenderBody()
+        @RenderBody()
 
-    @Html.Partial("_Footer")
+        @Html.Partial("_Footer")
     </div>
 
 
@@ -23,7 +22,7 @@
     @Scripts.Render("~/bundles/TypeAheadSearchBar")
 
 
-
+    
     @RenderSection("scripts", required: false)
 
 
