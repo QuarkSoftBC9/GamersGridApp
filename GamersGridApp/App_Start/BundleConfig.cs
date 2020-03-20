@@ -26,7 +26,10 @@ namespace GamersGridApp
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
                         "~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js",
                         "~/Scripts/RegisterJs/jquery.bootstrap.wizard.js",
-                         "~/Scripts/RegisterJs/jquery.validate.min.js"
+                        "~/Scripts/RegisterJs/jquery.validate.min.js",
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/typeahead.jquery.js",
+                        "~/Scripts/Custom/TypeAheadSearchBar.js"
                         ));
             bundles.Add(new ScriptBundle("~/bundles/TypeAheadSearchBar").Include(
                         "~/Scripts/Custom/TypeAheadSearchBar.js"));
@@ -55,7 +58,8 @@ namespace GamersGridApp
                 "~/Content/bootstrapFlatly.css",
              "~/Content/RegisterCss/avraam2NotAll.css",
              "~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css",
-             "~/Content/RegisterCss/PROFILE_GG.css"));
+             "~/Content/RegisterCss/PROFILE_GG.css",
+              "~/Content/typeahead.css"));
 
             //Adding my css bundle for search results Stanislav
             bundles.Add(new StyleBundle("~/Content/SearchCss").Include(
