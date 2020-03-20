@@ -34,7 +34,7 @@ namespace GamersGridApp.Controllers
             //    return RedirectToAction("Index");
 
             //testing
-            var gameTest = dbContext.Games.SingleOrDefault();
+            var gameTest = dbContext.Games.SingleOrDefault(g => g.Title == gameName);
             return View(gameTest);
         }
     }

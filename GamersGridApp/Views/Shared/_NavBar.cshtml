@@ -16,10 +16,10 @@
         <ul class="navbar-nav ml-auto ">
             <li class="nav-item">
                 <form action=@url>
+                    @*Typeahead Section*@
                     <input id="Search" class="typeahead form-control searchBar" type="text" name="searchString" />
                     <input type="submit" style="display: none" />
                 </form>
-                @*@Html.TextBox("search", null, new { @class = "typeahead form-control searchBar", id = "Search" })*@
             </li>
             <li class="nav-item">
                 @Html.ActionLink("Users", "Index", "User", null, new { @class = "nav-link" })

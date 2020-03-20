@@ -352,6 +352,7 @@
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
+    <Compile Include="ViewModels\UserProfilePageViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

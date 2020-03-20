@@ -1,5 +1,6 @@
 ﻿@Styles.Render("~/Content/style.css")
-@model GamersGridApp.Models.User
+@Styles.Render("~/Content/SiteCss")
+@model GamersGridApp.ViewModels.UserProfilePageViewModel
 @{
     ViewBag.Title = "ProfilePage";
 }
@@ -11,8 +12,8 @@
         </div>
         <div class="col-md-6 topSection">
             <br>
-            <h6>Name: <strong></strong></h6>
-            <h6>NickName: <strong></strong></h6>
+            <h6>Name: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
+            <h6>NickName: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
             <h6>Current Focusing games:<strong> League of Legends | Dota 2</strong></h6>
             <div>
                 <h2>
@@ -22,7 +23,7 @@
 
         </div>
         <div class="col-md-3">
-            <a class="btn btn-primary aButton" href="#" role="button">Follow</a>
+            <a class="btn btn-primary aButton hidden" href="#" role="button">Follow</a>
             <a class="btn btn-primary aButton" href="#" role="button">Message</a>
         </div>
 

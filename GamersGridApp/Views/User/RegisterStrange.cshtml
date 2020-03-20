@@ -282,6 +282,7 @@
     </div>
 
     @Scripts.Render("~/bundles/RegisterJs")
+    @Scripts.Render("~/bundles/TypeAheadSearchBar")
 
 </body>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -300,11 +301,11 @@
 <script>
     //Disabling Pressing Enter
     $(document).keypress(
-  function(event){
-    if (event.which == '13') {
-      event.preventDefault();
-    }
-});
+        function (event) {
+            if (event.which == '13') {
+                event.preventDefault();
+            }
+        });
     $(document).ready(function () {
         let dropdownNations = $('#Country');
         dropdownNations.empty();
@@ -323,5 +324,4 @@
 
     });
 </script>
-
 </html>
