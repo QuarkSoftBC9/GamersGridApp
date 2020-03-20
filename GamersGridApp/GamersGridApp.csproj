@@ -331,9 +331,13 @@
     <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.Designer.cs">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003201454371_check.cs" />
-    <Compile Include="Migrations\202003201454371_check.Designer.cs">
-      <DependentUpon>202003201454371_check.cs</DependentUpon>
+    <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.cs" />
+    <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.Designer.cs">
+      <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003201538142_check.cs" />
+    <Compile Include="Migrations\202003201538142_check.Designer.cs">
+      <DependentUpon>202003201538142_check.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -981,8 +985,11 @@
     <EmbeddedResource Include="Migrations\202003191421179_AddingLolApiToUserAccount.resx">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003201454371_check.resx">
-      <DependentUpon>202003201454371_check.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003200109199_refactoringUserAccordingToOOD.resx">
+      <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003201538142_check.resx">
+      <DependentUpon>202003201538142_check.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

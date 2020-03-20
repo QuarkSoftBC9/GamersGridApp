@@ -22,7 +22,7 @@
         <div class="col-md-3">
             <img class="img-fluid rounded profilePhoto" src="~/Content/Images/gamer.jfif" alt="">
         </div>
-        <button class="btn btn-primary" onclick="window.location.href = '/User/Edit?id=@Model.ID';">Update Your Profile</button>
+        <button class="btn btn-primary" onclick="window.location.href = '/User/Edit?id=@Model.LoggedUserId';">Update Your Profile</button>
         <div class="col-md-6 topSection">
             @Html.HiddenFor(m => m.User.ID, new { id = "profileId" })
             @Html.HiddenFor(m => m.LoggedUserId, new { id = "loggedUserId" })
