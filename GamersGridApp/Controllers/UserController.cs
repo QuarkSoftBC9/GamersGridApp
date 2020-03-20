@@ -14,6 +14,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Data.Entity;
+using System.Data.Entity;
 
 namespace GamersGridApp.Controllers
 {
@@ -74,81 +75,49 @@ namespace GamersGridApp.Controllers
             return View(viewModel);
         }
 
-        //public ActionResult Register()
-        //{
-        //    var viewmodel = new UserRegisterViewModel();
-
-        //    return View("UserFormRegister", viewmodel);
-        //}
-
-        //public ActionResult RegisterStrange()
-        //{
-        //    return View();
-        //}
-
-        public ActionResult Edit()
+        //Get
+        [Authorize]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Edit(int id)
         {
-            var viewmodel = new UserFormEditViewModel();
+            var aspNetUserID = User.Identity.GetUserId();
+            var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
+                .Include(c => c.UserAccount)
+                .SingleOrDefault();
+            //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
+            //aspNetUser.UserAccount = userContent;
 
-            return View("UserFormEdit", viewmodel);
+            if (aspNetUser.UserId == id)
+            {
+                var viewmodel = new UserFormEditViewModel()
+                {
+                    ID = aspNetUser.UserAccount.ID,
+                    FirstName = aspNetUser.UserAccount.FirstName,
+                    LastName = aspNetUser.UserAccount.LastName,
+                    NickName = aspNetUser.UserAccount.NickName,
+                    City = aspNetUser.UserAccount.City,
+                    Country = aspNetUser.UserAccount.Country,
+                    Description = aspNetUser.UserAccount.Description
+                };
+                return View(viewmodel);
+            }
+            return HttpNotFound();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult SaveEdit(User user)
+        [Authorize]
+        [HttpPost, ActionName("Edit")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult SaveEdit(UserFormEditViewModel viewmodel)
         {
-            //Edit
-            var userInDb = context.GamersGridUsers.Single(u => u.ID == user.ID);
-
-            userInDb.FirstName = user.FirstName;
-            userInDb.LastName = user.LastName;
-            //userInDb.Email = user.Email;
+            var userContent = context.GamersGridUsers
+                .SingleOrDefault(u => u.ID == viewmodel.ID);
+            userContent.Update(
+                viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
+                viewmodel.Description, viewmodel.Country, viewmodel.Country);
             context.SaveChanges();
-            return RedirectToAction("Index");
+
+            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult SaveRegisterStrange(ViewModels.RegisterViewModel userViewModel, HttpPostedFileBase file)
-        //{
-
-        //    var fileName = ExtraMethods.UploadPhoto(file);
-        //    userViewModel.Avatar = fileName;
-
-        //    var newUser = new User()
-        //    {
-        //        FirstName = userViewModel.FirstName,
-        //        LastName = userViewModel.LastName,
-        //        //Street_Name = userViewModel.StreetName,
-        //        //Street_Number = userViewModel.StreetNumber,
-        //        Country = userViewModel.Country,
-        //        City = userViewModel.City,
-        //        Avatar = userViewModel.Avatar
-        //       // Email = userViewModel.Email
-        //    };
-        //    //newUser.FavouriteGame.AddRange(userViewModel.FavouriteGames);
-        //    context.GamersGridUsers.Add(newUser);
-
-        //    context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
-
-
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult SaveRegister(UserRegisterViewModel userViewModel)
-        //{
-        //    var newUser = new User()
-        //    {
-        //        FirstName = userViewModel.FirstName,
-        //        LastName = userViewModel.LastName,
-        //        //Email = userViewModel.Email
-
-        //    };
-        //    context.GamersGridUsers.Add(newUser);
-
-        //    context.SaveChanges();
-        //    return RedirectToAction("Index");
-        //}
 
         //Get api/lol
         public ActionResult LolApi()

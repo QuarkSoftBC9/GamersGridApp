@@ -66,6 +66,9 @@ namespace GamersGridApp
                 "~/Content/SearchResults/SearchResultStyle.css"
                 ));
 
+            bundles.Add(new StyleBundle("~/Content/UserEditCss").Include(
+                "~/Content/UserEditCss/style.css"));
+
         }
     }
 }

@@ -1,46 +1,126 @@
 ﻿@model GamersGridApp.ViewModels.UserFormEditViewModel
-
-<h2>Edit Your Profile</h2>
-
-@using (Html.BeginForm("SaveEdit", "User"))
-{
-    @Html.AntiForgeryToken()
-    @Html.ValidationSummary(true, "Please fix the following Errors!!")
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.FirstName)
-        @Html.TextBoxFor(v => v.User.FirstName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.FirstName)
-    </div>
-
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.LastName)
-        @Html.TextBoxFor(v => v.User.LastName, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.LastName)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.Country)
-        @Html.TextBoxFor(v => v.User.Country, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.Country)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.City)
-        @Html.TextBoxFor(v => v.User.City, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.City)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.Street_Name)
-        @Html.TextBoxFor(v => v.User.Street_Name, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.Street_Name)
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(v => v.User.Street_Number)
-        @Html.TextBoxFor(v => v.User.Street_Number, new { @class = "form-control" })
-        @Html.ValidationMessageFor(v => v.User.Street_Number)
-    </div>
-    @Html.HiddenFor(v => v.User.ID)
-
-    <button type="submit" class="btn btn-secondary">Save</button>
+@{
+    ViewBag.Title = "Edit";
 }
+
+<h2>Change</h2>
+
+@Styles.Render("~/Content/UserEditCss")
+
+@*@Html.AntiForgeryToken()*@
+@Html.ValidationSummary(true, "Please fix the following Errors!!")
+
+<div class="signupSection">
+    <div class="info">
+        <i class="icon ion-ios-ionic-outline" aria-hidden="true"></i>
+    </div>
+    @using (Html.BeginForm("Edit", "User", FormMethod.Post, new { @class = "signupForm" }))
+    {
+        <h2>Edit your Account</h2>
+        <ul class="noBullet">
+            <li>
+                @Html.LabelFor(u => u.NickName)
+                @Html.TextBoxFor(u => u.NickName, new { @class = "form-control inputFields", id = "Username", oninput = "return userNameValidation(this.value)" })
+                @Html.ValidationMessageFor(m => m.NickName)
+            </li>
+            <li>
+                @Html.LabelFor(u => u.FirstName)
+                @Html.TextBoxFor(u => u.FirstName, new { @class = "form-control inputFields" })
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </li>
+            <li>
+                @Html.LabelFor(u => u.LastName)
+                @Html.TextBoxFor(u => u.LastName, new { @class = "form-control inputFields" })
+                @Html.ValidationMessageFor(m => m.LastName)
+            </li>
+            <li>
+                @Html.LabelFor(u => u.Description)
+                @Html.TextBoxFor(u => u.Description, new { @class = "form-control inputFields", id = "Username" })
+                @Html.ValidationMessageFor(m => m.Description)
+            </li>
+            <li>
+                <div class="form-group">
+                    <label>Country</label><br>
+                    <select id="Country" name="Country" class="form-control inputFields"></select>
+                </div>
+            </li>
+            <li>
+                @Html.LabelFor(u => u.City)
+                @Html.TextBoxFor(u => u.City, new { @class = "form-control inputFields", id = "Username" })
+                @Html.ValidationMessageFor(m => m.City)
+            </li>
+
+            <li id="center-btn">
+                <input type="submit" id="update-btn" name="join" alt="Join" value="Update">
+            </li>
+        </ul>
+        @Html.HiddenFor(u => u.ID)
+    }
+</div>
+
+
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        var alertRedInput = "#8C1010";
+        var defaultInput = "rgba(10, 180, 180, 1)";
+
+        function userNameValidation(usernameInput) {
+            var username = document.getElementById("username");
+            var issueArr = [];
+            if (/[-!#$%^&*()_+|~=`{}\[\]:";'<>?,.\/]/.test(usernameInput)) {
+                issueArr.push("No special characters!");
+            }
+            if (issueArr.length > 0) {
+                username.setCustomValidity(issueArr);
+                username.style.borderColor = alertRedInput;
+            } else {
+                username.setCustomValidity("");
+                username.style.borderColor = defaultInput;
+            }
+        }
+
+        function passwordValidation(passwordInput) {
+            var password = document.getElementById("password");
+            var issueArr = [];
+            if (!/^.{7,15}$/.test(passwordInput)) {
+                issueArr.push("Password must be between 7-15 characters.");
+            }
+            if (!/\d/.test(passwordInput)) {
+                issueArr.push("Must contain at least one number.");
+            }
+            if (!/[a-z]/.test(passwordInput)) {
+                issueArr.push("Must contain a lowercase letter.");
+            }
+            if (!/[A-Z]/.test(passwordInput)) {
+                issueArr.push("Must contain an uppercase letter.");
+            }
+            if (issueArr.length > 0) {
+                password.setCustomValidity(issueArr.join("\n"));
+                password.style.borderColor = alertRedInput;
+            } else {
+                password.setCustomValidity("");
+                password.style.borderColor = defaultInput;
+            }
+        }
+
+
+        $(document).ready(function () {
+            let dropdownNations = $('#Country');
+            dropdownNations.empty();
+
+            const url = 'https://restcountries.eu/rest/v2/all';
+
+            dropdownNations.append('<option selected="true" disabled>Choose Nation</option>');
+            dropdownNations.prop('selectedIndex', 0);
+
+            // Populate DropDown
+            $.getJSON(url, function (data) {
+                $.each(data, function (key, entry) {
+                    dropdownNations.append($('<option></option>').attr('value', entry.name).text(entry.name));
+                });
+            });
+
+        });
+    </script>
 }

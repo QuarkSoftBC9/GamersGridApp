@@ -383,6 +383,7 @@
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\wizard.jpg" />
     <Content Include="Content\SearchResults\SearchResultStyle.css" />
+    <Content Include="Content\UserEditCss\style.css" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
     <Content Include="Scripts\RegisterJs\gsdk-bootstrap-wizard.js" />

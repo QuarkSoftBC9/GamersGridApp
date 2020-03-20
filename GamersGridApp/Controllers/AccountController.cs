@@ -163,7 +163,7 @@ namespace GamersGridApp.Controllers
             {
                 var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
 
-                var user = new User() { NickName = model.NickName, City = model.City, Country = model.Country ,Avatar = fileName};
+                var user = new User(model.NickName, model.City, model.Country, fileName);
                 //Creating Application User + passing user object inside
                 var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email, UserAccount = user };
                 var result = await UserManager.CreateAsync(AppUser, model.Password);
@@ -176,6 +176,8 @@ namespace GamersGridApp.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                    //getting new user
+
                     int userId = context.Users.Where(u => u.Email == model.Email).Select(u => u.UserId).SingleOrDefault();
                     return RedirectToAction("ProfilePage" , "User", new { userid = userId });
                 }

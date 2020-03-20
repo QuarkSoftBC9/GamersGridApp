@@ -24,27 +24,27 @@ namespace GamersGridApp.Models
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string NickName { get; set; }
+        public string NickName { get; private set; }
 
-       
+
         [StringLength(255, MinimumLength = 1)]
         public string Description { get; set; }
 
-        [StringLength(255)]
-        public string ProfilePhoto { get; set; }
+        //Got Avatar
+        //[StringLength(255)]
+        //public string ProfilePhoto { get; set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string Country { get; set; }
+        public string Country { get; private set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string City { get; set; }
+        public string City { get; private set; }
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
         //Lol Account
         public AccountLOL AccountLOL { get; set; }
-
         // [Required]
         //[StringLength(50, MinimumLength = 1)]
         //public string Street_Name { get; set; }
@@ -66,6 +66,21 @@ namespace GamersGridApp.Models
 
         public ICollection<MessageChat> MessageChats { get; set; }
 
+        //Refactored ctors
+        protected User() { }
+
+        public User(string nickname, string city, string country, string avatar)
+        {
+            NickName = nickname ?? throw new ArgumentNullException("Nickname is null");
+            City = city ?? throw new ArgumentNullException("City is null");
+            Country = country ?? throw new ArgumentNullException("Country is null");
+
+            if (Avatar == null)
+                Avatar = "/Content/Images/UserAvatars/boyAvatar.jpg";
+            else
+                Avatar = avatar;
+        }
+
         public static List<User> GetUsers() //Users repo 
         {
             return new List<User>()
@@ -76,6 +91,16 @@ namespace GamersGridApp.Models
                 new User(){ID = 4, FirstName = "Maria", LastName = "Ntourmetaki", NickName = "Leaguer", City = "Heraklion", Country = "Greece", Avatar="/Content/Images/UserAvatars/girlAvatar.png"},
                 new User(){ID = 5, FirstName = "Avraam", LastName = "Liautsis", NickName = "Lincoln", City = "New York", Country = "USA", Avatar="/Content/Images/UserAvatars/boyAvatar.jpg"}
             };
+        }
+
+        public void Update(string firstname, string lastname, string nickname, string description, string country, string city)
+        {
+            FirstName = firstname;
+            LastName = lastname;
+            NickName = nickname;
+            Description = description;
+            Country = country;
+            City = city;
         }
     }
 }

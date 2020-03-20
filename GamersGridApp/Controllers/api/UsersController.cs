@@ -23,37 +23,18 @@ namespace GamersGridApp.Controllers.api
         [HttpGet]
         public IHttpActionResult GetUsers(string query = null)
         {
-            var usersQuery = dbContext.GamersGridUsers.AsQueryable();
-
-            if (!String.IsNullOrEmpty(query))
-                usersQuery = usersQuery.Where(u => u.FirstName.Contains(query));
-
-            var users = usersQuery.ToList()
-                .Select(Mapper.Map<User, UserDto>);
-
-
-            //Typeahead and DataTables train data 
-            var usersTrain = GamersGridApp.Models.User.GetUsers();
-            
             IEnumerable<UserDto> search;
             //We check if the search string is contained in NickName/FirstName/LastName and take the first 5 elements
-            if (String.IsNullOrEmpty(query))
+            if (!String.IsNullOrEmpty(query))
             {
-                search = usersTrain
-                .Take(5)
+                search = dbContext.GamersGridUsers
+                .Where(u => u.LastName.Contains(query) || u.FirstName.Contains(query) || u.NickName.Contains(query))
                 .ToList()
                 .Select(Mapper.Map<User, UserDto>);
+                return Ok(search);
             }
-            else //If search string IS NULL then we just take the first 5 elements 
-            {
-                search = usersTrain.Where(u => u.NickName.Contains(query) || u.FirstName.Contains(query) || u.LastName.Contains(query))
-                .Take(5)
-                .ToList()
-                .Select(Mapper.Map<User, UserDto>);
-            }
-            
+            return Ok();
 
-            return Ok(search);
         }
 
     }
