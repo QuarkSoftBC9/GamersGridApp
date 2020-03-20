@@ -7,12 +7,12 @@ namespace GamersGridApp.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.Users", "ProfilePhoto", c => c.String(maxLength: 255));
+            DropColumn("dbo.Users", "ProfilePhoto");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Users", "ProfilePhoto");
+            AddColumn("dbo.Users", "ProfilePhoto", c => c.String(maxLength: 255));
         }
     }
 }
