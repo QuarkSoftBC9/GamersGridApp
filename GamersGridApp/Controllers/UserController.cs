@@ -13,6 +13,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
+using System.Data.Entity;
 
 namespace GamersGridApp.Controllers
 {
@@ -32,15 +33,53 @@ namespace GamersGridApp.Controllers
             return View("UsersList");
         }
 
-        public ActionResult ProfilePage(string nickname)
+        public ActionResult ProfilePage(string nickname, int? userid)
         {
-            
-            var user = context.GamersGridUsers.SingleOrDefault(u => u.NickName.Contains(nickname));
+
+            var users = context.GamersGridUsers.Where(u => u.NickName.Contains(nickname)).ToList();
+            User user;
+            if (users.Count > 1 || userid == null)
+            {
+                user = users.Take(1).Single();
+            }
+            else
+            {
+                user = users.SingleOrDefault(u => u.ID == userid);
+            }
 
             if (user == null)
                 return HttpNotFound();
 
-            return View(user);
+            var loggedUserId = User.Identity.GetUserId();
+            var currentLoggedUser = context.Users.Where(u => u.Id == loggedUserId).Select(u => u.UserAccount).SingleOrDefault();
+            var viewModel = new UserProfilePageViewModel()
+            {
+                User = user
+            };
+
+
+            if (currentLoggedUser.ID == user.ID)
+            {
+                var follows = context.Follows.Count(f => f.UserId == currentLoggedUser.ID);
+                viewModel.FollowsCount = follows;
+                viewModel.IsCurrent = true;
+                viewModel.LoggedUserId = currentLoggedUser.ID;
+            }
+            else
+            {
+                var followRelation = context.Follows.SingleOrDefault(f => f.FollowerId == currentLoggedUser.ID && f.UserId == user.ID);
+                if (followRelation == null)
+                    viewModel.IsFollowing = false;
+                else
+                    viewModel.IsFollowing = true;
+
+                viewModel.IsCurrent = false;
+                viewModel.LoggedUserId = currentLoggedUser.ID;
+            }
+
+
+
+            return View(viewModel);
         }
 
         //public ActionResult Register()
@@ -137,12 +176,12 @@ namespace GamersGridApp.Controllers
                 .Where(u => u.Id == appUserId)
                 .Select(u => u.UserAccount)
                 .SingleOrDefault();
-            
+
 
             //api is updated everyday
             string api = "RGAPI-0f438fad-b9b5-4402-8d2f-baebbdd4d424";
-            
-            var correctString =  String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
+
+            var correctString = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 region, userName, api);
 
             correctString = HttpUtility.UrlPathEncode(correctString);
@@ -159,9 +198,9 @@ namespace GamersGridApp.Controllers
                 lolAcount.UserId = userContent.ID;
                 userContent.AccountLOL = lolAcount;
                 context.SaveChanges();
-                
+
             }
-            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName});
+            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
     }
 }
