@@ -7,13 +7,13 @@ namespace GamersGridApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class RemovingProfileProperty : IMigrationMetadata
+    public sealed partial class check : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovingProfileProperty));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(check));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003201612520_RemovingProfileProperty"; }
+            get { return "202003201454371_check"; }
         }
         
         string IMigrationMetadata.Source
