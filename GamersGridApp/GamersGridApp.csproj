@@ -331,9 +331,9 @@
     <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.Designer.cs">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003201454371_check.cs" />
-    <Compile Include="Migrations\202003201454371_check.Designer.cs">
-      <DependentUpon>202003201454371_check.cs</DependentUpon>
+    <Compile Include="Migrations\202003201612520_RemovingProfileProperty.cs" />
+    <Compile Include="Migrations\202003201612520_RemovingProfileProperty.Designer.cs">
+      <DependentUpon>202003201612520_RemovingProfileProperty.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -981,8 +981,8 @@
     <EmbeddedResource Include="Migrations\202003191421179_AddingLolApiToUserAccount.resx">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003201454371_check.resx">
-      <DependentUpon>202003201454371_check.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003201612520_RemovingProfileProperty.resx">
+      <DependentUpon>202003201612520_RemovingProfileProperty.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

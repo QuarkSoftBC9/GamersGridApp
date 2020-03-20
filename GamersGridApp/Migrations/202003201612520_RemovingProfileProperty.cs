@@ -3,16 +3,16 @@ namespace GamersGridApp.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class check : DbMigration
+    public partial class RemovingProfileProperty : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Users", "ProfilePhoto", c => c.String(maxLength: 255));
+            DropColumn("dbo.Users", "ProfilePhoto");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Users", "ProfilePhoto");
+            AddColumn("dbo.Users", "ProfilePhoto", c => c.String(maxLength: 255));
         }
     }
 }
