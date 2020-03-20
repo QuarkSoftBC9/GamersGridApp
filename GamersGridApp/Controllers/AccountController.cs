@@ -176,8 +176,8 @@ namespace GamersGridApp.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
-                    return RedirectToAction("ProfilePage" , "User", new { nickname = model.NickName });
+                    int userId = context.Users.Where(u => u.Email == model.Email).Select(u => u.UserId).SingleOrDefault();
+                    return RedirectToAction("ProfilePage" , "User", new { userid = userId });
                 }
                 AddErrors(result);
             }
