@@ -52,7 +52,7 @@ $(document).ready(function () {
         .on("typeahead:select", function (e, search) {
 
             if (search.title == null) {
-                window.location.href = "/User/ProfilePage?nickname=" + search.nickName;
+                window.location.href = "/User/ProfilePage?userid=" + search.id;
             }
             else {
                 window.location.href = "/Game/GameProfile?gameName=" + search.title;

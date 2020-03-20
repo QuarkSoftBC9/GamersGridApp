@@ -476,7 +476,7 @@ namespace GamersGridApp.Controllers
                 return Redirect(returnUrl);
             }
             
-            return RedirectToAction("ProfilePage", "User", new { nickname = userContent.NickName, userid = userContent.ID});
+            return RedirectToAction("ProfilePage", "User", new {  userid = userContent.ID});
             
         }
         private ActionResult RedirectToLocal(string returnUrl)

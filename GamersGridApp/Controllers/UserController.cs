@@ -33,19 +33,11 @@ namespace GamersGridApp.Controllers
             return View("UsersList");
         }
 
-        public ActionResult ProfilePage(string nickname, int? userid)
+        public ActionResult ProfilePage( int userid)
         {
 
-            var users = context.GamersGridUsers.Where(u => u.NickName.Contains(nickname)).ToList();
-            User user;
-            if (users.Count > 1 || userid == null)
-            {
-                user = users.Take(1).Single();
-            }
-            else
-            {
-                user = users.SingleOrDefault(u => u.ID == userid);
-            }
+            var user = context.GamersGridUsers.SingleOrDefault(u => u.ID == userid);
+
 
             if (user == null)
                 return HttpNotFound();
