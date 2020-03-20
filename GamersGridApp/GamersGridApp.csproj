@@ -200,6 +200,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Global.asax.cs">

@@ -1,16 +1,30 @@
 ﻿@Styles.Render("~/Content/style.css")
 @Styles.Render("~/Content/SiteCss")
 @model GamersGridApp.ViewModels.UserProfilePageViewModel
+
 @{
     ViewBag.Title = "ProfilePage";
 }
+@{
+    string followText;
+    if (Model.IsFollowing)
+    {
+        followText = "Unfollow";
+    }
+    else
+    {
+        followText = "Follow";
+    }
 
+}
 <div class="container">
     <div class="row">
         <div class="col-md-3">
             <img class="img-fluid rounded profilePhoto" src="~/Content/Images/gamer.jfif" alt="">
         </div>
         <div class="col-md-6 topSection">
+            @Html.HiddenFor(m => m.User.ID, new { id = "profileId" })
+            @Html.HiddenFor(m => m.LoggedUserId, new { id = "loggedUserId" })
             <br>
             <h6>Name: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
             <h6>NickName: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
@@ -23,8 +37,19 @@
 
         </div>
         <div class="col-md-3">
-            <a class="btn btn-primary aButton hidden" href="#" role="button">Follow</a>
-            <a class="btn btn-primary aButton" href="#" role="button">Message</a>
+
+            @if (Model.IsCurrent)
+            {
+                <h5>Follows</h5>
+                <p>@Model.FollowsCount</p>
+            }
+            else
+            {
+                <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
+                <button class="btn btn-primary aButton" role="button">Message</button>
+            }
+
+
         </div>
 
     </div>
@@ -138,3 +163,52 @@
 
 </div>
 
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#Follow").click(function (e) {
+                var followee = $("#profileId").val();
+                var follower = $("#loggedUserId").val();
+                var button = $(e.target);
+
+                $.post("/api/follows/", { followeeId: followee, followerId: follower })
+                    .done(function () {
+                        button.text("UnFollow");
+                        alert("Success");
+                    })
+                    .fail(function () {
+                        alert("THATS IMPOSSIBRU");
+                    });
+
+            });
+
+            $("#Unfollow").click(function (e) {
+                var followee = $("#profileId").val();
+                var follower = $("#loggedUserId").val();
+                var button = $(e.target);
+
+                var dataModel = { followeeId: followee, followerId: follower };
+                $.ajax({
+                    url: "/api/follows/" ,
+                    method: "DELETE",
+                    data: dataModel
+                })
+                    .done(function () {
+                        button.text("Follow");
+                        alert("Success");
+
+                    }).fail(function () {
+                        alert("THATS IMPOSSIBRU");
+                    });
+
+
+            });
+
+
+        });
+
+
+    </script>
+
+
+}

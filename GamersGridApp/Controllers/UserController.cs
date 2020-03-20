@@ -59,9 +59,23 @@ namespace GamersGridApp.Controllers
 
 
             if (currentLoggedUser.ID == user.ID)
+            {
+                var follows = context.Follows.Count(f => f.UserId == currentLoggedUser.ID);
+                viewModel.FollowsCount = follows;
                 viewModel.IsCurrent = true;
+                viewModel.LoggedUserId = currentLoggedUser.ID;
+            }
             else
+            {
+                var followRelation = context.Follows.SingleOrDefault(f => f.FollowerId == currentLoggedUser.ID && f.UserId == user.ID);
+                if (followRelation == null)
+                    viewModel.IsFollowing = false;
+                else
+                    viewModel.IsFollowing = true;
+
                 viewModel.IsCurrent = false;
+                viewModel.LoggedUserId = currentLoggedUser.ID;
+            }
 
 
 
