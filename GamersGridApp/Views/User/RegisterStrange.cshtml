@@ -298,13 +298,24 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
 
 <script>
+    function SearchSmth() {
+        document.getElementsByClassName('searchBar').keydown(function (event) {
+            console.log('log1')
+            var search = ('.searchBar').value;
+            if (event.which == 13) {
+                window.location.href = window.document + '/home/search?searchString=' + search;
+                location.href = window.document.codeform.code.value + '.html';
+            }
+        })
+    };
+
     //Disabling Pressing Enter
     $(document).keypress(
-  function(event){
-    if (event.which == '13') {
-      event.preventDefault();
-    }
-});
+        function (event) {
+            if (event.which == '13') {
+                event.preventDefault();
+            }
+        });
     $(document).ready(function () {
         let dropdownNations = $('#Country');
         dropdownNations.empty();
@@ -322,6 +333,7 @@
         });
 
     });
+
 </script>
 
 </html>
