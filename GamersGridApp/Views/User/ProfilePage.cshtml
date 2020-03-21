@@ -39,15 +39,11 @@
         </div>
         <div class="col-md-3">
 
-            @if (Model.IsCurrent)
-            {
-                <h5>Follows</h5>
-                <p>@Model.FollowsCount</p>
-            }
-            else
+            @if (!Model.IsCurrent)
             {
                 <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
-                <button class="btn btn-primary aButton" role="button">Message</button>
+                @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
+                @Html.ActionLink("Message", "ChatWith","Message",new { loggeduser = Model.LoggedUserId, user = Model.User.ID}, new { @class = "btn btn-primary aButton"})
             }
 
 
@@ -66,13 +62,13 @@
         <div class="col-sm-6">
             <div class="grid">
                 <div class="">
-                    <p>Followers <br> 156</p>
+                    <p>Followers <br> @Model.FollowsCount</p>
                     <img class="img-fluid rounded socialIcon" src="~/Content/Images/facebook.svg" alt=""
                          srcset="">
 
                 </div>
                 <div class="">
-                    <p>Following <br>354</p>
+                    <p>Following <br>@Model.FollowingCount</p>
                     <img class="img-fluid rounded socialIcon" src="~/Content/Images/Instagram.svg" alt=""
                          srcset="">
 
@@ -204,9 +200,11 @@
                     }).fail(function () {
                         alert("THATS IMPOSSIBRU");
                     });
-
-
             });
+
+            @*$(document).on("click", "#messageBtn", function () {
+                window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID
+            });*@
 
 
         });

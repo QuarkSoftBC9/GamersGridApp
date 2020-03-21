@@ -1,4 +1,6 @@
 ﻿@model GamersGridApp.ViewModels.MessageBoardViewModel
+@Styles.Render("~/Content/SiteCss")
+
 @{
     ViewBag.Title = "MessageBoard";
 }
@@ -31,17 +33,21 @@
                                 <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
                                 <div class="chat_ib">
 
-                                    <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
-                                    <p>
-                                        @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
-                                    </p>
+                                    <h5>@messagechat.Name</h5>
+                                    @*@if (messagechat.ChatHistory.Count != 0)
+                                        {
+                                        <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
+                                        <p>
+                                            @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
+                                        </p>
+                                        }*@
                                 </div>
                             </div>
                         </div>
                     }
                 </div>
             </div>
-            <div class="mesgs" id="chatbox" >
+            <div class="mesgs" id="chatbox">
                 <div class="msg_history" id="messageboard">
                     @foreach (var message in Model.MessageChats.FirstOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.OrderBy(c => c.Time))
                     {
@@ -97,7 +103,7 @@
 
             var objHub = $.connection.chatHub;
                 var chatid = $("#btnSendMessage").attr("data-chat-id");
-            
+
 
             objHub.client.getMessages = function (userName, message, time) {
                 var div1class = "";
@@ -128,7 +134,7 @@
 
                 var msg = $("#txtMessage").val();
                 var chatboxid = $("#btnSendMessage").attr("data-chat-id");
-                
+
                 if (msg.length > 0) {
 
 
@@ -138,13 +144,21 @@
                 $("#txtMessage").val("");
             });
 
-        
+
             $(".chatLeft").on("click",function (e) {
 
                 var messageChatId = $(e.target).attr("id");
-                
-                
-                $(".mesgs").load("/Message/GetPartial?chatId=" + messageChatId);
+                $.ajax({
+                    url: '/Message/GetPartial',
+                    data: { chatId : messageChatId },
+                    type: 'GET',
+                    method: "replace",
+                    success: function (data) {
+                        $('#chatbox').replaceWith(data);
+                    }
+                });
+
+                //$(".mesgs").load("/Message/GetPartial?chatId=" + messageChatId);
                 objHub.server.connect(messageChatId);
 
             });
