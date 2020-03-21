@@ -11,6 +11,7 @@ namespace GamersGridApp.ViewModels
         public User User { get; set; }
         public bool IsCurrent { get; set; }
         public int FollowsCount { get; set; }
+        public int FollowingCount { get; set; }
         public int LoggedUserId { get; set; }
         public bool IsFollowing { get; set; }
     }

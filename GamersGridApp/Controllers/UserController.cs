@@ -34,27 +34,33 @@ namespace GamersGridApp.Controllers
             return View("UsersList");
         }
 
-        public ActionResult ProfilePage( int userid)
+        public ActionResult ProfilePage(int? userid)
         {
+            //current logged user 
+            var loggedUserId = User.Identity.GetUserId();
+            var currentLoggedUser = context.Users.Where(u => u.Id == loggedUserId).Select(u => u.UserAccount).SingleOrDefault();
 
-            var user = context.GamersGridUsers.SingleOrDefault(u => u.ID == userid);
+            var user = (userid == null) ? currentLoggedUser : context.GamersGridUsers.SingleOrDefault(u => u.ID == userid);
+
 
 
             if (user == null)
                 return HttpNotFound();
 
-            var loggedUserId = User.Identity.GetUserId();
-            var currentLoggedUser = context.Users.Where(u => u.Id == loggedUserId).Select(u => u.UserAccount).SingleOrDefault();
+            //preparing viewmodel of searched user
             var viewModel = new UserProfilePageViewModel()
             {
+                FollowsCount = context.Follows.Count(f => f.UserId == user.ID),
+                FollowingCount = context.Follows.Count(f => f.FollowerId == user.ID),
                 User = user
             };
 
 
+            
+
+            //variables bound in viewmodel to be used for razor page logic between profile page and current logged user
             if (currentLoggedUser.ID == user.ID)
             {
-                var follows = context.Follows.Count(f => f.UserId == currentLoggedUser.ID);
-                viewModel.FollowsCount = follows;
                 viewModel.IsCurrent = true;
                 viewModel.LoggedUserId = currentLoggedUser.ID;
             }

@@ -13,9 +13,9 @@ namespace GamersGridApp.Models
 
         public ICollection<Message> ChatHistory { get; set; }
 
-        public MessageChat()
-        {
-            ChatHistory = new List<Message>();
-        }
+        //public MessageChat()
+        //{
+        //    ChatHistory = new List<Message>();
+        //}
     }
 }

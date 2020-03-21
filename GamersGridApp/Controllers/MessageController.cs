@@ -59,5 +59,61 @@ namespace GamersGridApp.Controllers
 
             return PartialView("_ChatBox", viewModel);
         }
+
+        public ActionResult ChatWith(int loggeduser, int user)
+        {
+
+
+            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == loggeduser);
+            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == user);
+
+
+            var messageChats = db.MessageChats
+                .Include(m => m.Users)
+                .Include(m => m.ChatHistory)
+                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
+                .ToList();
+
+            var requestedChatId = messageChats.Where(c => c.Users.Contains(currentGGuser)).Where(c => c.Users.Contains(requestedGGuser))
+                                                           .Select( c => c.ID)
+                                                         .FirstOrDefault();
+                
+            
+            if(requestedChatId == 0)
+            {
+                var newMessageChat = new MessageChat()
+                {
+                    Name = requestedGGuser.NickName,
+                    Users = new List<User>() { currentGGuser, requestedGGuser },
+                    ChatHistory = new List<Message>()
+                };
+
+                db.MessageChats.Add(newMessageChat);
+                db.SaveChanges();
+
+                requestedChatId = db.MessageChats
+                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
+                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == user)))
+                    .Select(m => m.ID)
+                    .Single();
+
+                messageChats = db.MessageChats
+                .Include(m => m.Users)
+                .Include(m => m.ChatHistory)
+                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
+                .ToList();
+
+            }
+
+
+            var viewModel = new MessageBoardViewModel()
+            {
+                CurrentChatID = requestedChatId,
+                CurrentUserNickName = currentGGuser.NickName,
+                MessageChats = messageChats
+            };
+
+            return View("MessageBoard", viewModel);
+        }
     }
 }
