@@ -358,6 +358,7 @@
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddLolAccountViewmodel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
@@ -888,6 +889,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\User\UsersList.cshtml" />
     <Content Include="Views\User\LolApi.cshtml" />
+    <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

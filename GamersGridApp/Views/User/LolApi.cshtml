@@ -1,4 +1,4 @@
-﻿
+﻿@model GamersGridApp.ViewModels.AddLolAccountViewmodel
 @{
     ViewBag.Title = "LolApi";
 }
@@ -7,11 +7,18 @@
 <div class="jumbotron"> Something</div>
 @using (Html.BeginForm("LolApi", "User"))
 {
-    @Html.Label("Enter your Area here.")
+
+    @Html.LabelFor(r => r.Region)
+    @Html.DropDownListFor(r => r.Region, new SelectList(Model.LolRegions), "--Select--", new { @class = "form-control" })
+
+    @Html.LabelFor( u => u.UserName)
+    @Html.TextBoxFor( u => u.UserName, new  {@class ="form=control" } )
+
+    @*@Html.Label("Enter your Area here.")
     @Html.TextBox("region", null, new { @class = "form-control" })
 
     @Html.Label("Enter your UserName here.")
-    @Html.TextBox("userName", null, new { @class = "form-control" })
+    @Html.TextBox("userName", null, new { @class = "form-control" })*@
 
     <button type="submit" class="btn btn-secondary">Save</button>
 }
