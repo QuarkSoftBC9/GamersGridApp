@@ -35,12 +35,12 @@
 
                                     <h5>@messagechat.Name</h5>
                                     @*@if (messagechat.ChatHistory.Count != 0)
-                                    {
-                                    <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
-                                    <p>
-                                        @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
-                                    </p>
-                                    }*@
+                                        {
+                                        <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
+                                        <p>
+                                            @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
+                                        </p>
+                                        }*@
                                 </div>
                             </div>
                         </div>
@@ -148,9 +148,17 @@
             $(".chatLeft").on("click",function (e) {
 
                 var messageChatId = $(e.target).attr("id");
+                $.ajax({
+                    url: '/Message/GetPartial',
+                    data: { chatId : messageChatId },
+                    type: 'GET',
+                    method: "replace",
+                    success: function (data) {
+                        $('#chatbox').replaceWith(data);
+                    }
+                });
 
-
-                $(".mesgs").load("/Message/GetPartial?chatId=" + messageChatId);
+                //$(".mesgs").load("/Message/GetPartial?chatId=" + messageChatId);
                 objHub.server.connect(messageChatId);
 
             });

@@ -1,49 +1,50 @@
 ﻿@model GamersGridApp.ViewModels.MessageBoardViewModel
-    <div class="mesgs" id="chatbox">
-        <div class="msg_history" id="messageboard">
-            @foreach (var message in Model.MessageChats.FirstOrDefault().ChatHistory.OrderBy(c => c.Time))
-            {
-                if (Model.CurrentUserNickName != message.User.NickName)
-                {
-                    <div class="incoming_msg">
-                        <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                        <div class="received_msg">
-                            <div class="received_withd_msg">
-                                <p>
-                                    @message.MessageString
-                                </p>
-                                <span class="time_date"> @message.Time</span>
-                            </div>
-                        </div>
-                    </div>
 
-                }
-                else
-                {
-                    <div class="outgoing_msg">
-                        <div class="sent_msg">
+<div class="mesgs" id="chatbox">
+    <div class="msg_history" id="messageboard">
+        @foreach (var message in Model.MessageChats.FirstOrDefault().ChatHistory.OrderBy(c => c.Time))
+        {
+            if (Model.CurrentUserNickName != message.User.NickName)
+            {
+                <div class="incoming_msg">
+                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
                             <p>
                                 @message.MessageString
                             </p>
-                            <span class="time_date">  @message.Time</span>
+                            <span class="time_date"> @message.Time</span>
                         </div>
                     </div>
+                </div>
 
-                }
-
+            }
+            else
+            {
+                <div class="outgoing_msg">
+                    <div class="sent_msg">
+                        <p>
+                            @message.MessageString
+                        </p>
+                        <span class="time_date">  @message.Time</span>
+                    </div>
+                </div>
 
             }
 
 
+        }
 
 
-        </div>
-        <div class="type_msg">
-            <div class="input_msg_write">
-                @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
-                @*<input type="text" id="type" class="write_msg" autocomplete="off" />*@
-                <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
-            </div>
+
+
+    </div>
+    <div class="type_msg">
+        <div class="input_msg_write">
+            @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
+            @*<input type="text" id="type" class="write_msg" autocomplete="off" />*@
+            <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
         </div>
     </div>
+</div>
 
