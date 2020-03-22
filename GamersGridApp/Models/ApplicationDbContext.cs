@@ -17,7 +17,7 @@ namespace GamersGridApp.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Video> Videos { get; set; }
         public DbSet<Follow> Follows { get; set; }
-        public DbSet<AccountLOL> LolAccount { get; set; }
+        public DbSet<LOLAccount> LolAccounts { get; set; }
 
         public DbSet<MessageChat> MessageChats { get; set; }
 

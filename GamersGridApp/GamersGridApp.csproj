@@ -202,12 +202,14 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
+    <Compile Include="Controllers\api\LOLStatsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
@@ -345,7 +347,7 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameAccounts\AccountLOL.cs" />
+    <Compile Include="Models\GameAccounts\LOLAccount.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
@@ -358,7 +360,7 @@
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AddLolAccountViewmodel.cs" />
+    <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
@@ -888,7 +890,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\User\UsersList.cshtml" />
-    <Content Include="Views\User\LolApi.cshtml" />
+    <Content Include="Views\User\LOLAccountNEW.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>

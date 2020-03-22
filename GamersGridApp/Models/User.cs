@@ -16,11 +16,11 @@ namespace GamersGridApp.Models
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string FirstName { get; set; }
+        public string FirstName { get; private set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string LastName { get; set; }
+        public string LastName { get; private set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
@@ -28,11 +28,7 @@ namespace GamersGridApp.Models
 
 
         [StringLength(255, MinimumLength = 1)]
-        public string Description { get; set; }
-
-        //Got Avatar
-        //[StringLength(255)]
-        //public string ProfilePhoto { get; set; }
+        public string Description { get; private set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
@@ -44,14 +40,7 @@ namespace GamersGridApp.Models
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
         //Lol Account
-        public AccountLOL AccountLOL { get; set; }
-        // [Required]
-        //[StringLength(50, MinimumLength = 1)]
-        //public string Street_Name { get; set; }
-
-
-        //public int Street_Number { get; set; }
-
+        public LOLAccount AccountLOL { get; set; }
 
         public string FullName => FirstName + " " + LastName;
 

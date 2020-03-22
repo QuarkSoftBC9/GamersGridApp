@@ -13,5 +13,7 @@ namespace GamersGridApp.Dtos.ApiAcountsDtos
         public string accountId { get; set; }
         public string id { get; set; }
         public long revisionDate { get; set; }
+
+
     }
 }

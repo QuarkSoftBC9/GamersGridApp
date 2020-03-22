@@ -6,14 +6,14 @@ using System.Web;
 
 namespace GamersGridApp.ViewModels
 {
-    public class AddLolAccountViewmodel
+    public class AddLOLAccountViewmodel
     {
         public List<LoLRegions> LolRegions { get; set; }
 
         public LoLRegions Region { get; set; }
         public string UserName { get; set; }
 
-        public AddLolAccountViewmodel()
+        public AddLOLAccountViewmodel()
         {
             LolRegions = new List<LoLRegions>() 
             { LoLRegions.BR1, LoLRegions.EUN1, LoLRegions.EUW1, LoLRegions.JP1, 
