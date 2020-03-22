@@ -203,6 +203,7 @@
     <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLStatsController.cs" />
+    <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
