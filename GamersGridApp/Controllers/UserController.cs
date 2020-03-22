@@ -14,7 +14,6 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Data.Entity;
-using System.Data.Entity;
 
 namespace GamersGridApp.Controllers
 {
@@ -129,13 +128,14 @@ namespace GamersGridApp.Controllers
         public ActionResult LolApi()
         {
             //Should check if the user already has Acccount connected
-            return View();
+            var viewModel = new AddLolAccountViewmodel();
+            return View(viewModel);
         }
 
         //Post api/lol
         [Authorize]
         [HttpPost]
-        public ActionResult LolApi(LoLRegions region, string userName)
+        public ActionResult LolApi(AddLolAccountViewmodel viewModel)
         {
             //geting UserContent
             var appUserId = User.Identity.GetUserId();
@@ -143,19 +143,17 @@ namespace GamersGridApp.Controllers
                 .Where(u => u.Id == appUserId)
                 .Select(u => u.UserAccount)
                 .SingleOrDefault();
-
-
             //api is updated everyday
             string api = "RGAPI-0f438fad-b9b5-4402-8d2f-baebbdd4d424";
 
-            var correctString = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-                region, userName, api);
+            var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
+                viewModel.Region, viewModel.UserName, api);
 
-            correctString = HttpUtility.UrlPathEncode(correctString);
+            url = HttpUtility.UrlPathEncode(url);
 
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(correctString);
+                string json = client.DownloadString(url);
 
                 //Converting to OBJECT from JSON string.
                 LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
@@ -165,9 +163,39 @@ namespace GamersGridApp.Controllers
                 lolAcount.UserId = userContent.ID;
                 userContent.AccountLOL = lolAcount;
                 context.SaveChanges();
-
             }
-            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
+            return RedirectToAction("ProfilePage", new { userid = userContent.ID });
         }
+        //public ActionResult LolApi(LoLRegions region, string userName)
+        //{
+        //    //geting UserContent
+        //    var appUserId = User.Identity.GetUserId();
+        //    var userContent = context.Users
+        //        .Where(u => u.Id == appUserId)
+        //        .Select(u => u.UserAccount)
+        //        .SingleOrDefault();
+        //    //api is updated everyday
+        //    string api = "RGAPI-0f438fad-b9b5-4402-8d2f-baebbdd4d424";
+
+        //    var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
+        //        region, userName, api);
+
+        //    url = HttpUtility.UrlPathEncode(url);
+
+        //    using (WebClient client = new WebClient())
+        //    {
+        //        string json = client.DownloadString(url);
+
+        //        //Converting to OBJECT from JSON string.
+        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+
+        //        AccountLOL lolAcount = Mapper.Map<LOLDto, AccountLOL>(rootAccount);
+
+        //        lolAcount.UserId = userContent.ID;
+        //        userContent.AccountLOL = lolAcount;
+        //        context.SaveChanges();
+        //    }
+        //    return RedirectToAction("ProfilePage", new { userid = userContent.ID });
+        //}
     }
 }
