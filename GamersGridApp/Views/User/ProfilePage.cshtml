@@ -1,5 +1,6 @@
 ﻿@Styles.Render("~/Content/style.css")
 @Styles.Render("~/Content/SiteCss")
+@Styles.Render("~/Content/toastrcss")
 @model GamersGridApp.ViewModels.UserProfilePageViewModel
 
 @{
@@ -43,7 +44,7 @@
             {
                 <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
                 @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
-                @Html.ActionLink("Message", "ChatWith","Message",new { loggeduser = Model.LoggedUserId, user = Model.User.ID}, new { @class = "btn btn-primary aButton"})
+                @Html.ActionLink("Message", "ChatWith", "Message", new { loggeduser = Model.LoggedUserId, user = Model.User.ID }, new { @class = "btn btn-primary aButton" })
             }
 
 
@@ -161,6 +162,9 @@
 </div>
 
 @section scripts{
+
+    @Scripts.Render("~/Scripts/toastrjs")
+
     <script>
         $(document).ready(function () {
             $(document).on("click", "#Follow",function (e) {
@@ -172,10 +176,10 @@
                     .done(function () {
                         button.text("UnFollow");
                         button.attr("id", "Unfollow");
-                        alert("Success");
+                        toastr.success("You are now following!");
                     })
                     .fail(function () {
-                        alert("THATS IMPOSSIBRU");
+                        toastr.alert("Something went wrong");
                     });
 
             });
@@ -195,16 +199,43 @@
                         button.text("Follow");
                         button.attr("id", "Follow");
 
-                        alert("Success");
+                        toastr.success("You are now no longer following");
 
                     }).fail(function () {
-                        alert("THATS IMPOSSIBRU");
+                       toastr.alert("Something went wrong");
                     });
             });
 
-            @*$(document).on("click", "#messageBtn", function () {
-                window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID
-            });*@
+            $(document).on("click", "#messageBtn", function () {
+                var followee = $("#profileId").val();
+                var follower = $("#loggedUserId").val();
+
+                var dataModel = { followeeId: followee, followerId: follower };
+
+
+                $.get("/api/CheckRelation/", dataModel)
+                    .done(function () {
+                        window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID;
+                    })
+                    .fail(function () {
+                         toastr.alert("No mutual follow relation found");
+                    });
+
+                //$.ajax({
+                //    url: "/api/CheckRelation/",
+                //    method: "GET",
+                //    data: dataModel
+                //})
+                //    .fail(function () {
+                //       toastr.alert("No mutual follow relation found");
+                //    });
+
+                @*.done(function () {
+                         window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID;
+
+                    })*@
+               
+            });
 
 
         });

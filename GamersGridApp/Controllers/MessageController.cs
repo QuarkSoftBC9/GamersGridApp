@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 
+
 namespace GamersGridApp.Controllers
 {
     [Authorize]
@@ -60,6 +61,7 @@ namespace GamersGridApp.Controllers
             return PartialView("_ChatBox", viewModel);
         }
 
+        [HttpGet]
         public ActionResult ChatWith(int loggeduser, int user)
         {
 
@@ -67,6 +69,26 @@ namespace GamersGridApp.Controllers
             var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == loggeduser);
             var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == user);
 
+            //var followRelation1 = db.Follows
+            //                        .SingleOrDefault(f => f.FollowerId == loggeduser && f.UserId == user);
+
+            //var followRelation2 = db.Follows
+            //                 .SingleOrDefault(f => f.FollowerId == user && f.UserId == loggeduser);
+
+
+            //if (followRelation1 == null || followRelation2 == null)
+            //{
+            //    return new HttpStatusCodeResult(System.Net.HttpStatusCode.NotFound, "Mutual follow relation was not found");
+            //   // return (IActionResult)new NotFoundResult(new System.Net.Http.HttpRequestMessage(new System.Net.Http.HttpMethod("GET"), "NO"));
+            //    //return HttpStatusCode.OK;
+            //    //return new StatusCodeResult(StatusCodes.Status500InternalServerError);
+            //    //return new StatusCodeResult(HttpStatusCode.BadRequest);
+            //    //return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "No mutual follow relationship exists");
+            //    //throw new NullReferenceException("No mutual follow relationship exists");
+            //    //Response.StatusCode = (int)HttpStatusCode.BadRequest;
+            //    ////Response.StatusCode = 500;
+            //    //return Json(new { success = false, responseText = "Mutual follow relation was not found" }, JsonRequestBehavior.AllowGet);
+            //}
 
             var messageChats = db.MessageChats
                 .Include(m => m.Users)
@@ -74,9 +96,11 @@ namespace GamersGridApp.Controllers
                 .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
                 .ToList();
 
-            var requestedChatId = messageChats.Where(c => c.Users.Contains(currentGGuser)).Where(c => c.Users.Contains(requestedGGuser))
-                                                           .Select( c => c.ID)
-                                                         .FirstOrDefault();
+            var requestedChatId = messageChats
+                         .Where(c => c.Users.Contains(currentGGuser))
+                         .Where(c => c.Users.Contains(requestedGGuser))
+                         .Select( c => c.ID)
+                         .FirstOrDefault();
                 
             
             if(requestedChatId == 0)

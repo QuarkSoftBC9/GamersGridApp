@@ -53,8 +53,8 @@ namespace GamersGridApp.Models
                 .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
 
 
-            modelBuilder.Entity<UserGame>()
-                .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
+            //modelBuilder.Entity<UserGame>()
+            //    .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
 
 
             //modelBuilder.Entity<Follower>()
