@@ -94,16 +94,7 @@ namespace GamersGridApp.Controllers
 
             if (aspNetUser.UserId == id)
             {
-                var viewmodel = new UserFormEditViewModel()
-                {
-                    ID = aspNetUser.UserAccount.ID,
-                    FirstName = aspNetUser.UserAccount.FirstName,
-                    LastName = aspNetUser.UserAccount.LastName,
-                    NickName = aspNetUser.UserAccount.NickName,
-                    City = aspNetUser.UserAccount.City,
-                    Country = aspNetUser.UserAccount.Country,
-                    Description = aspNetUser.UserAccount.Description
-                };
+                var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
                 return View(viewmodel);
             }
             return HttpNotFound();
@@ -124,18 +115,18 @@ namespace GamersGridApp.Controllers
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
 
-        //Get api/lol
+        //Get lolAccount
         public ActionResult LolApi()
         {
             //Should check if the user already has Acccount connected
-            var viewModel = new AddLolAccountViewmodel();
+            var viewModel = new AddLOLAccountViewmodel();
             return View(viewModel);
         }
 
-        //Post api/lol
+        //Post lolAccount
         [Authorize]
         [HttpPost]
-        public ActionResult LolApi(AddLolAccountViewmodel viewModel)
+        public ActionResult LolApi(AddLOLAccountViewmodel viewModel)
         {
             //geting UserContent
             var appUserId = User.Identity.GetUserId();
@@ -144,7 +135,7 @@ namespace GamersGridApp.Controllers
                 .Select(u => u.UserAccount)
                 .SingleOrDefault();
             //api is updated everyday
-            string api = "RGAPI-0f438fad-b9b5-4402-8d2f-baebbdd4d424";
+            string api = "RGAPI-2751d654-6675-42c8-b910-131ee4686d1d";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
@@ -158,14 +149,17 @@ namespace GamersGridApp.Controllers
                 //Converting to OBJECT from JSON string.
                 LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
 
-                AccountLOL lolAcount = Mapper.Map<LOLDto, AccountLOL>(rootAccount);
+                LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
 
                 lolAcount.UserId = userContent.ID;
                 userContent.AccountLOL = lolAcount;
+                userContent.AccountLOL.Region = viewModel.Region;
+
                 context.SaveChanges();
             }
             return RedirectToAction("ProfilePage", new { userid = userContent.ID });
         }
+        //keep just to be safe , DELETE when lol servers are up and are able to get new API KEY
         //public ActionResult LolApi(LoLRegions region, string userName)
         //{
         //    //geting UserContent

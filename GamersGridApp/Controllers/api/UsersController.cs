@@ -36,6 +36,5 @@ namespace GamersGridApp.Controllers.api
             return Ok();
 
         }
-
     }
 }
