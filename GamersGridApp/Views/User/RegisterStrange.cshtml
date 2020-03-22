@@ -239,14 +239,14 @@
                                             </div>
                                             <div class="avraam-col-sm-5 avraam-col-sm-offset-1">
                                                 <div class="avraam-form-group">
-                                                    <label>City</label>
-                                                    @Html.TextBoxFor(v => v.City, new { @class = "avraam-form-control", required = "required" })
-                                                </div>
-                                            </div>
-                                            <div class="avraam-col-sm-5">
-                                                <div class="avraam-form-group">
                                                     <label>Country</label><br>
                                                     <select id="Country" name="Country" class="form-control"></select>
+                                                </div>
+                                            </div>
+                                            <div class="avraam-col-sm-5 ">
+                                                <div class="avraam-form-group">
+                                                    <label>City</label>
+                                                    @Html.TextBoxFor(v => v.City, new { @class = "avraam-form-control", required = "required" })
                                                 </div>
                                             </div>
                                         </div>
@@ -283,60 +283,8 @@
 
 
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-<!--   Core JS Files   -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-<script src="~/Scripts/RegisterJs/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+@Scripts.Render("~/bundles/RegisterJs")
 
-<!--  Plugin for the Wizard -->
-<script src="~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js"></script>
-
-<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
 <script src="~/Scripts/RegisterJs/jquery.validate.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-
-<script>
-    @Scripts.Render("~/bundles/RegisterJs")
-    //Mine
-
-    function SearchSmth() {
-        alert("mpike");
-        document.getElementsByClassName('searchBar').keydown(function (event) {
-            console.log('log1')
-            var search = ('.searchBar').value;
-            if (event.which == 13) {
-                window.location.href = window.document + '/home/search?searchString=' + search;
-                location.href = window.document.codeform.code.value + '.html';
-            }
-        })
-    };
-
-    //Disabling Pressing Enter
-    $(document).keypress(
-        function (event) {
-            if (event.which == '13') {
-                event.preventDefault();
-            }
-        });
-    $(document).ready(function () {
-        let dropdownNations = $('#Country');
-        dropdownNations.empty();
-
-        const url = 'https://restcountries.eu/rest/v2/all';
-
-        dropdownNations.append('<option selected="true" disabled>Choose Nation</option>');
-        dropdownNations.prop('selectedIndex', 0);
-
-        // Populate DropDown
-        $.getJSON(url, function (data) {
-            $.each(data, function (key, entry) {
-                dropdownNations.append($('<option></option>').attr('value', entry.name).text(entry.name));
-            });
-        });
-
-    });
-
-</script>
 
 </html>

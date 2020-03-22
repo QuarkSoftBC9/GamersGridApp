@@ -31,7 +31,7 @@ namespace GamersGridApp.Controllers.api
             base.Dispose(disposing);
         }
 
-        public LOLStatsDto GetLoLStats()
+        public void GetLoLStats()
         {
             var userId = User.Identity.GetUserId();
 
@@ -60,7 +60,7 @@ namespace GamersGridApp.Controllers.api
                 context.SaveChanges();
             }
 
-            return Ok();
+            //return Ok();
         }
     }
 }

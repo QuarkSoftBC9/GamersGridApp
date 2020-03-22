@@ -164,6 +164,7 @@ namespace GamersGridApp.Controllers
                 var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
 
                 var user = new User(model.NickName, model.City, model.Country, fileName);
+               
                 //Creating Application User + passing user object inside
                 var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email, UserAccount = user };
                 var result = await UserManager.CreateAsync(AppUser, model.Password);

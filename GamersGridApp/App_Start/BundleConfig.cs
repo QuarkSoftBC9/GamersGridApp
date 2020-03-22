@@ -24,12 +24,16 @@ namespace GamersGridApp
 
                         ));
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
-                        "~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js",
+                        "~/Scripts/RegisterJs/jquery.min.js",
+                        "~/Scripts/bootstrap.js",
+                        "~/Scripts/RegisterJs/popper.min.js",
                         "~/Scripts/RegisterJs/jquery.bootstrap.wizard.js",
-                        "~/Scripts/RegisterJs/jquery.validate.min.js",
+                        "~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js",
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/typeahead.jquery.js",
-                        "~/Scripts/Custom/TypeAheadSearchBar.js"
+                        "~/Scripts/Custom/TypeAheadSearchBar.js",
+                        "~/Scripts/RegisterJs/Custom.js"
+
                         ));
             bundles.Add(new ScriptBundle("~/bundles/TypeAheadSearchBar").Include(
                         "~/Scripts/Custom/TypeAheadSearchBar.js"));
