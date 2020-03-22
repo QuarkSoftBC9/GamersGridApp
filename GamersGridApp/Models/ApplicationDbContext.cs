@@ -49,12 +49,12 @@ namespace GamersGridApp.Models
                 .HasMany(u => u.FollowedBy)
                 .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Follow>()
-                .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
+            //modelBuilder.Entity<Follow>()
+            //    .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
 
 
-            //modelBuilder.Entity<UserGame>()
-            //    .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
+            modelBuilder.Entity<UserGame>()
+                .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
 
 
             //modelBuilder.Entity<Follower>()

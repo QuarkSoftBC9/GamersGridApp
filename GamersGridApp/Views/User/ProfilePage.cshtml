@@ -1,6 +1,6 @@
 ﻿@Styles.Render("~/Content/style.css")
 @Styles.Render("~/Content/SiteCss")
-@Styles.Render("~/Content/toastrcss")
+@Styles.Render("~/Content/toastr.css")
 @model GamersGridApp.ViewModels.UserProfilePageViewModel
 
 @{
@@ -44,7 +44,8 @@
             {
                 <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
                 @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
-                @Html.ActionLink("Message", "ChatWith", "Message", new { loggeduser = Model.LoggedUserId, user = Model.User.ID }, new { @class = "btn btn-primary aButton" })
+                <button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>
+
             }
 
 
@@ -163,11 +164,14 @@
 
 @section scripts{
 
-    @Scripts.Render("~/Scripts/toastrjs")
+    @Scripts.Render("~/Scripts/toastr.js")
 
     <script>
+
         $(document).ready(function () {
-            $(document).on("click", "#Follow",function (e) {
+
+
+            $(document).on("click", "#Follow", function (e) {
                 var followee = $("#profileId").val();
                 var follower = $("#loggedUserId").val();
                 var button = $(e.target);
@@ -179,19 +183,19 @@
                         toastr.success("You are now following!");
                     })
                     .fail(function () {
-                        toastr.alert("Something went wrong");
+                        toastr.error("Something went wrong");
                     });
 
             });
 
-            $(document).on("click", "#Unfollow",function (e) {
+            $(document).on("click", "#Unfollow", function (e) {
                 var followee = $("#profileId").val();
                 var follower = $("#loggedUserId").val();
                 var button = $(e.target);
 
                 var dataModel = { followeeId: followee, followerId: follower };
                 $.ajax({
-                    url: "/api/follows/" ,
+                    url: "/api/follows/",
                     method: "DELETE",
                     data: dataModel
                 })
@@ -202,7 +206,7 @@
                         toastr.success("You are now no longer following");
 
                     }).fail(function () {
-                       toastr.alert("Something went wrong");
+                        toastr.error("Something went wrong");
                     });
             });
 
@@ -210,37 +214,28 @@
                 var followee = $("#profileId").val();
                 var follower = $("#loggedUserId").val();
 
-                var dataModel = { followeeId: followee, followerId: follower };
-
-
-                $.get("/api/CheckRelation/", dataModel)
+                $.ajax({
+                    url: "/api/messages",
+                    method: "GET",
+                    data: { followeeId: followee, followerId: follower },
+                    contentType: "application/json"
+                })
                     .done(function () {
-                        window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID;
+                        window.location.href = "@Url.Action("ChatWith","Message", new { id = Model.LoggedUserId, userId = Model.User.ID})";
+
+                        //window.location.href = "/Message/ChatWith?loggeduser=" + follower + "?user=" + followee;
                     })
                     .fail(function () {
-                         toastr.alert("No mutual follow relation found");
+                        toastr.error("No mutual follow relation found");
                     });
 
-                //$.ajax({
-                //    url: "/api/CheckRelation/",
-                //    method: "GET",
-                //    data: dataModel
-                //})
-                //    .fail(function () {
-                //       toastr.alert("No mutual follow relation found");
-                //    });
 
-                @*.done(function () {
-                         window.location.href = "/Message/ChatWith?loggeduser=" +@Model.LoggedUserId + "?user=" + @Model.User.ID;
 
-                    })*@
-               
+
             });
 
 
         });
-
-
     </script>
 
 

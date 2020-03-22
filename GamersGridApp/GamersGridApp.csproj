@@ -370,9 +370,9 @@
     <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.Designer.cs">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003201538142_check.cs" />
-    <Compile Include="Migrations\202003201538142_check.Designer.cs">
-      <DependentUpon>202003201538142_check.cs</DependentUpon>
+    <Compile Include="Migrations\202003221044274_RemovingUniqueCombinationOfKeysFollowsTable.cs" />
+    <Compile Include="Migrations\202003221044274_RemovingUniqueCombinationOfKeysFollowsTable.Designer.cs">
+      <DependentUpon>202003221044274_RemovingUniqueCombinationOfKeysFollowsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1031,8 +1031,8 @@
     <EmbeddedResource Include="Migrations\202003200109199_refactoringUserAccordingToOOD.resx">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003201538142_check.resx">
-      <DependentUpon>202003201538142_check.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003221044274_RemovingUniqueCombinationOfKeysFollowsTable.resx">
+      <DependentUpon>202003221044274_RemovingUniqueCombinationOfKeysFollowsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

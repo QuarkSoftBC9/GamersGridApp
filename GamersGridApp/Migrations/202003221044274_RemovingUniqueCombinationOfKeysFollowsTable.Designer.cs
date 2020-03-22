@@ -7,13 +7,13 @@ namespace GamersGridApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class check : IMigrationMetadata
+    public sealed partial class RemovingUniqueCombinationOfKeysFollowsTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(check));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(RemovingUniqueCombinationOfKeysFollowsTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003201538142_check"; }
+            get { return "202003221044274_RemovingUniqueCombinationOfKeysFollowsTable"; }
         }
         
         string IMigrationMetadata.Source

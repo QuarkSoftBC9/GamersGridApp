@@ -69,12 +69,7 @@ namespace GamersGridApp
             bundles.Add(new StyleBundle("~/Content/UserEditCss").Include(
                 "~/Content/UserEditCss/style.css"));
 
-            //Toastr css
-            bundles.Add(new StyleBundle("~/Content/toastrcss").Include(
-                "~/Content/toastr.css"));
 
-            bundles.Add(new ScriptBundle("~/Scripts/toastrjs")
-                .Include("~/Scripts/toastr.js"));
         }
     }
 }
