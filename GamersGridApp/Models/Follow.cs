@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GamersGridApp.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -7,7 +8,7 @@ using System.Web;
 
 namespace GamersGridApp.Models
 {
-    public class Follow
+    public class Follow:INewsFeed
     {
         public int ID { get; set; }
 
@@ -20,6 +21,6 @@ namespace GamersGridApp.Models
         public User User { get; set; }
 
         public User Follower { get; set; }
-
+        public DateTime TimeStamp { get ; set; }
     }
 }

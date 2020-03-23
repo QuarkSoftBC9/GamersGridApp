@@ -204,6 +204,7 @@
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLStatsController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
+    <Compile Include="Controllers\api\NotificationsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -214,10 +215,12 @@
     <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExtraMethods.cs" />
+    <Compile Include="Interfaces\INewsFeed.cs" />
     <Compile Include="Migrations\202002210115245_InitialModel.cs" />
     <Compile Include="Migrations\202002210115245_InitialModel.Designer.cs">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>
@@ -342,6 +345,10 @@
     <Compile Include="Migrations\202003221500410_RemoveUniqueKeyFromFollows.Designer.cs">
       <DependentUpon>202003221500410_RemoveUniqueKeyFromFollows.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs" />
+    <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.Designer.cs">
+      <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -352,11 +359,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
+    <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Enums\LolRegions.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
+    <Compile Include="Models\UserNotification.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -998,6 +1007,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003221500410_RemoveUniqueKeyFromFollows.resx">
       <DependentUpon>202003221500410_RemoveUniqueKeyFromFollows.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.resx">
+      <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

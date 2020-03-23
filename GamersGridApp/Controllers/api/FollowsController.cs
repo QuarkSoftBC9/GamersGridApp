@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Dtos;
+using GamersGridApp.Enums;
 using GamersGridApp.Models;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,10 @@ namespace GamersGridApp.Controllers.api
                 FollowerId = followDto.FollowerId
             };
 
+
             dbContext.Follows.Add(newFollow);
+            var notification = new Notification() {  UserId = followDto.FollowerId, TimeStamp = DateTime.Now, Type = NotificationType.Followed };
+            dbContext.UserNotifications.Add(new UserNotification() { UserId = followDto.FolloweeId, Notification = notification});
 
             try
             {
