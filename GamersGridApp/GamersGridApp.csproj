@@ -360,6 +360,10 @@
     <Compile Include="Migrations\202003241107049_GameAccountsStatsAdded.Designer.cs">
       <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003241141374_RemovingLolAccountFromModel.cs" />
+    <Compile Include="Migrations\202003241141374_RemovingLolAccountFromModel.Designer.cs">
+      <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1033,6 +1037,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003241107049_GameAccountsStatsAdded.resx">
       <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003241141374_RemovingLolAccountFromModel.resx">
+      <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -40,7 +40,7 @@ namespace GamersGridApp.Models
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
         //Lol Account
-        public LOLAccount AccountLOL { get; set; }
+        //public LOLAccount AccountLOL { get; set; }
         //public DotaAccount AccountDota { get; set; }
 
         public string FullName => FirstName + " " + LastName;

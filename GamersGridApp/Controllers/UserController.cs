@@ -139,20 +139,20 @@ namespace GamersGridApp.Controllers
         }
 
         //Get lolAccount
-        public ActionResult LOLAccount()
-        {
-            var appUserId = User.Identity.GetUserId();
-            var lolAccount = context.Users
-                .Where(u => u.Id == appUserId)
-                .Select(u => u.UserAccount)
-                .Select(u => u.AccountLOL)
-                .SingleOrDefault();
+        //public ActionResult LOLAccount()
+        //{
+        //    var appUserId = User.Identity.GetUserId();
+        //    var lolAccount = context.Users
+        //        .Where(u => u.Id == appUserId)
+        //        .Select(u => u.UserAccount)
+        //        .Select(u => u.ga)
+        //        .SingleOrDefault();
 
-            if (lolAccount != null)
-                return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
+        //    if (lolAccount != null)
+        //        return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
 
-            return View(new AddLOLAccountViewmodel());
-        }
+        //    return View(new AddLOLAccountViewmodel());
+        //}
 
         //Post lolAccount
         //[Authorize]

@@ -24,14 +24,14 @@ namespace GamersGridApp.Models.GameAccounts
 
         public int SummonerLevel { get; set; }
 
-        public void AddToUser(User user, int userId, LoLRegions region)
-        {
-            if (user == null)            
-                throw new ArgumentNullException("User Account is null");
+        //public void AddToUser(User user, int userId, LoLRegions region)
+        //{
+        //    if (user == null)            
+        //        throw new ArgumentNullException("User Account is null");
             
-            UserId = UserId;
-            Region = region;
-            user.AccountLOL = this;
-        }
+        //    UserId = UserId;
+        //    Region = region;
+        //    user.AccountLOL = this;
+        //}
     }
 }
