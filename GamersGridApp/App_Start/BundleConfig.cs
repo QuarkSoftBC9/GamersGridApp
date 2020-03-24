@@ -15,7 +15,8 @@ namespace GamersGridApp
                         "~/Scripts/bootstrap.js",
                          "~/Scripts/Datatables/jquery.dataTables.js",
                         "~/Scripts/typeahead.bundle.js",
-                        "~/Scripts/typeahead.jquery.js"
+                        "~/Scripts/typeahead.jquery.js",
+                        "~/Scripts/animate.min.css"
                         //"~/Scripts/popper.js"
                         ));
 

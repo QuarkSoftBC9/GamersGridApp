@@ -383,6 +383,8 @@
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
+    <Content Include="Content\animate.min.css" />
     <Content Include="Content\Images\Games\cs.png" />
     <Content Include="Content\Images\Games\dota2.jpg" />
     <Content Include="Content\Images\Games\lol.jpg" />
@@ -889,7 +891,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Message\MessageBoard.cshtml" />
     <Content Include="Views\Message\_ChatBox.cshtml" />
-    <None Include="Views\Shared\_LayoutAfterLogincshtml" />
+    <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
     <Content Include="webfonts\fa-regular-400.svg" />

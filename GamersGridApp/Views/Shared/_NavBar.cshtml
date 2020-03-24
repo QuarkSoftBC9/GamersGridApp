@@ -33,6 +33,12 @@
                 <li class="nav-item">
                     @Html.ActionLink("My Profile", "ProfilePage", "User", null, new { @class = "nav-link" })
                 </li>
+                <li class="notifications">
+                    <a href="#">
+                        <i class="fas fa-headset"></i>
+                        <span class="badge js-notifications-count hide"></span>
+                    </a>
+                </li>
                 <li class="nav-item">
                     @Html.ActionLink("Messages", "MessageBoard", "Message", null, new { @class = "nav-link" })
                 </li>

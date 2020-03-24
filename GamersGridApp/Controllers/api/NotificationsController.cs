@@ -19,17 +19,28 @@ namespace GamersGridApp.Controllers.api
             context = new ApplicationDbContext();
         }
 
-        public IEnumerable<Notification> GetNotifications()
+        public IEnumerable<UserNotification> GetNotifications()
         {
             var userId = User.Identity.GetUserId();
-            var notifications = context.Users
-               .Where(u => u.Id == userId)
-               .Select(n => n.UserAccount.UserNotifications)
-               .SingleOrDefault()
-               .Select(n => n.Notification);
-               
- 
-            return notifications;
+            
+            var existingperson = context.Users
+                     .Single(u => u.Id == userId);
+
+            var usernotifications = context.UserNotifications
+                   .Where(u => u.UserId == existingperson.UserId)
+                   .ToList();
+
+
+          return usernotifications;
+
+                
+
+
+            
+            
+             
+            
+
 
         }
     }

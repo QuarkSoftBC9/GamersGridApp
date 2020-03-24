@@ -22,7 +22,7 @@ namespace GamersGridApp.Models
         public DbSet<MessageChat> MessageChats { get; set; }
 
         public DbSet<Message> Messages { get; set; }
-        public DbSet<UserNotification> UserNotifications { get; internal set; }
+        public DbSet<UserNotification> UserNotifications { get;  set; }
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
