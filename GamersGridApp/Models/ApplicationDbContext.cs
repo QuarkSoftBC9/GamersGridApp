@@ -17,6 +17,7 @@ namespace GamersGridApp.Models
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Video> Videos { get; set; }
         public DbSet<Follow> Follows { get; set; }
+        public DbSet<GameAccount> GameAccounts { get; set; }
         public DbSet<LOLAccount> LolAccounts { get; set; }
 
         public DbSet<MessageChat> MessageChats { get; set; }
@@ -51,6 +52,9 @@ namespace GamersGridApp.Models
                 .WillCascadeOnDelete(false);
             //modelBuilder.Entity<Follow>()
             //    .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
+
+            modelBuilder.Entity<UserGame>()
+                .HasIndex(ug => ug.GameAccountId).IsUnique();
 
 
             modelBuilder.Entity<UserGame>()

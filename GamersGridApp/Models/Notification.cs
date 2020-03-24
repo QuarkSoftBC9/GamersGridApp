@@ -13,7 +13,6 @@ namespace GamersGridApp.Models
 
         public NotificationType Type { get; set; }
 
-        public User User { get; set; }
 
 
         protected Notification() { }
@@ -24,7 +23,6 @@ namespace GamersGridApp.Models
                 throw new ArgumentNullException("user");
 
             Type = type;
-            User = user;
             TimeStamp = DateTime.Now;
         }
 
