@@ -28,9 +28,7 @@ namespace GamersGridApp.Controllers.api
                .SingleOrDefault()
                .Select(n => n.Notification);
                
-              
-               
-
+ 
             return notifications;
 
         }

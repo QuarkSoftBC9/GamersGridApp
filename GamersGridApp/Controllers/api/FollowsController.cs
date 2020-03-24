@@ -29,10 +29,23 @@ namespace GamersGridApp.Controllers.api
                 FollowerId = followDto.FollowerId
             };
 
+            var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
+            var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
 
             dbContext.Follows.Add(newFollow);
-            var notification = new Notification() {  UserId = followDto.FollowerId, TimeStamp = DateTime.Now, Type = NotificationType.Followed };
-            dbContext.UserNotifications.Add(new UserNotification() { UserId = followDto.FolloweeId, Notification = notification});
+
+            //var notification = new Notification()
+            //{
+            //    TimeStamp = DateTime.Now,
+            //    Type = NotificationType.Followed
+            //};
+
+            var notification = Notification.UserFollow(follower);
+
+            dbContext.UserNotifications.Add(new UserNotification(followee, notification));//edw mpainoun gg users
+            
+            //var notification = new Notification() {  UserId = followDto.FollowerId, TimeStamp = DateTime.Now, Type = NotificationType.Followed };
+            //dbContext.UserNotifications.Add(new UserNotification() { UserId = followDto.FolloweeId, Notification = notification});
 
             try
             {
@@ -54,6 +67,12 @@ namespace GamersGridApp.Controllers.api
             };
 
             var dbFollow = dbContext.Follows.SingleOrDefault(f => f.UserId == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+
+            var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
+
+            var notification = Notification.UserUnfollow(follower);
+
+            dbContext.UserNotifications.Add(new UserNotification(follower, notification));//edw mpainoun gg users
 
             try
             {

@@ -20,12 +20,35 @@
 
     @Scripts.Render("~/bundles/mainLib")
     @Scripts.Render("~/bundles/TypeAheadSearchBar")
-
-
-    
     @RenderSection("scripts", required: false)
 
+    <script>
+        $(document).ready(function () {
+            $.getJSON("/api/notifications", function (notifications) {
+                if (notifications.length == 0)
+                    return;
 
+                $(".js-notifications-count")
+                    .text(notifications.length)
+                    .removeClass("hide")
+                    .addClass("animated bounceInDown");
+
+                $(".notifications").popover({
+                    html: true,
+                    title: "Notifications",
+                    content: function () {
+                        var compiled = _.template($("#notifications-template").html());
+                        var html = compiled({ notifications: notifications })
+                        return html;
+                    },
+                    placement: "bottom"
+                })
+            });
+
+
+
+        });
+    </script>
 </body>
 
 </html>

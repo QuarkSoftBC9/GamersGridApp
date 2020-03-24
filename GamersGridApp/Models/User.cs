@@ -82,6 +82,8 @@ namespace GamersGridApp.Models
             Country = country;
             City = city;
         }
+
+
     }
 }
 
