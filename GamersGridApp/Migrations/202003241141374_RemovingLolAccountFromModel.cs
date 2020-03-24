@@ -7,15 +7,15 @@ namespace GamersGridApp.Migrations
     {
         public override void Up()
         {
-            DropForeignKey("dbo.LOLAccounts", "UserId", "dbo.Users");
-            DropIndex("dbo.LOLAccounts", new[] { "UserId" });
-            DropTable("dbo.LOLAccounts");
+            DropForeignKey("dbo.AccountLOLs", "UserId", "dbo.Users");
+            DropIndex("dbo.AccountLOLs", new[] { "UserId" });
+            DropTable("dbo.AccountLOLs");
         }
         
         public override void Down()
         {
             CreateTable(
-                "dbo.LOLAccounts",
+                "dbo.AccountLOLs",
                 c => new
                     {
                         UserId = c.Int(nullable: false),
@@ -28,8 +28,8 @@ namespace GamersGridApp.Migrations
                     })
                 .PrimaryKey(t => t.UserId);
             
-            CreateIndex("dbo.LOLAccounts", "UserId");
-            AddForeignKey("dbo.LOLAccounts", "UserId", "dbo.Users", "ID");
+            CreateIndex("dbo.AccountLOLs", "UserId");
+            AddForeignKey("dbo.AccountLOLs", "UserId", "dbo.Users", "ID");
         }
     }
 }
