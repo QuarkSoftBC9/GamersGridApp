@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
+    <Compile Include="Controllers\api\LOLAccountsCheckController.cs" />
     <Compile Include="Controllers\api\LOLAccountsController.cs" />
     <Compile Include="Controllers\api\LOLStatsController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
@@ -343,21 +344,13 @@
     <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.Designer.cs">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003221500410_RemoveUniqueKeyFromFollows.cs" />
-    <Compile Include="Migrations\202003221500410_RemoveUniqueKeyFromFollows.Designer.cs">
-      <DependentUpon>202003221500410_RemoveUniqueKeyFromFollows.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs" />
     <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.Designer.cs">
       <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003221211347_CHangesToLoLApiName.cs" />
-    <Compile Include="Migrations\202003221211347_CHangesToLoLApiName.Designer.cs">
-      <DependentUpon>202003221211347_CHangesToLoLApiName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202003231159461_NullPropertyRemoved.cs" />
-    <Compile Include="Migrations\202003231159461_NullPropertyRemoved.Designer.cs">
-      <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
+    <Compile Include="Migrations\202003240852545_correctNames.cs" />
+    <Compile Include="Migrations\202003240852545_correctNames.Designer.cs">
+      <DependentUpon>202003240852545_correctNames.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1016,17 +1009,11 @@
     <EmbeddedResource Include="Migrations\202003200109199_refactoringUserAccordingToOOD.resx">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221500410_RemoveUniqueKeyFromFollows.resx">
-      <DependentUpon>202003221500410_RemoveUniqueKeyFromFollows.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.resx">
       <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003221211347_CHangesToLoLApiName.resx">
-      <DependentUpon>202003221211347_CHangesToLoLApiName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003231159461_NullPropertyRemoved.resx">
-      <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003240852545_correctNames.resx">
+      <DependentUpon>202003240852545_correctNames.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

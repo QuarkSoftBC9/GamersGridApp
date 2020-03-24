@@ -31,7 +31,7 @@
                 
                 userJS = $('#username-js').val();
                 regionJS = $('#region-js').val();
-                $.post("/api/lolaccounts", { userName: userJS, region: regionJS })
+                $.post("/api/lolaccountscheck", { userName: userJS, region: regionJS })
                     .done(function (e) {
                         if (e == 'Ok') {
                             console.log(e);

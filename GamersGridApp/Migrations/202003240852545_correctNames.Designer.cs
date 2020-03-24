@@ -7,13 +7,13 @@ namespace GamersGridApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class NullPropertyRemoved : IMigrationMetadata
+    public sealed partial class correctNames : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(NullPropertyRemoved));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(correctNames));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003231159461_NullPropertyRemoved"; }
+            get { return "202003240852545_correctNames"; }
         }
         
         string IMigrationMetadata.Source
