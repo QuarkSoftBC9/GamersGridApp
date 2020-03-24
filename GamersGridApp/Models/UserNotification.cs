@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GamersGridApp.Models
@@ -17,9 +18,21 @@ namespace GamersGridApp.Models
         public Notification Notification { get; set; }
         public bool IsRead { get; set; }
 
-        public UserNotification()
+        protected UserNotification()
         {
 
+        }
+
+        public UserNotification(User user, Notification notification)
+        {
+            if (user == null)
+                throw new ArgumentNullException("user");
+
+            if (notification == null)
+                throw new ArgumentNullException("notification");
+
+            User = user;
+            Notification = notification;
         }
     }
 }

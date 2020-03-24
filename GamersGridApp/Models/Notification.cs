@@ -13,11 +13,32 @@ namespace GamersGridApp.Models
 
         public NotificationType Type { get; set; }
 
-        public ICollection<UserNotification> UserNotifications { get; set; }
-       
-        public int UserId { get; set; }
         public User User { get; set; }
 
-        
+
+        protected Notification() { }
+
+        private Notification(NotificationType type, User user)
+        {
+            if (user == null)
+                throw new ArgumentNullException("user");
+
+            Type = type;
+            User = user;
+            TimeStamp = DateTime.Now;
+        }
+
+        //public ICollection<UserNotification> UserNotifications { get; set; }
+
+        //public int UserId { get; set; }
+        public static Notification UserFollow(User user)
+        {
+            return new Notification(NotificationType.Followed,user);
+        }
+        public static Notification UserUnfollow(User user)
+        {
+            return new Notification(NotificationType.unFollowed, user);
+        }
+
     }
 }

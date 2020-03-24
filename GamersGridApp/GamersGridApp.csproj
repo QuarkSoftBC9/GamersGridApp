@@ -359,6 +359,10 @@
     <Compile Include="Migrations\202003231159461_NullPropertyRemoved.Designer.cs">
       <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003240748255_RemoveKeysForNow.cs" />
+    <Compile Include="Migrations\202003240748255_RemoveKeysForNow.Designer.cs">
+      <DependentUpon>202003240748255_RemoveKeysForNow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -1027,6 +1031,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003231159461_NullPropertyRemoved.resx">
       <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003240748255_RemoveKeysForNow.resx">
+      <DependentUpon>202003240748255_RemoveKeysForNow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
