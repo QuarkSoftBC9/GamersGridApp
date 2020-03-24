@@ -14,6 +14,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Serialization;
 using System.Data.Entity;
+using GamersGridApp.Interfaces;
 
 namespace GamersGridApp.Controllers
 {
@@ -31,6 +32,28 @@ namespace GamersGridApp.Controllers
         {
 
             return View("UsersList");
+        }
+
+        public ActionResult NewsFeed()
+        {
+            var userId = User.Identity.GetUserId();
+            var newsFeedList = new List<INewsFeed>();
+            var UserId = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount.ID).SingleOrDefault();
+            var follows = context.Follows.Where(f => f.FollowerId == UserId).Select(f => f.UserId).ToList();
+            var followers = context.Follows
+               .Where(f => follows
+               .Contains(f.FollowerId))
+               .OrderBy(f => f.TimeStamp)
+               .Include(f => f.User)               
+               .Include(f => f.Follower)              
+               .Take(10).ToList();
+
+
+
+            newsFeedList.AddRange(followers);
+
+
+            return View(newsFeedList.OrderBy(n => n.TimeStamp).ToList());
         }
 
         public ActionResult ProfilePage(int? userid)

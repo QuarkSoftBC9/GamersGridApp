@@ -56,6 +56,8 @@ namespace GamersGridApp.Models
 
         public ICollection<MessageChat> MessageChats { get; set; }
 
+        public ICollection<UserNotification> UserNotifications { get; set; }
+
         //Refactored ctors
         protected User() { }
 

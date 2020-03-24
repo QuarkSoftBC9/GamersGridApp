@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 
+
 namespace GamersGridApp.Controllers
 {
     [Authorize]
@@ -60,23 +61,26 @@ namespace GamersGridApp.Controllers
             return PartialView("_ChatBox", viewModel);
         }
 
-        public ActionResult ChatWith(int loggeduser, int user)
+   
+        public ActionResult ChatWith(int id, int userId)
         {
 
 
-            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == loggeduser);
-            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == user);
+            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == id);
+            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == userId);
 
 
             var messageChats = db.MessageChats
                 .Include(m => m.Users)
                 .Include(m => m.ChatHistory)
-                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
+                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == id)))
                 .ToList();
 
-            var requestedChatId = messageChats.Where(c => c.Users.Contains(currentGGuser)).Where(c => c.Users.Contains(requestedGGuser))
-                                                           .Select( c => c.ID)
-                                                         .FirstOrDefault();
+            var requestedChatId = messageChats
+                         .Where(c => c.Users.Contains(currentGGuser))
+                         .Where(c => c.Users.Contains(requestedGGuser))
+                         .Select( c => c.ID)
+                         .FirstOrDefault();
                 
             
             if(requestedChatId == 0)
@@ -92,15 +96,15 @@ namespace GamersGridApp.Controllers
                 db.SaveChanges();
 
                 requestedChatId = db.MessageChats
-                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
-                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == user)))
+                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == id)))
+                    .Where(c => c.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == userId)))
                     .Select(m => m.ID)
                     .Single();
 
                 messageChats = db.MessageChats
                 .Include(m => m.Users)
                 .Include(m => m.ChatHistory)
-                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == loggeduser)))
+                .Where(m => m.Users.Contains(db.GamersGridUsers.FirstOrDefault(u => u.ID == id)))
                 .ToList();
 
             }

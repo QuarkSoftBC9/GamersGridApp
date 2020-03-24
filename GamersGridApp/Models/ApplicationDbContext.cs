@@ -22,7 +22,7 @@ namespace GamersGridApp.Models
         public DbSet<MessageChat> MessageChats { get; set; }
 
         public DbSet<Message> Messages { get; set; }
-
+        public DbSet<UserNotification> UserNotifications { get; internal set; }
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
@@ -49,8 +49,8 @@ namespace GamersGridApp.Models
                 .HasMany(u => u.FollowedBy)
                 .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
-            modelBuilder.Entity<Follow>()
-                .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
+            //modelBuilder.Entity<Follow>()
+            //    .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
 
 
             modelBuilder.Entity<UserGame>()
