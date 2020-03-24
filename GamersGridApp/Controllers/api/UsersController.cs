@@ -23,6 +23,7 @@ namespace GamersGridApp.Controllers.api
         [HttpGet]
         public IHttpActionResult GetUsers(string query = null)
         {
+            //Do work here !!!!
             IEnumerable<UserDto> search;
             //We check if the search string is contained in NickName/FirstName/LastName and take the first 5 elements
             if (!String.IsNullOrEmpty(query))

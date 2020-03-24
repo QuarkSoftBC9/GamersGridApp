@@ -116,17 +116,25 @@ namespace GamersGridApp.Controllers
         }
 
         //Get lolAccount
-        public ActionResult LolApi()
+        public ActionResult LOLAccount()
         {
-            //Should check if the user already has Acccount connected
-            var viewModel = new AddLOLAccountViewmodel();
-            return View(viewModel);
+            var appUserId = User.Identity.GetUserId();
+            var lolAccount = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Select(u => u.AccountLOL)
+                .SingleOrDefault();
+
+            if (lolAccount != null)
+                return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
+
+            return View(new AddLOLAccountViewmodel());
         }
 
         //Post lolAccount
         [Authorize]
         [HttpPost]
-        public ActionResult LolApi(AddLOLAccountViewmodel viewModel)
+        public ActionResult LOLAccount(AddLOLAccountViewmodel viewModel)
         {
             //geting UserContent
             var appUserId = User.Identity.GetUserId();
@@ -135,7 +143,7 @@ namespace GamersGridApp.Controllers
                 .Select(u => u.UserAccount)
                 .SingleOrDefault();
             //api is updated everyday
-            string api = "RGAPI-2751d654-6675-42c8-b910-131ee4686d1d";
+            string api = "RGAPI-dba8c12d-c214-4094-a0ac-aca9537f02e6";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
@@ -144,52 +152,28 @@ namespace GamersGridApp.Controllers
 
             using (WebClient client = new WebClient())
             {
+                // 1) BAD reuqest, handle here all 400 request from LOLServer
+                //try { }
+                //catch (WebException ex)
+                //{ return HttpStatusCode.NotFound; }
+                
                 string json = client.DownloadString(url);
-
-                //Converting to OBJECT from JSON string.
-                LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+                
+                    LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+                
 
                 LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
 
-                lolAcount.UserId = userContent.ID;
-                userContent.AccountLOL = lolAcount;
-                userContent.AccountLOL.Region = viewModel.Region;
+                lolAcount.AddToUser(userContent, userContent.ID, viewModel.Region);
+                
+                //Leave for now to check if the above method works normally
+                //lolAcount.UserId = userContent.ID;
+                //userContent.AccountLOL = lolAcount;
+                //userContent.AccountLOL.Region = viewModel.Region;
 
                 context.SaveChanges();
             }
             return RedirectToAction("ProfilePage", new { userid = userContent.ID });
         }
-        //keep just to be safe , DELETE when lol servers are up and are able to get new API KEY
-        //public ActionResult LolApi(LoLRegions region, string userName)
-        //{
-        //    //geting UserContent
-        //    var appUserId = User.Identity.GetUserId();
-        //    var userContent = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .SingleOrDefault();
-        //    //api is updated everyday
-        //    string api = "RGAPI-0f438fad-b9b5-4402-8d2f-baebbdd4d424";
-
-        //    var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-        //        region, userName, api);
-
-        //    url = HttpUtility.UrlPathEncode(url);
-
-        //    using (WebClient client = new WebClient())
-        //    {
-        //        string json = client.DownloadString(url);
-
-        //        //Converting to OBJECT from JSON string.
-        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
-
-        //        AccountLOL lolAcount = Mapper.Map<LOLDto, AccountLOL>(rootAccount);
-
-        //        lolAcount.UserId = userContent.ID;
-        //        userContent.AccountLOL = lolAcount;
-        //        context.SaveChanges();
-        //    }
-        //    return RedirectToAction("ProfilePage", new { userid = userContent.ID });
-        //}
     }
 }

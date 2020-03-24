@@ -24,6 +24,5 @@ namespace GamersGridApp.Models
 
         public bool IsFavoriteGame { get; set; }
 
-
     }
 }

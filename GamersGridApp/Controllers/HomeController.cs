@@ -65,8 +65,8 @@ namespace GamersGridApp.Controllers
 
             var games = context.Games.ToList();
             //var users = context.Users.ToList().Take(40);
-            var users = GamersGridApp.Models.User.GetUsers(); // Just as a test data for now 
-            var searchviewModelEmpty = new SearchViewModel(users, games, true, true);
+            //var users = GamersGridApp.Models.User.GetUsers(); // Just as a test data for now 
+            var searchviewModelEmpty = new SearchViewModel(new List<User>(), games, false, true);
 
             return View(searchviewModelEmpty);
         }

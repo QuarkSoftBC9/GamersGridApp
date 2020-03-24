@@ -1,0 +1,50 @@
+﻿@model GamersGridApp.ViewModels.AddLOLAccountViewmodel
+@{
+    ViewBag.Title = "LolApi";
+}
+
+<h2>LolApi</h2>
+<div class="jumbotron"> </div>
+@if (Model.HasAccount)
+{
+    <div class="jumbotron"> @*ENTER CONFIRMATION MESSAGE if the user want to change connected Account*@ You already connected your account to: @Model.UserName</div>
+}
+
+@using (Html.BeginForm("LOLAccount", "User", FormMethod.Post,  new { @class = "form", id = "LoLAccountForm", name = "submitLOL" }))
+{
+
+    @Html.LabelFor(r => r.Region)
+    @Html.DropDownListFor(r => r.Region, new SelectList(Model.LolRegions), "--Select--", new { @class = "form-control required js-region", name = "region", id = "region-js"  })
+
+    @Html.LabelFor(u => u.UserName)
+    @Html.TextBoxFor(u => u.UserName, new { @class = "form=control required js-username", name = "username", id  = "username-js" })
+
+    <button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
+}
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('.js-validate-user').click(function (event) {
+                event.preventDefault();
+                
+                userJS = $('#username-js').val();
+                regionJS = $('#region-js').val();
+                $.post("/api/lolaccounts", { userName: userJS, region: regionJS })
+                    .done(function (e) {
+                        if (e == 'Ok') {
+                            console.log(e);
+                            $('#LoLAccountForm').submit();
+                        }
+                        else {
+                            alert(e)
+                        }
+                    })
+                    .fail(function () {
+                        alert("Something failed");
+                    });      
+            })
+        })  
+    </script>
+}

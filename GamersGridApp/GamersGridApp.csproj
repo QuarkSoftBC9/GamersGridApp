@@ -202,6 +202,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
+    <Compile Include="Controllers\api\LOLAccountsController.cs" />
     <Compile Include="Controllers\api\LOLStatsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
@@ -209,6 +210,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
@@ -341,12 +343,21 @@
     <Compile Include="Migrations\202003201538142_check.Designer.cs">
       <DependentUpon>202003201538142_check.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003221211347_CHangesToLoLApiName.cs" />
+    <Compile Include="Migrations\202003221211347_CHangesToLoLApiName.Designer.cs">
+      <DependentUpon>202003221211347_CHangesToLoLApiName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003231159461_NullPropertyRemoved.cs" />
+    <Compile Include="Migrations\202003231159461_NullPropertyRemoved.Designer.cs">
+      <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Models\GameAccounts\DotaAccount.cs" />
     <Compile Include="Models\GameAccounts\LOLAccount.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
@@ -890,7 +901,7 @@
     <Content Include="webfonts\fa-brands-400.ttf" />
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\User\UsersList.cshtml" />
-    <Content Include="Views\User\LOLAccountNEW.cshtml" />
+    <Content Include="Views\User\LOLAccount.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -994,6 +1005,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003201538142_check.resx">
       <DependentUpon>202003201538142_check.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003221211347_CHangesToLoLApiName.resx">
+      <DependentUpon>202003221211347_CHangesToLoLApiName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003231159461_NullPropertyRemoved.resx">
+      <DependentUpon>202003231159461_NullPropertyRemoved.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
