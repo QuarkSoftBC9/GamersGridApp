@@ -10,5 +10,6 @@ namespace GamersGridApp.Models
         public int Id { get; set; }
         public string AccountIdentifier { get; set; }
         public AccountRegions AccountRegions { get; set; }
+        public GameAccountStats GameAccountStats { get; set; }
     }
 }

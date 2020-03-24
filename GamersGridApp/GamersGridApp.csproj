@@ -356,6 +356,10 @@
     <Compile Include="Migrations\202003241039281_GameAccountTableAndRelations.Designer.cs">
       <DependentUpon>202003241039281_GameAccountTableAndRelations.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003241107049_GameAccountsStatsAdded.cs" />
+    <Compile Include="Migrations\202003241107049_GameAccountsStatsAdded.Designer.cs">
+      <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -364,6 +368,7 @@
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameAccount.cs" />
+    <Compile Include="Models\GameAccountStats.cs" />
     <Compile Include="Models\GameAccounts\DotaAccount.cs" />
     <Compile Include="Models\GameAccounts\LOLAccount.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -1025,6 +1030,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003241039281_GameAccountTableAndRelations.resx">
       <DependentUpon>202003241039281_GameAccountTableAndRelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003241107049_GameAccountsStatsAdded.resx">
+      <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
