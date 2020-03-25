@@ -376,6 +376,10 @@
     <Compile Include="Migrations\202003250916538_adddatetimenullableingame.Designer.cs">
       <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003251437239_UserFolloweesNameChange.cs" />
+    <Compile Include="Migrations\202003251437239_UserFolloweesNameChange.Designer.cs">
+      <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1061,6 +1065,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003250916538_adddatetimenullableingame.resx">
       <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003251437239_UserFolloweesNameChange.resx">
+      <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
