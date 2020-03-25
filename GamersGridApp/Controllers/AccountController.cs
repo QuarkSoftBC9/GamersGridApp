@@ -164,9 +164,11 @@ namespace GamersGridApp.Controllers
                 var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
 
                 var user = new User(model.NickName, model.City, model.Country, fileName);
-               
+
+
                 //Creating Application User + passing user object inside
                 var AppUser = new ApplicationUser { UserName = model.Email, Email = model.Email, UserAccount = user };
+
                 var result = await UserManager.CreateAsync(AppUser, model.Password);
                 if (result.Succeeded)
                 {
@@ -180,6 +182,25 @@ namespace GamersGridApp.Controllers
                     //getting new user
 
                     int userId = context.Users.Where(u => u.Email == model.Email).Select(u => u.UserId).SingleOrDefault();
+
+                    if (model.Dota)
+                    {
+                        context.UserGameRelations.Add(new UserGame(new Game("Dota"), userId, true,new GameAccount()));
+
+                    }
+
+                    if (model.Lol)
+                    {
+                        context.UserGameRelations.Add(new UserGame(new Game("Lol"), userId, true, new GameAccount()));
+
+                    }
+
+                    if (model.Cs)
+                    {
+                        context.UserGameRelations.Add(new UserGame(new Game("Cs"), userId, true, new GameAccount()));
+                    }
+
+                    context.SaveChanges();
                     return RedirectToAction("ProfilePage" , "User", new { userid = userId });
                 }
                 AddErrors(result);

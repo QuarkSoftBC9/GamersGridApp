@@ -14,59 +14,11 @@ namespace GamersGridApp.ViewModels
         public string Email { get; set; }
 
 
-        private bool dota;
+        public bool Dota { get; set; }
+        public bool Lol { get; set; }
+        public bool Cs { get; set; }
 
-        public bool Dota
-        {
-            get 
-            {
-                if (dota)
-                {
-                    FavouriteGames.Add(new Game()
-                    {
-                        Title = "Dota"
-                    });
-                }
-                return dota; 
-            }
-            set { dota = value; }
-        }
 
-        private bool lol;
-
-        public bool Lol
-        {
-            get 
-            {
-                if (lol)
-                {
-                    FavouriteGames.Add(new Game()
-                    {
-                        Title = "Lol"
-                    });
-                }
-                return lol;
-
-            }
-            set { lol = value; }
-        }
-        private bool cs;
-
-        public bool Cs
-        {
-            get
-            {
-                if (cs)
-                {
-                    FavouriteGames.Add(new Game()
-                    {
-                        Title = "CS"
-                    });
-                }
-                return cs; 
-            }
-            set { cs = value; }
-        }
 
         public string NickName { get; set; }
 

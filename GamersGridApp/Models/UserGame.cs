@@ -30,5 +30,13 @@ namespace GamersGridApp.Models
 
         public bool IsFavoriteGame { get; set; }
 
+        public UserGame(Game game,int userid,bool favorite,GameAccount gameAccount)
+        {
+            Game = game;
+            UserId = userid;
+            IsFavoriteGame = favorite;
+            GameAccount = gameAccount;
+        }
+
     }
 }

@@ -21,17 +21,25 @@ namespace GamersGridApp.Controllers.api
 
         public IEnumerable<UserNotification> GetNotifications()
         {
+
             var userId = User.Identity.GetUserId();
-            
-            var existingperson = context.Users
-                     .Single(u => u.Id == userId);
 
-            var usernotifications = context.UserNotifications
-                   .Where(u => u.UserId == existingperson.UserId)
-                   .ToList();
+            if (!string.IsNullOrWhiteSpace(userId))
+            {
+                var existingperson = context.Users
+         .Single(u => u.Id == userId);
+
+                var usernotifications = context.UserNotifications
+                       .Where(u => u.UserId == existingperson.UserId)
+                       .ToList();
 
 
-          return usernotifications;
+                return usernotifications;
+            }
+            else
+            {
+                return null;
+            }
 
                 
 

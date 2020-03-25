@@ -364,6 +364,18 @@
     <Compile Include="Migrations\202003241141374_RemovingLolAccountFromModel.Designer.cs">
       <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003250900069_changeusertoappuseringamerelations.cs" />
+    <Compile Include="Migrations\202003250900069_changeusertoappuseringamerelations.Designer.cs">
+      <DependentUpon>202003250900069_changeusertoappuseringamerelations.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003250912095_changetooldmigration-UsergameUser.cs" />
+    <Compile Include="Migrations\202003250912095_changetooldmigration-UsergameUser.Designer.cs">
+      <DependentUpon>202003250912095_changetooldmigration-UsergameUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202003250916538_adddatetimenullableingame.cs" />
+    <Compile Include="Migrations\202003250916538_adddatetimenullableingame.Designer.cs">
+      <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1040,6 +1052,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003241141374_RemovingLolAccountFromModel.resx">
       <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003250900069_changeusertoappuseringamerelations.resx">
+      <DependentUpon>202003250900069_changeusertoappuseringamerelations.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003250912095_changetooldmigration-UsergameUser.resx">
+      <DependentUpon>202003250912095_changetooldmigration-UsergameUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003250916538_adddatetimenullableingame.resx">
+      <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
