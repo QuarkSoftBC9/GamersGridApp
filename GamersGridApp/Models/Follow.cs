@@ -8,7 +8,7 @@ using System.Web;
 
 namespace GamersGridApp.Models
 {
-    public class Follow:INewsFeed
+    public class Follow
     {
         public int ID { get; set; }
 
