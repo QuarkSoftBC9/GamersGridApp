@@ -59,7 +59,13 @@ namespace GamersGridApp.Models
         public ICollection<UserNotification> UserNotifications { get; set; }
 
         //Refactored ctors
-        protected User() { }
+        protected User()
+        {
+            if (UserNotifications == null)
+                UserNotifications = new List<UserNotification>();
+
+
+                    }
 
         public User(string nickname, string city, string country, string avatar)
         {
@@ -85,11 +91,10 @@ namespace GamersGridApp.Models
 
         public void Notify(Notification notification)
         {
-            UserNotifications.Add(new UserNotification(this,notification));
+            UserNotifications.Add(new UserNotification(this, notification));
         }
 
 
     }
 }
 
-    

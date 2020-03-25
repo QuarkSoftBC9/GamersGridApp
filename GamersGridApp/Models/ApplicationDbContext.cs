@@ -62,6 +62,12 @@ namespace GamersGridApp.Models
                 .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
 
 
+            //modelBuilder.Entity<Notification>()
+            //  .Property(f => f.TimeStamp)
+            //  .HasColumnType("datetime");
+
+
+
             //modelBuilder.Entity<Follower>()
             // .HasKey(k => new { k.UserId, k.FollowerId });
 

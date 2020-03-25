@@ -10,6 +10,7 @@ namespace GamersGridApp.Models
     public class Notification : INewsFeed
     {
         public int ID { get; private set; }
+       
         public DateTime TimeStamp { get; set; }
 
         public NotificationType Type { get; set; }
@@ -18,7 +19,9 @@ namespace GamersGridApp.Models
 
 
 
-        protected Notification() { }
+        protected Notification() {
+            TimeStamp = DateTime.Now;
+        }
 
         private Notification(NotificationType type, string content)
         {

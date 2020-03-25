@@ -28,9 +28,7 @@ namespace GamersGridApp.Controllers.api
                           .Include(f => f.User)
                           .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
 
-            // if exists -> 500
-            if (existingFollowInDb != null)
-                return BadRequest();
+          
 
             // if not, a new follow gets created
             Follow newFollow = new Follow(followDto.FolloweeId, followDto.FollowerId);
@@ -53,7 +51,7 @@ namespace GamersGridApp.Controllers.api
                 followee.Notify(Notification.FollowPersonal(follower));
 
                 //Creating the list of users with mutual follows with the 2 interacting users
-                var usersToNotify = dbContext.Follows
+                var usersToNotifyBuffer = dbContext.Follows
                     .Include(f => f.Follower)
                     .Include(f => f.User)
                     .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
@@ -62,13 +60,15 @@ namespace GamersGridApp.Controllers.api
                     .Include(u => u.Followees)
                     .ToList();
 
-                foreach (var user in usersToNotify)
+                var usersToNotify = new List<User>();
+
+                foreach (var user in usersToNotifyBuffer)
                 {
                     bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
                     bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
 
-                    if (!condition1 || !condition2)
-                        usersToNotify.Remove(user);
+                    if (condition1 && condition2)
+                        usersToNotify.Add(user);
                 }
 
 
@@ -95,9 +95,7 @@ namespace GamersGridApp.Controllers.api
                           .Include(f => f.User)
                           .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
 
-            // if it doesnt exist -> 500
-            if (existingFollowInDb == null)
-                return BadRequest();
+       
 
             // if yes
             try 
@@ -118,7 +116,7 @@ namespace GamersGridApp.Controllers.api
                 followee.Notify(Notification.UnfollowPersonal(follower));
 
                 //Creating the list of users with mutual follows with the 2 interacting users
-                var usersToNotify = dbContext.Follows
+                var usersToNotifyBuffer = dbContext.Follows
                     .Include(f => f.Follower)
                     .Include(f => f.User)
                     .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
@@ -126,13 +124,16 @@ namespace GamersGridApp.Controllers.api
                     .Include(u => u.Followees)
                     .ToList();
 
-                foreach (var user in usersToNotify)
+                var usersToNotify = new List<User>();
+
+
+                foreach (var user in usersToNotifyBuffer)
                 {
                     bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
                     bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
 
-                    if (!condition1 || !condition2)
-                        usersToNotify.Remove(user);
+                    if (!condition1 && !condition2)
+                        usersToNotify.Add(user);
                 }
 
 

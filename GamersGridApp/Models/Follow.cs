@@ -30,6 +30,7 @@ namespace GamersGridApp.Models
         {
             UserId = userId;
             FollowerId = followerId;
+            TimeStamp = DateTime.Now;
         }
     }
 }

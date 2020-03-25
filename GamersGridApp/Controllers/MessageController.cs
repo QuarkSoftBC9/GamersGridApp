@@ -30,13 +30,8 @@ namespace GamersGridApp.Controllers
 
             var currentChat = messageChats.Take(1).SingleOrDefault();
 
-            var viewmodel = new MessageBoardViewModel
-            {
-                MessageChats = messageChats,
-                CurrentUserNickName = currentUser.NickName,
-                CurrentChatID = currentChat.ID
-            };
-
+            var viewmodel = new MessageBoardViewModel(messageChats, currentChat.ID, currentUser.NickName);
+            
 
             return View(viewmodel);
         }
@@ -46,17 +41,13 @@ namespace GamersGridApp.Controllers
             int id = int.Parse(chatId);
             var aspNetUserId = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == aspNetUserId).Select(u => u.UserAccount).SingleOrDefault();
-
-            var viewModel = new MessageBoardViewModel()
-            {
-                CurrentChatID = id,
-                CurrentUserNickName = user.NickName,
-                MessageChats = db.MessageChats
-                       .Include( c => c.ChatHistory)
+            var messageChats = db.MessageChats
+                       .Include(c => c.ChatHistory)
                        .Include(m => m.Users)
                        .Where(m => m.ID == id)
-                       .ToList()
-            };
+                       .ToList();
+            var viewModel = new MessageBoardViewModel(messageChats, id, user.NickName);
+            
 
             return PartialView("_ChatBox", viewModel);
         }
@@ -80,7 +71,7 @@ namespace GamersGridApp.Controllers
                          .Where(c => c.Users.Contains(currentGGuser))
                          .Where(c => c.Users.Contains(requestedGGuser))
                          .Select( c => c.ID)
-                         .FirstOrDefault();
+                         .SingleOrDefault();
                 
             
             if(requestedChatId == 0)
@@ -110,12 +101,8 @@ namespace GamersGridApp.Controllers
             }
 
 
-            var viewModel = new MessageBoardViewModel()
-            {
-                CurrentChatID = requestedChatId,
-                CurrentUserNickName = currentGGuser.NickName,
-                MessageChats = messageChats
-            };
+            MessageBoardViewModel viewModel = new MessageBoardViewModel(messageChats, requestedChatId, currentGGuser.NickName);
+
 
             return View("MessageBoard", viewModel);
         }
