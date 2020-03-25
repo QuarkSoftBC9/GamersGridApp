@@ -36,24 +36,23 @@ namespace GamersGridApp.Controllers
 
         public ActionResult NewsFeed()
         {
+            //Getting the user
             var userId = User.Identity.GetUserId();
-            var newsFeedList = new List<INewsFeed>();
-            var UserId = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount.ID).SingleOrDefault();
-            var follows = context.Follows.Where(f => f.FollowerId == UserId).Select(f => f.UserId).ToList();
-            var followers = context.Follows
-               .Where(f => follows
-               .Contains(f.FollowerId))
-               .OrderBy(f => f.TimeStamp)
-               .Include(f => f.User)               
-               .Include(f => f.Follower)              
-               .Take(10).ToList();
+            var user = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount).SingleOrDefault();
+
+            //Getting All notifications
+            var notifications = context.UserNotifications
+                          .Where(un => un.UserId == user.ID && !un.IsRead)
+                          .Include(un => un.Notification)
+                          .Select(n => n.Notification)
+                          .ToList();
 
 
+            List<INewsFeed> newsFeed = new List<INewsFeed>(notifications);
+            
 
-            newsFeedList.AddRange(followers);
 
-
-            return View(newsFeedList.OrderBy(n => n.TimeStamp).ToList());
+            return View(newsFeed.OrderBy(n => n.TimeStamp));
         }
 
         public ActionResult ProfilePage(int? userid)

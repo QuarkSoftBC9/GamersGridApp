@@ -23,67 +23,134 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult Follow(FollowsDto followDto)
         {
-            Follow newFollow = new Follow()
+            //checking for existing relation in db
+            Follow existingFollowInDb = dbContext.Follows
+                          .Include(f => f.User)
+                          .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+
+            // if exists -> 500
+            if (existingFollowInDb != null)
+                return BadRequest();
+
+            // if not, a new follow gets created
+            Follow newFollow = new Follow(followDto.FolloweeId, followDto.FollowerId);
+
+            try //Create the realation in db
             {
-                UserId = followDto.FolloweeId,
-                FollowerId = followDto.FollowerId
-            };
-
-            var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
-            var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
-
-            dbContext.Follows.Add(newFollow);
-
-            //var notification = new Notification()
-            //{
-            //    TimeStamp = DateTime.Now,
-            //    Type = NotificationType.Followed
-            //};
-
-            var notification = Notification.UserFollow(follower);
-
-            dbContext.UserNotifications.Add(new UserNotification(followee, notification));//edw mpainoun gg users
-            
-            //var notification = new Notification() {  UserId = followDto.FollowerId, TimeStamp = DateTime.Now, Type = NotificationType.Followed };
-            //dbContext.UserNotifications.Add(new UserNotification() { UserId = followDto.FolloweeId, Notification = notification});
-
-            try
-            {
+                dbContext.Follows.Add(newFollow);
                 dbContext.SaveChanges();
-                return Ok();
             }
-            catch
+            catch //Case that userId and followerId inside dto are incorrect
             {
                 return BadRequest();
             }
+            finally 
+            {
+                var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
+                var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FolloweeId);
+
+                // Creating the personalized Message for followee
+                followee.Notify(Notification.FollowPersonal(follower));
+
+                //Creating the list of users with mutual follows with the 2 interacting users
+                var usersToNotify = dbContext.Follows
+                    .Include(f => f.Follower)
+                    .Include(f => f.User)
+                    .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
+                    .Select(f => f.Follower)
+                    .Distinct()
+                    .Include(u => u.Followees)
+                    .ToList();
+
+                foreach (var user in usersToNotify)
+                {
+                    bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
+                    bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
+
+                    if (!condition1 || !condition2)
+                        usersToNotify.Remove(user);
+                }
+
+
+                if (usersToNotify.Count != 0)
+                {
+                    foreach (var user in usersToNotify)
+                    {   //Notify all Users
+                        user.Notify(Notification.Follow(followee, follower));
+                    }
+                }
+
+                //Write Notifications in Db
+                dbContext.SaveChanges();
+                
+            }
+
+            return Ok();
         }
         [HttpDelete]
         public IHttpActionResult UnFollow(FollowsDto followDto)
         {
-            Follow follow = new Follow()
+            //checking for existing relation in db
+            Follow existingFollowInDb = dbContext.Follows
+                          .Include(f => f.User)
+                          .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+
+            // if it doesnt exist -> 500
+            if (existingFollowInDb == null)
+                return BadRequest();
+
+            // if yes
+            try 
             {
-                UserId = followDto.FolloweeId,
-                FollowerId = followDto.FollowerId
-            };
-
-            var dbFollow = dbContext.Follows.SingleOrDefault(f => f.UserId == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
-
-            var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
-
-            var notification = Notification.UserUnfollow(follower);
-
-            dbContext.UserNotifications.Add(new UserNotification(follower, notification));//edw mpainoun gg users
-
-            try
-            {
-                dbContext.Follows.Remove(dbFollow);
+                dbContext.Follows.Remove(existingFollowInDb);
                 dbContext.SaveChanges();
-                return Ok();
             }
-            catch
+            catch //Case that userId and followerId inside dto are incorrect
             {
                 return BadRequest();
             }
+            finally
+            {
+                var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
+                var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FolloweeId);
+
+                // Creating the personalized Message for followee
+                followee.Notify(Notification.UnfollowPersonal(follower));
+
+                //Creating the list of users with mutual follows with the 2 interacting users
+                var usersToNotify = dbContext.Follows
+                    .Include(f => f.Follower)
+                    .Include(f => f.User)
+                    .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
+                    .Select(f => f.Follower)
+                    .Include(u => u.Followees)
+                    .ToList();
+
+                foreach (var user in usersToNotify)
+                {
+                    bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
+                    bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
+
+                    if (!condition1 || !condition2)
+                        usersToNotify.Remove(user);
+                }
+
+
+                if (usersToNotify.Count != 0)
+                {
+                    foreach (var user in usersToNotify)
+                    {   //Notify all Users
+                        user.Notify(Notification.Unfollow(followee, follower));
+                    }
+                }
+
+
+                //Write Notifications in Db
+                dbContext.SaveChanges();
+
+            }
+
+            return Ok();
         }
     }
 }

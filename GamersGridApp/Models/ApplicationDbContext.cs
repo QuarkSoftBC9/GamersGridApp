@@ -48,7 +48,7 @@ namespace GamersGridApp.Models
                 .WithRequired(f => f.User)
                 .WillCascadeOnDelete(false);
             modelBuilder.Entity<User>()
-                .HasMany(u => u.FollowedBy)
+                .HasMany(u => u.Followees)
                 .WithRequired(f => f.Follower)
                 .WillCascadeOnDelete(false);
             //modelBuilder.Entity<Follow>()

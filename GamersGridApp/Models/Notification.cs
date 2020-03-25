@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Enums;
+using GamersGridApp.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,37 +7,50 @@ using System.Web;
 
 namespace GamersGridApp.Models
 {
-    public class Notification
+    public class Notification : INewsFeed
     {
         public int ID { get; private set; }
         public DateTime TimeStamp { get; set; }
 
         public NotificationType Type { get; set; }
 
+        public string Content { get; set; }
+
 
 
         protected Notification() { }
 
-        private Notification(NotificationType type, User user)
+        private Notification(NotificationType type, string content)
         {
-            if (user == null)
+            if (string.IsNullOrWhiteSpace(content))
                 throw new ArgumentNullException("user");
 
             Type = type;
             TimeStamp = DateTime.Now;
+            Content = content;
         }
 
-        //public ICollection<UserNotification> UserNotifications { get; set; }
 
-        //public int UserId { get; set; }
-        public static Notification UserFollow(User user)
+        public static Notification Follow(User followee, User follower)
         {
-            return new Notification(NotificationType.Followed,user);
+            string content = $"{follower.NickName} is now following {followee.NickName}.";
+            return new Notification(NotificationType.Follow,content);
         }
-        public static Notification UserUnfollow(User user)
+        public static Notification Unfollow(User followee, User follower)
         {
-            return new Notification(NotificationType.unFollowed, user);
+            string content = $"{follower.NickName} is no longer following {followee.NickName}.";
+            return new Notification(NotificationType.Unfollow, content);
         }
 
+        public static Notification FollowPersonal(User follower)
+        {
+            string content = $"{follower.NickName} is now following you.";
+            return new Notification(NotificationType.FollowPersonal, content);
+        }
+        public static Notification UnfollowPersonal(User follower)
+        {
+            string content = $"{follower.NickName} is no longer following you.";
+            return new Notification(NotificationType.Unfollow, content);
+        }
     }
 }

@@ -22,5 +22,14 @@ namespace GamersGridApp.Models
 
         public User Follower { get; set; }
         public DateTime TimeStamp { get ; set; }
+
+        protected Follow()
+        { }
+
+        public Follow( int userId, int followerId)
+        {
+            UserId = userId;
+            FollowerId = followerId;
+        }
     }
 }

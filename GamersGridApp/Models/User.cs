@@ -46,7 +46,7 @@ namespace GamersGridApp.Models
         public string FullName => FirstName + " " + LastName;
 
         public ICollection<Follow> Followers { get; set; }
-        public ICollection<Follow> FollowedBy { get; set; }
+        public ICollection<Follow> Followees { get; set; }
 
         //User Games N-N Relation
         public ICollection<UserGame> UserGames { get; set; }
@@ -81,6 +81,11 @@ namespace GamersGridApp.Models
             Description = description;
             Country = country;
             City = city;
+        }
+
+        public void Notify(Notification notification)
+        {
+            UserNotifications.Add(new UserNotification(this,notification));
         }
 
 

@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace GamersGridApp.Interfaces
 {
-    interface INewsFeed
+    public interface INewsFeed
     {
         DateTime TimeStamp { get; set; }
+        string Content { get; set; }
     }
 }
