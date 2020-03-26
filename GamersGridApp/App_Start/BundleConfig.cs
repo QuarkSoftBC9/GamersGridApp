@@ -26,10 +26,10 @@ namespace GamersGridApp
                          "~/Scripts//umd/popper.js",
                          "~/Scripts/bootstrap.js"
                  ));
-            //bundles.Add(new ScriptBundle("~/bundles/popper").Include(
-            //            "~/Scripts/popper.js",
-            //            "~/Scripts/popper-utils.js"
-            //            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
+                        "~/Scripts/underscore.js"
+                        ));
 
 
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(

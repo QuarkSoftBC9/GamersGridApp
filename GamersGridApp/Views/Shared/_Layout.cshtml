@@ -19,12 +19,23 @@
 
 
     @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/underscore")
+
     @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/typeahead")
 
     @*@Scripts.Render("~/bundles/popper")*@
     @RenderSection("scripts", required: false)
-
+    <script type="text/x-template" id="notifications-template">
+        <ul class="notifications">
+            <%
+            _.each(notifications, function(notification) { %>
+            <li >
+                <%= notification.content %>
+            </li>
+            <% }) %>
+        </ul>
+    </script>
     <script>
         $(document).ready(function () {
             $.getJSON("/api/notifications", function (notifications) {
