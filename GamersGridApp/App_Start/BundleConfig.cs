@@ -8,22 +8,30 @@ namespace GamersGridApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new ScriptBundle("~/bundles/mainLib").Include(
+            bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery.signalR-2.4.1.js",
                          "~/Scripts/jquery.signalR-2.4.1.min.js",
                         "~/Scripts/jquery-{version}.js",
-                        "~/Scripts/bootstrap.js",
-                         "~/Scripts/Datatables/jquery.dataTables.js",
-                        "~/Scripts/typeahead.bundle.js",
-                        "~/Scripts/typeahead.jquery.js",
-                        "~/Scripts/animate.min.css"
-                        //"~/Scripts/popper.js"
+                         "~/Scripts/Datatables/jquery.dataTables.js"
                         ));
 
-            bundles.Add(new ScriptBundle("~/bundles/popper").Include(
-                        "~/Scripts/popper.js",
-                        "~/Scripts/popper-utils.js"
-                        ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/typeahead").Include(
+                        "~/Scripts/typeahead.bundle.js",
+                        "~/Scripts/typeahead.jquery.js"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
+                         "~/Scripts//umd/popper.js",
+                         "~/Scripts/bootstrap.js"
+                 ));
+            //bundles.Add(new ScriptBundle("~/bundles/popper").Include(
+            //            "~/Scripts/popper.js",
+            //            "~/Scripts/popper-utils.js"
+            //            ));
+
+
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
                         "~/Scripts/RegisterJs/jquery.min.js",
                         "~/Scripts/bootstrap.js",
@@ -57,7 +65,10 @@ namespace GamersGridApp
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapFlatly.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
-                      "~/Content/typeahead.css"));
+                      "~/Content/typeahead.css",
+                        "~/Content/animate.min.css",
+                        "~/Content/fontawesome-all.css"
+                      ));
 
             bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(
                 "~/Content/bootstrapFlatly.css",
