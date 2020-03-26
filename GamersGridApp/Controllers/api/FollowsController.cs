@@ -66,8 +66,9 @@ namespace GamersGridApp.Controllers.api
                 {
                     bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
                     bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
+                    bool condition3 = user.ID == followee.ID;
 
-                    if (condition1 && condition2)
+                    if (condition1 && condition2 && !condition3)
                         usersToNotify.Add(user);
                 }
 
@@ -131,8 +132,9 @@ namespace GamersGridApp.Controllers.api
                 {
                     bool condition1 = user.Followees.Contains(new Follow(user.ID, followee.ID));
                     bool condition2 = user.Followees.Contains(new Follow(user.ID, follower.ID));
+                    bool condition3 = user.ID == followee.ID;
 
-                    if (!condition1 && !condition2)
+                    if (!condition1 && !condition2 && !condition3)
                         usersToNotify.Add(user);
                 }
 

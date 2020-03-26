@@ -422,6 +422,7 @@
     <Content Include="Content\Images\Games\lol2.jpg" />
     <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
     <Content Include="Content\Images\UserAvatars\girlAvatar.png" />
+    <Content Include="Content\NewsFeedCss\newsfeed.css" />
     <Content Include="Content\RegisterCss\avraam2NotAll.css" />
     <Content Include="Content\RegisterCss\gsdk-bootstrap-wizardAllagi.css" />
     <Content Include="Content\RegisterCss\Old CSS\avraam.css" />
@@ -951,6 +952,7 @@
     <Content Include="Views\User\UsersList.cshtml" />
     <Content Include="Views\User\LOLAccount.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
+    <Content Include="Views\User\NewsFeed.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

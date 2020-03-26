@@ -1,0 +1,14 @@
+﻿body {
+    margin-top: 50px;
+    padding-top: 50px;
+}
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.Hero h6 {
+    padding: 5px;
+    text-align:center;
+}

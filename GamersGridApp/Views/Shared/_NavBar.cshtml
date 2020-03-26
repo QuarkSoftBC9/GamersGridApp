@@ -31,6 +31,9 @@
             @if (Request.IsAuthenticated)
             {
                 <li class="nav-item">
+                    @Html.ActionLink("NewsFeed", "NewsFeed", "User", null, new { @class = "nav-link" })
+                </li>
+                <li class="nav-item">
                     @Html.ActionLink("My Profile", "ProfilePage", "User", null, new { @class = "nav-link" })
                 </li>
                 <li class="notifications">

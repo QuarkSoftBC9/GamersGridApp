@@ -1,0 +1,11 @@
+﻿@model IEnumerable<GamersGridApp.Interfaces.INewsFeed>
+@Styles.Render("~/Content/NewsFeedCss/newsfeed.css")
+
+<div class="container Hero">
+    @foreach (var notification in Model)
+    {
+        <div class="col-md-12">
+            <h6>@notification.Content</h6>
+        </div>
+    }
+</div>

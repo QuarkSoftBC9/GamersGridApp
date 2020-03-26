@@ -28,12 +28,19 @@ namespace GamersGridApp.Controllers
                 .Where(m => m.Users.Contains(db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).FirstOrDefault()))
                 .ToList();
 
-            var currentChat = messageChats.Take(1).SingleOrDefault();
+            if(messageChats.Count != 0)
+            {
+                var currentChat = messageChats.FirstOrDefault();
+                var viewmodel = new MessageBoardViewModel(messageChats, currentChat.ID, currentUser.NickName);
+                return View(viewmodel);
+            }
+            else
+            {
+                var viewmodel = new MessageBoardViewModel(null, null, currentUser.NickName);
+                return View(viewmodel);
+            }
 
-            var viewmodel = new MessageBoardViewModel(messageChats, currentChat.ID, currentUser.NickName);
-            
 
-            return View(viewmodel);
         }
 
         public ActionResult GetPartial(string chatId)
