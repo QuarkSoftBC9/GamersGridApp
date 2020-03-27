@@ -64,7 +64,7 @@ namespace GamersGridApp.Controllers
             var user = (userid == null) ? currentLoggedUser : context.GamersGridUsers.SingleOrDefault(u => u.ID == userid);
 
 
-
+            
             if (user == null)
                 return HttpNotFound();
 

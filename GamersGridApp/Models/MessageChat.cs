@@ -9,7 +9,7 @@ namespace GamersGridApp.Models
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public ICollection<User> Users { get; set; }
+        public ICollection<MessageChatUser> MessageChatUsers { get; set; }
 
         public ICollection<Message> ChatHistory { get; set; }
 

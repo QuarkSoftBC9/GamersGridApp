@@ -54,7 +54,7 @@ namespace GamersGridApp.Models
         public ICollection<Photo> Photos { get; set; }
         public ICollection<Video> Videos { get; set; }
 
-        public ICollection<MessageChat> MessageChats { get; set; }
+        public ICollection<MessageChatUser> MessageChatUsers { get; set; }
 
         public ICollection<UserNotification> UserNotifications { get; set; }
 
@@ -65,7 +65,8 @@ namespace GamersGridApp.Models
                 UserNotifications = new List<UserNotification>();
 
 
-                    }
+        }
+
 
         public User(string nickname, string city, string country, string avatar)
         {

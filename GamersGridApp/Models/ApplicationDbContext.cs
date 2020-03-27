@@ -21,10 +21,12 @@ namespace GamersGridApp.Models
         public DbSet<GameAccountStats> GameAccountStats { get; set; }
         //public DbSet<LOLAccount> LolAccounts { get; set; }
 
+        public DbSet<MessageChatUser> MessageChatUsers { get; set; }
+
         public DbSet<MessageChat> MessageChats { get; set; }
 
         public DbSet<Message> Messages { get; set; }
-        public DbSet<UserNotification> UserNotifications { get;  set; }
+        public DbSet<UserNotification> UserNotifications { get; set; }
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
@@ -60,6 +62,17 @@ namespace GamersGridApp.Models
 
             modelBuilder.Entity<UserGame>()
                 .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
+
+            modelBuilder.Entity<User>()
+                .HasMany(m => m.MessageChatUsers)
+                .WithRequired(m => m.User);
+            modelBuilder.Entity<MessageChat>()
+                .HasMany(m => m.MessageChatUsers)
+                .WithRequired(m => m.Chat);
+
+ 
+                
+
 
 
             //modelBuilder.Entity<Notification>()

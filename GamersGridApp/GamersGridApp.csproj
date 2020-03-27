@@ -380,6 +380,10 @@
     <Compile Include="Migrations\202003251437239_UserFolloweesNameChange.Designer.cs">
       <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.cs" />
+    <Compile Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.Designer.cs">
+      <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -394,6 +398,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
+    <Compile Include="Models\MessageChatUser.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Enums\LolRegions.cs" />
@@ -1079,6 +1084,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003251437239_UserFolloweesNameChange.resx">
       <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.resx">
+      <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
