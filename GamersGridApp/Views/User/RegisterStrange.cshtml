@@ -200,8 +200,8 @@
 
                                             <div class="col-sm-10 avraam-col-sm-offset-1">
                                                 <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Dota, new { @class = "avraam-form-control" })
+                                                    <div class="choice" data-toggle="wizard-radio"">
+                                                        @Html.RadioButtonFor(v => v.FavoriteGame,"Dota 2", new { @class = "avraam-form-control " })
                                                         <div class="icon">
                                                             <i class="fab fa-old-republic"></i>
                                                         </div>
@@ -209,8 +209,8 @@
                                                     </div>
                                                 </div>
                                                 <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Lol, new { @class = "avraam-form-control" })
+                                                    <div class="choice" data-toggle="wizard-radio"">
+                                                        @Html.RadioButtonFor(v => v.FavoriteGame,"League Of Legends", new { @class = "avraam-form-control" })
                                                         <div class="icon">
                                                             <i class="fas fa-fist-raised"></i>
                                                         </div>
@@ -219,8 +219,8 @@
 
                                                 </div>
                                                 <div class="avraam-col-sm-4">
-                                                    <div class="choice" data-toggle="wizard-checkbox">
-                                                        @Html.CheckBoxFor(v => v.Cs, new { @class = "avraam-form-control" })
+                                                    <div class="choice" data-toggle="wizard-radio">
+                                                        @Html.RadioButtonFor(v => v.FavoriteGame,"Counter-Strike: Global Offensive", new { @class = "avraam-form-control" })
                                                         <div class="icon">
                                                             <i class="fas fa-crosshairs"></i>
                                                         </div>
@@ -286,5 +286,4 @@
 @Scripts.Render("~/bundles/RegisterJs")
 
 <script src="~/Scripts/RegisterJs/jquery.validate.min.js"></script>
-
 </html>

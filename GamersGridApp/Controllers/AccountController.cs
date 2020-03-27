@@ -159,7 +159,7 @@ namespace GamersGridApp.Controllers
         public async Task<ActionResult> Register(RegisterViewModelAvraam model, HttpPostedFileBase file)
         {
 
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)// ModelState.IsValid
             {
                 var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
 
@@ -183,22 +183,28 @@ namespace GamersGridApp.Controllers
 
                     int userId = context.Users.Where(u => u.Email == model.Email).Select(u => u.UserId).SingleOrDefault();
 
-                    if (model.Dota)
+                    if (!string.IsNullOrWhiteSpace(model.FavoriteGame))
                     {
-                        context.UserGameRelations.Add(new UserGame(new Game("Dota"), userId, true,new GameAccount()));
+                        var gameToSelect = context.Games.Single(g => g.Title.Contains(model.FavoriteGame));
+                        context.UserGameRelations.Add(new UserGame(gameToSelect, userId, true, new GameAccount()));
 
                     }
+                    //if (model.Dota)
+                    //{
+                    //    context.UserGameRelations.Add(new UserGame(new Game("Dota"), userId, true,new GameAccount()));
 
-                    if (model.Lol)
-                    {
-                        context.UserGameRelations.Add(new UserGame(new Game("Lol"), userId, true, new GameAccount()));
+                    //}
 
-                    }
+                    //if (model.Lol)
+                    //{
+                    //    context.UserGameRelations.Add(new UserGame(new Game("Lol"), userId, true, new GameAccount()));
 
-                    if (model.Cs)
-                    {
-                        context.UserGameRelations.Add(new UserGame(new Game("Cs"), userId, true, new GameAccount()));
-                    }
+                    //}
+
+                    //if (model.Cs)
+                    //{
+                    //    context.UserGameRelations.Add(new UserGame(new Game("Cs"), userId, true, new GameAccount()));
+                    //}
 
                     context.SaveChanges();
                     return RedirectToAction("ProfilePage" , "User", new { userid = userId });
