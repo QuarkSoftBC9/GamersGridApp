@@ -14,9 +14,9 @@ namespace GamersGridApp.ViewModels
         public string Email { get; set; }
 
 
-        public bool Dota { get; set; }
-        public bool Lol { get; set; }
-        public bool Cs { get; set; }
+        //public bool Dota { get; set; }
+        //public bool Lol { get; set; }
+        //public bool Cs { get; set; }
 
 
 
@@ -29,7 +29,6 @@ namespace GamersGridApp.ViewModels
         public string City { get; set; }
         public string Country { get; set; }
         public string Avatar { get; set; }
-
-        public List<Game> FavouriteGames { get; set; }
+        public string FavoriteGame { get; set; }
     }
 }
