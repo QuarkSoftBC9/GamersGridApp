@@ -89,7 +89,10 @@ namespace GamersGridApp.Models
             Country = country;
             City = city;
         }
-
+        public void Update(string avatar)
+        {
+            Avatar = avatar;
+        }
         public void Notify(Notification notification)
         {
             UserNotifications.Add(new UserNotification(this, notification));

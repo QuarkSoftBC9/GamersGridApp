@@ -958,6 +958,7 @@
     <Content Include="Views\User\LOLAccount.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
+    <Content Include="Views\User\EditAvraam.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

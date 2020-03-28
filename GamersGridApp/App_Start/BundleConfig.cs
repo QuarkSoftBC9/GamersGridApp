@@ -67,7 +67,8 @@ namespace GamersGridApp
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/typeahead.css",
                         "~/Content/animate.min.css",
-                        "~/Content/fontawesome-all.css"
+                        "~/Content/fontawesome-all.css",
+                        "~/Content/Site.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(
