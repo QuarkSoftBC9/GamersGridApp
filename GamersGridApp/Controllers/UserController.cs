@@ -158,7 +158,7 @@ namespace GamersGridApp.Controllers
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult SaveEdit(UserFormEditViewModel viewmodel, HttpPostedFileBase file)
+        public ActionResult Save(UserFormEditViewModel viewmodel, HttpPostedFileBase file)
         {
             var userContent = context.GamersGridUsers
                 .SingleOrDefault(u => u.ID == viewmodel.ID);
