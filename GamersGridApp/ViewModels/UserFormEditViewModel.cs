@@ -9,8 +9,9 @@ namespace GamersGridApp.ViewModels
     public class UserFormEditViewModel
     {
        
-        public int ID { get; private  set; }
+        public int ID { get; set; }
 
+        public string Avatar { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
@@ -34,7 +35,8 @@ namespace GamersGridApp.ViewModels
             Description = user.Description;
             Country = user.Country;
             City = user.City;
+            Avatar = user.Avatar;
         }
-        protected UserFormEditViewModel() { }
+        public UserFormEditViewModel() { }
     }
 }

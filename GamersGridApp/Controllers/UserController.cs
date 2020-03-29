@@ -132,11 +132,49 @@ namespace GamersGridApp.Controllers
             userContent.Update(
                 viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
                 viewmodel.Description, viewmodel.Country, viewmodel.Country);
+
+
             context.SaveChanges();
 
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
 
+        [Authorize]
+        public ActionResult EditAvraam()
+        {
+            var aspNetUserID = User.Identity.GetUserId();
+            var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
+                .Include(c => c.UserAccount)
+                .SingleOrDefault();
+            //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
+            //aspNetUser.UserAccount = userContent;
+
+            var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
+            return View("EditAvraam", viewmodel);
+
+        }
+
+
+        [Authorize]
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Save(UserFormEditViewModel viewmodel, HttpPostedFileBase file)
+        {
+            var userContent = context.GamersGridUsers
+                .SingleOrDefault(u => u.ID == viewmodel.ID);
+            userContent.Update(
+                viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
+                viewmodel.Description, viewmodel.Country, viewmodel.Country);
+
+            if (!(file is null))
+            {
+                userContent.Update(ExtraMethods.UploadPhoto(userContent.NickName, file));
+            }
+
+            context.SaveChanges();
+
+            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
+        }
         //Get lolAccount
         //public ActionResult LOLAccount()
         //{
@@ -178,16 +216,16 @@ namespace GamersGridApp.Controllers
         //        //try { }
         //        //catch (WebException ex)
         //        //{ return HttpStatusCode.NotFound; }
-                
+
         //        string json = client.DownloadString(url);
-                
+
         //            LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
-                
+
 
         //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
 
         //        lolAcount.AddToUser(userContent, userContent.ID, viewModel.Region);
-                
+
         //        //Leave for now to check if the above method works normally
         //        //lolAcount.UserId = userContent.ID;
         //        //userContent.AccountLOL = lolAcount;
