@@ -59,18 +59,19 @@ namespace GamersGridApp
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/IndexCss").Include(
-                "~/Content/fontawesome-all.css",
+                //"~/Content/fontawesome-all.css",
                  "~/Content/IndexStyle.css"));
 
             bundles.Add(new StyleBundle("~/Content/SiteCss").Include(
                  "~/Content/Site.css"));
+
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrapFlatly.css",
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/typeahead.css",
                         "~/Content/animate.min.css",
-                        "~/Content/fontawesome-all.css",
-                        "~/Content/Site.css"
+                        "~/Content/fontawesome-all.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(

@@ -1,12 +1,15 @@
 ﻿body {
-    margin-top: 50px;
-    padding-top: 50px;
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left:0px;
-    padding-right: 0px;
+    min-height:100%;
+    margin-top:100px;
+    padding:20px;
+
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -33,6 +36,21 @@ textarea {
         right: -1px;
         background: #a80a0a;
     }
+
+
+
+
+#GGFooter {
+    position:absolute;
+    padding:0px;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+}
+
+
+
+
 .md-avatar {
     vertical-align: middle;
     width: 50px;

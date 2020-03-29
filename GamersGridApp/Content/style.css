@@ -1,13 +1,31 @@
 body {
-	font: 'Sigmar One', sans-serif;
+    font: 'Sigmar One', sans-serif;
     color: rgba(242, 189, 255, 0.5);
     /* text-align: center; */
     /* text-transform: uppercase; */
     letter-spacing: .1em;
     /*top: 15%;*/
-    padding: 0;
-    background: linear-gradient(to right, rgb(49, 49, 49) , rgb(87, 104, 134)); 
+    background: linear-gradient(to right, rgb(49, 49, 49), rgb(87, 104, 134));
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
     /* background-image: url("imgs/GGlogo.jpg"); */
+}
+
+
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    min-height: 100%;
+    margin-top: 100px;
+    padding: 20px;
+}
+    #GGFooter
+{
+    position: page;
+    padding: 0px;
+    bottom: 0px;
+    width: 100%;
+    text-align: center;
 }
 
 .row {

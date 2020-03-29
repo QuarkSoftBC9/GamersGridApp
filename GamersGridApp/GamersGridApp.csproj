@@ -384,6 +384,10 @@
     <Compile Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.Designer.cs">
       <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.cs" />
+    <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
+      <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -421,12 +425,20 @@
   <ItemGroup>
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\Images\csgo-banner.jpg" />
+    <Content Include="Content\Images\dota2-banner.png" />
     <Content Include="Content\Images\Games\cs.png" />
     <Content Include="Content\Images\Games\dota2.jpg" />
     <Content Include="Content\Images\Games\lol.jpg" />
     <Content Include="Content\Images\Games\lol2.jpg" />
+    <Content Include="Content\Images\Games\riot-games.svg" />
+    <Content Include="Content\Images\twitchlogo.png" />
+    <Content Include="Content\Images\twitterlogo.png" />
     <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
     <Content Include="Content\Images\UserAvatars\girlAvatar.png" />
+    <Content Include="Content\Images\lol-banner.jpg" />
+    <Content Include="Content\Images\valve-logo.png" />
+    <Content Include="Content\Images\youtubelogo.png" />
     <Content Include="Content\NewsFeedCss\newsfeed.css" />
     <Content Include="Content\RegisterCss\avraam2NotAll.css" />
     <Content Include="Content\RegisterCss\gsdk-bootstrap-wizardAllagi.css" />
@@ -937,6 +949,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Views\Game\Games.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -1088,6 +1101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.resx">
       <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
+      <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

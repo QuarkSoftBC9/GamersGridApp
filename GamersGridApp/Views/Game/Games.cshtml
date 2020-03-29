@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GamersGridApp.Models.Game>
+@Styles.Render("~/Content/SiteCss")
+
+<style>
+    body {
+        background: linear-gradient(to right, rgb(49, 49, 49), rgb(87, 104, 134));
+    }
+</style>
+
+<br />
+<div class="container">
+    <center><h5>Games we are currently supporting</h5></center>
+
+
+    <div class="row ">
+
+        @foreach (var game in Model)
+        {
+            string imagePath;
+            if (game.ID == 1)
+            {
+                imagePath = "~/Content/Images/lol-banner.jpg";
+            }
+            else if (game.ID == 2)
+            {
+                imagePath = "~/Content/Images/csgo-banner.jpg";
+            }
+            else
+            {
+                imagePath = "~/Content/Images/dota2-banner.png";
+            }
+            <div class="col-md-4">
+                <div class="card" style="width: 20rem;">
+                    <img src=@Url.Content(imagePath) class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h4 class="card-title">@game.Title</h4>
+                        <p>Type: <i>@game.Type</i></p>
+                        <p class="card-text">@game.Description.Substring(0, 246)</p>
+                        @*<a href="#" class="btn btn-primary">Learn More</a>*@
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>

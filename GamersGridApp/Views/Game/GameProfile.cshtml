@@ -1,32 +1,80 @@
 ﻿@model GamersGridApp.Models.Game
 @{
     ViewBag.Title = "GameProfile";
+
+    string gameAvatar;
+    string gameImg;
+    string gameLink;
+    string gameYoutube;
+    string gameTwitch;
+    string gameTwitter;
+
+    if (Model.ID == 1)
+    {
+        gameAvatar = "~/Content/Images/lol-banner.jpg";
+        gameImg = "~/Content/Images/Games/riot-games.svg";
+        gameLink = "https://play.euw.leagueoflegends.com/en_GB";
+        gameYoutube = "https://www.youtube.com/user/RiotGamesInc?hl=el&gl=GR";
+        gameTwitch = "https://www.twitch.tv/riotgames";
+        gameTwitter = "https://twitter.com/riotgames?lang=el";
+    }
+    else if (Model.ID == 3)
+    {
+        gameAvatar = "~/Content/Images/dota2-banner.png";
+        gameImg = "~/Content/Images/valve-logo.png";
+        gameLink = "https://store.steampowered.com/app/570/Dota_2/";
+        gameYoutube = "https://www.youtube.com/user/dota2";
+        gameTwitch = "https://www.twitch.tv/directory/game/Dota%202";
+        gameTwitter = "https://twitter.com/dota2";
+    }
+    else
+    {
+        gameAvatar = "~/Content/Images/csgo-banner.jpg";
+        gameImg = "~/Content/Images/valve-logo.png";
+        gameLink = "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/";
+        gameYoutube = "https://www.youtube.com/channel/UC279mtSpGdNDRVE_NqSPofA";
+        gameTwitch = "https://www.twitch.tv/directory/game/Counter-Strike%3A%20Global%20Offensive";
+        gameTwitter = "https://twitter.com/eslcs?lang=el";
+    }
 }
 
 @Styles.Render("~/Content/SiteCss")
+
+
+<style>
+    .links-list li {
+        padding: 10px;
+    }
+
+    div p {
+        line-height: 180%;
+    }
+</style>
+
+
+<br />
 <div class="row">
-    <div class="col-md-2">
-        <img src="imgs/LOLclassic.jpg" class="img-fluid rounder float-left" alt="">
-    </div>
-    <div class="col-md-8">
+
+
+    <div class="col-md-10">
+        <img src=@Url.Content(gameAvatar) style="padding: 15px; float: left; width:450px; height:300px; " class="img-fluid img-rounded" alt="">
+
         <h1>@Model.Title</h1>
-        <br>
-        <h6>The Game:</h6>
+        <br />
+        <h5>Type: <i>@Model.Type</i></h5>
         <p>Released: @Model.ReleaseDate.ToShortDateString()</p>
         <p>
             @Model.Description
         </p>
     </div>
     <div class="col-md-2">
-        <h4>Social</h4>
-        <img src="imgs/LOLclassic.jpg" class="img-fluid " alt="">
-        <img src="imgs/LOLclassic.jpg" class="img-fluid " alt="">
-        <h4>Links</h4>
-        <ul class="list-group">
-            <li class="list-group-item">official</li>
-            <li class="list-group-item">fb</li>
-            <li class="list-group-item">youtube</li>
-            <li class="list-group-item">twitch</li>
+        <ul class="list-group links-list" style="list-style:none">
+            <li><a href=@Url.Content(gameLink)><img style="width:150px; height:130px" src=@Url.Content(gameImg) /></a></li>
+            <li><a href=@Url.Content(gameYoutube)><img style="width:150px; height:65px" src="~/Content/Images/youtubelogo.png" /></a></li>
+            <li><a href=@Url.Content(gameTwitch)><img style="width:120px; height:80px" src="~/Content/Images/twitchlogo.png" /></a></li>
+            <li><a href=@Url.Content(gameTwitter)><img style="width:130px; height:100px" src="~/Content/Images/twitterlogo.png" /></a></li>
+
+
         </ul>
     </div>
 </div>

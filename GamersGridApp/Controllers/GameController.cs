@@ -19,7 +19,9 @@ namespace GamersGridApp.Controllers
         // GET: Game
         public ViewResult Index()
         {
-            return View("GamesList");
+            var games = dbContext.Games.ToList();
+            return View("Games", games);
+            //return View("GamesList");
         }
 
 
