@@ -21,8 +21,9 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/typeahead.jquery.js",
                         "~/Scripts/Custom/TypeAheadSearchBar.js"
-
                 ));
+
+            
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                          "~/Scripts//umd/popper.js",
@@ -88,6 +89,9 @@ namespace GamersGridApp
             //User edit css file
             bundles.Add(new StyleBundle("~/Content/UserEditCss").Include(
                 "~/Content/UserEditCss/style.css"));
+            //Login Form 
+            bundles.Add(new StyleBundle("~/Content/LoginForm").Include(
+                "~/Content/loginStyle.css"));
 
 
         }

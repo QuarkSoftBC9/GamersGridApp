@@ -1,6 +1,7 @@
 ﻿@model GamersGridApp.ViewModels.SearchViewModel
 @{
     ViewBag.Title = "Search";
+    int counter = 0;
 }
 @*@Styles.Render("~/Content/css")*@
 
@@ -14,19 +15,18 @@
 {
     foreach (var game in Model.Games)
     {
-
         //AS CARD
         <div class="card gameCard">
-                <img class="card-img-top gameIcon" src="@game.SearchIconPath" alt="">
-                <div class="card-body gameCardBody">
-                    <h1 class="card-title h2 gameCardTitle"><strong>@game.Title</strong></h1>
-                </div>
-                <div class="button_cont">
-                    <div class="btnAddGame">Add to your Games</div>
-                </div>
-            
+            <img class="card-img-top gameIcon" src="@game.SearchIconPath" alt="">
+            <div class="card-body gameCardBody">
+                <h1 class="card-title h2 gameCardTitle"><strong>@game.Title</strong></h1>
             </div>
-            <hr/>
+            <div class="button_cont">
+                <div class="btnAddGame">Add to your Games</div>
+            </div>
+
+        </div>
+        <hr />
     }
 }
 else
@@ -37,32 +37,31 @@ else
 {
     foreach (var user in Model.Users)
     {
-
-<div class="row userRow">
-    <div class="col-2">
-        <img class="img-fluid userImage" src="@user.Avatar" />
-    </div>
-    <div class="col userNickname">
-        <h4>@user.NickName</h4>
-        <span class="userLocation">@user.City, @user.Country</span>
-    </div>
-    <div class="col userCity">
-        <span></span>
-    </div>
-    <div class="col userGames">
-        <span>Add Users Games here as a list</span>
-    </div>
-    <div class="col userCity">
-        <span>Add mmr or Achevements here</span>
-    </div>
-    <div class="col-2">
-        <div class="button_cont" align="center">
-            <a class="btnFollow" href="add-action-here">Follow</a>
+        <div class="row userRow">
+            
+                <div class="col-2">
+                    <img class="img-fluid userImage thumbnail" src="@user.Avatar" />
+                </div>
+                <div class="col userNickname">
+                    <h4>@user.NickName</h4>
+                    <span class="userLocation">@user.City, @user.Country</span>
+                </div>
+                <div class="col blank">
+                    <span></span>
+                </div>
+                <div class="col userGames">
+                    <span>Add Users Games here as a list</span>
+                </div>
+                <div class="col userCity">
+                    <span>Add mmr or Achevements here</span>
+                </div>
+                <div class="col-2">
+                    <div class="button_cont" align="center">
+                        <a class="btnFollow" href="add-action-here">Follow</a>
+                    </div>
+                </div>
+        
         </div>
-    </div>
-</div>
-        <hr/>
-
 
         //As carsd
         @*<div class="card">
@@ -80,6 +79,18 @@ else
         <h3> No users were found</h3>
     </section>
 
+}
+
+@section Scripts{
+
+    <script>
+        document.querySelector('.userRow').addEventListener('hover', function (event) {
+            console.log(this);
+            console.log(event);
+        });
+
+
+    </script>
 }
 
 

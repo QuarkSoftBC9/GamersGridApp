@@ -1,4 +1,16 @@
-﻿.body{
+﻿
+@keyframes anim-glow {
+    0% {
+        box-shadow: 0 0 rgba(97, 239, 97, 1);
+    }
+
+    100% {
+        box-shadow: 0 0 10px 8px transparent;
+        border-width: 2px;
+    }
+}
+
+.body{
     font-size:small;
     color:aqua;
 }
@@ -9,7 +21,6 @@
 }
 
 .userImage {
-    max-width: 10px;
     max-height: 130px;
     max-width: 110%;
     height: auto;
@@ -101,6 +112,24 @@ hr {
 .pageTitle {
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
+
+.userImage:hover {
+    
+    border: 2px solid #61ef61;
+    position: relative;
+    animation: anim-glow 2s ease infinite;
+}
+.thumbnail:hover {
+    position: relative;
+    top: -25px;
+    left: 15px;
+    max-width: 110%;
+    max-height: 150px;
+    display: block;
+    z-index: 900;
+}
+
+
 /*.jumbotronGame {
     font-family: 'Montserrat', sans-serif;
     padding: 100px;
