@@ -10,6 +10,7 @@ using System.Web.Http;
 
 namespace GamersGridApp.Controllers.api
 {
+    [Authorize]
     public class NotificationsController : ApiController
     {
         private ApplicationDbContext context;
@@ -24,14 +25,14 @@ namespace GamersGridApp.Controllers.api
 
             var userId = User.Identity.GetUserId();
 
-            //var user = context.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).Single();
+            var user = context.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).Single();
 
 
-            //    var userNotifications = context.UserNotifications
-            //           .Where(u => u.UserId == user.ID && !u.IsRead)
-            //           .Include(un => un.Notification)
-            //           .Select( un=> un.Notification)
-            //           .ToList();
+            var userNotifications = context.UserNotifications
+                   .Where(u => u.UserId == user.ID && !u.IsRead)
+                   .Include(un => un.Notification)
+                   .Select(un => un.Notification)
+                   .ToList();
 
             return Ok();
 
