@@ -421,12 +421,18 @@
   <ItemGroup>
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\Images\dragon.jpg" />
     <Content Include="Content\Images\Games\cs.png" />
     <Content Include="Content\Images\Games\dota2.jpg" />
     <Content Include="Content\Images\Games\lol.jpg" />
     <Content Include="Content\Images\Games\lol2.jpg" />
     <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
     <Content Include="Content\Images\UserAvatars\girlAvatar.png" />
+    <Content Include="Content\Images\UserPhotos\Avraam\3e6477e9-3484-40b7-b185-1eadc6c6799epuma6.jpg" />
+    <Content Include="Content\Images\UserPhotos\Avraam\5eef3887-b565-4261-b750-3768d3c3a451puma6.jpg" />
+    <Content Include="Content\Images\UserPhotos\Avraam\ee2b2aca-48ea-4073-83d9-24af9e5c8c39Χωρίς τίτλο.png" />
+    <Content Include="Content\Images\UserPhotos\xixi\ff5b678f-751b-4096-8ecf-b12a223e251cpuma6.jpg" />
+    <Content Include="Content\loginStyle.css" />
     <Content Include="Content\NewsFeedCss\newsfeed.css" />
     <Content Include="Content\RegisterCss\avraam2NotAll.css" />
     <Content Include="Content\RegisterCss\gsdk-bootstrap-wizardAllagi.css" />
