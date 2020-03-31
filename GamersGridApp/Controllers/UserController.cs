@@ -168,7 +168,7 @@ namespace GamersGridApp.Controllers
 
             if (!(file is null))
             {
-                userContent.Update(ExtraMethods.UploadPhoto(userContent.NickName, file));
+                userContent.Update(ExtraMethods.UploadPhoto(userContent.ID, file));
             }
 
             context.SaveChanges();

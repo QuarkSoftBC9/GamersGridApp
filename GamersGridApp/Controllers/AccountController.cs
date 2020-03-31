@@ -161,9 +161,8 @@ namespace GamersGridApp.Controllers
 
             if (ModelState.IsValid)// ModelState.IsValid
             {
-                var fileName = ExtraMethods.UploadPhoto(model.NickName,file);
 
-                var user = new User(model.NickName, model.City, model.Country, fileName);
+                var user = new User(model.NickName, model.City, model.Country);
 
 
                 //Creating Application User + passing user object inside
@@ -182,6 +181,12 @@ namespace GamersGridApp.Controllers
                     //getting new user
 
                     int userId = context.Users.Where(u => u.Email == model.Email).Select(u => u.UserId).SingleOrDefault();
+                    var fileName = ExtraMethods.UploadPhoto(userId, file);
+
+                    var userCreated = context.GamersGridUsers.Single(u => u.ID == userId);
+
+                    userCreated.Update(fileName);
+
 
                     if (!string.IsNullOrWhiteSpace(model.FavoriteGame))
                     {

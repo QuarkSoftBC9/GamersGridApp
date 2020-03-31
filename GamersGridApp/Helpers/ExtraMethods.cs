@@ -8,17 +8,17 @@ namespace GamersGridApp.Helpers
 {
     public class ExtraMethods
     {
-        public static string UploadPhoto(string userName,HttpPostedFileBase file)
+        public static string UploadPhoto(int id,HttpPostedFileBase file)
         {
             if (file != null)
             {
                 var fileName = Path.GetFileName(file.FileName);
                 var rondom = Guid.NewGuid() + fileName;
-                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+userName), rondom);
-                var filePathToSave = "UserPhotos/"+userName+"/" + fileName;
-                if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+userName)))
+                var path = Path.Combine(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+ id), rondom);
+                var filePathToSave = "UserPhotos/"+ id + "/" + fileName;
+                if (!Directory.Exists(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+ id)))
                 {
-                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+userName));
+                    Directory.CreateDirectory(HttpContext.Current.Server.MapPath("~/Content/Images/UserPhotos/"+ id));
                 }
                 file.SaveAs(path);
 
