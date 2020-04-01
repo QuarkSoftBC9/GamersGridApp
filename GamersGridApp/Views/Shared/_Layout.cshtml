@@ -4,19 +4,35 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Scripts.Render("~/bundles/modernizr")
+    <link href="https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
     @Styles.Render("~/Content/css")
- 
-
+    @Styles.Render("~/Content/SiteCss")
+    @Scripts.Render("~/bundles/modernizr")
 </head>
+
 <body>
     @Html.Partial("_NavBar")
 
-    <div class="container-fluid body-content">
+    @if (ViewData["Title"].Equals("Home"))
+    {
         @RenderBody()
+        @*<hr />*@
+        @Html.Partial("_Footer")
 
-    </div>
-    @Html.Partial("_Footer")
+    }
+    else
+    {
+        <div class="container container-main">
+            <main role="main">
+                @RenderBody()
+                @*<hr />*@
+                <footer>
+                    <p>&copy; @DateTime.Now.Year - Group Project Bootcamp 9</p>
+                </footer>
+            </main>
+        </div>
+    }
 
 
 
