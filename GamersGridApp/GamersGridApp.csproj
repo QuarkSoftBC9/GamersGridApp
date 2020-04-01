@@ -388,6 +388,10 @@
     <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.cs" />
+    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
+      <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -405,7 +409,6 @@
     <Compile Include="Models\MessageChatUser.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Photo.cs" />
-    <Compile Include="Enums\LolRegions.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
@@ -1104,6 +1107,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.resx">
+      <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

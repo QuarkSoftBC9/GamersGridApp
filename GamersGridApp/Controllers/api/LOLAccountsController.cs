@@ -6,6 +6,7 @@ using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -23,50 +24,66 @@ namespace GamersGridApp.Controllers.api
         public LOLAccountsController()
         {
             context = new ApplicationDbContext();
-            // context = new MyDbContext();
-            // Uncomment for costum DbContext
         }
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
         }
-        //[HttpPost]
-        //public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
-        //{
-        //    //geting UserContent
-        //    var appUserId = User.Identity.GetUserId();
-        //    var userContent = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .SingleOrDefault();
-        //    //api is updated everyday
-        //    string api = "RGAPI-dba8c12d-c214-4094-a0ac-aca9537f02e6";
+        [HttpPost]
+        public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
+        {
+            if (String.IsNullOrEmpty(viewModel.UserName))
+                return BadRequest("Name is not set");
+            // LOLID
+            const int lolID = 1;
+             
+            //geting UserContent
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(g => g.UserGames.Select(ga => ga.GameAccount))
+                .SingleOrDefault();
+            if (userContent == null)
+                return BadRequest("User could not be found");
 
-        //    var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-        //        viewModel.Region, viewModel.UserName, api);
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
 
-        //    url = HttpUtility.UrlPathEncode(url);
+            //api is updated everyday
+            string api = "RGAPI-5f87916c-c414-4c0b-97a1-da9d1ab89c55";
 
-        //    using (WebClient client = new WebClient())
-        //    {
-        //        // 1) BAD reuqest, handle here all 400 request from LOLServer
-        //        //try { }
-        //        //catch (WebException ex)
-        //        //{ return HttpStatusCode.NotFound; }
+            var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
+                viewModel.Region, viewModel.UserName, api);
 
-        //        string json = client.DownloadString(url);
+            url = HttpUtility.UrlPathEncode(url);
 
-        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
 
-        //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
+                LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
 
-        //        lolAcount.AddToUser(userContent, userContent.ID, viewModel.Region);
+                if (userGame == null)
+                {
+                    GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, viewModel.Region) { };
+                    userContent.UserGames.Add(new UserGame(lolID, userContent.ID, newAccount));
+                }
+                else
+                    userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, rootAccount.id, viewModel.Region);
+                
+                context.SaveChanges();
+                return Ok("All good");
+            }
 
-        //        context.SaveChanges();
+        }
+        //get lol stats
+        [HttpGet]
+        public IHttpActionResult GetStats()
+        {
 
-        //        return Ok();
-        //    }
 
-        //}
+
+            return Ok();
+        }
     }
 }

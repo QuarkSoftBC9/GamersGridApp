@@ -10,19 +10,19 @@ namespace GamersGridApp.Models.GameAccounts
 {
     public class LOLAccount
     {
-        [ForeignKey("User")]
-        [Key]
-        public int UserId { get; private set; }
-        public User User { get; private set; }
+        //[ForeignKey("User")]
+        //[Key]
+        //public int UserId { get; private set; }
+        //public User User { get; private set; }
 
-        //Personal Data
-        public string Name { get; set; }
-        public string Puuid { get; set; }
-        public string AccountId { get; set; }
-        public string Id { get; set; }
-        public LoLRegions  Region { get; private set; }
+        ////Personal Data
+        //public string Name { get; set; }
+        //public string Puuid { get; set; }
+        //public string AccountId { get; set; }
+        //public string Id { get; set; }
+        //public LoLRegions  Region { get; private set; }
 
-        public int SummonerLevel { get; set; }
+        //public int SummonerLevel { get; set; }
 
         //public void AddToUser(User user, int userId, LoLRegions region)
         //{

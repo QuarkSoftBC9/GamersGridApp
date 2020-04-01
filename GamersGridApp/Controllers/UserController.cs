@@ -175,23 +175,26 @@ namespace GamersGridApp.Controllers
 
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
-        //Get lolAccount
-        //public ActionResult LOLAccount()
-        //{
-        //    var appUserId = User.Identity.GetUserId();
-        //    var lolAccount = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .Select(u => u.ga)
-        //        .SingleOrDefault();
+        ////Get lolAccount
+        public ActionResult LOLAccount()
+        {
+            //check if the user is correct AspNetUser == User
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.Id == 1);
 
-        //    if (lolAccount != null)
-        //        return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
+            if (userGame != null)
+                return View(new AddLOLAccountViewmodel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+                
 
-        //    return View(new AddLOLAccountViewmodel());
-        //}
+            return View(new AddLOLAccountViewmodel());
+        }
 
-        //Post lolAccount
+        ////Post lolAccount
         //[Authorize]
         //[HttpPost]
         //public ActionResult LOLAccount(AddLOLAccountViewmodel viewModel)
@@ -219,7 +222,7 @@ namespace GamersGridApp.Controllers
 
         //        string json = client.DownloadString(url);
 
-        //            LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
 
 
         //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);

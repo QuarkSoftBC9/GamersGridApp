@@ -3,34 +3,37 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using GamersGridApp.Enums;
 
 namespace GamersGridApp.ViewModels
 {
     public class AddLOLAccountViewmodel
     {
-        public List<LoLRegions> LolRegions { get; set; }
+        public List<AccountRegions> AccountRegionsList { get; set; }
 
-        public LoLRegions Region { get; set; }
+        public AccountRegions Region { get; set; }
         public string UserName { get; set; }
-        public bool HasAccount { get; set; } = false;
+        //public bool HasAccount { get; set; } = false;
 
         public AddLOLAccountViewmodel()
         {
-            LolRegions = new List<LoLRegions>() 
-            { LoLRegions.BR1, LoLRegions.EUN1, LoLRegions.EUW1, LoLRegions.JP1, 
-              LoLRegions.KR, LoLRegions.LA1, LoLRegions.LA2, LoLRegions.NA1, 
-              LoLRegions.OC1, LoLRegions.RU, LoLRegions .TR1};
+            AccountRegionsList = new List<AccountRegions>() 
+            { 
+                AccountRegions.BR1, AccountRegions.EUN1, AccountRegions.EUW1, AccountRegions.JP1, 
+                AccountRegions.KR, AccountRegions.LA1, AccountRegions.LA2, AccountRegions.NA1, 
+                AccountRegions.OC1, AccountRegions.RU, AccountRegions.TR1
+            };
         }
-        public AddLOLAccountViewmodel(string name, LoLRegions region)
+        public AddLOLAccountViewmodel(string name, AccountRegions region)
         { 
             UserName = name ?? throw new ArgumentNullException("name is null");
             Region = region;
-            HasAccount = true;
+            //HasAccount = true;
 
-            LolRegions = new List<LoLRegions>()
-            { LoLRegions.BR1, LoLRegions.EUN1, LoLRegions.EUW1, LoLRegions.JP1,
-              LoLRegions.KR, LoLRegions.LA1, LoLRegions.LA2, LoLRegions.NA1,
-              LoLRegions.OC1, LoLRegions.RU, LoLRegions .TR1};
+            AccountRegionsList = new List<AccountRegions>()
+            { AccountRegions.BR1, AccountRegions.EUN1, AccountRegions.EUW1, AccountRegions.JP1,
+              AccountRegions.KR, AccountRegions.LA1, AccountRegions.LA2, AccountRegions.NA1,
+              AccountRegions.OC1, AccountRegions.RU, AccountRegions .TR1};
         }
     }
 }

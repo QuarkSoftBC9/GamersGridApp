@@ -30,6 +30,15 @@ namespace GamersGridApp.Models
 
         public bool IsFavoriteGame { get; set; }
 
+        //constructor needed just for testing purposes of api
+        public UserGame()
+        { }
+        public UserGame(int gameID, int userid, GameAccount gameAccount)
+        {
+            GameID = gameID;
+            UserId = userid;
+            GameAccount = gameAccount;
+        }
         public UserGame(Game game,int userid,bool favorite,GameAccount gameAccount)
         {
             Game = game;
@@ -37,6 +46,5 @@ namespace GamersGridApp.Models
             IsFavoriteGame = favorite;
             GameAccount = gameAccount;
         }
-
     }
 }
