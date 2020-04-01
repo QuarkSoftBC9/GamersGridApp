@@ -5,6 +5,7 @@ namespace GamersGridApp
 {
     public class BundleConfig
     {
+        //Test Comment on FrontEnd Branch
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
