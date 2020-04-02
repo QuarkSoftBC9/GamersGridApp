@@ -21,39 +21,114 @@
 <button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
 
 <button type="button" class="btn js-get-stats">Get stats</button>
-
+<div class="stats">
+    <div class="LOLwins"></div>
+    <div class="LOLrank"></div>
+</div>
 
 @section scripts
 {
     <script>
-        $(document).ready(function () {
-            $('.js-validate-user').click(function (event) {
-                event.preventDefault();
 
-                userJS = $('#username-js').val();
-                regionJS = $('#region-js').val();
+        let APIController = (function () {
+            return {
+                PostAccData: function (account) {
+                    $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
+                        .done(function (returnVal) {
+                            console.log(returnVal)
+                        })
+                        .fail(function (returnVal) {
+                            alert("Something failed");
+                            console.log(returnVal)
+                        })
+                },
 
-                $.post("/api/LOLAccounts", { userName: userJS, region: regionJS })
-                    .done(function (e) {
-                        console.log(e);
+                GetAccStats: function () {
+                    $.get("/api/LOLAccounts", function (stats) {
+                        console.log('call was made.')
+                        console.log(stats)
                     })
-                    .fail(function () {
-                        alert("Something failed");
-                    });
-            })
-            $('.js-get-stats').click(function (event) {
-                event.preventDefault();
-                $.get("/api/LOLAccounts", function (stats) {
-                    console.log(stats)
-                })
-                    .done(function (stats) {
-                        console.log(stats);
-                    })
-                    .fail(function () {
-                        alert("Bad very bad");
-                    });
-            })
-        })
+                        .done(function (stats) {
+                            return stats
+                        })
+                        .fail(function () {
+                            alert("Something went wrong while getting your stats");
+                            return {};
+                        });
+                }
+            }
+        })();
+
+        let UIController = (function () {
+
+            DOMStrings = {
+                usernameInput: '#username-js',
+                regionInput: '#region-js',
+                getLOLAccount: '.js-validate-user',
+                getLOLStats: '.js-get-stats',
+                lolWins: '.LOLwins',
+                lolRank: '.LOLrank'
+            }
+
+            return {
+                GetDOMStrings: function () {
+                    return DOMStrings
+                },
+                SelectAccData: function () {
+                    const userName = document.querySelector(DOMStrings.usernameInput).value;
+                    const userRegion = document.querySelector(DOMStrings.regionInput).value;
+                    return {
+                        username: userName,
+                        region: userRegion
+                    }
+                },
+                ShowStats: function (stats) {
+                    console.log('%c Show Stats UICntrl', 'color: #bada55 ')
+                    console.log(stats);
+                    //$(DOMStrings.lolWins).textContent = stats[0].wins;
+                    $(DOMStrings.lolRank).textContent = stats[0].tier + " " + stats[0].rank;
+                }
+
+            }
+        })();
+
+        MainController = (function (UICntrl, APICntrl) {
+
+            SetupEventListeners = function () {
+                let DOM = UICntrl.GetDOMStrings();
+                $(DOM.getLOLAccount).click(GetLOLAcc)
+                $(DOM.getLOLStats).click(GetLOLStats)
+            }
+
+            GetLOLAcc = function (event) {
+                //0 prevent event from triggering 
+                //event.preventDefault();
+                //1 select the elements 
+                const account = UICntrl.SelectAccData();
+                //2 make api call
+                console.log(account);
+                APICntrl.PostAccData(account);
+                //3 log the result
+                 //4 alternativly if call is succesfull and accObj is returned UI may be filled with returned data
+            }
+
+            GetLOLStats = function (event) {
+                //event.preventDefault();
+                //0 make an api call
+                const stats = APICntrl.GetAccStats();
+                console.log('%c Show Stats MainController', 'color: #bada55 ')
+                //1 Show the data to the user
+                UICntrl.ShowStats(stats);
+            }
+            return {
+                init: function () {
+                    console.log('Application has started');
+                    SetupEventListeners();
+                }
+            }
+        })(UIController, APIController);
+
+        MainController.init();
             //validation for account to be already claimed
     //$.post("/api/LOLAccountsCheck", { userName: userJS, region: regionJS })
     //    .done(function (e) {
