@@ -3,7 +3,6 @@ using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Enums;
 using GamersGridApp.Helpers;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;

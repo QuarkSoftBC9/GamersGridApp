@@ -6,21 +6,21 @@
 <h2>LolApi</h2>
 <div class="jumbotron"> </div>
 @*/* if (Model.HasAccount)
-{
-    <div class="jumbotron"> ENTER CONFIRMATION MESSAGE if the user want to change connected Account You already connected your account to: @Model.UserName</div>
-}*@
+    {
+        <div class="jumbotron"> ENTER CONFIRMATION MESSAGE if the user want to change connected Account You already connected your account to: @Model.UserName</div>
+    }*@
 
 
 
-    @Html.LabelFor(r => r.Region)
-    @Html.DropDownListFor(r => r.Region, new SelectList(Model.AccountRegionsList), "--Select--", new { @class = "form-control required js-region", name = "region", id = "region-js"  })
+@Html.LabelFor(r => r.Region)
+@Html.DropDownListFor(r => r.Region, new SelectList(Model.AccountRegionsList), "--Select--", new { @class = "form-control required js-region", name = "region", id = "region-js" })
 
-    @Html.LabelFor(u => u.UserName)
-    @Html.TextBoxFor(u => u.UserName, new { @class = "form=control required js-username", name = "username", id  = "username-js" })
+@Html.LabelFor(u => u.UserName)
+@Html.TextBoxFor(u => u.UserName, new { @class = "form=control required js-username", name = "username", id = "username-js" })
 
-    <button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
+<button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
 
-    <button type="button" class="btn js-get-stats">Get stats</button>
+<button type="button" class="btn js-get-stats">Get stats</button>
 
 
 @section scripts
@@ -29,44 +29,46 @@
         $(document).ready(function () {
             $('.js-validate-user').click(function (event) {
                 event.preventDefault();
-                
+
                 userJS = $('#username-js').val();
                 regionJS = $('#region-js').val();
 
                 $.post("/api/LOLAccounts", { userName: userJS, region: regionJS })
                     .done(function (e) {
                         console.log(e);
-                        $.ajax({
-                            url: "/api/LOLAccounts",
-                            method: "GET"
-                        })
-                            .done(function () {
-                                link.parents("li").fadeOut(function () {
-                                    $(this).remove();
-                                });
-                            })
-                            .fail(function () {
-                                alert("Bad very bad");
-                            });
                     })
                     .fail(function () {
                         alert("Something failed");
-                    });  
-                //validation for account to be already claimed 
-                //$.post("/api/LOLAccountsCheck", { userName: userJS, region: regionJS })
-                //    .done(function (e) {
-                //        if (e == 'Ok') {
-                //            console.log(e);
-                //            //$('#LoLAccountForm').submit();
-                //        }
-                //        else {
-                //            alert(e)
-                //        }
-                //    })
-                //    .fail(function () {
-                //        alert("Something failed");
-                //    });      
+                    });
             })
-        })  
+            $('.js-get-stats').click(function (event) {
+                event.preventDefault();
+                $.get("/api/LOLAccounts", function (stats) {
+                    console.log(stats)
+                })
+                    .done(function (stats) {
+                        console.log(stats);
+                    })
+                    .fail(function () {
+                        alert("Bad very bad");
+                    });
+            })
+        })
+            //validation for account to be already claimed
+    //$.post("/api/LOLAccountsCheck", { userName: userJS, region: regionJS })
+    //    .done(function (e) {
+    //        if (e == 'Ok') {
+    //            console.log(e);
+    //            //$('#LoLAccountForm').submit();
+    //        }
+    //        else {
+    //            alert(e)
+    //        }
+    //    })
+    //    .fail(function () {
+    //        alert("Something failed");
+    //    });
     </script>
+
+    
 }

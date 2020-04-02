@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Dtos.GameStats;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -50,7 +50,7 @@ namespace GamersGridApp.Controllers.api
             var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
 
             //api is updated everyday
-            string api = "RGAPI-5f87916c-c414-4c0b-97a1-da9d1ab89c55";
+            string api = "RGAPI-3d73158b-d7bc-472e-8905-2105c5062a00";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
@@ -78,12 +78,47 @@ namespace GamersGridApp.Controllers.api
         }
         //get lol stats
         [HttpGet]
-        public IHttpActionResult GetStats()
+        public List<LOLStatsDto> GetStats()
         {
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(g => g.UserGames.Select(ga => ga.GameAccount).Select(s => s.GameAccountStats))
+                .SingleOrDefault();
+            if (userContent == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            var gameAccount = userContent.UserGames.SingleOrDefault(g => g.GameID == 1).GameAccount;
+            if (String.IsNullOrEmpty(gameAccount.AccountIdentifier))
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            //api is updated everyday
+            string api = "RGAPI-3d73158b-d7bc-472e-8905-2105c5062a00";
 
+            var url = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
+                gameAccount.AccountRegions, gameAccount.AccountIdentifier, api);
 
+            url = HttpUtility.UrlPathEncode(url);
 
-            return Ok();
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+
+                var rootAccounts = (new JavaScriptSerializer()).Deserialize<List<LOLStatsDto>>(json);
+                Console.WriteLine("hi there");
+                string tier = rootAccounts[0].tier + " " + rootAccounts[0].rank;
+                if (gameAccount.GameAccountStats == null)
+                {
+                    var accountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins);
+                    context.GameAccountStats.Add(accountStats);
+                }
+                else
+                    gameAccount.GameAccountStats.UpdateStats(tier, rootAccounts[0].wins);
+
+                context.SaveChanges();
+                return rootAccounts;
+
+            }
+            
         }
     }
 }

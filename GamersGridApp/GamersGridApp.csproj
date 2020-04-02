@@ -204,7 +204,6 @@
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLAccountsCheckController.cs" />
     <Compile Include="Controllers\api\LOLAccountsController.cs" />
-    <Compile Include="Controllers\api\LOLStatsController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\NotificationsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
@@ -214,7 +213,6 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
-    <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
@@ -401,8 +399,7 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameAccount.cs" />
     <Compile Include="Models\GameAccountStats.cs" />
-    <Compile Include="Models\GameAccounts\DotaAccount.cs" />
-    <Compile Include="Models\GameAccounts\LOLAccount.cs" />
+    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />

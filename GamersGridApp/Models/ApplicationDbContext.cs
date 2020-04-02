@@ -5,7 +5,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 
 namespace GamersGridApp.Models
 {
