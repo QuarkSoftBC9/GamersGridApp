@@ -26,6 +26,7 @@ namespace GamersGridApp.Models
 
         public DbSet<Message> Messages { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<UserPosting> UserPostings { get; set; }
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
@@ -69,8 +70,25 @@ namespace GamersGridApp.Models
                 .HasMany(m => m.MessageChatUsers)
                 .WithRequired(m => m.Chat);
 
- 
-                
+            modelBuilder.Entity<UserPosting>()
+                .HasRequired(u => u.Poster)
+                .WithMany()
+                .HasForeignKey(u => u.PosterId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserPosting>()
+              .HasRequired(u => u.Owner)
+              .WithMany()
+              .HasForeignKey(u => u.OwnerId)
+              .WillCascadeOnDelete(false);
+
+
+            //modelBuilder.Entity<UserPosting>()
+            // .HasMany(u => u.user)
+            // .WithRequired(f => f.User)
+            // .WillCascadeOnDelete(false);
+
+
 
 
 

@@ -390,6 +390,10 @@
     <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
       <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004030751356_UserPosting.cs" />
+    <Compile Include="Migrations\202004030751356_UserPosting.Designer.cs">
+      <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -410,6 +414,7 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
     <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="Models\UserPosting.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -1107,6 +1112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.resx">
       <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004030751356_UserPosting.resx">
+      <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
