@@ -518,9 +518,9 @@ div.new_html_code {
     color: #222;
 }
 
-.row > div {
+/*.row > div {
     margin: 15px auto;
-}
+}*/
 
 .thumb {
     position: relative;
@@ -611,6 +611,10 @@ figcaption a {
 
 
 /* PROFILE */
+
+.profile-container{
+    margin-top: 40px;
+}
 
 .panel {
     box-shadow: none;

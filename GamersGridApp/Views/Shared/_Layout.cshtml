@@ -9,15 +9,16 @@
     @Styles.Render("~/Content/css")
     @Styles.Render("~/Content/SiteCss")
     @Scripts.Render("~/bundles/modernizr")
+
 </head>
 
 <body>
     @Html.Partial("_NavBar")
 
-    @if (ViewData["Title"].Equals("Home"))
+    @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register"))
     {
         @RenderBody()
-        @*<hr />*@
+        <hr />
         @Html.Partial("_Footer")
 
     }
@@ -38,9 +39,10 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/underscore")
-
-    @Scripts.Render("~/bundles/bootstrap")
     @Scripts.Render("~/bundles/typeahead")
+    @Scripts.Render("~/bundles/RegisterJs")
+    @Scripts.Render("~/bundles/bootstrap")
+    <script src="~/Scripts/RegisterJs/jquery.validate.min.js"></script>
 
     @*@Scripts.Render("~/bundles/popper")*@
     @RenderSection("scripts", required: false)

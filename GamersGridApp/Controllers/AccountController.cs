@@ -162,7 +162,7 @@ namespace GamersGridApp.Controllers
             if (ModelState.IsValid)// ModelState.IsValid
             {
 
-                var user = new User(model.NickName, model.City, model.Country);
+                var user = new User(model.FirstName, model.LastName, model.NickName, model.City, model.Country);
 
 
                 //Creating Application User + passing user object inside

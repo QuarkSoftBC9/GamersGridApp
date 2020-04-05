@@ -80,8 +80,10 @@ namespace GamersGridApp.Models
                 Avatar = avatar;
         }
 
-        public User(string nickname, string city, string country)
+        public User(string firstname, string lastname, string nickname, string city, string country)
         {
+            FirstName = firstname ?? throw new ArgumentNullException("Name is null");
+            LastName = lastname ?? throw new ArgumentNullException("Surname is null");
             NickName = nickname ?? throw new ArgumentNullException("Nickname is null");
             City = city ?? throw new ArgumentNullException("City is null");
             Country = country ?? throw new ArgumentNullException("Country is null");

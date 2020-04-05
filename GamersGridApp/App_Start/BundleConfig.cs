@@ -27,7 +27,7 @@ namespace GamersGridApp
             
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
-                         "~/Scripts//umd/popper.js",
+                         "~/Scripts/umd/popper.js",
                          "~/Scripts/bootstrap.js"
                  ));
 
@@ -38,7 +38,7 @@ namespace GamersGridApp
 
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
                         "~/Scripts/RegisterJs/jquery.min.js",
-                        "~/Scripts/bootstrap.js",
+                        //"~/Scripts/bootstrap.js",
                         "~/Scripts/RegisterJs/popper.min.js",
                         "~/Scripts/RegisterJs/jquery.bootstrap.wizard.js",
                         "~/Scripts/RegisterJs/gsdk-bootstrap-wizard.js",
@@ -76,12 +76,18 @@ namespace GamersGridApp
                         "~/Content/fontawesome-all.css"
                       ));
 
-            bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(
-                "~/Content/bootstrapFlatly.css",
-             "~/Content/RegisterCss/avraam2NotAll.css",
-             "~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css",
-             "~/Content/RegisterCss/PROFILE_GG.css",
-              "~/Content/typeahead.css"));
+            bundles.Add(new StyleBundle("~/Content/NewRegisterCss").Include(
+                //"~/Content/NewRegisterCss/bootstrap.min.css",
+            "~/Content/NewRegisterCss/demo.css",
+            "~/Content/NewRegisterCss/gsdk-bootstrap-wizard.css",
+             "~/Content/typeahead.css"));
+
+            //bundles.Add(new StyleBundle("~/Content/RegisterCss").Include(
+            //    "~/Content/bootstrapFlatly.css",
+            // "~/Content/RegisterCss/avraam2NotAll.css",
+            // "~/Content/RegisterCss/gsdk-bootstrap-wizardAllagi.css",
+            // "~/Content/RegisterCss/PROFILE_GG.css",
+            //  "~/Content/typeahead.css"));
 
             //Search results css file
             bundles.Add(new StyleBundle("~/Content/SearchCss").Include(
