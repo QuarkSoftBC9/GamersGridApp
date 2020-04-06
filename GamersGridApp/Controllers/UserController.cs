@@ -193,6 +193,30 @@ namespace GamersGridApp.Controllers
             return View(new AddLOLAccountViewmodel());
         }
 
+
+        public ActionResult PostMessageEdit()
+        {
+            var appUserId = User.Identity.GetUserId();
+            var otherUsers = context.Users
+                .Where(u => u.Id != appUserId)
+                .ToList();
+
+            return View(new PostMessageViewModel(otherUsers));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostMessageSave(PostMessageViewModel viewModel)
+        {
+            var appUserId = User.Identity.GetUserId();
+            var posterid = context.Users.Where(u => u.Id == appUserId).Select(u => u.UserId).Single();
+
+            context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+
+
+            return View("Index");
+        }
         ////Post lolAccount
         //[Authorize]
         //[HttpPost]

@@ -15,5 +15,18 @@ namespace GamersGridApp.Models
         public User Poster { get; set; }
         public DateTime PostingDate { get; set; }
         public String PostingMessage { get; set; }
+
+        public UserPosting()
+        {
+
+        }
+
+        public UserPosting(string msg,int ownerid,int posterid)
+        {
+            PostingDate = DateTime.Now;
+            PostingMessage = msg;
+            OwnerId = ownerid;
+            PosterId = posterid;
+        }
     }
 }
