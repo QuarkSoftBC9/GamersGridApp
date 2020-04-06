@@ -213,9 +213,10 @@ namespace GamersGridApp.Controllers
             var posterid = context.Users.Where(u => u.Id == appUserId).Select(u => u.UserId).Single();
 
             context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+            context.SaveChanges();
 
 
-            return View("Index");
+            return RedirectToAction("ProfilePage");
         }
         ////Post lolAccount
         //[Authorize]

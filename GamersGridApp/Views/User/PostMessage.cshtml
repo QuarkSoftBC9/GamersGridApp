@@ -1,71 +1,66 @@
 ﻿@model GamersGridApp.ViewModels.PostMessageViewModel
 
 
+    <div class="container py-2" style="margin-top: 83px;">
 
-<form id="contact-form" method="post" action="contact.php" role="form">
+        @using (Html.BeginForm("PostMessageSave", "User", FormMethod.Post, new { @class = "signupForm" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="messages"></div>
+            <div class="messages"></div>
 
-    <div class="controls">
+            <div class="controls">
 
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_name">Firstname *</label>
-                    <input id="form_name" type="text" name="name" class="form-control" placeholder="Please enter your firstname *" required="required" data-error="Firstname is required.">
-                    <div class="help-block with-errors"></div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_name">NickName </label>
+                            @Html.DropDownListFor(model => model.OwnerId, new SelectList(Model.OtherUsers, "UserId", "UserName"), "Choose... ", new { @class = "form-control" })
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_lastname">Lastname *</label>
-                    <input id="form_lastname" type="text" name="surname" class="form-control" placeholder="Please enter your lastname *" required="required" data-error="Lastname is required.">
-                    <div class="help-block with-errors"></div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label id="messageLabel" for="message">Message </label>
+                            <textarea class="form-control input-sm " type="textarea" id="PostingMessage" name="PostingMessage" placeholder="Message" maxlength="140" rows="7"></textarea>
+                            <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-send" value="Send message">
+                    </div>
                 </div>
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_email">Email *</label>
-                    <input id="form_email" type="email" name="email" class="form-control" placeholder="Please enter your email *" required="required" data-error="Valid email is required.">
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <label for="form_need">Please specify your need *</label>
-                    <select id="form_need" name="need" class="form-control" required="required" data-error="Please specify your need.">
-                        <option value=""></option>
-                        <option value="Request quotation">Request quotation</option>
-                        <option value="Request order status">Request order status</option>
-                        <option value="Request copy of an invoice">Request copy of an invoice</option>
-                        <option value="Other">Other</option>
-                    </select>
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group">
-                    <label for="form_message">Message *</label>
-                    <textarea id="form_message" name="message" class="form-control" placeholder="Message for me *" rows="4" required="required" data-error="Please, leave us a message."></textarea>
-                    <div class="help-block with-errors"></div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <input type="submit" class="btn btn-success btn-send" value="Send message">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <p class="text-muted">
-                    <strong>*</strong> These fields are required. Contact form template by
-                    <a href="https://bootstrapious.com/p/how-to-build-a-working-bootstrap-contact-form" target="_blank">Bootstrapious</a>.
-                </p>
-            </div>
-        </div>
+
+        }
     </div>
+        @section Scripts {
 
-</form>
+            <script>
+                $(document).ready(function () {
+                    $('#characterLeft').text('140 characters left');
+                    $('#PostingMessage').keyup(function () {
+                        var max = 140;
+                        var len = $(this).val().length;
+                        if (len >= max) {
+                            $('#characterLeft').text('You have reached the limit');
+                            $('#characterLeft').addClass('red');
+                            $('#btnSubmit').addClass('disabled');
+                        }
+                        else {
+                            var ch = max - len;
+                            $('#characterLeft').text(ch + ' characters left');
+                            $('#btnSubmit').removeClass('disabled');
+                            $('#characterLeft').removeClass('red');
+                        }
+                    });
+                });
+
+
+            </script>
+        }
