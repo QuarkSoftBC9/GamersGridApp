@@ -978,6 +978,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
     <Content Include="Views\User\EditAvraam.cshtml" />
+    <Content Include="Views\User\PostMessage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
