@@ -201,7 +201,7 @@ namespace GamersGridApp.Controllers
                 .Where(u => u.Id != appUserId)
                 .ToList();
 
-            return View(new PostMessageViewModel(otherUsers));
+            return View("PostMessage", new PostMessageViewModel(otherUsers));
         }
 
 
