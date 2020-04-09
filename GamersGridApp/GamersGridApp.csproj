@@ -394,6 +394,10 @@
     <Compile Include="Migrations\202004030751356_UserPosting.Designer.cs">
       <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.cs" />
+    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.Designer.cs">
+      <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -982,6 +986,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\Regions\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1117,6 +1122,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004030751356_UserPosting.resx">
       <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004092024575_GameAccountRegionChangedTOString.resx">
+      <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -9,31 +9,31 @@ namespace GamersGridApp.ViewModels
 {
     public class AddLOLAccountViewmodel
     {
-        public List<AccountRegions> AccountRegionsList { get; set; }
+        public List<string> AccountRegionsList { get; set; }
 
-        public AccountRegions Region { get; set; }
+        public string Region { get; set; }
         public string UserName { get; set; }
         //public bool HasAccount { get; set; } = false;
 
         public AddLOLAccountViewmodel()
         {
-            AccountRegionsList = new List<AccountRegions>() 
+            AccountRegionsList = new List<string>() 
             { 
-                AccountRegions.BR1, AccountRegions.EUN1, AccountRegions.EUW1, AccountRegions.JP1, 
-                AccountRegions.KR, AccountRegions.LA1, AccountRegions.LA2, AccountRegions.NA1, 
-                AccountRegions.OC1, AccountRegions.RU, AccountRegions.TR1
+                "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1", 
+                "OC1", "RU", "TR1"
             };
         }
-        public AddLOLAccountViewmodel(string name, AccountRegions region)
+        public AddLOLAccountViewmodel(string name, string region)
         { 
             UserName = name ?? throw new ArgumentNullException("name is null");
             Region = region;
             //HasAccount = true;
 
-            AccountRegionsList = new List<AccountRegions>()
-            { AccountRegions.BR1, AccountRegions.EUN1, AccountRegions.EUW1, AccountRegions.JP1,
-              AccountRegions.KR, AccountRegions.LA1, AccountRegions.LA2, AccountRegions.NA1,
-              AccountRegions.OC1, AccountRegions.RU, AccountRegions .TR1};
+            AccountRegionsList = new List<string>()
+            {
+                "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1",
+                "OC1", "RU", "TR1"
+            };
         }
     }
 }

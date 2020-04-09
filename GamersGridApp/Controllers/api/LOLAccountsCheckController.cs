@@ -36,7 +36,7 @@ namespace GamersGridApp.Controllers.api
         //[System.Web.Http.HttpPost]
         public IHttpActionResult CheckAccount(AddLOLAccountViewmodel user)
         {
-            if (String.IsNullOrEmpty(user.UserName) || user.Region == 0)
+            if (String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.Region))
                 return BadRequest("they are null");
             var accountExists = context.GameAccounts 
                 .Where(la => la.NickName == user.UserName && la.AccountRegions == user.Region)

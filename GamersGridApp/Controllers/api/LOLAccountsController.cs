@@ -50,7 +50,7 @@ namespace GamersGridApp.Controllers.api
             var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
 
             //api is updated everyday
-            string api = "RGAPI-3d73158b-d7bc-472e-8905-2105c5062a00";
+            string api = "RGAPI-8785b42a-3f11-4052-a420-ef247fa03bb2";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
