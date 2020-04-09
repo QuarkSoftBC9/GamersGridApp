@@ -49,9 +49,6 @@ namespace GamersGridApp.Controllers
 
 
             List<INewsFeed> newsFeed = new List<INewsFeed>(notifications);
-            
-
-
             return View(newsFeed.OrderBy(n => n.TimeStamp));
         }
 

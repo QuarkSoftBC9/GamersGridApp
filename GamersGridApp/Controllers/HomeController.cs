@@ -40,6 +40,12 @@ namespace GamersGridApp.Controllers
             return View();
         }
 
+        public ActionResult AvraamGamers()
+        {
+
+            return View();
+        }
+
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
