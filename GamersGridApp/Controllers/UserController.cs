@@ -177,6 +177,10 @@ namespace GamersGridApp.Controllers
         ////Get lolAccount
         public ActionResult LOLAccount()
         {
+            int lolID = context.Games
+                .Where(g => g.Title == "League Of Legends")
+                .Select(g => g.ID)
+                .SingleOrDefault();
             //check if the user is correct AspNetUser == User
             var appUserId = User.Identity.GetUserId();
             var userContent = context.Users
@@ -184,7 +188,7 @@ namespace GamersGridApp.Controllers
                 .Select(u => u.UserAccount)
                 .Include(ug => ug.UserGames.Select(g => g.GameAccount))
                 .SingleOrDefault();
-            var userGame = userContent.UserGames.SingleOrDefault(g => g.Id == 1);
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.Id == lolID);
 
             if (userGame != null)
                 return View(new AddLOLAccountViewmodel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
@@ -192,7 +196,27 @@ namespace GamersGridApp.Controllers
 
             return View(new AddLOLAccountViewmodel());
         }
+        ////Get OverWatch Account
+        public ActionResult OverWatchAccount()
+        {
 
+            int overwatchID = context.Games
+                .Where(g => g.Title == "Overwatch")
+                .Select(g => g.ID)
+                .SingleOrDefault();
+
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = context.UserGameRelations
+                .SingleOrDefault(ug => ug.UserId == userContent.ID && ug.GameID == overwatchID);
+            if (userGame != null)
+                return View(new AddOverwatchAccViewModel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+            return View(new AddOverwatchAccViewModel());
+        }
 
         public ActionResult PostMessageEdit()
         {

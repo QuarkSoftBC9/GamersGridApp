@@ -17,7 +17,7 @@ namespace GamersGridApp.ViewModels
 
         public AddLOLAccountViewmodel()
         {
-            AccountRegionsList = new List<string>() 
+            AccountRegionsList = new List<string>() //probably regions should be inserted in db since they are standard data that barelly ever change
             { 
                 "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1", 
                 "OC1", "RU", "TR1"
@@ -27,8 +27,6 @@ namespace GamersGridApp.ViewModels
         { 
             UserName = name ?? throw new ArgumentNullException("name is null");
             Region = region;
-            //HasAccount = true;
-
             AccountRegionsList = new List<string>()
             {
                 "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1",

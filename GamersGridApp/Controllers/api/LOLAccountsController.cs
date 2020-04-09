@@ -108,11 +108,11 @@ namespace GamersGridApp.Controllers.api
                 string tier = rootAccounts[0].tier + " " + rootAccounts[0].rank;
                 if (gameAccount.GameAccountStats == null)
                 {
-                    var accountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins);
+                    var accountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins, rootAccounts[0].losses);
                     context.GameAccountStats.Add(accountStats);
                 }
                 else
-                    gameAccount.GameAccountStats.UpdateStats(tier, rootAccounts[0].wins);
+                    gameAccount.GameAccountStats.UpdateStats(tier, rootAccounts[0].wins, rootAccounts[0].losses);
 
                 context.SaveChanges();
                 return rootAccounts;

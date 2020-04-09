@@ -1,0 +1,90 @@
+﻿@model GamersGridApp.ViewModels.AddOverwatchAccViewModel
+@{
+    ViewBag.Title = "OverWatchAccount";
+}
+
+<h2>OverWatchAccount</h2>
+
+@Html.LabelFor(r => r.Region)
+@Html.DropDownListFor(r => r.Region, new SelectList(Model.AccountRegionList), "--Select--", new { @class = "form-control required js-region", name = "region", id = "region-js" })
+
+@Html.LabelFor(u => u.UserName)
+@Html.TextBoxFor(u => u.UserName, new { @class = "form=control required js-username", name = "username", id = "username-js" })
+
+<button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
+
+<button type="button" class="btn js-get-stats">Get stats</button>
+
+@section scripts
+{
+    <script>
+
+        let APIController = (function () {
+            return {
+                sendAccount:  function (account) {
+                    $.post("/api/OverwatchAccounts", { userName: account.username, region: account.region })
+                        .done(function (returnVal) {
+                            console.log(returnVal)
+                        })
+                        .fail(function (returnVal) {
+                            alert("Something failed");
+                            console.log(returnVal)
+                        })
+                },
+            }
+        })();
+
+        let UIController = (function () {
+
+            DOMStrings = {
+                usernameInput: '#username-js',
+                regionInput: '#region-js',
+                getOverwatchAccount: '.js-validate-user',
+            }
+            return {
+                GetDOMStrings: function () {
+                    return DOMStrings
+                },
+                SelectAccData: function () {
+                    const userName = document.querySelector(DOMStrings.usernameInput).value;
+                    const userRegion = document.querySelector(DOMStrings.regionInput).value;
+                    return {
+                        username: userName,
+                        region: userRegion
+                    }
+                },
+                ShowStats: function (stats) {
+                    console.log('%c Show Stats UICntrl', 'color: #bada55 ')
+                    console.log(stats);
+                }
+
+            }
+        })();
+
+        MainController = (function (UICntrl, APICntrl) {
+
+            SetupEventListeners = function () {
+                let DOM = UICntrl.GetDOMStrings();
+                $(DOM.getOverwatchAccount).click(GetOverwatchAcc)
+            }
+            GetOverwatchAcc = function (event) {
+                //Check if account has been already saved
+                //event.preventDefault();
+                //1 select the elements
+                const account = UICntrl.SelectAccData();
+                //2 make api call
+                APICntrl.sendAccount(account);
+            }
+            return {
+                init: function () {
+                    console.log('Application has started');
+                    SetupEventListeners();
+                }
+            }
+        })(UIController, APIController);
+
+        MainController.init();
+    </script>
+
+
+}
