@@ -18,7 +18,6 @@
     @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register"))
     {
         @RenderBody()
-        <hr />
         @Html.Partial("_Footer")
 
     }
@@ -27,7 +26,6 @@
         <div class="container container-main">
             <main role="main">
                 @RenderBody()
-                @*<hr />*@
                 <footer>
                     <p>&copy; @DateTime.Now.Year - Group Project Bootcamp 9</p>
                 </footer>
