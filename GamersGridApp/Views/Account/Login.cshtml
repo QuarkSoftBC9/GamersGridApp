@@ -1,62 +1,59 @@
-﻿@using GamersGridApp.Models
-@model LoginViewModel
+﻿@model GamersGridApp.Models.LoginViewModel
+
 @{
-    ViewBag.Title = "Log in";
+    Layout = "";
 }
-@*@Styles.Render("~/Content/LoginForm")*@
 
-@*<h2 class="login-title">Enter Gamers Grid</h2>
-<div class="row">
-    <div class="col-md-8">
 
-        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
-        {
-            @Html.AntiForgeryToken()
-            <div class="login-page">
-                <div class="form neon">
-                    <form class="login-form">
-                        <input type="text" class="form-control" name="Email" placeholder="Your name" />
-                        <input type="password" class="form-control" name="Password" placeholder="Your password" />
-                        <button class='submitBtn'>login</button>
-                        <p class="message">Not registered? <a href="#">Create an account</a></p>
-                    </form>
-                </div>
-            </div>
-        }
 
-    </div>
-    <div class="col-md-4">
-            <section id="socialLoginForm">
-                @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-            </section>
-        </div>
-</div>*@
-@Styles.Render("~/Content/newLogin")
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <link href="https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/SiteCss")
+    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/Content/newLogin")
 
-<div class="container">
-    <div id="login-box">
-        <div class="logo">
-            <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block" />
-            <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
-        </div><!-- /.logo -->
-        <div class="controls">
 
-            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                <input type="text" class="form-control" name="Email" placeholder="Your Email" />
-                <input type="password" class="form-control" name="Password" placeholder="Your password" />
-                <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
-            }
-        </div><!-- /.controls -->
-    </div><!-- /#login-box -->
-</div><!-- /.container -->
-<div id="particles-js"></div>
+</head>
 
-@section Scripts {
+<body>
+    @Html.Partial("_NavBar")
+
+    <div class="container">
+        <div id="login-box">
+            <div class="logo">
+                <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block" />
+                <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+            </div><!-- /.logo -->
+            <div class="controls">
+
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="text" class="form-control" name="Email" placeholder="Your Email" />
+                    <input type="password" class="form-control" name="Password" placeholder="Your password" />
+                    <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+                }
+            </div><!-- /.controls -->
+        </div><!-- /#login-box -->
+    </div><!-- /.container -->
+    <div id="particles-js"></div>
+    @Html.Partial("_Footer")
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
     @Scripts.Render("~/bundles/loginnew")
     @Scripts.Render("~/bundles/jqueryval")
-}
+</body>
+
+
 
 @*  OLD FORM JUST IN CASE
         @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
