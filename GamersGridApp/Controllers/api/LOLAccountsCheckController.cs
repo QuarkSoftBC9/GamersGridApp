@@ -34,18 +34,18 @@ namespace GamersGridApp.Controllers.api
 
 
         //[System.Web.Http.HttpPost]
-        //public IHttpActionResult CheckAccount(AddLOLAccountViewmodel user)
-        //{
-        //    if (String.IsNullOrEmpty(user.UserName) || user.Region == 0)
-        //        return BadRequest("they are null");
-        //    var accountExists = context.LolAccounts
-        //        .Where(la => la.Name == user.UserName && la.Region == user.Region)
-        //        .SingleOrDefault();
-        //    if (accountExists != null)
-        //        return BadRequest("The account already exists");
-        //    else
-        //        return Ok("Ok");
+        public IHttpActionResult CheckAccount(AddLOLAccountViewmodel user)
+        {
+            if (String.IsNullOrEmpty(user.UserName) || user.Region == 0)
+                return BadRequest("they are null");
+            var accountExists = context.GameAccounts 
+                .Where(la => la.NickName == user.UserName && la.AccountRegions == user.Region)
+                .SingleOrDefault();
+            if (accountExists != null)
+                return BadRequest("The account already exists");
+            else
+                return Ok("Ok");
 
-        //}
+        }
     }
 }

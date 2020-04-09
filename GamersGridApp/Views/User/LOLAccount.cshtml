@@ -31,16 +31,33 @@
     <script>
 
         let APIController = (function () {
+
+            let sendAccount =  function (account) {
+                $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
+                    .done(function (returnVal) {
+                        console.log(returnVal)
+                    })
+                    .fail(function (returnVal) {
+                        alert("Something failed");
+                        console.log(returnVal)
+                    })
+            }
             return {
-                PostAccData: function (account) {
-                    $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
-                        .done(function (returnVal) {
-                            console.log(returnVal)
+
+                addAccount: function (account) {
+                    //validation for account to be already claimed
+                    $.post("/api/LOLAccountsCheck", { userName: account.username, region: account.region })
+                        .done(function (e) {
+                            if (e == 'Ok') {
+                                sendAccount(account);
+                            }
+                            else {
+                                alert(e)
+                            }
                         })
-                        .fail(function (returnVal) {
+                        .fail(function () {
                             alert("Something failed");
-                            console.log(returnVal)
-                        })
+                        });
                 },
 
                 GetAccStats: function () {
@@ -101,13 +118,15 @@
             }
 
             GetLOLAcc = function (event) {
+                //Check if account has been already saved
+
                 //0 prevent event from triggering 
                 //event.preventDefault();
                 //1 select the elements 
                 const account = UICntrl.SelectAccData();
                 //2 make api call
                 console.log(account);
-                APICntrl.PostAccData(account);
+                APICntrl.addAccount(account);
                 //3 log the result
                  //4 alternativly if call is succesfull and accObj is returned UI may be filled with returned data
             }
@@ -129,20 +148,6 @@
         })(UIController, APIController);
 
         MainController.init();
-            //validation for account to be already claimed
-    //$.post("/api/LOLAccountsCheck", { userName: userJS, region: regionJS })
-    //    .done(function (e) {
-    //        if (e == 'Ok') {
-    //            console.log(e);
-    //            //$('#LoLAccountForm').submit();
-    //        }
-    //        else {
-    //            alert(e)
-    //        }
-    //    })
-    //    .fail(function () {
-    //        alert("Something failed");
-    //    });
     </script>
 
     
