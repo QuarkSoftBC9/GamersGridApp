@@ -31,6 +31,11 @@ namespace GamersGridApp
                          "~/Scripts/bootstrap.js"
                  ));
 
+
+            bundles.Add(new ScriptBundle("~/bundles/loginnew").Include(
+                         "~/Scripts/NewLogin/login.js"
+                 ));
+
             bundles.Add(new ScriptBundle("~/bundles/underscore").Include(
                         "~/Scripts/underscore.js"
                         ));
@@ -99,6 +104,9 @@ namespace GamersGridApp
             //Login Form 
             bundles.Add(new StyleBundle("~/Content/LoginForm").Include(
                 "~/Content/loginStyle.css"));
+
+            bundles.Add(new StyleBundle("~/Content/newLogin").Include(
+                "~/Content/NewLoginCss/login.css"));
             //Edit
             bundles.Add(new StyleBundle("~/Content/Edit").Include(
              "~/Content/Site.css"));
