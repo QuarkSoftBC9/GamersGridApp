@@ -14,24 +14,25 @@
 
 <body>
     @Html.Partial("_NavBar")
+    @*@if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register"))*@
 
-    @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register"))
-    {
-        @RenderBody()
-        @Html.Partial("_Footer")
+        @if (true)
+        {
+            @RenderBody()
+            @Html.Partial("_Footer")
 
-    }
-    else
-    {
-        <div class="container container-main">
-            <main role="main">
-                @RenderBody()
-                <footer>
-                    <p>&copy; @DateTime.Now.Year - Group Project Bootcamp 9</p>
-                </footer>
-            </main>
-        </div>
-    }
+        }
+        else
+        {
+            <div class="container container-main">
+                <main role="main">
+                    @RenderBody()
+                    <footer>
+                        <p>&copy; @DateTime.Now.Year - Group Project Bootcamp 9</p>
+                    </footer>
+                </main>
+            </div>
+        }
 
 
 

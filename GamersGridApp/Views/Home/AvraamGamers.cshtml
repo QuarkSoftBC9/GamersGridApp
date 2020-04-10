@@ -1,4 +1,4 @@
-﻿
+﻿@model IEnumerable<GamersGridApp.Models.User>
 @{
     ViewBag.Title = "Players";
 }
@@ -8,77 +8,88 @@
         <h1> TOP PLAYERS </h1>
     </div>
     <div class="row">
-        <div class="col-sm-4 col-md-3">
-            <div class="thumb">
-                <a href="#">
-                    <img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-responsive">
-                    <div class="hover-opaque">
-                        <div class="centered">DOTA<br> 234 <br>points</div>
-                    </div>
-                </a>
-            </div>
-            <div class=" thumb-caption text-center ">
-                <figcaption><a href="@Url.Action("UserProfile", "Home")">MIKE HAJNON</a></figcaption>
-                <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-            </div>
-        </div>
-        <div class="col-sm-4 col-md-3">
-            <div class="thumb">
-                <a href="#">
-                    <img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-responsive">
-                    <div class="hover-opaque">
-                        <div class="centered">DOTA<br> 234 <br>points</div>
-                    </div>
-                </a>
-            </div>
-            <div class=" thumb-caption text-center ">
-                <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+        @foreach (var user in Model)
+        {
+            <div class="col-sm-4 col-md-3">
+                <div class="thumb">
+                    <a href="@(User.Identity.IsAuthenticated ? $"{Url.Action("ProfilePage", "User",new { userid = @user.ID })}" : "#")">
 
-                <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-            </div>
-        </div><div class="col-sm-4 col-md-3">
-            <div class="thumb">
-                <a href="#">
-                    <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
-                    <div class="hover-opaque">
-                        <div class="centered">DOTA<br> 234 <br>points</div>
-                    </div>
-                </a>
-            </div>
-            <div class=" thumb-caption text-center ">
-                <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+                        <img src="@(String.IsNullOrEmpty(user.Avatar) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@user.ID}/{@user.Avatar}")" alt="gamer" class="img-responsive">
+                        <div class="hover-opaque">
+                            <div class="centered">DOTA<br> 234 <br>points</div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" thumb-caption text-center ">
+                    <figcaption><a href="@Url.Action("ProfilePage", "User",new { userid = @user.ID })">@user.NickName</a></figcaption>
+                    @*@if (User.Identity.IsAuthenticated)
+                    {
+                        <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                    }*@
 
-                <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                </div>
             </div>
-        </div><div class="col-sm-4 col-md-3">
-            <div class="thumb">
-                <a href="#">
-                    <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
-                    <div class="hover-opaque">
-                        <div class="centered">DOTA<br> 234 <br>points</div>
-                    </div>
-                </a>
-            </div>
-            <div class=" thumb-caption text-center ">
-                <figcaption><a href="#">MIKE HAJNON</a></figcaption>
 
-                <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-            </div>
-        </div><div class="col-sm-4 col-md-3">
-            <div class="thumb">
-                <a href="#">
-                    <img src="~/Content/images/clans bw.jpg" alt="gamer" class="img-responsive">
-                    <div class="hover-opaque">
-                        <div class="centered">DOTA<br> 234 <br>points</div>
-                    </div>
-                </a>
-            </div>
-            <div class="thumb-caption text-center ">
-                <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+        }
 
-                <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+        @*<div class="col-sm-4 col-md-3">
+                <div class="thumb">
+                    <a href="#">
+                        <img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-responsive">
+                        <div class="hover-opaque">
+                            <div class="centered">DOTA<br> 234 <br>points</div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" thumb-caption text-center ">
+                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+
+                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                </div>
             </div>
-        </div>
+            <div class="col-sm-4 col-md-3">
+                <div class="thumb">
+                    <a href="#">
+                        <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
+                        <div class="hover-opaque">
+                            <div class="centered">DOTA<br> 234 <br>points</div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" thumb-caption text-center ">
+                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+
+                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                </div>
+            </div><div class="col-sm-4 col-md-3">
+                <div class="thumb">
+                    <a href="#">
+                        <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
+                        <div class="hover-opaque">
+                            <div class="centered">DOTA<br> 234 <br>points</div>
+                        </div>
+                    </a>
+                </div>
+                <div class=" thumb-caption text-center ">
+                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+
+                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                </div>
+            </div><div class="col-sm-4 col-md-3">
+                <div class="thumb">
+                    <a href="#">
+                        <img src="~/Content/images/clans bw.jpg" alt="gamer" class="img-responsive">
+                        <div class="hover-opaque">
+                            <div class="centered">DOTA<br> 234 <br>points</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="thumb-caption text-center ">
+                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
+
+                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
+                </div>
+            </div>*@
 
 
     </div>
@@ -86,4 +97,11 @@
 
 
 </div>
-<!-- end-container -->
+@section scripts{
+
+    @Scripts.Render("~/bundles/toastr")
+
+   
+
+
+}

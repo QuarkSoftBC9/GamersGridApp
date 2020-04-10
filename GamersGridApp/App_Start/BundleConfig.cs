@@ -23,8 +23,10 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.jquery.js",
                         "~/Scripts/Custom/TypeAheadSearchBar.js"
                 ));
+            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
+                    "~/Scripts/toastr.js"
+                  ));
 
-            
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                          "~/Scripts/umd/popper.js",
@@ -78,7 +80,8 @@ namespace GamersGridApp
                       "~/Content/DataTables/css/dataTables.bootstrap4.css",
                       "~/Content/typeahead.css",
                         "~/Content/animate.min.css",
-                        "~/Content/fontawesome-all.css"
+                        "~/Content/fontawesome-all.css",
+                        "~/Content/toastr.css"
                       ));
 
             bundles.Add(new StyleBundle("~/Content/NewRegisterCss").Include(

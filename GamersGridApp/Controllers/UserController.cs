@@ -144,7 +144,7 @@ namespace GamersGridApp.Controllers
         }
 
         [Authorize]
-        public ActionResult EditAvraam()
+        public ActionResult EditAvraam2()
         {
             var aspNetUserID = User.Identity.GetUserId();
             var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
@@ -154,7 +154,7 @@ namespace GamersGridApp.Controllers
             //aspNetUser.UserAccount = userContent;
 
             var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
-            return View("EditAvraam", viewmodel);
+            return View("EditAvraam2", viewmodel);
 
         }
 

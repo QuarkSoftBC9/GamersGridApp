@@ -954,6 +954,7 @@
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Game\Games.cshtml" />
     <Content Include="Views\Home\AvraamGamers.cshtml" />
+    <Content Include="Views\User\EditAvraam2.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />

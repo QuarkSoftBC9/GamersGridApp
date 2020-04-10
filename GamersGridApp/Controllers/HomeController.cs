@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using GamersGridApp.ViewModels;
 using GamersGridApp.Models;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace GamersGridApp.Controllers
 {
@@ -42,8 +43,24 @@ namespace GamersGridApp.Controllers
 
         public ActionResult AvraamGamers()
         {
+            List<User> otherUsers;
 
-            return View();
+            //Getting the user
+            if (User.Identity.IsAuthenticated)
+            {
+                var userId = User.Identity.GetUserId();
+                var user = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount).SingleOrDefault();
+
+                //Show User except the one who is logged in
+                otherUsers = context.GamersGridUsers.Where(u => u.ID != user.ID).ToList();
+
+            }
+            else
+            {
+                otherUsers = context.GamersGridUsers.ToList();
+
+            }
+            return View(otherUsers);
         }
 
         public ActionResult Contact()
