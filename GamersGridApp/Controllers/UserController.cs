@@ -218,6 +218,24 @@ namespace GamersGridApp.Controllers
             return View(new AddOverwatchAccViewModel());
         }
 
+        // Dota 2 Account
+        public ActionResult DotaAccount()
+        {
+            string userId = User.Identity.GetUserId();
+
+            int ggUserAccountId = context.Users.Where(u => u.Id == userId)
+                .Select(u => u.UserAccount.ID)
+                .SingleOrDefault();
+
+            var userGame = context.UserGameRelations
+                .SingleOrDefault(ug => ug.UserId == ggUserAccountId && ug.GameID == 3);
+
+            if (userGame == null)
+                return View(new AddDotaAccountViewModel());
+
+            return View(new AddDotaAccountViewModel(userGame.GameAccount.AccountIdentifier));
+        }
+
         public ActionResult PostMessageEdit()
         {
             var appUserId = User.Identity.GetUserId();
