@@ -16,14 +16,15 @@ namespace GamersGridApp.Models
         [ForeignKey("GameAccount")]
         [Key]
         public int Id { get; set; }
-        public GameAccount GameAccount { get; private set; }
-        public string KDA { get; private set; }
-        public string Rank { get; private set; }
-        public int Wins { get; private set; }
+        public GameAccount GameAccount { get;  set; }
+        public string KDA { get;  set; }
+        public string Rank { get;  set; }
+        public int Wins { get;  set; }
+
         public int Losses { get; set; }
         public int HoursPlayed { get; set; }
 
-        protected GameAccountStats()
+        internal GameAccountStats()
         { }
         public GameAccountStats(GameAccount account, string rank, int wins, int losses)
         {

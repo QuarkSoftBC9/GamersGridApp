@@ -9,8 +9,8 @@ namespace GamersGridApp.Models
     public class GameAccount
     {
         public int Id { get; set; }
-        public string NickName { get; private set; }
-        public string AccountIdentifier { get; private set; }
+        public string NickName { get;  set; }
+        public string AccountIdentifier { get;  set; }
         public string AccountIdentifier2 { get; set; }
         public string AccountRegions { get; private  set; }
         public GameAccountStats GameAccountStats { get; set; }
