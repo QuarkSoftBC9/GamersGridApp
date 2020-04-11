@@ -204,6 +204,7 @@
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLAccountsCheckController.cs" />
     <Compile Include="Controllers\api\LOLAccountsController.cs" />
+    <Compile Include="Controllers\api\LOLMatchesController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\NotificationsController.cs" />
     <Compile Include="Controllers\api\OverwatchAccountsController.cs" />
@@ -214,6 +215,8 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\OverWatchDto.cs" />
     <Compile Include="Dtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
@@ -407,6 +410,10 @@
     <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.cs" />
     <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.Designer.cs">
       <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.cs" />
+    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
+      <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
@@ -1142,6 +1149,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004092327453_LosesAddedToGameStats.resx">
       <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
+      <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

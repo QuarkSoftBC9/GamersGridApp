@@ -72,7 +72,7 @@ namespace GamersGridApp.Controllers.api
                     userContent.UserGames.Add(new UserGame(overwatchID, userContent.ID, newAccount));
                 }
                 else
-                    userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, userName, viewModel.Region);
+                    userGame.GameAccount.UpdateAccount(viewModel.UserName, userName, viewModel.Region);
 
                 context.SaveChanges();
                 return Ok("All good");

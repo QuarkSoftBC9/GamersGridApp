@@ -19,6 +19,7 @@ namespace GamersGridApp.Controllers.api
     [Authorize]
     public class LOLAccountsController : ApiController
     {
+        private readonly string api = "RGAPI-98d1f24c-1e8e-47d5-91e6-859ec304cf36";
         private readonly ApplicationDbContext context;
 
         public LOLAccountsController()
@@ -50,7 +51,6 @@ namespace GamersGridApp.Controllers.api
             var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
 
             //api is updated everyday
-            string api = "RGAPI-8785b42a-3f11-4052-a420-ef247fa03bb2";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
@@ -65,16 +65,15 @@ namespace GamersGridApp.Controllers.api
 
                 if (userGame == null)
                 {
-                    GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, viewModel.Region) { };
+                    GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region) { };
                     userContent.UserGames.Add(new UserGame(lolID, userContent.ID, newAccount));
                 }
                 else
-                    userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, rootAccount.id, viewModel.Region);
+                    userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
                 
                 context.SaveChanges();
                 return Ok("All good");
             }
-
         }
         //get lol stats
         [HttpGet]
@@ -92,7 +91,7 @@ namespace GamersGridApp.Controllers.api
             if (String.IsNullOrEmpty(gameAccount.AccountIdentifier))
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             //api is updated everyday
-            string api = "RGAPI-3d73158b-d7bc-472e-8905-2105c5062a00";
+            //string api = "RGAPI-98d1f24c-1e8e-47d5-91e6-859ec304cf36";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
                 gameAccount.AccountRegions, gameAccount.AccountIdentifier, api);
@@ -105,6 +104,7 @@ namespace GamersGridApp.Controllers.api
 
                 var rootAccounts = (new JavaScriptSerializer()).Deserialize<List<LOLStatsDto>>(json);
                 Console.WriteLine("hi there");
+                //add if for a null rank
                 string tier = rootAccounts[0].tier + " " + rootAccounts[0].rank;
                 if (gameAccount.GameAccountStats == null)
                 {

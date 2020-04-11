@@ -11,6 +11,7 @@ namespace GamersGridApp.Models
         public int Id { get; set; }
         public string NickName { get; private set; }
         public string AccountIdentifier { get; private set; }
+        public string AccountIdentifier2 { get; set; }
         public string AccountRegions { get; private  set; }
         public GameAccountStats GameAccountStats { get; set; }
 
@@ -22,10 +23,25 @@ namespace GamersGridApp.Models
             AccountIdentifier = identifier;
             AccountRegions = region;
         }
-        public void UpdateLOLAccount(string nickname, string identifier, string region)
+        public GameAccount(string nickname, string identifier, string identifier2, string region)
         {
             NickName = nickname;
             AccountIdentifier = identifier;
+            AccountIdentifier2 = identifier2;
+            AccountRegions = region;
+        }
+        public void UpdateAccount(string nickname, string identifier, string region)
+        {
+            NickName = nickname;
+            AccountIdentifier = identifier;
+            AccountRegions = region;
+        }
+        
+        public void UpdateLOLAccount(string nickname, string identifier, string identifier2, string region)
+        {
+            NickName = nickname;
+            AccountIdentifier = identifier;
+            AccountIdentifier2 = identifier2;
             AccountRegions = region;
         }
 

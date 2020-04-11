@@ -30,9 +30,6 @@ namespace GamersGridApp.Controllers.api
         {
             base.Dispose(disposing);
         }
-
-
-
         //[System.Web.Http.HttpPost]
         public IHttpActionResult CheckAccount(AddLOLAccountViewmodel user)
         {

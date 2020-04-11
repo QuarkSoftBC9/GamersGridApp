@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace GamersGridApp.Models
@@ -45,6 +46,21 @@ namespace GamersGridApp.Models
             UserId = userid;
             IsFavoriteGame = favorite;
             GameAccount = gameAccount;
+        }
+
+        public void AddNewAccount()
+        {
+            if (GameAccount == null)
+                CreateNewAccount();
+            UpdateAccount();
+        }
+        public void CreateNewAccount()
+        {
+
+        }
+        public void UpdateAccount()
+        {
+
         }
     }
 }
