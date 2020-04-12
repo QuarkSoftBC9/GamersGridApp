@@ -33,6 +33,8 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
         {
+            LOLDto rootAccount;
+
             if (String.IsNullOrEmpty(viewModel.UserName))
                 return BadRequest("Name is not set");
             // LOLID
@@ -49,9 +51,6 @@ namespace GamersGridApp.Controllers.api
                 return BadRequest("User could not be found");
 
             var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
-
-            //api is updated everyday
-
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
 
@@ -60,33 +59,18 @@ namespace GamersGridApp.Controllers.api
             using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
-
-                LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
-                //instead of checking userGame we check Game Account
-                if (userGame == null)
-                {
-                    userGame = new UserGame(userContent.ID, lolID);
-                    userContent.UserGames.Add(userGame);
-                    context.SaveChanges();
-                    userGame.GameAccount = new GameAccount(userGame, viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
-                    context.SaveChanges();
-                    //GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region) { };
-                    //userContent.UserGames.Add(new UserGame(lolID, userContent.ID, newAccount));
-
-                }
-                else if (userGame.GameAccount == null)
-                {
-                    var gameAcc = new GameAccount(userGame, viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
-                    userGame.GameAccount = gameAcc;
-                }
-
-                else
-                    userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
-
-
-                context.SaveChanges();
-                return Ok("All good");
+                rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
             }
+            if (userGame == null)
+            {
+                userGame = new UserGame(userContent.ID, lolID);
+                userContent.UserGames.Add(userGame);
+            }
+            userGame.NewGameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
+
+
+            context.SaveChanges();
+            return Ok("All good");
         }
         //get lol stats
         [HttpGet]

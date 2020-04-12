@@ -20,30 +20,33 @@ namespace GamersGridApp.Models
         public UserGame UserGame { get; set; }
         public GameAccountStats GameAccountStats { get; set; }
 
+        //most properties could be set to private
         internal GameAccount()
         {  }
+        //constructor for Dota2 and Overwatch
         public GameAccount(string nickname, string identifier, string region)
         {
             NickName = nickname;
             AccountIdentifier = identifier;
             AccountRegions = region;
         }
-        public GameAccount(UserGame userGame, string nickname, string identifier, string identifier2, string region)
+        //constructor for Leage of Legends
+        public GameAccount(string nickname, string identifier, string identifier2, string region)
         {
-            UserGame = userGame;
             NickName = nickname;
             AccountIdentifier = identifier;
             AccountIdentifier2 = identifier2;
             AccountRegions = region;
         }
+        //Update stats for Dota2 and Overwatch
         public void UpdateAccount(string nickname, string identifier, string region)
         {
             NickName = nickname;
             AccountIdentifier = identifier;
             AccountRegions = region;
         }
-        
-        public void UpdateLOLAccount(string nickname, string identifier, string identifier2, string region)
+        //Update stats for Leage of Legends
+        public void UpdateAccount(string nickname, string identifier, string identifier2, string region)
         {
             NickName = nickname;
             AccountIdentifier = identifier;
