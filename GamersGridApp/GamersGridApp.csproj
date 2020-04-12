@@ -388,6 +388,10 @@
     <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004121812311_addOverwatch.cs" />
+    <Compile Include="Migrations\202004121812311_addOverwatch.Designer.cs">
+      <DependentUpon>202004121812311_addOverwatch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1127,6 +1131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121812311_addOverwatch.resx">
+      <DependentUpon>202004121812311_addOverwatch.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
