@@ -30,7 +30,7 @@
 
                         </div>
                         <div class="profile__avatar col-xs-12 col-sm-5">
-                            <img src= "@(String.IsNullOrEmpty(Model.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" alt="...">
+                            <img src="@(String.IsNullOrEmpty(Model.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" alt="...">
                         </div>
                         <div class="profile__header col-xs-12 col-sm-7">
                             <h2>@Html.DisplayFor(u => u.User.FirstName) @Html.DisplayFor(u => u.User.LastName)</h2>
@@ -107,6 +107,36 @@
                         </table>
                     </div>
                 </div>
+                <!-- Game 3 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>Overwatch</strong></h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table profile__table">
+                            <tbody>
+                                <tr>
+                                    <th><strong>Level</strong></th>
+                                    <td>456</td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 1</strong></th>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                60
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 2</strong></th>
+                                    <td>234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <div class="col-xs-12 col-sm-3">
 
@@ -127,11 +157,10 @@
                     }
                     else
                     {
-                        <p>
-                            <a id="messageBtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
-                                Edit Profile
-                            </a>
-                        </p>
+            <p>
+                @Html.ActionLink("Customize", "EditAvraam2", "User", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
+
+            </p>
 
                     }
 
@@ -141,7 +170,7 @@
                 <div class="profile_follow">
                     <div class="profile_followers">
                         <p>FOLLOWERS</p>
-                        <h3><strong>@Model.FollowsCount</strong></h3>
+                        <h3><strong id="followersCount">@Model.FollowsCount</strong></h3>
 
                     </div>
                     <div class="profile_followees">
@@ -202,10 +231,24 @@
                         button.text("UnFollow");
                         button.attr("id", "Unfollow");
                         toastr.success("You are now following!");
+
+
+
+
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/follows/" + followee,
+                            data: "{}",
+                            success: function (followerscount) {
+                                document.getElementById("followersCount").innerHTML = followerscount;
+                            }
+                        });
+
                     })
                     .fail(function () {
                         toastr.error("Something went wrong");
                     });
+
 
             });
 
@@ -225,6 +268,15 @@
                         button.attr("id", "Follow");
 
                         toastr.success("You are now no longer following");
+
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/follows/" + followee,
+                            data: "{}",
+                            success: function (followerscount) {
+                                document.getElementById("followersCount").innerHTML = followerscount;
+                            }
+                        });
 
                     }).fail(function () {
                         toastr.error("Something went wrong");

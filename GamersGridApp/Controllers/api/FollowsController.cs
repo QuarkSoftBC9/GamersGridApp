@@ -1,6 +1,7 @@
 ﻿using GamersGridApp.Dtos;
 using GamersGridApp.Enums;
 using GamersGridApp.Models;
+using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -19,7 +20,14 @@ namespace GamersGridApp.Controllers.api
         {
             dbContext = new ApplicationDbContext();
         }
+        [HttpGet] 
+        public int GetFollowers(int id)
+        {
+            var userfollowers = dbContext.Follows.Where(u => u.UserId == id).ToList().Count;
 
+
+            return userfollowers;
+        }
         [HttpPost]
         public IHttpActionResult Follow(FollowsDto followDto)
         {
