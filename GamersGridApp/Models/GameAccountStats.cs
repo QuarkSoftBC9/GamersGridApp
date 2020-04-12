@@ -26,6 +26,13 @@ namespace GamersGridApp.Models
 
         internal GameAccountStats()
         { }
+        public GameAccountStats(GameAccount account, string rank, int wins, int losses,string kda)
+        {
+            GameAccount = account;
+            Rank = rank;
+            Wins = wins;
+            Losses = losses;
+        }
         public GameAccountStats(GameAccount account, string rank, int wins, int losses)
         {
             GameAccount = account;
@@ -33,7 +40,12 @@ namespace GamersGridApp.Models
             Wins = wins;
             Losses = losses;
         }
-
+        public void Update(string kda, int wins, int losses)
+        {
+            KDA = kda;
+            Wins = wins;
+            Losses = losses;
+        }
         public void UpdateStats(string rank, int wins, int losses)
         {
             Rank = rank;

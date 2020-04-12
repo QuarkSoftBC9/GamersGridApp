@@ -36,7 +36,7 @@
                     url: "/api/DotaAccounts?accountid=" + accountid,
                     method: "post"
                 }).done(function (data) {
-                    toastr.success("Account found for " + data.profile.personaname);
+                    toastr.success("Account saved");
                 }).fail(function () {
                     toastr.error("Account was either empty or not found");
                 });

@@ -228,6 +228,7 @@ namespace GamersGridApp.Controllers
                 .SingleOrDefault();
 
             var userGame = context.UserGameRelations
+                .Include(ug=> ug.GameAccount)
                 .SingleOrDefault(ug => ug.UserId == ggUserAccountId && ug.GameID == 3);
 
             if (userGame == null)

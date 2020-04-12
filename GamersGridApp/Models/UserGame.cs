@@ -34,6 +34,24 @@ namespace GamersGridApp.Models
         //constructor needed just for testing purposes of api
         public UserGame()
         { }
+
+        public static UserGame CreateNewRelationWithAccountDota(int gameId , int userId, string nickname, string uniqueId, int wins, int loses, string kda )
+        {
+            var userGame = new UserGame(userId, gameId);
+            userGame.GameAccount = new GameAccount(nickname, uniqueId, null);
+            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, null, wins, loses, kda);
+
+            return userGame;
+        }
+
+        
+        private UserGame(int userId, int gameId)
+        {
+            UserId = userId;
+            GameID = gameId;
+        }
+
+
         public UserGame(int gameID, int userid, GameAccount gameAccount)
         {
             GameID = gameID;

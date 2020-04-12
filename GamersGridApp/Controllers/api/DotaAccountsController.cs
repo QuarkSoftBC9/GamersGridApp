@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Script.Serialization;
+using System.Data.Entity;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -64,22 +65,14 @@ namespace GamersGridApp.Controllers.api
                 .SingleOrDefault();
 
             var userGameRelation = context.UserGameRelations
+                .Include(ug => ug.GameAccount)
+                .Include(ug => ug.GameAccount.GameAccountStats)
                 .SingleOrDefault(ug => ug.GameID == 3 && ug.UserId == ggUser.ID);
+            var kda = ExtraMethods.CalculateKda(dotaMatches);
+
             if (userGameRelation == null)
             {
-                var newUserGameRelation = new UserGame()
-                {
-                    UserId = ggUser.ID,
-                    GameID = 3,
-                    GameAccount = new GameAccount(dotaDto.profile.personaname, accountid, null)
-                };
-
-                newUserGameRelation.GameAccount.GameAccountStats = new GameAccountStats()
-                {
-                    Wins = dotaWLDto.win,
-                    Losses = dotaWLDto.lose,
-                    KDA = Convert.ToString(ExtraMethods.CalculateKda(dotaMatches))
-                };
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(3, ggUser.ID, dotaDto.profile.personaname, accountid, dotaWLDto.win, dotaWLDto.lose, Convert.ToString(kda));
             try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
@@ -94,11 +87,9 @@ namespace GamersGridApp.Controllers.api
             }
             else
             {
-                userGameRelation.GameAccount.AccountIdentifier = accountid;
-                userGameRelation.GameAccount.NickName = dotaDto.profile.personaname;
-                userGameRelation.GameAccount.GameAccountStats.Losses = dotaWLDto.lose;
-                userGameRelation.GameAccount.GameAccountStats.Wins = dotaWLDto.win;
-                userGameRelation.GameAccount.GameAccountStats.KDA = Convert.ToString(ExtraMethods.CalculateKda(dotaMatches));
+
+                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid,null);
+                userGameRelation.GameAccount.GameAccountStats.Update(Convert.ToString(kda), dotaWLDto.win, dotaWLDto.lose);
                 context.SaveChanges();
 
                 return Ok();
