@@ -38,6 +38,10 @@ namespace GamersGridApp.Helpers
                 KillsAssists += dotaMatch.kills + dotaMatch.assists;
                 deaths += dotaMatch.deaths;
             }
+            if(deaths == 0)
+            {
+                return 0;
+            }
             return KillsAssists / deaths;
         }
     }
