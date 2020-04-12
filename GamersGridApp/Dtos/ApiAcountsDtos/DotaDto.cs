@@ -8,7 +8,7 @@ namespace GamersGridApp.Dtos.ApiAcountsDtos
 
     public class DotaMatch
     {
-        public int? match_id { get; set; }
+        //public int? match_id { get; set; }
         public int? player_slot { get; set; }
         public bool? radiant_win { get; set; }
         public int? duration { get; set; }
@@ -66,7 +66,7 @@ namespace GamersGridApp.Dtos.ApiAcountsDtos
         public string avatarmedium { get; set; }
         public string profileurl { get; set; }
         public string last_login { get; set; }
-        public string loccountrcode { get; set; }
+        public string loccountrycode { get; set; }
         public bool? is_contributor { get; set; }
 
     }

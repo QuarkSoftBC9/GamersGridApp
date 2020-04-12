@@ -35,10 +35,10 @@
                 $.ajax({
                     url: "/api/DotaAccounts?accountid=" + accountid,
                     method: "post"
-                }).done(function (data) {
+                }).done(function () {
                     toastr.success("Account saved");
-                }).fail(function () {
-                    toastr.error("Account was either empty or not found");
+                }).fail(function (e) {
+                    toastr.error(e.message);
                 });
             });
 

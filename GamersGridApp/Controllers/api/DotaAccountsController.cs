@@ -68,19 +68,19 @@ namespace GamersGridApp.Controllers.api
                 .Include(ug => ug.GameAccount)
                 .Include(ug => ug.GameAccount.GameAccountStats)
                 .SingleOrDefault(ug => ug.GameID == 3 && ug.UserId == ggUser.ID);
-            var kda = ExtraMethods.CalculateKda(dotaMatches);
+            var kda = Convert.ToString(ExtraMethods.CalculateKda(dotaMatches));
 
             if (userGameRelation == null)
             {
-                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(3, ggUser.ID, dotaDto.profile.personaname, accountid, dotaWLDto.win, dotaWLDto.lose, Convert.ToString(kda));
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(3, ggUser.ID, dotaDto.profile.personaname, Convert.ToString(accountid), dotaWLDto.win, dotaWLDto.lose, kda);
             try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
                     context.SaveChanges();
                 }
-                catch
+                catch(Exception e)
                 {
-                    return BadRequest();
+                    return BadRequest(e.Message);
                 }
                 return Ok();
 
@@ -88,8 +88,8 @@ namespace GamersGridApp.Controllers.api
             else
             {
 
-                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid,null);
-                userGameRelation.GameAccount.GameAccountStats.Update(Convert.ToString(kda), dotaWLDto.win, dotaWLDto.lose);
+                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid,dotaDto.profile.loccountrycode);
+                userGameRelation.GameAccount.GameAccountStats.Update(kda, dotaWLDto.win, dotaWLDto.lose);
                 context.SaveChanges();
 
                 return Ok();
