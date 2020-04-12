@@ -42,6 +42,10 @@ namespace GamersGridApp
                         "~/Scripts/underscore.js"
                         ));
 
+            bundles.Add(new ScriptBundle("~/bundles/gameProfile").Include(
+            "~/Scripts/GameProfile.js"
+            ));
+
 
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
                         "~/Scripts/RegisterJs/jquery.min.js",
@@ -72,6 +76,9 @@ namespace GamersGridApp
 
             bundles.Add(new StyleBundle("~/Content/SiteCss").Include(
                  "~/Content/Site.css"));
+
+            bundles.Add(new StyleBundle("~/Content/GameProfile").Include(
+                 "~/Content/GameProfile.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

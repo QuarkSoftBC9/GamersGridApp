@@ -1,47 +1,49 @@
 ﻿@model IEnumerable<GamersGridApp.Models.Game>
-@Styles.Render("~/Content/SiteCss")
-
-<style>
-    body {
-        background: linear-gradient(to right, rgb(49, 49, 49), rgb(87, 104, 134));
-    }
-</style>
-
-<br />
-<div class="container">
-    <center><h5>Games we are currently supporting</h5></center>
 
 
-    <div class="row ">
+@{
+    ViewBag.Title = "Games";
+}
 
-        @foreach (var game in Model)
-        {
-            string imagePath;
-            if (game.ID == 1)
+
+
+
+    <div class="container-thubnails-char-games">
+        <div class="center-header ">
+            <h1> THE GAMES </h1>
+        </div>
+
+
+        <div class="row ">
+
+            @foreach (var game in Model)
             {
-                imagePath = "~/Content/Images/lol-banner.jpg";
-            }
-            else if (game.ID == 2)
-            {
-                imagePath = "~/Content/Images/csgo-banner.jpg";
-            }
-            else
-            {
-                imagePath = "~/Content/Images/dota2-banner.png";
-            }
-            <div class="col-md-4">
-                <div class="card" style="width: 20rem;">
-                    <img src=@Url.Content(imagePath) class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h4 class="card-title">@game.Title</h4>
-                        <p>Type: <i>@game.Type</i></p>
-                        <p class="card-text">@game.Description.Substring(0, 246)</p>
-                        @*<a href="#" class="btn btn-primary">Learn More</a>*@
+                string imagePath;
+                if (game.ID == 1)
+                {
+                    imagePath = "~/Content/Images/Games/lol1.jpg";
+                }
+                else if (game.ID == 2)
+                {
+                    imagePath = "~/Content/Images/Games/overwatch1.jpg";
+                }
+                else
+                {
+                    imagePath = "~/Content/Images/Games/dota1.jpg";
+                }
+
+                <div class="col-6 col-md-4">
+                    <div class="thumbnail thubnail-game">
+                        <h3>@game.Title</h3>
+                        <a href="@Url.Action("GameProfile", "Game",new { gameName = @game.Title })"><img src=@Url.Content(imagePath) alt="gamer" class="gameimg"></a>
+                        <div class="caption-games">
+                            <h4>@game.Type</h4>
+                            @*<p><a href="#" class="btn btn-primary" role="button">See</a></p>*@
+                        </div>
                     </div>
                 </div>
-            </div>
-        }
+            }
 
 
+        </div>
     </div>
-</div>

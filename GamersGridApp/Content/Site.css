@@ -303,26 +303,26 @@ textarea {
 
 /* FOOTER*/
 
-.copyrights {
-    margin-top: 10px;
-}
-
-footer.container-fluid.text-center.foot {
-    background: #383838;
-}
-
-.dark-line {
-    margin-top: 10px;
-    border-top: 1px solid #525252;
+.foot {
+    background: #1f1f1f;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
 }
 
 .white-txt {
     color: #FFF;
+    position: absolute;
+    right: 20px;
+    margin-top: 30px;
 }
 
 
 .footimg {
-    width: 150px;
+    width: 85px;
+    margin-top: 10px;
 }
 /* INDEX HOME*/
 
@@ -932,11 +932,12 @@ figcaption a {
 
 
 .container-thubnails-char-games h1 {
-    color: #545483;
+    color: #222;
 }
 
 .thubnail-game > h3 {
     color: black;
+    font-weight: 500;
 }
 
 .thumbnail > img {
@@ -947,4 +948,22 @@ figcaption a {
 .editcontainer {
     margin-top: 25px;
     margin-bottom: 25px;
+}
+
+.gameimg {
+    height: 250px !important;
+    border-radius: 50%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.caption-games > h4 {
+    color: #222;
+    
+}
+
+
+/*REGISTER*/
+.h3 .small {
+    color: #333;
 }

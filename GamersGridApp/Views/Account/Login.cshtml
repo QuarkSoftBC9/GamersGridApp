@@ -1,57 +1,35 @@
 ﻿@model GamersGridApp.Models.LoginViewModel
+@Styles.Render("~/Content/newLogin")
+
 
 @{
-    Layout = "";
+    ViewBag.Title = "Login";
 }
 
+<div class="container">
+    <div id="login-box">
+        <div class="logo">
+            <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+        </div><!-- /.logo -->
+        <div class="controls">
 
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <input type="text" class="form-control margin-bot" name="Email" placeholder="Your Email" />
+                <input type="password" class="form-control" name="Password" placeholder="Your password" />
+                <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+            }
+        </div><!-- /.controls -->
+    </div><!-- /#login-box -->
+</div><!-- /.container -->
+<div id="particles-js"></div>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    <link href="https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
-    @Styles.Render("~/Content/css")
-    @Styles.Render("~/Content/SiteCss")
-    @Scripts.Render("~/bundles/modernizr")
-    @Styles.Render("~/Content/newLogin")
+<script>
+@Scripts.Render("~/bundles/loginnew")
+@Scripts.Render("~/bundles/jqueryval")
+</script>
 
-
-</head>
-
-<body>
-    @Html.Partial("_NavBar")
-
-    <div class="container">
-        <div id="login-box">
-            <div class="logo">
-                <img src="http://lorempixel.com/output/people-q-c-100-100-1.jpg" class="img img-responsive img-circle center-block" />
-                <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
-            </div><!-- /.logo -->
-            <div class="controls">
-
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    <input type="text" class="form-control margin-bot" name="Email" placeholder="Your Email" />
-                    <input type="password" class="form-control" name="Password" placeholder="Your password" />
-                    <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
-                }
-            </div><!-- /.controls -->
-        </div><!-- /#login-box -->
-    </div><!-- /.container -->
-    <div id="particles-js"></div>
-    @Html.Partial("_Footer")
-
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-
-    @Scripts.Render("~/bundles/loginnew")
-    @Scripts.Render("~/bundles/jqueryval")
-</body>
 
 
 

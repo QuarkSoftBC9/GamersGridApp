@@ -75,7 +75,7 @@ input[type="button"]:focus {
   bottom: 40px;
   right: 40px;
   border-radius: 30px;
-  background-color: rgba(16, 16, 16, 0.35);
+  background-color: rgba(145, 145, 145, 0.35);
   border: 1px solid rgba(255, 255, 255, 0.15);
   color: #FFFFFF;
   cursor: pointer;
@@ -199,9 +199,9 @@ h1 .subtitle {
 
 .wizard-card {
   min-height: 410px;
-  background-color: #eaeaea;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  /*box-shadow: 0 0 15px rgba(0, 0, 0, 0.15), 0 0 1px 1px rgba(0, 0, 0, 0.1);*/
+
   padding: 10px 0;
 }
 .wizard-card .picture-container {
@@ -248,7 +248,7 @@ h1 .subtitle {
   display: none;
 }
 .wizard-card .wizard-header h3 {
-  font-weight: 200;
+  font-weight: 400;
   text-align: center;
 }
 .wizard-card[data-color="green"] .choice:hover .icon, .wizard-card[data-color="green"] .choice.active .icon {
@@ -1012,8 +1012,15 @@ label small {
 
 .wizard-card .wizard-header h3 {
     font-family: 'Josefin Sans', sans-serif;
-    font-weight: 200;
+    font-weight: 500;
     text-align: center;
+}
+
+.wizard-card .wizard-header h4 {
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    margin-top:10px;
 }
 
 
