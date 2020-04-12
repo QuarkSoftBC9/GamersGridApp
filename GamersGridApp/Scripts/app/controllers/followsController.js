@@ -1,10 +1,23 @@
-﻿let FollowsController = function (followsService) {
+﻿let FollowsController = function (followsService,messagesService) {
     let button
     let followerId;
     let followeeId;
 
     let initial = function (element) {
         $(element).on("click", toggleFollow);
+    }
+
+    let second = function (element) {
+        $(element).on("click", redirectToChat);
+    };
+
+    let redirectToChat = function (e) {
+        button = $(e.target);
+        let url = button.data("redirect-url")
+        followerId = $("#loggedUserId").val();
+        followeeId = $("#profileId").val();
+        var dataModel = { followeeId: followeeId, followerId: followerId };
+        messagesService.redirectToChat(dataModel, url);
     }
 
     let toggleFollow = function (e) {
@@ -35,7 +48,8 @@
     };
 
     return {
-        enable: initial
+        enableFollows: initial,
+        enableMessaging: second
     };
 
-}(FollowsService);
+}(FollowsService,MessagesService);

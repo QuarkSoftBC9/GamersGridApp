@@ -490,6 +490,7 @@
     <Content Include="Content\UserEditCss\style.css" />
     <Content Include="Scripts\app\controllers\followsController.js" />
     <Content Include="Scripts\app\services\followsService.js" />
+    <Content Include="Scripts\app\services\messagesService.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />

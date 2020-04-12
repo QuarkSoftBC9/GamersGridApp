@@ -13,6 +13,7 @@ namespace GamersGridApp
 
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/services/followsService.js",
+                        "~/Scripts/app/services/messagesService.js",
                         "~/Scripts/app/controllers/followsController.js"
                 ));
 

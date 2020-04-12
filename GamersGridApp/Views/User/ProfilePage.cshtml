@@ -44,7 +44,7 @@
             {
                 <button class="btn btn-primary aButton" id="followbtn" role="button">@followText</button>
                 @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
-                <button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>
+                <button class="btn btn-primary aButton" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})" id="messageBtn" role="button">Message</button>
 
             }
 
@@ -174,8 +174,8 @@
 
         $(document).ready(function () {
 
-            FollowsController.enable("#followbtn");
-
+            FollowsController.enableFollows("#followbtn");
+            FollowsController.enableMessaging("#messageBtn");
 
             //$(document).on("click", "#Follow", function (e) {
             //    var followee = $("#profileId").val();
@@ -216,7 +216,7 @@
             //        });
             //});
 
-            $(document).on("click", "#messageBtn", function () {
+            @*$(document).on("click", "#messageBtn", function () {
                 var followee = $("#profileId").val();
                 var follower = $("#loggedUserId").val();
 
@@ -238,7 +238,7 @@
 
 
 
-            });
+            });*@
 
 
         });
