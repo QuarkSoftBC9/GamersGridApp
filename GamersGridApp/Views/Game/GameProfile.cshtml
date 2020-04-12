@@ -1,4 +1,4 @@
-﻿@model GamersGridApp.Models.Game
+﻿@model GamersGridApp.ViewModels.ProfileGameViewModel
 @{
     ViewBag.Title = "GameProfile";
 
@@ -9,7 +9,7 @@
     string gameTwitch;
     string gameTwitter;
 
-    if (Model.ID == 1)
+    if (Model.Game.ID == 1)
     {
         gameAvatar = "~/Content/Images/Games/lolback1.jpg";
         gameImg = "~/Content/Images/Games/lollogo.jpg";
@@ -18,7 +18,7 @@
         gameTwitch = "https://www.twitch.tv/riotgames";
         gameTwitter = "https://twitter.com/riotgames?lang=el";
     }
-    else if (Model.ID == 3)
+    else if (Model.Game.ID == 3)
     {
         gameAvatar = "~/Content/Images/dotaback1.jpg";
         gameImg = "~/Content/Images/Games/dota2logo.jpg";
@@ -52,8 +52,8 @@
         background-position: center;
         background-size: cover;
         background-repeat: no-repeat;*@
-        background-color:black;
-        
+        background-color:#ffffff;
+
     }
 </style>
 
@@ -71,15 +71,32 @@
 <div class="rela-block container">
     <div class="rela-block profile-card">
         <div class="profile-pic" id="profile_pic" style="background:url(@Url.Content(gameImg))">
-            @*<img src=@Url.Content(gameAvatar)  alt="">*@
+
         </div>
         <div class="rela-block profile-name-container">
-            <div class="rela-block user-name" id="user_name">@Model.Title</div>
-            <div class="rela-block user-desc" id="user_description">@Model.Description</div>
+            <div class="rela-block user-num " id="user_name">USERS' FAVORITE </div>
+            <div class="rela-block user-num-num " id="user_name">@Model.UsersFocusing </div>
+            <div class="rela-block user-name" id="user_name">@Model.Game.Title</div>
+            <div class="rela-block user-desc" id="user_description">@Model.Game.Description</div>
         </div>
         <div class="rela-block profile-card-stats">
-            <div class="floated profile-stat " >
-                <a href="@Url.Content(gameYoutube)" >
+            <div class="floated profile-stat up" id="num_following">
+                @Model.Game.ReleaseDate.ToString(string.Format("dd/MM/yyyy"))<br>
+                <p>RELEASE DATE</p>
+            </div>
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameTwitch)">
+                    <i class="fab fa-twitch fa-3x"></i>
+                </a>
+            </div>
+            <div class="floated profile-stat up" id="num_following">
+                @Model.Game.Type<br>
+                <p>TYPE</p>
+            </div>
+        </div>
+        <div class="rela-block profile-card-stats">
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameYoutube)">
                     <i class="fab fa-youtube fa-3x"></i>
                 </a>
             </div>
@@ -88,12 +105,14 @@
                     <i class="fas fa-info-circle fa-3x"></i>
                 </a>
             </div>
+          
             <div class="floated profile-stat">
                 <a href="@Url.Content(gameTwitter)">
                     <i class="fab fa-twitter-square fa-3x"></i>
                 </a>
             </div>
         </div>
+
     </div>
 </div>
 <div class="rela-block content">
@@ -110,7 +129,7 @@
     <div class="rela-inline image">
     </div>
 </div>
-    @*<div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div></div><div class="rela-inline button more-images" onclick="add_images(); inf_scroll = true;">More Images</div></div><div class="rela-block footer"><p>FOOTER</p><br><p>Classic deluxe custom designer luxury prestige high-quality premium select gourmet pocket pencil sharpener.<br><br>Yours for the asking, no purchase necessary. It's our way of saying thank you.</p></div>*@
+@*<div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div></div><div class="rela-inline button more-images" onclick="add_images(); inf_scroll = true;">More Images</div></div><div class="rela-block footer"><p>FOOTER</p><br><p>Classic deluxe custom designer luxury prestige high-quality premium select gourmet pocket pencil sharpener.<br><br>Yours for the asking, no purchase necessary. It's our way of saying thank you.</p></div>*@
 
 
 @*<br />

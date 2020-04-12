@@ -416,6 +416,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
+    <Compile Include="ViewModels\ProfileGameViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
@@ -993,6 +994,7 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
     <Content Include="Views\User\EditAvraam.cshtml" />
+    <Content Include="Views\Shared\_LoginSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

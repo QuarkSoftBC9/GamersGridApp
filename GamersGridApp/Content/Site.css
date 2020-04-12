@@ -223,7 +223,7 @@ textarea {
 .btn-circle {
     width: 32px;
     height: 32px;
-    padding: 6px 0px;
+    padding: 8px 0px;
     border-radius: 20px;
     text-align: center;
     font-size: 12px;
@@ -515,7 +515,7 @@ div.new_html_code {
     text-align: center;
     margin-top: 50px;
     margin-bottom: 20px;
-    color: #222;
+    color: #533b99;
 }
 
 /*.row > div {
@@ -932,7 +932,8 @@ figcaption a {
 
 
 .container-thubnails-char-games h1 {
-    color: #222;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #533b99;
 }
 
 .thubnail-game > h3 {
