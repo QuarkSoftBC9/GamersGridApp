@@ -57,7 +57,7 @@ namespace GamersGridApp.Controllers.api
                 var rootAccounts = (new JavaScriptSerializer()).Deserialize<LOLMatchesListDto>(json);
 
                 //add if for a null rank
-                var matches = new List<LOLMatchesDto>(){ };
+                var matches = new List<LOLMatchesDto>() { };
                 foreach (var match in rootAccounts.matches)
                 {
                     var url = String.Format("https://eun1.api.riotgames.com/lol/match/v4/matches/{0}?api_key={1}", match.gameId, api);

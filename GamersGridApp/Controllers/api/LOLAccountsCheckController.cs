@@ -35,7 +35,7 @@ namespace GamersGridApp.Controllers.api
         {
             if (String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.Region))
                 return BadRequest("they are null");
-            var accountExists = context.GameAccounts 
+            var accountExists = context.GameAccounts
                 .Where(la => la.NickName == user.UserName && la.AccountRegions == user.Region)
                 .SingleOrDefault();
             if (accountExists != null)

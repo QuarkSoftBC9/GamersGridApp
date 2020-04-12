@@ -416,6 +416,34 @@
     <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.cs" />
+    <Compile Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.Designer.cs">
+      <DependentUpon>202004121558202_removingGameStatsGameAccRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.cs" />
+    <Compile Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.Designer.cs">
+      <DependentUpon>202004121603225_CuttingGameAccGameStatsRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.cs" />
+    <Compile Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.Designer.cs">
+      <DependentUpon>202004121612517_CuttingGameAccUserGameRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs" />
+    <Compile Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.Designer.cs">
+      <DependentUpon>202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.cs" />
+    <Compile Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.Designer.cs">
+      <DependentUpon>202004121617561_CreatingGameAccGameStatsRelationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.cs" />
+    <Compile Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.Designer.cs">
+      <DependentUpon>202004121954117_dropingGameAccGameStatsColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004121957445_addingGameStatsGameAcc.cs" />
+    <Compile Include="Migrations\202004121957445_addingGameStatsGameAcc.Designer.cs">
+      <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -423,9 +451,9 @@
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
+    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Models\GameAccount.cs" />
     <Compile Include="Models\GameAccountStats.cs" />
-    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
@@ -1158,6 +1186,27 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.resx">
+      <DependentUpon>202004121558202_removingGameStatsGameAccRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.resx">
+      <DependentUpon>202004121603225_CuttingGameAccGameStatsRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.resx">
+      <DependentUpon>202004121612517_CuttingGameAccUserGameRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.resx">
+      <DependentUpon>202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.resx">
+      <DependentUpon>202004121617561_CreatingGameAccGameStatsRelationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.resx">
+      <DependentUpon>202004121954117_dropingGameAccGameStatsColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004121957445_addingGameStatsGameAcc.resx">
+      <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

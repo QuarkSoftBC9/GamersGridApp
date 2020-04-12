@@ -26,7 +26,8 @@ namespace GamersGridApp.Models
 
         internal GameAccountStats()
         { }
-        public GameAccountStats(GameAccount account, string rank, int wins, int losses,string kda)
+        //Uncomment After relationShips are fixed
+        public GameAccountStats(GameAccount account, string rank, int wins, int losses, string kda)
         {
             GameAccount = account;
             Rank = rank;

@@ -68,17 +68,18 @@ namespace GamersGridApp.Controllers.api
                 .Include(ug => ug.GameAccount)
                 .Include(ug => ug.GameAccount.GameAccountStats)
                 .SingleOrDefault(ug => ug.GameID == 3 && ug.UserId == ggUser.ID);
+
             var kda = Convert.ToString(ExtraMethods.CalculateKda(dotaMatches));
 
             if (userGameRelation == null)
             {
                 var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(3, ggUser.ID, dotaDto.profile.personaname, Convert.ToString(accountid), dotaWLDto.win, dotaWLDto.lose, kda);
-            try
+                try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
                     context.SaveChanges();
                 }
-                catch(Exception e)
+                catch (Exception e)
                 {
                     return BadRequest(e.Message);
                 }
@@ -87,8 +88,7 @@ namespace GamersGridApp.Controllers.api
             }
             else
             {
-
-                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid,dotaDto.profile.loccountrycode);
+                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid, dotaDto.profile.loccountrycode);
                 userGameRelation.GameAccount.GameAccountStats.Update(kda, dotaWLDto.win, dotaWLDto.lose);
                 context.SaveChanges();
 

@@ -19,7 +19,7 @@ namespace GamersGridApp.Controllers.api
     [Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-98d1f24c-1e8e-47d5-91e6-859ec304cf36";
+        private readonly string api = "RGAPI-d3006b7e-450b-43a5-afad-c09556be73b6";
         private readonly ApplicationDbContext context;
 
         public LOLAccountsController()
@@ -37,7 +37,7 @@ namespace GamersGridApp.Controllers.api
                 return BadRequest("Name is not set");
             // LOLID
             const int lolID = 1;
-             
+
             //geting UserContent
             var appUserId = User.Identity.GetUserId();
             var userContent = context.Users
@@ -62,15 +62,28 @@ namespace GamersGridApp.Controllers.api
                 string json = client.DownloadString(url);
 
                 LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
-
+                //instead of checking userGame we check Game Account
                 if (userGame == null)
                 {
-                    GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region) { };
-                    userContent.UserGames.Add(new UserGame(lolID, userContent.ID, newAccount));
+                    userGame = new UserGame(userContent.ID, lolID);
+                    userContent.UserGames.Add(userGame);
+                    context.SaveChanges();
+                    userGame.GameAccount = new GameAccount(userGame, viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
+                    context.SaveChanges();
+                    //GameAccount newAccount = new GameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region) { };
+                    //userContent.UserGames.Add(new UserGame(lolID, userContent.ID, newAccount));
+
                 }
+                else if (userGame.GameAccount == null)
+                {
+                    var gameAcc = new GameAccount(userGame, viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
+                    userGame.GameAccount = gameAcc;
+                }
+
                 else
                     userGame.GameAccount.UpdateLOLAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
-                
+
+
                 context.SaveChanges();
                 return Ok("All good");
             }
@@ -108,8 +121,7 @@ namespace GamersGridApp.Controllers.api
                 string tier = rootAccounts[0].tier + " " + rootAccounts[0].rank;
                 if (gameAccount.GameAccountStats == null)
                 {
-                    var accountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins, rootAccounts[0].losses);
-                    context.GameAccountStats.Add(accountStats);
+                    gameAccount.GameAccountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins, rootAccounts[0].losses);
                 }
                 else
                     gameAccount.GameAccountStats.UpdateStats(tier, rootAccounts[0].wins, rootAccounts[0].losses);
@@ -118,7 +130,7 @@ namespace GamersGridApp.Controllers.api
                 return rootAccounts;
 
             }
-            
+
         }
     }
 }

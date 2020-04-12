@@ -24,18 +24,13 @@ namespace GamersGridApp.Models
         public Game Game { get; set; }
 
         public GameAccount GameAccount { get; set; }
-
-        public int GameAccountId { get; set; }
-
-        //public  MyProperty { get; set; }
-
         public bool IsFavoriteGame { get; set; }
 
         //constructor needed just for testing purposes of api
         public UserGame()
         { }
-
-        public static UserGame CreateNewRelationWithAccountDota(int gameId , int userId, string nickname, string uniqueId, int wins, int loses, string kda )
+        //Uncomment After relationShips are fixed
+        public static UserGame CreateNewRelationWithAccountDota(int gameId, int userId, string nickname, string uniqueId, int wins, int loses, string kda)
         {
             var userGame = new UserGame(userId, gameId);
             userGame.GameAccount = new GameAccount(nickname, uniqueId, null);
@@ -44,41 +39,42 @@ namespace GamersGridApp.Models
             return userGame;
         }
 
-        
-        private UserGame(int userId, int gameId)
+
+        public UserGame(int userId, int gameId)
         {
             UserId = userId;
             GameID = gameId;
         }
 
 
-        public UserGame(int gameID, int userid, GameAccount gameAccount)
-        {
-            GameID = gameID;
-            UserId = userid;
-            GameAccount = gameAccount;
-        }
-        public UserGame(Game game,int userid,bool favorite,GameAccount gameAccount)
+        //public UserGame(int gameID, int userid, GameAccount gameAccount)
+        //{
+        //    GameID = gameID;
+        //    UserId = userid;
+        //    GameAccount = gameAccount;
+        //}
+
+        //Game Account is not added on registration now
+        public UserGame(Game game, int userid, bool favorite)
         {
             Game = game;
             UserId = userid;
             IsFavoriteGame = favorite;
-            GameAccount = gameAccount;
         }
 
-        public void AddNewAccount()
-        {
-            if (GameAccount == null)
-                CreateNewAccount();
-            UpdateAccount();
-        }
-        public void CreateNewAccount()
-        {
+        //public void AddNewAccount()
+        //{
+        //    if (GameAccount == null)
+        //        CreateNewAccount();
+        //    UpdateAccount();
+        //}
+        //public void CreateNewAccount()
+        //{
 
-        }
-        public void UpdateAccount()
-        {
+        //}
+        //public void UpdateAccount()
+        //{
 
-        }
+        //}
     }
 }
