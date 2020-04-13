@@ -303,6 +303,13 @@ textarea {
 
 /* FOOTER*/
 
+
+.container-footer {
+    margin-top: 0px;
+    margin-bottom: 15px;
+}
+
+
 .foot {
     background: #1f1f1f;
     position: fixed;
@@ -612,9 +619,12 @@ figcaption a {
 
 /* PROFILE */
 
-.profile-container {
+.profile__contact-hr::before {
+content: "OR";
+}
+
+.profile-container{
     margin-top: 40px;
-    margin-bottom: 40px;
 }
 
 .panel {
