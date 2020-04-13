@@ -18,7 +18,7 @@
         gameTwitch = "https://www.twitch.tv/riotgames";
         gameTwitter = "https://twitter.com/riotgames?lang=el";
     }
-    else if (Model.Game.ID == 3)
+    else if (Model.Game.ID == 2)
     {
         gameAvatar = "~/Content/Images/dotaback1.jpg";
         gameImg = "~/Content/Images/Games/dota2logo.jpg";
@@ -31,10 +31,10 @@
     {
         gameAvatar = "~/Content/Images/Games/overwatchback.jpg";
         gameImg = "~/Content/Images/Games/overwatchlogo.jpg";
-        gameLink = "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/";
-        gameYoutube = "https://www.youtube.com/channel/UC279mtSpGdNDRVE_NqSPofA";
-        gameTwitch = "https://www.twitch.tv/directory/game/Counter-Strike%3A%20Global%20Offensive";
-        gameTwitter = "https://twitter.com/eslcs?lang=el";
+        gameLink = "https://playoverwatch.com/en-us/";
+        gameYoutube = "https://www.youtube.com/channel/UClOf1XXinvZsy4wKPAkro2A";
+        gameTwitch = "https://www.twitch.tv/directory/game/Overwatch";
+        gameTwitter = "https://twitter.com/overwatcheu?lang=en";
     }
 }
 
@@ -81,8 +81,8 @@
         </div>
         <div class="rela-block profile-card-stats">
             <div class="floated profile-stat up" id="num_following">
-                @Model.Game.ReleaseDate.ToString(string.Format("dd/MM/yyyy"))<br>
                 <p>RELEASE DATE</p>
+                @Model.Game.ReleaseDate.ToString(string.Format("dd/MM/yyyy"))<br>
             </div>
             <div class="floated profile-stat ">
                 <a href="@Url.Content(gameTwitch)">
@@ -90,8 +90,8 @@
                 </a>
             </div>
             <div class="floated profile-stat up" id="num_following">
-                @Model.Game.Type<br>
                 <p>TYPE</p>
+                @Model.Game.Type<br>
             </div>
         </div>
         <div class="rela-block profile-card-stats">
