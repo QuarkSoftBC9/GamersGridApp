@@ -47,6 +47,13 @@ namespace GamersGridApp.Models
             Wins = wins;
             Losses = losses;
         }
+        public void Update(string kda, int wins, int losses,string rank)
+        {
+            KDA = kda;
+            Wins = wins;
+            Losses = losses;
+            Rank = rank;
+        }
         public void UpdateStats(string rank, int wins, int losses)
         {
             Rank = rank;

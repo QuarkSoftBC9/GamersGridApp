@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Helpers;
 using GamersGridApp.Models;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
@@ -30,56 +31,114 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult AddAccount(AddOverwatchAccViewModel viewModel)
         {
-            if (String.IsNullOrEmpty(viewModel.UserName))
+            if (String.IsNullOrEmpty(viewModel.BattleTag))
                 return BadRequest("Name is not set");
-            // OverWatchID
-            int overwatchID = context.Games
-                .Where(g => g.Title == "Overwatch")
-                .Select(g => g.ID)
-                .SingleOrDefault();
 
-            //geting UserContent
-            var appUserId = User.Identity.GetUserId();
-            var userContent = context.Users
-                .Where(u => u.Id == appUserId)
-                .Select(u => u.UserAccount)
-                .Include(g => g.UserGames.Select(ga => ga.GameAccount))
-                .SingleOrDefault();
-            if (userContent == null)
-                return BadRequest("User could not be found");
+            
 
-            var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == overwatchID);
 
-            //api no key required
-            string userName = viewModel.GetBattleTag();
-            var url = String.Format("https://ow-api.com/v1/stats/pc/{0}/{1}/profile",
-                viewModel.Region, userName);
+            string url = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{viewModel.Region}/{viewModel.GetBattleTag()}/profile");
+            string urlComplete = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{viewModel.Region}/{viewModel.GetBattleTag()}/complete");
 
-            url = HttpUtility.UrlPathEncode(url);
+            OverWatchProfileDto owProfileDto;
+            OverWatchCompleteDto owCompleteDto;
+
 
             using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
+                string jsonComplete = client.DownloadString(urlComplete);
 
-                OverWatchDto rootAccount = (new JavaScriptSerializer()).Deserialize<OverWatchDto>(json);
-
-                if (userGame == null)
+                try
                 {
-                    //GameAccount newAccount = new GameAccount(viewModel.UserName, userName, viewModel.Region) { };
-                    //newAccount.GameAccountStats = new GameAccountStats(newAccount, rootAccount.rating.ToString(),
-                    //    rootAccount.competitiveStats.games.won,
-                    //    (rootAccount.competitiveStats.games.played - rootAccount.competitiveStats.games.won));
-                    //userContent.UserGames.Add(new UserGame(overwatchID, userContent.ID, newAccount));
+                    owProfileDto = new JavaScriptSerializer().Deserialize<OverWatchProfileDto>(json);
+                    owCompleteDto = new JavaScriptSerializer().Deserialize<OverWatchCompleteDto>(jsonComplete);
                 }
-                else
-                    userGame.GameAccount.UpdateAccount(viewModel.UserName, userName, viewModel.Region);
-
-                context.SaveChanges();
-                return Ok("All good");
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
             }
 
-        }
-        //get overwatch stats 
+            // OverWatchID
+            const int overwatchId = 4;
 
+
+            //geting User
+            var appUserId = User.Identity.GetUserId();
+            var user = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .SingleOrDefault();
+
+            //if (userContent == null)
+
+            var userGame = context.UserGameRelations
+                .Include(ga=>ga.GameAccount)
+                .Include(ga => ga.GameAccount.GameAccountStats)
+                .SingleOrDefault(ga => ga.UserId == user.ID && ga.GameID == overwatchId);
+
+            string kda = Convert.ToString(ExtraMethods.CalculateKda(
+                owCompleteDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
+                owCompleteDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
+
+            if (userGame == null)
+            {
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountOverWatch(overwatchId, user.ID, owProfileDto.name, viewModel.Region, viewModel.BattleTag, owCompleteDto.gamesWon, 0, kda);
+                try
+                {
+                    context.UserGameRelations.Add(newUserGameRelation);
+                    context.SaveChanges();
+                }catch(Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+            else
+            {
+                userGame.GameAccount.UpdateAccount(owProfileDto.name, viewModel.BattleTag, viewModel.Region);
+                userGame.GameAccount.GameAccountStats.Update(kda, owCompleteDto.gamesWon, 0, Convert.ToString(owProfileDto.rating));
+                context.SaveChanges();
+            }
+
+            return Ok(owCompleteDto);
+   
+        }
+
+        [HttpGet]
+        public IHttpActionResult CheckAccount(string battleTag, string region)
+        {
+            if (String.IsNullOrEmpty(battleTag))
+                return BadRequest("Name is not set");
+
+            battleTag = battleTag.Replace("#", "-");
+
+            string url = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/profile");
+            string urlComplete = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/complete");
+
+            OverWatchProfileDto owProfileDto;
+            OverWatchCompleteDto owCompleteDto;
+
+            string jsonComplete;
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+                jsonComplete = client.DownloadString(urlComplete);
+
+                try
+                {
+                    owProfileDto = new JavaScriptSerializer().Deserialize<OverWatchProfileDto>(json);
+                    owCompleteDto = new JavaScriptSerializer().Deserialize<OverWatchCompleteDto>(jsonComplete);
+                }
+                catch (Exception e)
+                {
+                    return BadRequest(e.Message);
+                }
+            }
+
+
+            return Ok(owCompleteDto);
+        }
     }
 }
+

@@ -67,9 +67,16 @@ namespace GamersGridApp.Models
 
             return userGame;
         }
-        
+        public static UserGame CreateNewRelationWithAccountOverWatch(int gameId, int userId, string nickname,string region, string uniqueId, int wins, int loses, string kda)
+        {
+            var userGame = new UserGame(userId, gameId);
+            userGame.GameAccount = new GameAccount(nickname, uniqueId, region);
+            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, null, wins, loses, kda);
 
-        
+            return userGame;
+        }
+
+
 
 
         //public UserGame(int gameID, int userid, GameAccount gameAccount)
@@ -79,7 +86,7 @@ namespace GamersGridApp.Models
         //    GameAccount = gameAccount;
         //}
 
-        
+
 
         //public void AddNewAccount()
         //{

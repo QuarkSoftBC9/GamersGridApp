@@ -10,7 +10,7 @@ namespace GamersGridApp.ViewModels
     {
         private string region;
         public List<string> AccountRegionList { get; private set; }
-        public string UserName { get; set; }
+        public string BattleTag { get; set; }
         public string Region
         {
             get
@@ -24,6 +24,8 @@ namespace GamersGridApp.ViewModels
                 this.region = value;
             }
         }
+
+
 
         public AddOverwatchAccViewModel()
         {
@@ -39,16 +41,16 @@ namespace GamersGridApp.ViewModels
             {
                 "us", "eu", "asia"
             };
-            UserName = name ?? throw new ArgumentNullException("name is null");
+            BattleTag = name ?? throw new ArgumentNullException("name is null");
             Region = region;
             
         }
 
         public string GetBattleTag()
         {
-            if (String.IsNullOrEmpty(UserName))
+            if (String.IsNullOrEmpty(BattleTag))
                 throw new ArgumentException("Name is not defined");
-            return UserName.Trim().Replace("#", "-");
+            return BattleTag.Replace("#", "-");
         }
     }
 }
