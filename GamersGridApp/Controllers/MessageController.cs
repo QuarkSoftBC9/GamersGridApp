@@ -23,8 +23,8 @@ namespace GamersGridApp.Controllers
             var CurrentUserID = User.Identity.GetUserId();
             var currentUser = db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).SingleOrDefault();
             var messageChats = db.MessageChats
-                .Where(mc => mc.MessageChatUsers.Contains(db.MessageChatUsers.Where(mcu => mcu.UserId == currentUser.ID).FirstOrDefault()))
-                .Include(c => c.ChatHistory)
+                .Where(mc => mc.MessageChatUsers.Select(mcu=>mcu.UserId).Any(u=>u.Equals(currentUser.ID)))
+                .Include(c => c.ChatHistory.Select(ch=>ch.User))
                 .ToList();
 
             if (messageChats.Count != 0)
@@ -42,19 +42,73 @@ namespace GamersGridApp.Controllers
 
         }
 
-        public ActionResult GetPartial(string chatId)
+        [HttpGet]
+        public ActionResult FindMessageChats(int ID)
         {
-            int id = int.Parse(chatId);
+            var userId = User.Identity.GetUserId();
+            var user = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).SingleOrDefault();
+            var RequestedUser = db.Users.Select(u => u.UserAccount).FirstOrDefault(u => u.ID == ID);
+            
+            var messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == ID))
+            .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
+            .Where(m => m.MessageChatUsers.Count == 2)
+            .Include(c=>c.ChatHistory.Select(ch=>ch.User))
+            .Include(c=>c.MessageChatUsers).FirstOrDefault();
+
+            if(messageChat==null)
+            {
+                var newMessageChat = new MessageChat()
+                {
+                    Name = RequestedUser.NickName,
+                    MessageChatUsers = new List<MessageChatUser>(),
+                    ChatHistory = new List<Message>()
+                };
+
+                var messageChatUser1 = new MessageChatUser()
+                {
+                    User = user,
+                    Chat = newMessageChat
+                };
+
+                var messageChatUser2 = new MessageChatUser()
+                {
+                    User = RequestedUser,
+                    Chat = newMessageChat
+                };
+
+                db.MessageChatUsers.Add(messageChatUser1);
+                db.MessageChatUsers.Add(messageChatUser2);
+                newMessageChat.MessageChatUsers.Add(messageChatUser1);
+                newMessageChat.MessageChatUsers.Add(messageChatUser1);
+
+                db.MessageChats.Add(newMessageChat);
+                db.SaveChanges();
+
+                 messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == ID))
+                            .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
+                            .Where(m => m.MessageChatUsers.Count == 2)
+                            .Include(c => c.ChatHistory.Select(ch => ch.User))
+                            .Include(c => c.MessageChatUsers).FirstOrDefault();
+
+            }
+            var viewModel = new ChatBoxViewModel { MessageChat = messageChat, CurrentUserNickName = user.NickName, CurrentMessageChatID = messageChat.ID };
+
+            return PartialView("_ChatBox", viewModel);
+        }
+
+        public ActionResult GetPartial(int chatId)
+        {
+            
             var aspNetUserId = User.Identity.GetUserId();
             var user = db.Users.Where(u => u.Id == aspNetUserId).Select(u => u.UserAccount).SingleOrDefault();
-            var messageChats = db.MessageChatUsers
-                         .Where(mcu => mcu.UserId == user.ID)
+            var messageChat = db.MessageChatUsers
+                         .Where(mcu => mcu.MessageChatId == chatId)
                          .Include(mcu => mcu.Chat)
                          .Select(mcu => mcu.Chat)
-                         .Include(c => c.ChatHistory)
-                         .ToList();
-
-            var viewModel = new MessageBoardViewModel(messageChats, id, user.NickName);
+                         .Include(c => c.ChatHistory.Select(ch=>ch.User))
+                         .FirstOrDefault();
+            
+            var viewModel = new ChatBoxViewModel {  MessageChat= messageChat, CurrentUserNickName=user.NickName, CurrentMessageChatID=messageChat.ID };
 
 
             return PartialView("_ChatBox", viewModel);
@@ -89,11 +143,6 @@ namespace GamersGridApp.Controllers
                     }
                 }
             }
-
-
-
-
-
             if (requestedChatId == 0)
             {
                 var newMessageChat = new MessageChat()

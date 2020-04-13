@@ -17,7 +17,7 @@
                     </div>
                     <div class="srch_bar">
                         <div class="stylish-input-group">
-                            <input type="text" class="search-bar" placeholder="Search">
+                            <input type="text" class="search-bar" placeholder="Search" id="SearchUserToMessage">
                             <span class="input-group-addon">
                                 <button type="button"> <i class="fa fa-search" aria-hidden="true"></i> </button>
                             </span>
@@ -25,28 +25,28 @@
                     </div>
                 </div>
                 <div class="inbox_chat">
-                   @if (Model.MessageChats != null)
-                   {
-                    foreach (var messagechat in Model.MessageChats)
+                    @if (Model.MessageChats != null)
                     {
-                        <div class="chat_list chatLeft" id="@messagechat.ID" @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
-                            <div class="chat_people">
-                                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                <div class="chat_ib">
+                        foreach (var messagechat in Model.MessageChats)
+                        {
+                            <div class="chat_list chatLeft" id="@messagechat.ID" @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
+                                <div class="chat_people">
+                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                                    <div class="chat_ib">
 
-                                    <h5>@messagechat.Name</h5>
-                                    @*@if (messagechat.ChatHistory.Count != 0)
-                                        {
-                                        <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
-                                        <p>
-                                            @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
-                                        </p>
-                                        }*@
+                                        <h5>@messagechat.Name</h5>
+                                        @*@if (messagechat.ChatHistory.Count != 0)
+                                            {
+                                            <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
+                                            <p>
+                                                @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
+                                            </p>
+                                            }*@
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        }
                     }
-                   }
                 </div>
             </div>
             <div class="mesgs" id="chatbox">
@@ -83,7 +83,7 @@
                             }
                         }
                     }
-                    </div>
+                </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
                         @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
@@ -103,10 +103,50 @@
 
     <script>
 
+        var MessageChats = [];
+
         $(document).ready(function () { //This section will run whenever we call Chat.cshtml page
 
             var objHub = $.connection.chatHub;
-                var chatid = $("#btnSendMessage").attr("data-chat-id");
+            var chatid = $("#btnSendMessage").attr("data-chat-id");
+
+
+              var searchUsers = new Bloodhound({ //*
+        datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+            url: '/api/follows?query=%QUERY',
+            wildcard: '%QUERY'
+        }
+        });
+
+
+        $("#SearchUserToMessage").typeahead({
+            hint: true,
+            minLength: 2,
+            highlight: true
+        },
+        {
+            name: 'nickName',
+            display: 'nickName',
+            source: searchUsers
+        })
+            .on("typeahead:select", function (e, user) {
+
+                console.log("ASDASDASDAS")
+                $.ajax({
+                    url: '/Message/FindMessageChats',
+                    data: { ID: user.id },
+                    type: 'GET',                    
+                    success: function (data) {
+                        console.log("ASDASDa")
+                        $('#chatbox').replaceWith(data);
+                    }
+                });        
+
+
+
+        });
 
 
             objHub.client.getMessages = function (userName, message, time) {
@@ -152,6 +192,7 @@
             $(".chatLeft").on("click",function (e) {
 
                 var messageChatId = $(e.target).attr("id");
+
                 $.ajax({
                     url: '/Message/GetPartial',
                     data: { chatId : messageChatId },

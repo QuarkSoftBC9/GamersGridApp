@@ -8,6 +8,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Microsoft.AspNet.Identity;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -18,6 +19,16 @@ namespace GamersGridApp.Controllers.api
         public FollowsController()
         {
             dbContext = new ApplicationDbContext();
+        }
+
+        [HttpGet]
+        public IHttpActionResult FindMutualFollowers()
+        {
+            var userId = User.Identity.GetUserId();
+            var dev = dbContext.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+
+            var users = dbContext.GamersGridUsers.Where(g => g.Followers.Any(fo => fo.FollowerId == dev.ID) && g.Followees.Any(fo => fo.UserId == dev.ID)).ToList();
+            return Ok(users);
         }
 
         [HttpPost]

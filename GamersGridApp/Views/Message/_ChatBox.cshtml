@@ -1,8 +1,8 @@
-﻿@model GamersGridApp.ViewModels.MessageBoardViewModel
+﻿@model GamersGridApp.ViewModels.ChatBoxViewModel
 
 <div class="mesgs" id="chatbox">
     <div class="msg_history" id="messageboard">
-        @foreach (var message in Model.MessageChats.FirstOrDefault().ChatHistory.OrderBy(c => c.Time))
+        @foreach (var message in Model.MessageChat.ChatHistory.OrderBy(c => c.Time))
         {
             if (Model.CurrentUserNickName != message.User.NickName)
             {
@@ -43,7 +43,7 @@
         <div class="input_msg_write">
             @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
             @*<input type="text" id="type" class="write_msg" autocomplete="off" />*@
-            <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+            <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentMessageChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
         </div>
     </div>
 </div>
