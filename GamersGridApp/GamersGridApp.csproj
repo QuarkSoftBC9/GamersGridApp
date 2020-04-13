@@ -472,6 +472,7 @@
     <Compile Include="ViewModels\AddDotaAccountViewModel.cs" />
     <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
     <Compile Include="ViewModels\AddOverwatchAccViewModel.cs" />
+    <Compile Include="ViewModels\ChatBoxViewModel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\PostMessageViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
