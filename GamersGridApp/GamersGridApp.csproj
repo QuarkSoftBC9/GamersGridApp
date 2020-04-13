@@ -328,10 +328,6 @@
     <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.Designer.cs">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181531299_UserDefaultAvatar.cs" />
-    <Compile Include="Migrations\202003181531299_UserDefaultAvatar.Designer.cs">
-      <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003181546212_SearchIconsForGames.cs" />
     <Compile Include="Migrations\202003181546212_SearchIconsForGames.Designer.cs">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
@@ -1087,9 +1083,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181406490_PhotosAddedToGamesModel.resx">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181531299_UserDefaultAvatar.resx">
-      <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181546212_SearchIconsForGames.resx">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
