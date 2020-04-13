@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GamersGridApp.Models.User>
+﻿@model GamersGridApp.ViewModels.PlayersListViewModel
 @{
     ViewBag.Title = "Players";
 }
@@ -8,7 +8,9 @@
         <h1> TOP PLAYERS </h1>
     </div>
     <div class="row">
-        @foreach (var user in Model)
+
+        
+        @foreach (var user in Model.Users)
         {
             <div class="col-sm-4 col-md-3">
                 <div class="thumb">
@@ -16,7 +18,7 @@
 
                         <img src="@(String.IsNullOrEmpty(user.Avatar) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@user.ID}/{@user.Avatar}")" alt="gamer" class="img-responsive">
                         <div class="hover-opaque">
-                            <div class="centered">DOTA<br> 234 <br>points</div>
+                            <div class="centered">@Model.UserFavoriteGame[user.ID]<br> @*234 <br>points*@</div>
                         </div>
                     </a>
                 </div>

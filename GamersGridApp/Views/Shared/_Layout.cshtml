@@ -19,10 +19,19 @@
 <body>
     @Html.Partial("_NavBar")
 
-    @*the search bar*@
-    <div class="container">
-        @Html.Partial("_LoginSearchPartial")
-    </div>
+    @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Edit"))
+
+    {
+
+
+    }
+
+    else
+    {
+        <div class="container">
+            @Html.Partial("_LoginSearchPartial")
+        </div>
+    }
 
     @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register") || ViewData["Title"].Equals("Login"))
 

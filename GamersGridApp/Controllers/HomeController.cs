@@ -44,23 +44,68 @@ namespace GamersGridApp.Controllers
         public ActionResult AvraamGamers()
         {
             List<User> otherUsers;
+            //var viewModel = new PlayersListViewModel();
+
+
+        //    dict = dt.DataValues.Where(d => sensorIDs.Contains(d.SensorID))
+        //    .GroupBy(a => a.DataID)
+        //     .Join(dt.Datas, a => a.Key, a => a.DataId,
+        //            (a, b) => new { Key = b, Value = a.ToList() })
+        //.ToDictionary(a => a.Key, a => a.Value);
 
             //Getting the user
-            if (User.Identity.IsAuthenticated)
-            {
-                var userId = User.Identity.GetUserId();
-                var user = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount).SingleOrDefault();
+            //if (User.Identity.IsAuthenticated)
+            //{
+            //    var userId = User.Identity.GetUserId();
+            //    var user = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount).SingleOrDefault();
 
-                //Show User except the one who is logged in
-                otherUsers = context.GamersGridUsers.Where(u => u.ID != user.ID).ToList();
+            //    //Show User except the one who is logged in
+            //    otherUsers = context.GamersGridUsers.Where(u => u.ID != user.ID).ToList();
+            //    Dictionary<int, string> DictionaryForViewModel = new Dictionary<int, string>();
+            //    foreach (var userGamer in otherUsers)
+            //    {
+            //        var favoriteGameId = context.UserGameRelations
+            //                    .Where(u => u.UserId == userGamer.ID && u.IsFavoriteGame == true)
+            //                    .Select(g => g.GameID)
+            //                    .SingleOrDefault();
 
-            }
-            else
-            {
+            //        var favoriteGameTitle = context.Games
+            //                    .Where(g => g.ID == favoriteGameId)
+            //                    .Select(g => g.Title)
+            //                    .SingleOrDefault();
+
+            //        DictionaryForViewModel.Add(userGamer.ID, favoriteGameTitle);
+            //    }
+                
+            //}
+            //else
+            
                 otherUsers = context.GamersGridUsers.ToList();
+                Dictionary<int, string> DictionaryForViewModel = new Dictionary<int, string>();
 
-            }
-            return View(otherUsers);
+                foreach (var userGamer in otherUsers)
+                {
+                    var favoriteGameId = context.UserGameRelations
+                                .Where(u => u.UserId == userGamer.ID && u.IsFavoriteGame == true)
+                                .Select(g => g.GameID)
+                                .SingleOrDefault();
+
+                    var favoriteGameTitle = context.Games
+                                .Where(g => g.ID == favoriteGameId)
+                                .Select(g => g.Title)
+                                .SingleOrDefault();
+
+                    DictionaryForViewModel.Add(userGamer.ID, favoriteGameTitle);
+                }
+                var viewModel = new PlayersListViewModel()
+                {
+                    Users = otherUsers,
+                    UserFavoriteGame = DictionaryForViewModel
+
+                };
+               
+            
+            return View(viewModel);
         }
 
         public ActionResult Contact()

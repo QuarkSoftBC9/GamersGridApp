@@ -10,18 +10,19 @@
         @Html.AntiForgeryToken()
         <div class="row">
             <div class="col-sm-10"><h1>@Model.NickName</h1></div>
-            <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
+            @*<div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>*@
         </div>
         @:<div class="row">
             @:<div class="col-sm-3">
  <!--left col-->
 
 
-                <div class="text-center">
-                    <img src="@(String.IsNullOrEmpty(Model.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.ID}/{Model.Avatar}")" class="avatar img-circle img-thumbnail" id="imagePreview" alt="avatar">
-                    <h6>Upload a different photo...</h6>
-                    <input type='file' name="file" id="imageUpload" class="text-center center-block file-upload">
-                </div>
+                  <div class="text-center">
+                      <img src="@((Model.Avatar == "nofile.png") ? "/Content/Images/icon1--02.jpg" : $"/Content/Images/UserPhotos/{Model.ID}/{Model.Avatar}")" class="avatar avatar-edit img-circle img-thumbnail" id="imagePreview" alt="avatar">
+                      @*<img src="@(String.IsNullOrEmpty(Model.Avatar) ? "/Content/Images/icon1--02.jpg" : $"/Content/Images/UserPhotos/{Model.ID}/{Model.Avatar}")" class="avatar img-circle img-thumbnail" id="imagePreview" alt="avatar">*@
+                      <h6>Upload a different photo</h6>
+                      <input type='file' name="file" id="imageUpload" class="text-center center-block file-upload">
+                  </div>
                 <br>
 
 

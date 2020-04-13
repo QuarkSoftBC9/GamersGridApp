@@ -420,6 +420,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
+    <Compile Include="ViewModels\PlayersListViewModel.cs" />
     <Compile Include="ViewModels\ProfileGameViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />

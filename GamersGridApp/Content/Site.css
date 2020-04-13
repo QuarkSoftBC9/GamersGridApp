@@ -152,6 +152,11 @@ div.col-lg-8:nth-child(3) {
 /*///////////////////////////////////////////////////////////////////////*/
 /*////////////////////////////New FRONT END//////////////////////////////*/
 
+
+.row {
+     margin-right: 0px; 
+     margin-left: 0px; 
+}
 body {
 
     padding-top: 105px;
@@ -306,7 +311,7 @@ textarea {
 
 .container-footer {
     margin-top: 0px;
-    margin-bottom: 15px;
+    margin-bottom: 40px;
 }
 
 
@@ -978,4 +983,11 @@ content: "OR";
 /*REGISTER*/
 .h3 .small {
     color: #333;
+}
+
+/*EDIT*/
+
+.avatar-edit {
+    height: 220px;
+    width: 220px;
 }
