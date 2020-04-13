@@ -33,12 +33,11 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
         {
-            LOLDto rootAccount;
+            if ((String.IsNullOrEmpty(viewModel.UserName)) || (String.IsNullOrEmpty(viewModel.Region)))
+                return BadRequest("Account data is not set");
 
-            if (String.IsNullOrEmpty(viewModel.UserName))
-                return BadRequest("Name is not set");
-            // LOLID
-            const int lolID = 1;
+            LOLDto rootAccount; //dataDto
+            const int lolID = 1; // lolId
 
             //geting UserContent
             var appUserId = User.Identity.GetUserId();
@@ -49,13 +48,11 @@ namespace GamersGridApp.Controllers.api
                 .SingleOrDefault();
             if (userContent == null)
                 return BadRequest("User could not be found");
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == lolID);
 
-            var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == 1);
             var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
                 viewModel.Region, viewModel.UserName, api);
-
             url = HttpUtility.UrlPathEncode(url);
-
             using (WebClient client = new WebClient())
             {
                 string json = client.DownloadString(url);
@@ -67,7 +64,6 @@ namespace GamersGridApp.Controllers.api
                 userContent.UserGames.Add(userGame);
             }
             userGame.NewGameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
-
 
             context.SaveChanges();
             return Ok("All good");
@@ -87,8 +83,6 @@ namespace GamersGridApp.Controllers.api
             var gameAccount = userContent.UserGames.SingleOrDefault(g => g.GameID == 1).GameAccount;
             if (String.IsNullOrEmpty(gameAccount.AccountIdentifier))
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-            //api is updated everyday
-            //string api = "RGAPI-98d1f24c-1e8e-47d5-91e6-859ec304cf36";
 
             var url = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
                 gameAccount.AccountRegions, gameAccount.AccountIdentifier, api);
