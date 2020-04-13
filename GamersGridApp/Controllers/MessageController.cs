@@ -115,12 +115,12 @@ namespace GamersGridApp.Controllers
         }
 
 
-        public ActionResult ChatWith(int id, int userId)
+        public ActionResult ChatWith(int currentUserId, int requestedUserID)
         {
 
 
-            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == id);
-            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == userId);
+            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == currentUserId);
+            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == requestedUserID);
 
 
             var messageChatsUsersBoth = db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID || mcu.UserId == requestedGGuser.ID).Include(mcu => mcu.Chat).ToList();

@@ -1,0 +1,66 @@
+﻿@model GamersGridApp.ViewModels.PostMessageViewModel
+
+
+    <div class="container py-2" style="margin-top: 83px;">
+
+        @using (Html.BeginForm("PostMessageSave", "User", FormMethod.Post, new { @class = "signupForm" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="messages"></div>
+
+            <div class="controls">
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label for="form_name">NickName </label>
+                            @Html.DropDownListFor(model => model.OwnerId, new SelectList(Model.OtherUsers, "UserId", "UserName"), "Choose... ", new { @class = "form-control" })
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <label id="messageLabel" for="message">Message </label>
+                            <textarea class="form-control input-sm " type="textarea" id="PostingMessage" name="PostingMessage" placeholder="Message" maxlength="140" rows="7"></textarea>
+                            <span class="help-block"><p id="characterLeft" class="help-block ">You have reached the limit</p></span>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <input type="submit" class="btn btn-success btn-send" value="Send message">
+                    </div>
+                </div>
+
+            </div>
+
+        }
+    </div>
+        @section Scripts {
+
+            <script>
+                $(document).ready(function () {
+                    $('#characterLeft').text('140 characters left');
+                    $('#PostingMessage').keyup(function () {
+                        var max = 140;
+                        var len = $(this).val().length;
+                        if (len >= max) {
+                            $('#characterLeft').text('You have reached the limit');
+                            $('#characterLeft').addClass('red');
+                            $('#btnSubmit').addClass('disabled');
+                        }
+                        else {
+                            var ch = max - len;
+                            $('#characterLeft').text(ch + ' characters left');
+                            $('#btnSubmit').removeClass('disabled');
+                            $('#characterLeft').removeClass('red');
+                        }
+                    });
+                });
+
+
+            </script>
+        }

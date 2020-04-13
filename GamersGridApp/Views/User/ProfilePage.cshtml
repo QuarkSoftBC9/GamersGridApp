@@ -42,9 +42,9 @@
 
             @if (!Model.IsCurrent)
             {
-                <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
+                <button class="btn btn-primary aButton" id="followbtn" role="button">@followText</button>
                 @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
-                <button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>
+                <button class="btn btn-primary aButton" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})" id="messageBtn" role="button">Message</button>
 
             }
 
@@ -166,53 +166,57 @@
 
 @section scripts{
 
-    @Scripts.Render("~/Scripts/toastr.js")
+    
 
     <script>
 
+
+
         $(document).ready(function () {
 
+            FollowsController.enableFollows("#followbtn");
+            FollowsController.enableMessaging("#messageBtn");
 
-            $(document).on("click", "#Follow", function (e) {
-                var followee = $("#profileId").val();
-                var follower = $("#loggedUserId").val();
-                var button = $(e.target);
+            //$(document).on("click", "#Follow", function (e) {
+            //    var followee = $("#profileId").val();
+            //    var follower = $("#loggedUserId").val();
+            //    var button = $(e.target);
 
-                $.post("/api/follows/", { followeeId: followee, followerId: follower })
-                    .done(function () {
-                        button.text("UnFollow");
-                        button.attr("id", "Unfollow");
-                        toastr.success("You are now following!");
-                    })
-                    .fail(function () {
-                        toastr.error("Something went wrong");
-                    });
+            //    $.post("/api/follows/", { followeeId: followee, followerId: follower })
+            //        .done(function () {
+            //            button.text("UnFollow");
+            //            button.attr("id", "Unfollow");
+            //            toastr.success("You are now following!");
+            //        })
+            //        .fail(function () {
+            //            toastr.error("Something went wrong");
+            //        });
 
-            });
+            //});
 
-            $(document).on("click", "#Unfollow", function (e) {
-                var followee = $("#profileId").val();
-                var follower = $("#loggedUserId").val();
-                var button = $(e.target);
+            //$(document).on("click", "#Unfollow", function (e) {
+            //    var followee = $("#profileId").val();
+            //    var follower = $("#loggedUserId").val();
+            //    var button = $(e.target);
 
-                var dataModel = { followeeId: followee, followerId: follower };
-                $.ajax({
-                    url: "/api/follows/",
-                    method: "DELETE",
-                    data: dataModel
-                })
-                    .done(function () {
-                        button.text("Follow");
-                        button.attr("id", "Follow");
+            //    var dataModel = { followeeId: followee, followerId: follower };
+            //    $.ajax({
+            //        url: "/api/follows/",
+            //        method: "DELETE",
+            //        data: dataModel
+            //    })
+            //        .done(function () {
+            //            button.text("Follow");
+            //            button.attr("id", "Follow");
 
-                        toastr.success("You are now no longer following");
+            //            toastr.success("You are now no longer following");
 
-                    }).fail(function () {
-                        toastr.error("Something went wrong");
-                    });
-            });
+            //        }).fail(function () {
+            //            toastr.error("Something went wrong");
+            //        });
+            //});
 
-            $(document).on("click", "#messageBtn", function () {
+            @*$(document).on("click", "#messageBtn", function () {
                 var followee = $("#profileId").val();
                 var follower = $("#loggedUserId").val();
 
@@ -234,7 +238,7 @@
 
 
 
-            });
+            });*@
 
 
         });

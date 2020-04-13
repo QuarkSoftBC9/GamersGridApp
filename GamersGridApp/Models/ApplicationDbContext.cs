@@ -5,7 +5,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GamersGridApp.Models
 {
@@ -19,7 +19,6 @@ namespace GamersGridApp.Models
         public DbSet<Follow> Follows { get; set; }
         public DbSet<GameAccount> GameAccounts { get; set; }
         public DbSet<GameAccountStats> GameAccountStats { get; set; }
-        //public DbSet<LOLAccount> LolAccounts { get; set; }
 
         public DbSet<MessageChatUser> MessageChatUsers { get; set; }
 
@@ -27,6 +26,7 @@ namespace GamersGridApp.Models
 
         public DbSet<Message> Messages { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
+        public DbSet<UserPosting> UserPostings { get; set; }
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
@@ -56,9 +56,11 @@ namespace GamersGridApp.Models
             //modelBuilder.Entity<Follow>()
             //    .HasIndex(k => new { k.UserId, k.FollowerId }).IsUnique();
 
-            modelBuilder.Entity<UserGame>()
-                .HasIndex(ug => ug.GameAccountId).IsUnique();
+            //modelBuilder.Entity<UserGame>()
+            //    .HasIndex(ug => ug.GameAccountId).IsUnique();
 
+            modelBuilder.Entity<GameAccount>().Property(m => m.Id)
+             .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             modelBuilder.Entity<UserGame>()
                 .HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
@@ -70,8 +72,25 @@ namespace GamersGridApp.Models
                 .HasMany(m => m.MessageChatUsers)
                 .WithRequired(m => m.Chat);
 
- 
-                
+            modelBuilder.Entity<UserPosting>()
+                .HasRequired(u => u.Poster)
+                .WithMany()
+                .HasForeignKey(u => u.PosterId)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<UserPosting>()
+              .HasRequired(u => u.Owner)
+              .WithMany()
+              .HasForeignKey(u => u.OwnerId)
+              .WillCascadeOnDelete(false);
+
+
+            //modelBuilder.Entity<UserPosting>()
+            // .HasMany(u => u.user)
+            // .WithRequired(f => f.User)
+            // .WillCascadeOnDelete(false);
+
+
 
 
 

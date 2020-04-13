@@ -8,6 +8,16 @@ namespace GamersGridApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app/services/followsService.js",
+                        "~/Scripts/app/services/messagesService.js",
+                        "~/Scripts/app/controllers/followsController.js"
+                ));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery.signalR-2.4.1.js",
                          "~/Scripts/jquery.signalR-2.4.1.min.js",
@@ -45,7 +55,6 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.jquery.js",
                         "~/Scripts/Custom/TypeAheadSearchBar.js",
                         "~/Scripts/RegisterJs/Custom.js"
-
                         ));
             bundles.Add(new ScriptBundle("~/bundles/TypeAheadSearchBar").Include(
                         "~/Scripts/Custom/TypeAheadSearchBar.js"));
@@ -92,6 +101,9 @@ namespace GamersGridApp
             //Login Form 
             bundles.Add(new StyleBundle("~/Content/LoginForm").Include(
                 "~/Content/loginStyle.css"));
+            //Edit
+            bundles.Add(new StyleBundle("~/Content/Edit").Include(
+             "~/Content/Site.css"));
 
 
         }

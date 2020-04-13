@@ -3,7 +3,6 @@ using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Enums;
 using GamersGridApp.Helpers;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -168,7 +167,7 @@ namespace GamersGridApp.Controllers
 
             if (!(file is null))
             {
-                userContent.Update(ExtraMethods.UploadPhoto(userContent.NickName, file));
+                userContent.Update(ExtraMethods.UploadPhoto(userContent.ID, file));
             }
 
             context.SaveChanges();
@@ -176,64 +175,91 @@ namespace GamersGridApp.Controllers
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
         //Get lolAccount
-        //public ActionResult LOLAccount()
-        //{
-        //    var appUserId = User.Identity.GetUserId();
-        //    var lolAccount = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .Select(u => u.ga)
-        //        .SingleOrDefault();
-
-        //    if (lolAccount != null)
-        //        return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
-
-        //    return View(new AddLOLAccountViewmodel());
-        //}
-
-        //Post lolAccount
-        //[Authorize]
-        //[HttpPost]
-        //public ActionResult LOLAccount(AddLOLAccountViewmodel viewModel)
-        //{
-        //    //geting UserContent
-        //    var appUserId = User.Identity.GetUserId();
-        //    var userContent = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .SingleOrDefault();
-        //    //api is updated everyday
-        //    string api = "RGAPI-dba8c12d-c214-4094-a0ac-aca9537f02e6";
-
-        //    var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-        //        viewModel.Region, viewModel.UserName, api);
-
-        //    url = HttpUtility.UrlPathEncode(url);
-
-        //    using (WebClient client = new WebClient())
-        //    {
-        //        // 1) BAD reuqest, handle here all 400 request from LOLServer
-        //        //try { }
-        //        //catch (WebException ex)
-        //        //{ return HttpStatusCode.NotFound; }
-
-        //        string json = client.DownloadString(url);
-
-        //            LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+        public ActionResult LOLAccount()
+        {
+            int lolID = context.Games
+                .Where(g => g.Title == "League Of Legends")
+                .Select(g => g.ID)
+                .SingleOrDefault();
+            //check if the user is correct AspNetUser == User
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.Id == lolID);
+            // instead of userGame != the check is done if a gameAcc exists or not
+            if (userGame != null && userGame.GameAccount != null)
+                return View(new AddLOLAccountViewmodel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
 
 
-        //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
+            return View(new AddLOLAccountViewmodel());
+        }
+        ////Get OverWatch Account
+        public ActionResult OverWatchAccount()
+        {
 
-        //        lolAcount.AddToUser(userContent, userContent.ID, viewModel.Region);
+            int overwatchID = context.Games
+                .Where(g => g.Title == "Overwatch")
+                .Select(g => g.ID)
+                .SingleOrDefault();
 
-        //        //Leave for now to check if the above method works normally
-        //        //lolAcount.UserId = userContent.ID;
-        //        //userContent.AccountLOL = lolAcount;
-        //        //userContent.AccountLOL.Region = viewModel.Region;
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = context.UserGameRelations
+                .SingleOrDefault(ug => ug.UserId == userContent.ID && ug.GameID == overwatchID);
+            if (userGame != null)
+                return View(new AddOverwatchAccViewModel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+            return View(new AddOverwatchAccViewModel());
+        }
 
-        //        context.SaveChanges();
-        //    }
-        //    return RedirectToAction("ProfilePage", new { userid = userContent.ID });
-        //}
+        // Dota 2 Account
+        public ActionResult DotaAccount()
+        {
+            string userId = User.Identity.GetUserId();
+
+            int ggUserAccountId = context.Users.Where(u => u.Id == userId)
+                .Select(u => u.UserAccount.ID)
+                .SingleOrDefault();
+
+            var userGame = context.UserGameRelations
+                .Include(ug => ug.GameAccount)
+                .SingleOrDefault(ug => ug.UserId == ggUserAccountId && ug.GameID == 3);
+
+            if (userGame == null)
+                return View(new AddDotaAccountViewModel());
+
+            return View(new AddDotaAccountViewModel(userGame.GameAccount.AccountIdentifier));
+        }
+
+        public ActionResult PostMessageEdit()
+        {
+            var appUserId = User.Identity.GetUserId();
+            var otherUsers = context.Users
+                .Where(u => u.Id != appUserId)
+                .ToList();
+
+            return View("PostMessage", new PostMessageViewModel(otherUsers));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostMessageSave(PostMessageViewModel viewModel)
+        {
+            var appUserId = User.Identity.GetUserId();
+            var posterid = context.Users.Where(u => u.Id == appUserId).Select(u => u.UserId).Single();
+
+            context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+            context.SaveChanges();
+
+
+            return RedirectToAction("ProfilePage");
+        }
     }
 }
