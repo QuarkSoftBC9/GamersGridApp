@@ -105,7 +105,22 @@ namespace GamersGridApp.Models
         {
             UserNotifications.Add(new UserNotification(this, notification));
         }
+        public UserGame NewUserGame(int gameID)
+        {
+            var userGame = UserGames.SingleOrDefault(g => g.GameID == gameID); // query should include stats
+            if (userGame == null)
+            {
+                userGame = new UserGame()
+                {
+                    GameID = gameID,
+                    UserId = this.ID
+                };
+                UserGames.Add(userGame);
+            }
+            return userGame;
 
+
+        }
 
     }
 }

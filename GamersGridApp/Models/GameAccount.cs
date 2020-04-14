@@ -30,6 +30,14 @@ namespace GamersGridApp.Models
             AccountIdentifier = identifier;
             AccountRegions = region;
         }
+        //update lol stats
+        public void UpdateStats(string tier, int wins, int loses)
+        {
+            if (GameAccountStats == null)
+                GameAccountStats = new GameAccountStats(this.Id, tier, wins, loses);
+            else
+                GameAccountStats.UpdateStats(tier, wins, loses);
+        }
         //constructor for Leage of Legends
         public GameAccount(string nickname, string identifier, string identifier2, string region)
         {

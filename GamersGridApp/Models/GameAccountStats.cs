@@ -34,9 +34,9 @@ namespace GamersGridApp.Models
             Wins = wins;
             Losses = losses;
         }
-        public GameAccountStats(GameAccount account, string rank, int wins, int losses)
+        public GameAccountStats(int id, string rank, int wins, int losses)
         {
-            GameAccount = account;
+            Id = id;
             Rank = rank;
             Wins = wins;
             Losses = losses;
@@ -60,7 +60,7 @@ namespace GamersGridApp.Models
             Wins = wins;
             Losses = losses;
         }
-        public void UpdateKDA(List<LOLMatchesDto> listOfMatches, string accountId)
+        public string UpdateKDA(List<LOLMatchesDto> listOfMatches, string accountId)
         {
             //some defensive programming should be added for values
             var kda = new List<double>();
@@ -73,7 +73,7 @@ namespace GamersGridApp.Models
                 kda.Add(GetKDA(listOfMatches[i], playerId));
             }
             var average = kda.Average();
-            KDA = average.ToString("0.00");
+            return  average.ToString("0.00");
         }
         public double GetKDA(LOLMatchesDto match , int playerID)
         {
@@ -90,8 +90,8 @@ namespace GamersGridApp.Models
                 .Select(p => p.stats.assists)
                 .SingleOrDefault();
             if (deaths == 0)
-                return 0;  
-            return ((double)kills + (double)(assists) / 3) / (double)deaths;
+                return (double)kills + (double)assists;
+            return ((double)kills + (double)assists) / (double)deaths;
         }
     }
 }

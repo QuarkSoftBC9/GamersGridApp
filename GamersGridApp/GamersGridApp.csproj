@@ -292,7 +292,6 @@
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLAccountsCheckController.cs" />
     <Compile Include="Controllers\api\LOLAccountsController.cs" />
-    <Compile Include="Controllers\api\LOLMatchesController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\NotificationsController.cs" />
     <Compile Include="Controllers\api\OverwatchAccountsController.cs" />
@@ -566,6 +565,7 @@
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
     <Compile Include="ViewModels\UserProfilePageViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
+    <Compile Include="WebServices\DataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />

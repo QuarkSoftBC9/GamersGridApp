@@ -12,7 +12,7 @@ namespace GamersGridApp.ViewModels
 
         public string Region { get; set; }
         public string UserName { get; set; }
-        //public bool HasAccount { get; set; } = false;
+        public bool HasAccount { get; set; } = false;
 
         public AddLOLAccountViewmodel()
         {
