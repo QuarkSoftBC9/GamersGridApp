@@ -20,15 +20,15 @@ namespace GamersGridApp.Controllers.api
         }
 
 
-        //[HttpGet]
-        //public IHttpActionResult FindMutualFollowers()
-        //{
-        //    var userId = User.Identity.GetUserId();
-        //    var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+        [HttpGet]
+        public IHttpActionResult FindMutualFollowers()
+        {
+            var userId = User.Identity.GetUserId();
+            var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
 
-        //    var users = db.GamersGridUsers.Where(g => g.Followees.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followers.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
-        //    return Ok(users);
-        //}
+            var users = db.GamersGridUsers.Where(g => g.Followees.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followers.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
+            return Ok(users);
+        }
 
         //[HttpGet]
         //public IHttpActionResult FindMessageChats(int ID)

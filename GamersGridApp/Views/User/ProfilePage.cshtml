@@ -150,7 +150,7 @@
                             </a>
                         </p>
                         <p>
-                            <a id="messageBtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+                            <a id="messageBtn" href="#"  class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
                                 Message me
                             </a>
                         </p>
@@ -219,97 +219,8 @@
     <script>
 
         $(document).ready(function () {
-
-
-            $(document).on("click", "#Follow", function (e) {
-                var followee = $("#profileId").val();
-                var follower = $("#loggedUserId").val();
-                var button = $(e.target);
-
-                $.post("/api/follows/", { followeeId: followee, followerId: follower })
-                    .done(function () {
-                        button.text("UnFollow");
-                        button.attr("id", "Unfollow");
-                        toastr.success("You are now following!");
-
-
-
-
-                        $.ajax({
-                            type: "GET",
-                            url: "/api/follows/" + followee,
-                            data: "{}",
-                            success: function (followerscount) {
-                                document.getElementById("followersCount").innerHTML = followerscount;
-                            }
-                        });
-
-                    })
-                    .fail(function () {
-                        toastr.error("Something went wrong");
-                    });
-
-
-            });
-
-            $(document).on("click", "#Unfollow", function (e) {
-                var followee = $("#profileId").val();
-                var follower = $("#loggedUserId").val();
-                var button = $(e.target);
-
-                var dataModel = { followeeId: followee, followerId: follower };
-                $.ajax({
-                    url: "/api/follows/",
-                    method: "DELETE",
-                    data: dataModel
-                })
-                    .done(function () {
-                        button.text("Follow");
-                        button.attr("id", "Follow");
-
-                        toastr.success("You are now no longer following");
-
-                        $.ajax({
-                            type: "GET",
-                            url: "/api/follows/" + followee,
-                            data: "{}",
-                            success: function (followerscount) {
-                                document.getElementById("followersCount").innerHTML = followerscount;
-                            }
-                        });
-
-                    }).fail(function () {
-                        toastr.error("Something went wrong");
-                    });
-            });
-
-            $(document).on("click", "#messageBtn", function () {
-                var followee = $("#profileId").val();
-                var follower = $("#loggedUserId").val();
-
-                $.ajax({
-                    url: "/api/messages",
-                    method: "GET",
-                    data: { followeeId: followee, followerId: follower },
-                    contentType: "application/json"
-                })
-                    .done(function () {
-                        window.location.href = "@Url.Action("ChatWith","Message", new { id = Model.LoggedUserId, userId = Model.User.ID})";
-
-                        //window.location.href = "/Message/ChatWith?loggeduser=" + follower + "?user=" + followee;
-                    })
-                    .fail(function () {
-                        toastr.error("No mutual follow relation found");
-                    });
-
-
-
-
-            });
-
-
+            FollowsController.enableFollows("#followbtn");
+            FollowsController.enableMessaging("#messageBtn");
         });
     </script>
-
-
 }
