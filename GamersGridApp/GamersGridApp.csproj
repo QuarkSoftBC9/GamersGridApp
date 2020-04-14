@@ -200,13 +200,15 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\api\DotaAccountsController.cs" />
     <Compile Include="Controllers\api\FollowsController.cs" />
     <Compile Include="Controllers\api\GamesController.cs" />
     <Compile Include="Controllers\api\LOLAccountsCheckController.cs" />
     <Compile Include="Controllers\api\LOLAccountsController.cs" />
-    <Compile Include="Controllers\api\LOLStatsController.cs" />
+    <Compile Include="Controllers\api\LOLMatchesController.cs" />
     <Compile Include="Controllers\api\MessagesController.cs" />
     <Compile Include="Controllers\api\NotificationsController.cs" />
+    <Compile Include="Controllers\api\OverwatchAccountsController.cs" />
     <Compile Include="Controllers\api\UsersController.cs" />
     <Compile Include="Controllers\GameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -214,8 +216,10 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
-    <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
-    <Compile Include="Dtos\FollowsDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\OverWatchDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Enums\NotificationType.cs" />
@@ -384,9 +388,31 @@
     <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121812311_addOverwatch.cs" />
-    <Compile Include="Migrations\202004121812311_addOverwatch.Designer.cs">
-      <DependentUpon>202004121812311_addOverwatch.cs</DependentUpon>
+
+    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.cs" />
+    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
+      <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004030751356_UserPosting.cs" />
+    <Compile Include="Migrations\202004030751356_UserPosting.Designer.cs">
+      <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.cs" />
+    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.Designer.cs">
+      <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004092102542_OvrWatchAdded.cs" />
+    <Compile Include="Migrations\202004092102542_OvrWatchAdded.Designer.cs">
+      <DependentUpon>202004092102542_OvrWatchAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.cs" />
+    <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.Designer.cs">
+      <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.cs" />
+    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
+      <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
@@ -397,25 +423,28 @@
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameAccount.cs" />
     <Compile Include="Models\GameAccountStats.cs" />
-    <Compile Include="Models\GameAccounts\DotaAccount.cs" />
-    <Compile Include="Models\GameAccounts\LOLAccount.cs" />
+    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\MessageChat.cs" />
     <Compile Include="Models\MessageChatUser.cs" />
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Photo.cs" />
-    <Compile Include="Enums\LolRegions.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
     <Compile Include="Models\UserNotification.cs" />
+    <Compile Include="Models\UserPosting.cs" />
     <Compile Include="Models\Video.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AddDotaAccountViewModel.cs" />
     <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
+    <Compile Include="ViewModels\AddOverwatchAccViewModel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
+    <Compile Include="ViewModels\PostMessageViewModel.cs" />
+
     <Compile Include="ViewModels\PlayersListViewModel.cs" />
     <Compile Include="ViewModels\ProfileGameViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
@@ -995,6 +1024,11 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
     <Content Include="Views\User\EditAvraam.cshtml" />
+
+    <Content Include="Views\User\PostMessage.cshtml" />
+    <Content Include="Views\User\OverWatchAccount.cshtml" />
+    <Content Include="Views\User\DotaAccount.cshtml" />
+
     <Content Include="Views\Shared\_LoginSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
@@ -1126,8 +1160,24 @@
     <EmbeddedResource Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121812311_addOverwatch.resx">
-      <DependentUpon>202004121812311_addOverwatch.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.resx">
+      <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004030751356_UserPosting.resx">
+      <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004092024575_GameAccountRegionChangedTOString.resx">
+      <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004092102542_OvrWatchAdded.resx">
+      <DependentUpon>202004092102542_OvrWatchAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004092327453_LosesAddedToGameStats.resx">
+      <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
+      <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
