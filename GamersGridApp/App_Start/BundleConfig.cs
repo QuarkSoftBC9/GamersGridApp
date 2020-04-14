@@ -20,9 +20,8 @@ namespace GamersGridApp
 
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+                        "~/Scripts/jquery-3.4.1.js",
                         "~/Scripts/jquery.signalR-2.4.1.js",
-                         "~/Scripts/jquery.signalR-2.4.1.min.js",
-                        "~/Scripts/jquery-{version}.js",
                          "~/Scripts/Datatables/jquery.dataTables.js"
                         ));
 
@@ -58,7 +57,7 @@ namespace GamersGridApp
 
 
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
-                        "~/Scripts/RegisterJs/jquery.min.js",
+                        //"~/Scripts/RegisterJs/jquery.min.js",
                         //"~/Scripts/bootstrap.js",
                         "~/Scripts/RegisterJs/popper.min.js",
                         "~/Scripts/RegisterJs/jquery.bootstrap.wizard.js",
