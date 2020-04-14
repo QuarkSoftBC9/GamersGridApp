@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "_LoginSearchPartial";
+}
+
+@{
+    ViewBag.SearchResult = "";
+}
+
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+
+    <div id="searchBarWrap" class="center">
+        @{
+            string url = "/Home/Search/";
+        }
+        <form action=@url>
+            <input class="typeahead form-control searchBar" id="Search" type="text" name="searchString" placeholder="Search by User,Game" />
+            <button type="submit" class="btn btn-default btn-circle">
+                <span class="glyphicon glyphicon-search white" aria-hidden="true"></span>
+            </button>
+        </form>
+
+    </div>
+
+}
+
+
+
+@section Scripts{
+    <script>
+        function SearchSmth() {
+            document.getElementsById('#Search').keydown(function (event) {
+                console.log('log1')
+                var search = ('.searchBar').value;
+                if (event.which == 13) {
+                    window.location.href = window.document + '/home/search?searchString=' + search;
+                    location.href = window.document.codeform.code.value + '.html';
+                }
+            })
+        };
+    </script>
+
+}

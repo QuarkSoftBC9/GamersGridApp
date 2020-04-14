@@ -23,6 +23,7 @@ namespace GamersGridApp.Controllers.api
         [HttpGet]
         public IHttpActionResult GetUsers(string query = null)
         {
+            var gamersQuery = dbContext.GamersGridUsers.AsQueryable();
             //Do work here !!!!
             IEnumerable<UserDto> search;
             //We check if the search string is contained in NickName/FirstName/LastName and take the first 5 elements
@@ -34,7 +35,11 @@ namespace GamersGridApp.Controllers.api
                 .Select(Mapper.Map<User, UserDto>);
                 return Ok(search);
             }
-            return Ok();
+
+            var gamers = gamersQuery.ToList()
+                .Select(Mapper.Map<User, UserDto>);
+
+            return Ok(gamers);
 
         }
     }

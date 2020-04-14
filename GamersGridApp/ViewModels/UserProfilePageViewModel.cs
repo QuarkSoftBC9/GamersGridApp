@@ -9,6 +9,8 @@ namespace GamersGridApp.ViewModels
     public class UserProfilePageViewModel
     {
         public User User { get; set; }
+        public int FavoriteGameID { get; set; }
+        public Game Game { get; set; }
         public bool IsCurrent { get; set; }
         public int FollowsCount { get; set; }
         public int FollowingCount { get; set; }

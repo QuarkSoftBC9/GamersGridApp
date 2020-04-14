@@ -48,12 +48,9 @@ namespace GamersGridApp.Controllers
 
 
             List<INewsFeed> newsFeed = new List<INewsFeed>(notifications);
-            
-
-
             return View(newsFeed.OrderBy(n => n.TimeStamp));
         }
-
+        [Authorize]
         public ActionResult ProfilePage(int? userid)
         {
             //current logged user 
@@ -62,8 +59,17 @@ namespace GamersGridApp.Controllers
 
             var user = (userid == null) ? currentLoggedUser : context.GamersGridUsers.SingleOrDefault(u => u.ID == userid);
 
+            //var favoritegame = context.UserGames.Where(d => d.UserId == userId).Select(d => d.UserAccount).SingleOrDefault();
 
-            
+            var favoritegameID = context.UserGameRelations.Where(u => u.UserId == user.ID && u.IsFavoriteGame == true).Select(g => g.GameID).SingleOrDefault();
+            //var favoritegame = context.Games.Include(g => g.ID == favoritegameID).SingleOrDefault();
+
+            var favoritegame = context.Games
+              .Where(g => g.ID == favoritegameID)
+              .SingleOrDefault();
+
+
+
             if (user == null)
                 return HttpNotFound();
 
@@ -72,11 +78,9 @@ namespace GamersGridApp.Controllers
             {
                 FollowsCount = context.Follows.Count(f => f.UserId == user.ID),
                 FollowingCount = context.Follows.Count(f => f.FollowerId == user.ID),
-                User = user
+                User = user,
+                Game = favoritegame
             };
-
-
-            
 
             //variables bound in viewmodel to be used for razor page logic between profile page and current logged user
             if (currentLoggedUser.ID == user.ID)
@@ -139,7 +143,7 @@ namespace GamersGridApp.Controllers
         }
 
         [Authorize]
-        public ActionResult EditAvraam()
+        public ActionResult EditAvraam2()
         {
             var aspNetUserID = User.Identity.GetUserId();
             var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
@@ -149,7 +153,7 @@ namespace GamersGridApp.Controllers
             //aspNetUser.UserAccount = userContent;
 
             var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
-            return View("EditAvraam", viewmodel);
+            return View("EditAvraam2", viewmodel);
 
         }
 

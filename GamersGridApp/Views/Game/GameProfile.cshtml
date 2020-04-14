@@ -1,4 +1,4 @@
-﻿@model GamersGridApp.Models.Game
+﻿@model GamersGridApp.ViewModels.ProfileGameViewModel
 @{
     ViewBag.Title = "GameProfile";
 
@@ -9,19 +9,19 @@
     string gameTwitch;
     string gameTwitter;
 
-    if (Model.ID == 1)
+    if (Model.Game.ID == 1)
     {
-        gameAvatar = "~/Content/Images/lol-banner.jpg";
-        gameImg = "~/Content/Images/Games/riot-games.svg";
+        gameAvatar = "~/Content/Images/Games/lolback1.jpg";
+        gameImg = "~/Content/Images/Games/lollogo.jpg";
         gameLink = "https://play.euw.leagueoflegends.com/en_GB";
         gameYoutube = "https://www.youtube.com/user/RiotGamesInc?hl=el&gl=GR";
         gameTwitch = "https://www.twitch.tv/riotgames";
         gameTwitter = "https://twitter.com/riotgames?lang=el";
     }
-    else if (Model.ID == 3)
+    else if (Model.Game.ID == 2)
     {
-        gameAvatar = "~/Content/Images/dota2-banner.png";
-        gameImg = "~/Content/Images/valve-logo.png";
+        gameAvatar = "~/Content/Images/dotaback1.jpg";
+        gameImg = "~/Content/Images/Games/dota2logo.jpg";
         gameLink = "https://store.steampowered.com/app/570/Dota_2/";
         gameYoutube = "https://www.youtube.com/user/dota2";
         gameTwitch = "https://www.twitch.tv/directory/game/Dota%202";
@@ -29,15 +29,16 @@
     }
     else
     {
-        gameAvatar = "~/Content/Images/csgo-banner.jpg";
-        gameImg = "~/Content/Images/valve-logo.png";
-        gameLink = "https://store.steampowered.com/app/730/CounterStrike_Global_Offensive/";
-        gameYoutube = "https://www.youtube.com/channel/UC279mtSpGdNDRVE_NqSPofA";
-        gameTwitch = "https://www.twitch.tv/directory/game/Counter-Strike%3A%20Global%20Offensive";
-        gameTwitter = "https://twitter.com/eslcs?lang=el";
+        gameAvatar = "~/Content/Images/Games/overwatchback.jpg";
+        gameImg = "~/Content/Images/Games/overwatchlogo.jpg";
+        gameLink = "https://playoverwatch.com/en-us/";
+        gameYoutube = "https://www.youtube.com/channel/UClOf1XXinvZsy4wKPAkro2A";
+        gameTwitch = "https://www.twitch.tv/directory/game/Overwatch";
+        gameTwitter = "https://twitter.com/overwatcheu?lang=en";
     }
 }
 
+@Styles.Render("~/Content/GameProfile")
 @Styles.Render("~/Content/SiteCss")
 
 
@@ -46,44 +47,123 @@
         padding: 10px;
     }
 
-    div p {
-        line-height: 180%;
+    body {
+        @*background:url(@Url.Content(gameAvatar));
+        background-position: center;
+        background-size: cover;
+        background-repeat: no-repeat;*@
+        background-color:#ffffff;
+
     }
 </style>
 
 
-<br />
-<div class="row">
+@*<style>
+        .links-list li {
+            padding: 10px;
+        }
 
+        div p {
+            line-height: 180%;
+        }
+    </style>*@
 
-    <div class="col-md-10">
-        <img src=@Url.Content(gameAvatar) style="padding: 15px; float: left; width:450px; height:300px; " class="img-fluid img-rounded" alt="">
+<div class="rela-block container">
+    <div class="rela-block profile-card">
+        <div class="profile-pic" id="profile_pic" style="background:url(@Url.Content(gameImg))">
 
-        <h1>@Model.Title</h1>
-        <br />
-        <h5>Type: <i>@Model.Type</i></h5>
-        <p>Released: @Model.ReleaseDate.ToShortDateString()</p>
-        <p>
-            @Model.Description
-        </p>
-    </div>
-    <div class="col-md-2">
-        <ul class="list-group links-list" style="list-style:none">
-            <li><a href=@Url.Content(gameLink)><img style="width:150px; height:130px" src=@Url.Content(gameImg) /></a></li>
-            <li><a href=@Url.Content(gameYoutube)><img style="width:150px; height:65px" src="~/Content/Images/youtubelogo.png" /></a></li>
-            <li><a href=@Url.Content(gameTwitch)><img style="width:120px; height:80px" src="~/Content/Images/twitchlogo.png" /></a></li>
-            <li><a href=@Url.Content(gameTwitter)><img style="width:130px; height:100px" src="~/Content/Images/twitterlogo.png" /></a></li>
+        </div>
+        <div class="rela-block profile-name-container">
+            <div class="rela-block user-num " id="user_name">USERS' FAVORITE </div>
+            <div class="rela-block user-num-num " id="user_name">@Model.UsersFocusing </div>
+            <div class="rela-block user-name" id="user_name">@Model.Game.Title</div>
+            <div class="rela-block user-desc" id="user_description">@Model.Game.Description</div>
+        </div>
+        <div class="rela-block profile-card-stats">
+            <div class="floated profile-stat up" id="num_following">
+                <p>RELEASE DATE</p>
+                @Model.Game.ReleaseDate.ToString(string.Format("dd/MM/yyyy"))<br>
+            </div>
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameTwitch)">
+                    <i class="fab fa-twitch fa-3x"></i>
+                </a>
+            </div>
+            <div class="floated profile-stat up" id="num_following">
+                <p>TYPE</p>
+                @Model.Game.Type<br>
+            </div>
+        </div>
+        <div class="rela-block profile-card-stats">
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameYoutube)">
+                    <i class="fab fa-youtube fa-3x"></i>
+                </a>
+            </div>
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameLink)">
+                    <i class="fas fa-info-circle fa-3x"></i>
+                </a>
+            </div>
+          
+            <div class="floated profile-stat">
+                <a href="@Url.Content(gameTwitter)">
+                    <i class="fab fa-twitter-square fa-3x"></i>
+                </a>
+            </div>
+        </div>
 
-
-        </ul>
     </div>
 </div>
-<div class="row">
-    <div class="col-md-6">
-
+<div class="rela-block container">
+    <div class="rela-inline image">
     </div>
-
-    <div class="col-md-6">
-
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
     </div>
 </div>
+@*<div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div><div class="rela-inline image"></div></div><div class="rela-inline button more-images" onclick="add_images(); inf_scroll = true;">More Images</div></div><div class="rela-block footer"><p>FOOTER</p><br><p>Classic deluxe custom designer luxury prestige high-quality premium select gourmet pocket pencil sharpener.<br><br>Yours for the asking, no purchase necessary. It's our way of saying thank you.</p></div>*@
+
+
+@*<br />
+    <div class="row">
+
+
+        <div class="col-md-10">
+            <img src=@Url.Content(gameAvatar) style="padding: 15px; float: left; width:450px; height:300px; " class="img-fluid img-rounded" alt="">
+
+            <h1>@Model.Title</h1>
+            <br />
+            <h5>Type: <i>@Model.Type</i></h5>
+            <p>Released: @Model.ReleaseDate.ToShortDateString()</p>
+            <p>
+                @Model.Description
+            </p>
+        </div>
+        <div class="col-md-2">
+            <ul class="list-group links-list" style="list-style:none">
+                <li><a href=@Url.Content(gameLink)><img style="width:150px; height:130px" src=@Url.Content(gameImg) /></a></li>
+                <li><a href=@Url.Content(gameYoutube)><img style="width:150px; height:65px" src="~/Content/Images/youtubelogo.png" /></a></li>
+                <li><a href=@Url.Content(gameTwitch)><img style="width:120px; height:80px" src="~/Content/Images/twitchlogo.png" /></a></li>
+                <li><a href=@Url.Content(gameTwitter)><img style="width:130px; height:100px" src="~/Content/Images/twitterlogo.png" /></a></li>
+
+
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+
+        <div class="col-md-6">
+
+        </div>
+    </div>*@

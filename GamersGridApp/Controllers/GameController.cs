@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Models;
+using GamersGridApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,15 @@ namespace GamersGridApp.Controllers
 
             //testing
             var gameTest = dbContext.Games.SingleOrDefault(g => g.Title == gameName);
-            return View(gameTest);
+            var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameName && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
+            var numberOfUsersFocusing = usersFocusing.Count();
+
+            var profileGame = new ProfileGameViewModel()
+            {
+                Game = gameTest,
+                UsersFocusing = numberOfUsersFocusing
+            };
+            return View(profileGame);
         }
     }
 }

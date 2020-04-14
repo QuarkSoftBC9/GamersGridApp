@@ -1,7 +1,4 @@
-﻿@Styles.Render("~/Content/style.css")
-
-@Styles.Render("~/Content/toastr.css")
-@model GamersGridApp.ViewModels.UserProfilePageViewModel
+﻿@model GamersGridApp.ViewModels.UserProfilePageViewModel
 
 @{
     ViewBag.Title = "ProfilePage";
@@ -18,151 +15,202 @@
     }
 
 }
-<div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <img class="img-fluid rounded profilePhoto" src="~/Content/Images/gamer.jfif" alt="">
-        </div>
-        <button class="btn btn-primary" onclick="window.location.href = '/User/Edit?id=@Model.LoggedUserId';">Update Your Profile</button>
-        <div class="col-md-6 topSection">
-            @Html.HiddenFor(m => m.User.ID, new { id = "profileId" })
-            @Html.HiddenFor(m => m.LoggedUserId, new { id = "loggedUserId" })
-            <br>
-            <h6>Name: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
-            <h6>NickName: <strong>@Html.DisplayFor(u => u.User.NickName)</strong></h6>
-            <h6>Current Focusing games:<strong> League of Legends | Dota 2</strong></h6>
-            <div>
-                <h2>
-                    Message of the day: "Woohoo"
-                </h2>
+
+    <div class="container profile-container">
+        <div class="row">
+            <div class="col-xs-12 col-sm-9">
+
+                <!-- User profile -->
+                @Html.HiddenFor(m => m.User.ID, new { id = "profileId" })
+                @Html.HiddenFor(m => m.LoggedUserId, new { id = "loggedUserId" })
+                <div class="panel panel-default">
+
+                    <div class="panel-body">
+                        <div class="row">
+
+                        </div>
+                        <div class="profile__avatar col-xs-12 col-sm-5">
+                            <img src="@(String.IsNullOrEmpty(Model.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" alt="...">
+                        </div>
+                        <div class="profile__header col-xs-12 col-sm-7">
+                            <h2>@Html.DisplayFor(u => u.User.FirstName) @Html.DisplayFor(u => u.User.LastName)</h2>
+                            <h3><small>@Html.DisplayFor(u => u.User.NickName)</small></h3>
+                            <h4>Favorite game:</h4>
+                            <h4><strong>@Html.DisplayFor(u => u.Game.Title)</strong></h4>
+                            <h4>My quote:</h4>
+                            <p class="text-muted">
+                                I don't need to "get a life".
+                                I'm a gamer. I have lots of lives.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Game 1 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>FORTNITE</strong></h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table profile__table">
+                            <tbody>
+                                <tr>
+                                    <th><strong>Level</strong></th>
+                                    <td>34</td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 1</strong></th>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 40%;">
+                                                40
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 2</strong></th>
+                                    <td>345</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Game 2 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>DOTA</strong></h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table profile__table">
+                            <tbody>
+                                <tr>
+                                    <th><strong>Level</strong></th>
+                                    <td>456</td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 1</strong></th>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                60
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 2</strong></th>
+                                    <td>234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <!-- Game 3 -->
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>Overwatch</strong></h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table profile__table">
+                            <tbody>
+                                <tr>
+                                    <th><strong>Level</strong></th>
+                                    <td>456</td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 1</strong></th>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                60
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 2</strong></th>
+                                    <td>234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <div class="col-xs-12 col-sm-3">
 
-        </div>
-        <div class="col-md-3">
-
-            @if (!Model.IsCurrent)
-            {
-                <button class="btn btn-primary aButton" id="@followText" role="button">@followText</button>
-                @*<button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>*@
-                <button class="btn btn-primary aButton" id="messageBtn" role="button">Message</button>
-
-            }
-
-
-        </div>
-
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <h3>Biography</h3>
+                @{
+                    if (Model.User.ID != Model.LoggedUserId)
+                    {
+                        <!-- Contact user -->
+                        <p>
+                            <a id="@followText" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+                                @followText
+                            </a>
+                        </p>
+                        <p>
+                            <a id="messageBtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
+                                Message me
+                            </a>
+                        </p>
+                    }
+                    else
+                    {
             <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolore qui vitae adipisci, ducimus
-                voluptate eum quae aut enim maxime dolorem voluptatem soluta aperiam accusamus quam at nemo
-                exercitationem architecto tenetur!
+                @Html.ActionLink("Customize", "EditAvraam2", "User", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
+
             </p>
-        </div>
-        <div class="col-sm-6">
-            <div class="grid">
-                <div class="">
-                    <p>Followers <br> @Model.FollowsCount</p>
-                    <img class="img-fluid rounded socialIcon" src="~/Content/Images/facebook.svg" alt=""
-                         srcset="">
 
-                </div>
-                <div class="">
-                    <p>Following <br>@Model.FollowingCount</p>
-                    <img class="img-fluid rounded socialIcon" src="~/Content/Images/Instagram.svg" alt=""
-                         srcset="">
+                    }
 
+                }
+
+
+                <div class="profile_follow">
+                    <div class="profile_followers">
+                        <p>FOLLOWERS</p>
+                        <h3><strong id="followersCount">@Model.FollowsCount</strong></h3>
+
+                    </div>
+                    <div class="profile_followees">
+                        <p>FOLLOWEES</p>
+                        <h3>@Model.FollowingCount</h3>
+                    </div>
                 </div>
-                <div class="">
-                    <p>Clans <br> 2</p>
-                    <img class="img-fluid rounded socialIcon" src="~/Content/Images/twitter.svg" alt=""
-                         srcset="">
+
+
+                <hr class="profile__contact-hr">
+
+                <!-- Contact info -->
+                <div class="profile__contact-info">
+                    <div class="profile__contact-info-item">
+
+                        <div class="profile__contact-info-body">
+                            <h5 class="profile__contact-info-heading">Country</h5>
+                            @Html.DisplayFor(u => u.User.Country)
+                        </div>
+                    </div>
+                    <div class="profile__contact-info-item">
+                        <div class="profile__contact-info-body">
+                            <h5 class="profile__contact-info-heading">City</h5>
+                            @Html.DisplayFor(u => u.User.City)
+                        </div>
+                    </div>
+                    @*<div class="profile__contact-info-item">
+                <div class="profile__contact-info-icon">
+                    <i class="fa fa-envelope-square"></i>
                 </div>
+                <div class="profile__contact-info-body">
+                    <h5 class="profile__contact-info-heading">E-mail address</h5>
+                    <a href="mailto:admin@domain.com">admin@domain.com</a>
+                </div>
+            </div>*@
+                </div>
+
             </div>
         </div>
     </div>
-</div>
-<div class="container">
-    <div class="row">
-        <div class="col-md-6 center-item">
-
-            <h3>Dota 2</h3>
-            <div class="grid">
-                <div class="">
-                    <p>Wins <br> 1562</p>
-                    <p>Role <br> Support</p>
-                </div>
-                <div class="">
-                    <p>KDA <br> 3.21</p>
-                    <p>Top 5 Heroes <br> Morgana <br> Karma <br> Thresh</p>
-                </div>
-                <div class="">
-                    <p>Rank <br> Diamond IV</p>
-                    <p>Time Played <br> 153h</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6 center-item">
-
-            <h3>League of Legends</h3>
-            <div class="grid">
-                <div class="">
-                    <p>Wins <br> 1562</p>
-                    <p>Role <br> Support</p>
-                </div>
-                <div class="">
-                    <p>KDA <br> 3.21</p>
-                    <p>Top 5 Heroes <br> Morgana <br> Karma <br> Thresh</p>
-                </div>
-                <div class="">
-                    <p>Rank <br> Diamond IV</p>
-                    <p>Time Played <br> 153h</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <h3>My Setup</h3>
-    </div>
-    <div class="row">
-
-        <div class="row grid">
-
-            <div class="col-md-4 ">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/setup.jpg" alt="" srcset="">
-            </div>
-            <div class="col-md-4">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/setup.jpg" alt="" srcset="">
-            </div>
-            <div class="col-md-4">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/keyboard.jpg" alt="" srcset="">
-            </div>
-
-        </div>
-
-    </div>
-    <div class="row">
-        <h3>Videos</h3>
-    </div>
-    <div class="row">
-
-        <div class="row grid">
-            <div class="col-md-4 ">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/setup.jpg" alt="" srcset="">
-            </div>
-            <div class="col-md-4">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/setup.jpg" alt="" srcset="">
-            </div>
-            <div class="col-md-4">
-                <img class="img-fluid rounded galleryPhotos" src="~/Content/Images/keyboard.jpg" alt="" srcset="">
-            </div>
-        </div>
-
-    </div>
-</div>
 
 @section scripts{
 
@@ -183,10 +231,24 @@
                         button.text("UnFollow");
                         button.attr("id", "Unfollow");
                         toastr.success("You are now following!");
+
+
+
+
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/follows/" + followee,
+                            data: "{}",
+                            success: function (followerscount) {
+                                document.getElementById("followersCount").innerHTML = followerscount;
+                            }
+                        });
+
                     })
                     .fail(function () {
                         toastr.error("Something went wrong");
                     });
+
 
             });
 
@@ -206,6 +268,15 @@
                         button.attr("id", "Follow");
 
                         toastr.success("You are now no longer following");
+
+                        $.ajax({
+                            type: "GET",
+                            url: "/api/follows/" + followee,
+                            data: "{}",
+                            success: function (followerscount) {
+                                document.getElementById("followersCount").innerHTML = followerscount;
+                            }
+                        });
 
                     }).fail(function () {
                         toastr.error("Something went wrong");

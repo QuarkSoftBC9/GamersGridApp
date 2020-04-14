@@ -332,10 +332,6 @@
     <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.Designer.cs">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181531299_UserDefaultAvatar.cs" />
-    <Compile Include="Migrations\202003181531299_UserDefaultAvatar.Designer.cs">
-      <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202003181546212_SearchIconsForGames.cs" />
     <Compile Include="Migrations\202003181546212_SearchIconsForGames.Designer.cs">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
@@ -392,6 +388,7 @@
     <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </Compile>
+
     <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.cs" />
     <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
       <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
@@ -415,6 +412,7 @@
     <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.cs" />
     <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
@@ -446,6 +444,9 @@
     <Compile Include="ViewModels\AddOverwatchAccViewModel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\PostMessageViewModel.cs" />
+
+    <Compile Include="ViewModels\PlayersListViewModel.cs" />
+    <Compile Include="ViewModels\ProfileGameViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
     <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
@@ -455,20 +456,46 @@
   <ItemGroup>
     <Content Include="Content\animate.css" />
     <Content Include="Content\animate.min.css" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\GameProfile.css" />
+    <Content Include="Content\Images\backa.png" />
     <Content Include="Content\Images\csgo-banner.jpg" />
     <Content Include="Content\Images\dota2-banner.png" />
+    <Content Include="Content\Images\dotaback1.jpg" />
     <Content Include="Content\Images\Games\cs.png" />
+    <Content Include="Content\Images\Games\dota1.jpg" />
     <Content Include="Content\Images\Games\dota2.jpg" />
+    <Content Include="Content\Images\Games\dota2logo.jpg" />
+    <Content Include="Content\Images\Games\dotaback1.jpg" />
     <Content Include="Content\Images\Games\lol.jpg" />
+    <Content Include="Content\Images\Games\lol1.jpg" />
     <Content Include="Content\Images\Games\lol2.jpg" />
+    <Content Include="Content\Images\Games\lolback1.jpg" />
+    <Content Include="Content\Images\Games\lollogo.jpg" />
+    <Content Include="Content\Images\Games\overwatch1.jpg" />
+    <Content Include="Content\Images\Games\overwatchback.jpg" />
+    <Content Include="Content\Images\Games\overwatchlogo.jpg" />
     <Content Include="Content\Images\Games\riot-games.svg" />
+    <Content Include="Content\Images\icon1--02.jpg" />
+    <Content Include="Content\Images\icon1-02.jpg" />
+    <Content Include="Content\Images\register_pic-02.png" />
     <Content Include="Content\Images\twitchlogo.png" />
     <Content Include="Content\Images\twitterlogo.png" />
+    <Content Include="Content\Images\unsplash.jpg" />
     <Content Include="Content\Images\UserAvatars\boyAvatar.jpg" />
     <Content Include="Content\Images\UserAvatars\girlAvatar.png" />
     <Content Include="Content\Images\lol-banner.jpg" />
     <Content Include="Content\Images\valve-logo.png" />
+    <Content Include="Content\Images\wizardpurple.jpg" />
     <Content Include="Content\Images\youtubelogo.png" />
+    <Content Include="Content\loginStyle.css" />
+    <Content Include="Content\NewLoginCss\login.css" />
+    <Content Include="Content\NewRegisterCss\bootstrap.min.css" />
+    <Content Include="Content\NewRegisterCss\demo.css" />
+    <Content Include="Content\NewRegisterCss\gsdk-bootstrap-wizard.css" />
     <Content Include="Content\NewsFeedCss\newsfeed.css" />
     <Content Include="Content\RegisterCss\avraam2NotAll.css" />
     <Content Include="Content\RegisterCss\gsdk-bootstrap-wizardAllagi.css" />
@@ -488,12 +515,17 @@
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\UserEditCss\style.css" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
     <Content Include="Scripts\esm\popper.min.js" />
+    <Content Include="Scripts\GameProfile.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
+    <Content Include="Scripts\NewLogin\login.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
     <Content Include="Scripts\popper.js" />
@@ -503,12 +535,6 @@
     <Content Include="Scripts\RegisterJs\jquery.bootstrap.wizard.js" />
     <Content Include="Scripts\RegisterJs\jquery.min.js" />
     <Content Include="Scripts\RegisterJs\jquery.validate.min.js" />
-    <Content Include="Content\bootstrap-grid.css" />
-    <Content Include="Content\bootstrap-grid.min.css" />
-    <Content Include="Content\bootstrap-reboot.css" />
-    <Content Include="Content\bootstrap-reboot.min.css" />
-    <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrapFlatly.css" />
     <Content Include="Content\brands.css" />
     <Content Include="Content\brands.min.css" />
@@ -716,10 +742,6 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bloodhound.js" />
     <Content Include="Scripts\bloodhound.min.js" />
-    <Content Include="Scripts\bootstrap.bundle.js" />
-    <Content Include="Scripts\bootstrap.bundle.min.js" />
-    <Content Include="Scripts\bootstrap.js" />
-    <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Custom\TypeAheadSearchBar.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -811,16 +833,6 @@
     <Content Include="Scripts\fontawesome\solid.min.js" />
     <Content Include="Scripts\fontawesome\v4-shims.js" />
     <Content Include="Scripts\fontawesome\v4-shims.min.js" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
-    <Content Include="Scripts\bootstrap.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.min.js.map" />
-    <Content Include="Scripts\bootstrap.bundle.js.map" />
-    <Content Include="Content\bootstrap.min.css.map" />
-    <Content Include="Content\bootstrap.css.map" />
-    <Content Include="Content\bootstrap-reboot.min.css.map" />
-    <Content Include="Content\bootstrap-reboot.css.map" />
-    <Content Include="Content\bootstrap-grid.min.css.map" />
-    <Content Include="Content\bootstrap-grid.css.map" />
     <Content Include="fonts\FontAwesome.otf" />
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\fontawesome-webfont.woff" />
@@ -836,6 +848,14 @@
     <Content Include="Scripts\esm\popper-utils.js.map" />
     <Content Include="Content\toastr.less" />
     <Content Include="Content\toastr.scss" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -980,6 +1000,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Game\Games.cshtml" />
+    <Content Include="Views\Home\AvraamGamers.cshtml" />
+    <Content Include="Views\User\EditAvraam2.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />
@@ -1002,9 +1024,12 @@
     <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
     <Content Include="Views\User\EditAvraam.cshtml" />
+
     <Content Include="Views\User\PostMessage.cshtml" />
     <Content Include="Views\User\OverWatchAccount.cshtml" />
     <Content Include="Views\User\DotaAccount.cshtml" />
+
+    <Content Include="Views\Shared\_LoginSearchPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1093,9 +1118,6 @@
     <EmbeddedResource Include="Migrations\202003181406490_PhotosAddedToGamesModel.resx">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181531299_UserDefaultAvatar.resx">
-      <DependentUpon>202003181531299_UserDefaultAvatar.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202003181546212_SearchIconsForGames.resx">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
     </EmbeddedResource>
@@ -1155,6 +1177,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

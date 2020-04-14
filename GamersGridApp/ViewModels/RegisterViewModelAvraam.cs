@@ -18,8 +18,6 @@ namespace GamersGridApp.ViewModels
         //public bool Lol { get; set; }
         //public bool Cs { get; set; }
 
-
-
         public string NickName { get; set; }
 
         [Required]
