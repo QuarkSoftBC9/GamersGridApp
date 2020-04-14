@@ -216,8 +216,13 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
-    <Compile Include="Dtos\FollowsDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
+    <Compile Include="Dtos\ApiAcountsDtos\OverwatchDto.cs" />
+    <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
+    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">
@@ -1008,7 +1013,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Dtos\ApiStatsDto\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
