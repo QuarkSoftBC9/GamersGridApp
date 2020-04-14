@@ -1,11 +1,12 @@
 ﻿using AutoMapper;
 using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Dtos.GameStats;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -18,55 +19,96 @@ namespace GamersGridApp.Controllers.api
     [Authorize]
     public class LOLAccountsController : ApiController
     {
+        private readonly string api = "RGAPI-d3006b7e-450b-43a5-afad-c09556be73b6";
         private readonly ApplicationDbContext context;
 
         public LOLAccountsController()
         {
             context = new ApplicationDbContext();
-            // context = new MyDbContext();
-            // Uncomment for costum DbContext
         }
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
         }
-        //[HttpPost]
-        //public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
-        //{
-        //    //geting UserContent
-        //    var appUserId = User.Identity.GetUserId();
-        //    var userContent = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .SingleOrDefault();
-        //    //api is updated everyday
-        //    string api = "RGAPI-dba8c12d-c214-4094-a0ac-aca9537f02e6";
+        [HttpPost]
+        public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
+        {
+            if ((String.IsNullOrEmpty(viewModel.UserName)) || (String.IsNullOrEmpty(viewModel.Region)))
+                return BadRequest("Account data is not set");
 
-        //    var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-        //        viewModel.Region, viewModel.UserName, api);
+            LOLDto rootAccount; //dataDto
+            const int lolID = 1; // lolId
 
-        //    url = HttpUtility.UrlPathEncode(url);
+            //geting UserContent
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(g => g.UserGames.Select(ga => ga.GameAccount))
+                .SingleOrDefault();
+            if (userContent == null)
+                return BadRequest("User could not be found");
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.GameID == lolID);
 
-        //    using (WebClient client = new WebClient())
-        //    {
-        //        // 1) BAD reuqest, handle here all 400 request from LOLServer
-        //        //try { }
-        //        //catch (WebException ex)
-        //        //{ return HttpStatusCode.NotFound; }
+            var url = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
+                viewModel.Region, viewModel.UserName, api);
+            url = HttpUtility.UrlPathEncode(url);
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
+                rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+            }
+            if (userGame == null)
+            {
+                userGame = new UserGame(userContent.ID, lolID);
+                userContent.UserGames.Add(userGame);
+            }
+            userGame.NewGameAccount(viewModel.UserName, rootAccount.id, rootAccount.accountId, viewModel.Region);
 
-        //        string json = client.DownloadString(url);
+            context.SaveChanges();
+            return Ok("All good");
+        }
+        //get lol stats
+        [HttpGet]
+        public List<LOLStatsDto> GetStats()
+        {
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(g => g.UserGames.Select(ga => ga.GameAccount).Select(s => s.GameAccountStats))
+                .SingleOrDefault();
+            if (userContent == null)
+                throw new HttpResponseException(HttpStatusCode.NotFound);
+            var gameAccount = userContent.UserGames.SingleOrDefault(g => g.GameID == 1).GameAccount;
+            if (String.IsNullOrEmpty(gameAccount.AccountIdentifier))
+                throw new HttpResponseException(HttpStatusCode.NotFound);
 
-        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+            var url = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
+                gameAccount.AccountRegions, gameAccount.AccountIdentifier, api);
 
-        //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);
+            url = HttpUtility.UrlPathEncode(url);
 
-        //        lolAcount.AddToUser(userContent, userContent.ID, viewModel.Region);
+            using (WebClient client = new WebClient())
+            {
+                string json = client.DownloadString(url);
 
-        //        context.SaveChanges();
+                var rootAccounts = (new JavaScriptSerializer()).Deserialize<List<LOLStatsDto>>(json);
+                Console.WriteLine("hi there");
+                //add if for a null rank
+                string tier = rootAccounts[0].tier + " " + rootAccounts[0].rank;
+                if (gameAccount.GameAccountStats == null)
+                {
+                    gameAccount.GameAccountStats = new GameAccountStats(gameAccount, tier, rootAccounts[0].wins, rootAccounts[0].losses);
+                }
+                else
+                    gameAccount.GameAccountStats.UpdateStats(tier, rootAccounts[0].wins, rootAccounts[0].losses);
 
-        //        return Ok();
-        //    }
+                context.SaveChanges();
+                return rootAccounts;
 
-        //}
+            }
+
+        }
     }
 }

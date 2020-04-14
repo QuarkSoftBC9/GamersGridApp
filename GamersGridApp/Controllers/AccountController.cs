@@ -191,12 +191,12 @@ namespace GamersGridApp.Controllers
                     if (!string.IsNullOrWhiteSpace(model.FavoriteGame))
                     {
                         var gameToSelect = context.Games.Single(g => g.Title.Contains(model.FavoriteGame));
-                        context.UserGameRelations.Add(new UserGame(gameToSelect, userId, true, new GameAccount()));
+                        context.UserGameRelations.Add(new UserGame(gameToSelect, userId, true));
 
                     }
                     //if (model.Dota)
                     //{
-                    //    context.UserGameRelations.Add(new UserGame(new Game("Dota"), userId, true,new GameAccount()));
+                    //    context.UserGameRelations.Add(new UserGame(new Game("Dota"), userId, true, new GameAccount()));
 
                     //}
 

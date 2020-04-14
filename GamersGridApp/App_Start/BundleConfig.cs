@@ -9,6 +9,16 @@ namespace GamersGridApp
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+
+
+
+            bundles.Add(new ScriptBundle("~/bundles/app").Include(
+                        "~/Scripts/app/services/followsService.js",
+                        "~/Scripts/app/services/messagesService.js",
+                        "~/Scripts/app/controllers/followsController.js"
+                ));
+
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery.signalR-2.4.1.js",
                          "~/Scripts/jquery.signalR-2.4.1.min.js",

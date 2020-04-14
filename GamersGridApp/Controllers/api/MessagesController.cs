@@ -1,5 +1,6 @@
 ﻿using GamersGridApp.Dtos;
 using GamersGridApp.Models;
+using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,19 +18,29 @@ namespace GamersGridApp.Controllers.api
         {
             db = new ApplicationDbContext();
         }
-        [HttpGet]
-        public IHttpActionResult CheckRelation(int followeeId, int followerId)
-        {
-            var followRelation1 = db.Follows
-                                   .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
 
-            var followRelation2 = db.Follows
-                             .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
 
-            if (followRelation1 == null || followRelation2 == null)
-                return BadRequest();
-            else
-                return Ok();
-        }
+        //[HttpGet]
+        //public IHttpActionResult FindMutualFollowers()
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+
+        //    var users = db.GamersGridUsers.Where(g => g.Followees.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followers.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
+        //    return Ok(users);
+        //}
+
+        //[HttpGet]
+        //public IHttpActionResult FindMessageChats(int ID)
+        //{
+        //    var userId = User.Identity.GetUserId();
+        //    var gguser = db.Users.Select(u=>u.UserAccount).FirstOrDefault(u => u.ID == ID);
+
+        //    // var messageChats = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount.MessageChatUsers.Where(m => db.MessageChatUsers.Where());
+        //    var messageChats = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == ID)).Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == gguser.ID)).ToList();
+
+
+        //    return Ok(messageChats);
+        //}
     }
 }
