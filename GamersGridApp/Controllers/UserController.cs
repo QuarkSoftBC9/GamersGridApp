@@ -3,7 +3,6 @@ using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Enums;
 using GamersGridApp.Helpers;
 using GamersGridApp.Models;
-using GamersGridApp.Models.GameAccounts;
 using GamersGridApp.ViewModels;
 using Microsoft.AspNet.Identity;
 using System;
@@ -179,23 +178,93 @@ namespace GamersGridApp.Controllers
 
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
-        //Get lolAccount
-        //public ActionResult LOLAccount()
-        //{
-        //    var appUserId = User.Identity.GetUserId();
-        //    var lolAccount = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .Select(u => u.ga)
-        //        .SingleOrDefault();
+        ////Get lolAccount
+        public ActionResult LOLAccount()
+        {
+            int lolID = context.Games
+                .Where(g => g.Title == "League Of Legends")
+                .Select(g => g.ID)
+                .SingleOrDefault();
+            //check if the user is correct AspNetUser == User
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = userContent.UserGames.SingleOrDefault(g => g.Id == lolID);
 
-        //    if (lolAccount != null)
-        //        return View(new AddLOLAccountViewmodel(lolAccount.Name, lolAccount.Region));
+            if (userGame != null)
+                return View(new AddLOLAccountViewmodel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+                
 
-        //    return View(new AddLOLAccountViewmodel());
-        //}
+            return View(new AddLOLAccountViewmodel());
+        }
+        ////Get OverWatch Account
+        public ActionResult OverWatchAccount()
+        {
 
-        //Post lolAccount
+            int overwatchID = context.Games
+                .Where(g => g.Title == "Overwatch")
+                .Select(g => g.ID)
+                .SingleOrDefault();
+
+            var appUserId = User.Identity.GetUserId();
+            var userContent = context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+            var userGame = context.UserGameRelations
+                .SingleOrDefault(ug => ug.UserId == userContent.ID && ug.GameID == overwatchID);
+            if (userGame != null)
+                return View(new AddOverwatchAccViewModel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+            return View(new AddOverwatchAccViewModel());
+        }
+
+        // Dota 2 Account
+        public ActionResult DotaAccount()
+        {
+            string userId = User.Identity.GetUserId();
+
+            int ggUserAccountId = context.Users.Where(u => u.Id == userId)
+                .Select(u => u.UserAccount.ID)
+                .SingleOrDefault();
+
+            var userGame = context.UserGameRelations
+                .SingleOrDefault(ug => ug.UserId == ggUserAccountId && ug.GameID == 3);
+
+            if (userGame == null)
+                return View(new AddDotaAccountViewModel());
+
+            return View(new AddDotaAccountViewModel(userGame.GameAccount.AccountIdentifier));
+        }
+
+        public ActionResult PostMessageEdit()
+        {
+            var appUserId = User.Identity.GetUserId();
+            var otherUsers = context.Users
+                .Where(u => u.Id != appUserId)
+                .ToList();
+
+            return View("PostMessage", new PostMessageViewModel(otherUsers));
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PostMessageSave(PostMessageViewModel viewModel)
+        {
+            var appUserId = User.Identity.GetUserId();
+            var posterid = context.Users.Where(u => u.Id == appUserId).Select(u => u.UserId).Single();
+
+            context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+            context.SaveChanges();
+
+
+            return RedirectToAction("ProfilePage");
+        }
+        ////Post lolAccount
         //[Authorize]
         //[HttpPost]
         //public ActionResult LOLAccount(AddLOLAccountViewmodel viewModel)
@@ -223,7 +292,7 @@ namespace GamersGridApp.Controllers
 
         //        string json = client.DownloadString(url);
 
-        //            LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
+        //        LOLDto rootAccount = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
 
 
         //        LOLAccount lolAcount = Mapper.Map<LOLDto, LOLAccount>(rootAccount);

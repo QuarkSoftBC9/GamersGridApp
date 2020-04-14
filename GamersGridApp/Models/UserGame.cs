@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 
 namespace GamersGridApp.Models
@@ -30,6 +31,15 @@ namespace GamersGridApp.Models
 
         public bool IsFavoriteGame { get; set; }
 
+        //constructor needed just for testing purposes of api
+        public UserGame()
+        { }
+        public UserGame(int gameID, int userid, GameAccount gameAccount)
+        {
+            GameID = gameID;
+            UserId = userid;
+            GameAccount = gameAccount;
+        }
         public UserGame(Game game,int userid,bool favorite,GameAccount gameAccount)
         {
             Game = game;
@@ -38,5 +48,19 @@ namespace GamersGridApp.Models
             GameAccount = gameAccount;
         }
 
+        public void AddNewAccount()
+        {
+            if (GameAccount == null)
+                CreateNewAccount();
+            UpdateAccount();
+        }
+        public void CreateNewAccount()
+        {
+
+        }
+        public void UpdateAccount()
+        {
+
+        }
     }
 }
