@@ -104,8 +104,7 @@ namespace GamersGridApp.Controllers.api
 
             //getting the list of matches
             var matches = DataService.GetMatches(api, gameIds);
-            var kda = gameAccount.GameAccountStats.UpdateKDA(matches, gameAccount.AccountIdentifier2);
-            gameAccount.GameAccountStats.KDA = kda;
+            gameAccount.GameAccountStats.UpdateKDA(matches, gameAccount.AccountIdentifier2);
 
             context.SaveChanges();
             return matches;

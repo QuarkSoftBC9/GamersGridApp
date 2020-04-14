@@ -68,8 +68,6 @@ namespace GamersGridApp.Controllers
               .Where(g => g.ID == favoritegameID)
               .SingleOrDefault();
 
-
-
             if (user == null)
                 return HttpNotFound();
 
@@ -79,7 +77,6 @@ namespace GamersGridApp.Controllers
                 FollowsCount = context.Follows.Count(f => f.UserId == user.ID),
                 FollowingCount = context.Follows.Count(f => f.FollowerId == user.ID),
                 User = user,
-                Game = favoritegame
             };
 
             //variables bound in viewmodel to be used for razor page logic between profile page and current logged user
@@ -99,8 +96,17 @@ namespace GamersGridApp.Controllers
                 viewModel.IsCurrent = false;
                 viewModel.LoggedUserId = currentLoggedUser.ID;
             }
+            //including stats 
+            var userGame = context.UserGameRelations
+                .Where(u => u.UserId == user.ID)
+                .Include(g => g.Game)
+                .Include(ga => ga.GameAccount)
+                .Include(gs => gs.GameAccount.GameAccountStats).ToList();
 
-
+            viewModel.GamesStats = userGame
+                .Where(u => u.UserId == user.ID)
+                .Select(ga => ga.GameAccount.GameAccountStats)
+                .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
 
             return View(viewModel);
         }
