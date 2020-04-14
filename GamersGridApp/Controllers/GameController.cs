@@ -37,8 +37,8 @@ namespace GamersGridApp.Controllers
             //    return RedirectToAction("Index");
 
             //testing
-            var gameTest = dbContext.Games.SingleOrDefault(g => g.Title == gameName);
-            var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameName && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
+            var gameTest = dbContext.Games.SingleOrDefault(g => g.Title.Contains(gameName));
+            var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameTest.Title && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
             var numberOfUsersFocusing = usersFocusing.Count();
 
             var profileGame = new ProfileGameViewModel()

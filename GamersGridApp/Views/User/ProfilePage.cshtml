@@ -141,13 +141,11 @@
             <div class="col-xs-12 col-sm-3">
 
                 @{
-                    if (Model.User.ID != Model.LoggedUserId)
+                    if (!Model.IsCurrent)
                     {
                         <!-- Contact user -->
                         <p>
-                            <a id="@followText" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">
-                                @followText
-                            </a>
+                            <a id="followbtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">@followText</a>
                         </p>
                         <p>
                             <a id="messageBtn" href="#"  class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
@@ -170,7 +168,7 @@
                 <div class="profile_follow">
                     <div class="profile_followers">
                         <p>FOLLOWERS</p>
-                        <h3><strong id="followersCount">@Model.FollowsCount</strong></h3>
+                        <h3 id="followersCount"><strong >@Model.FollowsCount</strong></h3>
 
                     </div>
                     <div class="profile_followees">

@@ -22,6 +22,7 @@ namespace GamersGridApp
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-3.4.1.js",
                         "~/Scripts/jquery.signalR-2.4.1.js",
+                        "~/Scripts/jquery-{version}.js",
                          "~/Scripts/Datatables/jquery.dataTables.js"
                         ));
 

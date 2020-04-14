@@ -1,13 +1,17 @@
 ﻿let FollowsService = function () {
     let createFollow = function (dataModel, fail, followSuccess) {
-        $.post("/api/follows/", dataModel)
+        $.ajax({
+            url: "/api/follows",
+            method: "POST",
+            data: dataModel
+        })
             .done(followSuccess)
             .fail(fail);
     };
 
     let unFollow = function (dataModel, fail, unfollowSuccess) {
         $.ajax({
-            url: "/api/follows/",
+            url: "/api/follows",
             method: "DELETE",
             data: dataModel
         })

@@ -24,17 +24,16 @@ namespace GamersGridApp.Controllers.api
         public int GetFollowers(int id)
         {
             var userfollowers = dbContext.Follows.Where(u => u.UserId == id).ToList().Count;
-
-
             return userfollowers;
         }
         [HttpPost]
         public IHttpActionResult Follow(FollowsDto followDto)
         {
             //checking for existing relation in db
-            Follow existingFollowInDb = dbContext.Follows
-                          .Include(f => f.User)
-                          .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+            //Follow existingFollowInDb = dbContext.Follows
+            //              .Include(f => f.User)
+            //              .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+
 
           
 
@@ -46,9 +45,9 @@ namespace GamersGridApp.Controllers.api
                 dbContext.Follows.Add(newFollow);
                 dbContext.SaveChanges();
             }
-            catch //Case that userId and followerId inside dto are incorrect
+            catch (Exception e)//Case that userId and followerId inside dto are incorrect
             {
-                return BadRequest();
+                return BadRequest(e.Message);
             }
             finally 
             {

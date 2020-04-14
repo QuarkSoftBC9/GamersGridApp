@@ -11,6 +11,8 @@
         $(element).on("click", redirectToChat);
     };
 
+    
+
     let redirectToChat = function (e) {
         button = $(e.target);
         let url = button.data("redirect-url")
@@ -36,11 +38,21 @@
     let followSuccess = function () {
         button.text("UnFollow");
         toastr.success("You are now following!");
+        let field = $("#followersCount");
+        let fieldValue = parseInt(field.text());
+        fieldValue = fieldValue + 1;
+        field.text(fieldValue);
+
     };
 
     let unfollowSuccess = function () {
         button.text("Follow");
         toastr.success("You are now no longer following");
+        let field = $("#followersCount");
+        let fieldValue = field.text();
+        fieldValue = fieldValue - 1;
+        field.text(fieldValue);
+
     };
 
     let fail = function () {
