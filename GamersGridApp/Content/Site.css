@@ -991,3 +991,9 @@ content: "OR";
     height: 220px;
     width: 220px;
 }
+
+
+.customclassmsg {
+    background-color: initial;
+    border: none;
+}
