@@ -14,27 +14,27 @@ namespace GamersGridApp.Models
         //public ApplicationUser UserAccount { get; set; }
 
         //[Required]
-        [StringLength(50, MinimumLength = 1)]
+        //[StringLength(50, MinimumLength = 1)]
         public string FirstName { get; private set; }
 
         //[Required]
-        [StringLength(50, MinimumLength = 1)]
+        //[StringLength(50, MinimumLength = 1)]
         public string LastName { get; private set; }
 
         //[Required]
-        [StringLength(50, MinimumLength = 1)]
+        //[StringLength(50, MinimumLength = 1)]
         public string NickName { get; private set; }
 
 
-        [StringLength(255, MinimumLength = 1)]
+        //[StringLength(255, MinimumLength = 1)]
         public string Description { get; private set; }
 
         //[Required]
-        [StringLength(50, MinimumLength = 1)]
+        //[StringLength(50, MinimumLength = 1)]
         public string Country { get; private set; }
 
         //[Required]
-        [StringLength(50, MinimumLength = 1)]
+        //[StringLength(50, MinimumLength = 1)]
         public string City { get; private set; }
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
