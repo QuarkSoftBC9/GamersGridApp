@@ -40,6 +40,11 @@ namespace GamersGridApp.Controllers
 
             return View();
         }
+        public ActionResult GamersStats()
+        {
+
+            return View();
+        }
 
         public ActionResult AvraamGamers()
         {

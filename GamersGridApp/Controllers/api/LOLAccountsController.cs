@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GamersGridApp.Dtos.ApiAcountsDtos;
-using GamersGridApp.Dtos.GameStats;
+using GamersGridApp.Dtos.ApiStatsDto;
 using GamersGridApp.Models;
 using GamersGridApp.ViewModels;
 using GamersGridApp.WebServices;
@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-21acf2b4-fd34-43ae-9461-a694cd0a6d22";
+        private readonly string api = "RGAPI-e06e9739-e073-454b-a242-5a35b1c38a02";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
 
@@ -33,7 +33,7 @@ namespace GamersGridApp.Controllers.api
             base.Dispose(disposing);
         }
         [HttpPost]
-        public LOLDto AddAccount(AddLOLAccountViewmodel viewModel)
+        public LOLStatsDto AddAccount(AddLOLAccountViewmodel viewModel)
         {
             //Check if data was returned correctly
             if ((String.IsNullOrEmpty(viewModel.UserName)) || (String.IsNullOrEmpty(viewModel.Region)))
@@ -52,34 +52,23 @@ namespace GamersGridApp.Controllers.api
                 throw new HttpResponseException(HttpStatusCode.NotFound);
 
             //Download LOL Account 
-            string urlAccount = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",
-                viewModel.Region, viewModel.UserName, api);
-            urlAccount = HttpUtility.UrlPathEncode(urlAccount);
             LOLDto accDto = new LOLDto();
-            try
-            {
-                accDto = DataService.GetAccount(urlAccount);
-            }
-            catch (WebException ex)
-            {
-                throw new WebException(ex.ToString());
-            }
+            accDto = DataService.GetAccount(viewModel.Region, viewModel.UserName, api);
+            
             //New Game Account
             var userGame = userContent.NewUserGame(lolID);
             userGame.NewGameAccount(viewModel.UserName, accDto.id, accDto.accountId, viewModel.Region);
-            context.SaveChanges();
+
             //Download LOL Stats
-            var urlStats = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
-                userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
-            urlStats = HttpUtility.UrlPathEncode(urlStats);
-            var statsDto = DataService.GetStats(urlStats);
+            List<LOLStatsDto> statsDto = new List<LOLStatsDto>();
+            statsDto = DataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
             userGame.GameAccount.GameAccountStats = context.GameAccountStats.Where(gs => gs.Id == userGame.Id).SingleOrDefault();
             userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
 
             context.SaveChanges();
-            return accDto;
+            return statsDto[0];
 
         }
         [HttpGet]
@@ -96,10 +85,7 @@ namespace GamersGridApp.Controllers.api
             if (gameAccount == null || gameAccount.GameAccountStats == null)
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             //Getting List of matche ids
-            var urlMatches = String.Format("https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/{0}?endIndex=10&beginIndex=0&api_key={1}",
-                gameAccount.AccountIdentifier2, api);
-            urlMatches = HttpUtility.UrlPathEncode(urlMatches);
-            var matchIds = DataService.GetMatcheList(urlMatches);
+            var matchIds = DataService.GetMatcheList(gameAccount.AccountIdentifier2, api);
             var gameIds = matchIds.matches.Select(g => g.gameId);
 
             //getting the list of matches

@@ -306,9 +306,9 @@
     <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\OverwatchDto.cs" />
+    <Compile Include="Dtos\ApiStatsDto\FullStatsDto.cs" />
     <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
-    <Compile Include="Dtos\GameStats\LOLStatsDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">
@@ -1121,6 +1121,7 @@
     <Content Include="Views\User\EditAvraam2.cshtml" />
     <Content Include="Views\Message\_ListofChatboxes.cshtml" />
     <Content Include="Views\Message\_ListOfChats.cshtml" />
+    <Content Include="Views\Home\GamersStats.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
     <Content Include="webfonts\fa-brands-400.svg" />

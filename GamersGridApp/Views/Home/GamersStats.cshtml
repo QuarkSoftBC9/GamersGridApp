@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "GamersStats";
+}
+
+<h2>GamersStats</h2>
+
+<div class="container-fluid">
+    <div class="col-4 LOLSection">
+        <label>Account Name</label>
+        <input class="acc-name"><br />
+        <label>Account Region</label>
+        <input class="acc-region">
+        <button class="btn btn-primary get-lol-data">Show Stats</button>
+    </div>
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+</div>
+<div class="container-fluid">
+    <label>Summoner Name</label>
+    <div>SummonerName</div>
+    <label>Rank</label>
+    <div>tier + rank</div>
+    <label>Wins</label>
+    <div>wins</div>
+    <label>Losses</label>
+    <div>losses</div>
+    <label>LEague Points</label>
+    <div>leaguePoints</div>
+
+</div>
+@section Scripts{
+    <script>
+
+        let DataService = (function () {
+
+            let getStats = function (account) {
+                $.post("/api/LOLAccountsCheck", { userName: account.username, region: account.region })
+                    .done(function (returnVal) {
+                        console.log(returnVal);
+                        return returnVal;
+                        
+                    })
+                    .fail(function (returnVal) {
+                        alert("Something failed");
+                        console.log(returnVal)
+                    })
+            }
+            let showData = function (data) {
+                let showHtmlData = ``;
+            }
+            return {
+                GetData: function (account) {
+                    var data = getStats(account);
+                    //showData(data);
+                }
+            }
+        })();
+
+        let LOLCntrl = function (DataSrvc) {
+            getLeagueData = function () {
+                let account = {};
+                
+                account.username = $(".acc-data").val();
+                account.region = $(".acc-region").val();
+                DataSrvc.GetData(account)
+
+            }
+            initialise = function () {
+                $('.get-lol-data').click(getLeagueData)
+            }
+            return {
+                init: function () {
+                    initialise()
+                }
+            }
+        }(DataService)
+
+        LOLCntrl.init();
+        
+    </script>
+    
+    
+}
+

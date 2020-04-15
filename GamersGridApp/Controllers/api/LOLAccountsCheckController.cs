@@ -10,21 +10,21 @@ using System.Web.Helpers;
 using System.Web.Http;
 using System.Web.Http.Results;
 using System.Web;
-using System.Web.Mvc;
-
+using GamersGridApp.Dtos.ApiStatsDto;
+using GamersGridApp.WebServices;
+using GamersGridApp.Dtos.ApiAcountsDtos;
 
 namespace GamersGridApp.Controllers.api
 {
-    [System.Web.Http.Authorize]
+    [Authorize]
     public class LOLAccountsCheckController : ApiController
     {
         private readonly ApplicationDbContext context;
+        private readonly string api = "RGAPI-e06e9739-e073-454b-a242-5a35b1c38a02";
 
         public LOLAccountsCheckController()
         {
             context = new ApplicationDbContext();
-            // context = new MyDbContext();
-            // Uncomment for costum DbContext
         }
         protected override void Dispose(bool disposing)
         {
@@ -43,6 +43,20 @@ namespace GamersGridApp.Controllers.api
             else
                 return Ok("Ok");
 
+        }
+        //Add here Get Stats Method
+        public FullStatsDto GetStats(AddLOLAccountViewmodel viewModel)
+        {
+            FullStatsDto fullStatsDto = new FullStatsDto();
+            fullStatsDto.Account = DataService.GetAccount(viewModel.Region, viewModel.UserName, api);
+
+            fullStatsDto.Stats = DataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
+
+            var matchIds = DataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
+            var gameIds = matchIds.matches.Select(g => g.gameId);
+            var matches = DataService.GetMatches(api, gameIds);
+            fullStatsDto.SingleMatch = matches[0];
+            return fullStatsDto;
         }
     }
 }
