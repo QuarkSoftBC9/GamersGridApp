@@ -13,10 +13,10 @@ namespace GamersGridApp.Perstistence.EntityConfigurations
         {
             HasKey(g => g.Id);
 
-            HasRequired(g => g.GameAccount)
-                .WithMany()
-                .HasForeignKey(g => g.Id)
-                .WillCascadeOnDelete(false);
+            //HasRequired(g => g.GameAccount)
+            //    .WithMany()
+            //    .HasForeignKey(g=>g.Id)
+            //    .WillCascadeOnDelete(false);
 
             //HasOptional(g => g.GameAccount)
             //    .WithMany()
