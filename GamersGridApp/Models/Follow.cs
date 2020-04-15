@@ -12,10 +12,10 @@ namespace GamersGridApp.Models
     {
         public int ID { get; set; }
 
-        [Required]
+        //[Required]
         public int UserId { get; set; }
 
-        [Required]
+        //[Required]
         public int FollowerId { get; set; }
 
         public User User { get; set; }
