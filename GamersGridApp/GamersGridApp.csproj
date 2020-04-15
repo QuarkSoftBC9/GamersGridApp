@@ -675,6 +675,14 @@
     <Content Include="Content\Images\Games\lollogo.jpg" />
     <Content Include="Content\Images\Games\overwatch1.jpg" />
     <Content Include="Content\Images\Games\overwatchback.jpg" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_1_Bronze.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_2_Silver.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_3_Gold.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_4_Platinum.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_5_Diamond.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_6_Master.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_7_Grandmaster.png" />
+    <Content Include="Content\Images\Games\OverwatchIcons\Badge_8_Top_500.png" />
     <Content Include="Content\Images\Games\overwatchlogo.jpg" />
     <Content Include="Content\Images\Games\riot-games.svg" />
     <Content Include="Content\Images\icon1--02.jpg" />
