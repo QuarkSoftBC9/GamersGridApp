@@ -1,0 +1,339 @@
+﻿@{
+    ViewBag.Title = "Search";
+    //int counter = 0;
+}
+    <style>
+/* === card component ======
+ * Variation of the panel component
+ * version 2018.10.30
+ * https://codepen.io/jstneg/pen/EVKYZj
+ */
+.card{ background-color: #fff; border: 1px solid transparent; border-radius: 6px; }
+.card > .card-link{ color: #333; }
+.card > .card-link:hover{  text-decoration: none; }
+.card > .card-link .card-img img{ border-radius: 6px 6px 0 0; }
+.card .card-img{ position: relative; padding: 0; display: table; }
+.card .card-img .card-caption{
+  position: absolute;
+  right: 0;
+  bottom: 16px;
+  left: 0;
+}
+.card .card-body{ display: table; width: 100%; padding: 12px; }
+.card .card-header{ border-radius: 6px 6px 0 0; padding: 8px; }
+.card .card-footer{ border-radius: 0 0 6px 6px; padding: 8px; }
+.card .card-left{ position: relative; float: left; padding: 0 0 8px 0; }
+.card .card-right{ position: relative; float: left; padding: 8px 0 0 0; }
+.card .card-body h1:first-child,
+.card .card-body h2:first-child,
+.card .card-body h3:first-child,
+.card .card-body h4:first-child,
+.card .card-body .h1,
+.card .card-body .h2,
+.card .card-body .h3,
+.card .card-body .h4{ margin-top: 0; }
+.card .card-body .heading{ display: block;  }
+.card .card-body .heading:last-child{ margin-bottom: 0; }
+
+.card .card-body .lead{ text-align: center; }
+
+@@media( min-width: 768px ){
+  .card .card-left{ float: left; padding: 0 8px 0 0; }
+  .card .card-right{ float: left; padding: 0 0 0 8px; }
+
+  .card .card-4-8 .card-left{ width: 33.33333333%; }
+  .card .card-4-8 .card-right{ width: 66.66666667%; }
+
+  .card .card-5-7 .card-left{ width: 41.66666667%; }
+  .card .card-5-7 .card-right{ width: 58.33333333%; }
+
+  .card .card-6-6 .card-left{ width: 50%; }
+  .card .card-6-6 .card-right{ width: 50%; }
+
+  .card .card-7-5 .card-left{ width: 58.33333333%; }
+  .card .card-7-5 .card-right{ width: 41.66666667%; }
+
+  .card .card-8-4 .card-left{ width: 66.66666667%; }
+  .card .card-8-4 .card-right{ width: 33.33333333%; }
+}
+
+/* -- default theme ------ */
+.card-default{
+  border-color: #ddd;
+  background-color: #fff;
+  margin-bottom: 24px;
+}
+.card-default > .card-header,
+.card-default > .card-footer{ color: #333; background-color: #ddd; }
+.card-default > .card-header{ border-bottom: 1px solid #ddd; padding: 8px; }
+.card-default > .card-footer{ border-top: 1px solid #ddd; padding: 8px; }
+.card-default > .card-body{  }
+.card-default > .card-img:first-child img{ border-radius: 6px 6px 0 0; }
+.card-default > .card-left{ padding-right: 4px; }
+.card-default > .card-right{ padding-left: 4px; }
+.card-default p:last-child{ margin-bottom: 0; }
+.card-default .card-caption { color: #fff; text-align: center; text-transform: uppercase; }
+
+
+/* -- price theme ------ */
+.card-price{ border-color: #999; background-color: #ededed; margin-bottom: 24px; }
+.card-price > .card-heading,
+.card-price > .card-footer{ color: #333; background-color: #fdfdfd; }
+.card-price > .card-heading{ border-bottom: 1px solid #ddd; padding: 8px; }
+.card-price > .card-footer{ border-top: 1px solid #ddd; padding: 8px; }
+.card-price > .card-img:first-child img{ border-radius: 6px 6px 0 0; }
+.card-price > .card-left{ padding-right: 4px; }
+.card-price > .card-right{ padding-left: 4px; }
+.card-price .card-caption { color: #fff; text-align: center; text-transform: uppercase; }
+.card-price p:last-child{ margin-bottom: 0; }
+
+.card-price .price{
+  text-align: center;
+  color: #337ab7;
+  font-size: 3em;
+  text-transform: uppercase;
+  line-height: 0.7em;
+  margin: 24px 0 16px;
+}
+.card-price .price small{ font-size: 0.4em; color: #66a5da; }
+.card-price .details{ list-style: none; margin-bottom: 24px; padding: 0 18px; }
+.card-price .details li{ text-align: center; margin-bottom: 8px; }
+.card-price .buy-now{ text-transform: uppercase; }
+.card-price table .price{ font-size: 1.2em; font-weight: 700; text-align: left; }
+.card-price table .note{ color: #666; font-size: 0.8em; }
+    </style>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 pen">
+                <div class="page-header">
+                    <h1>Search Engine</h1>
+                    <p class="lead">Search players from your favorite games.</p>
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-4">
+
+                <h4>Dota 2</h4>
+                <div class="card card-default">
+                    <div class="card-header">Username</div>
+
+                    <div class="card-body">
+                        <input type="text" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Dota 2</h4>
+                <div class="card card-default">
+                    <div class="card-header">Username</div>
+
+                    <div class="card-body">
+                        <input type="text" />
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Dota 2</h4>
+                <div class="card card-default">
+                    <div class="card-header">Username</div>
+
+                    <div class="card-body">
+                        <input type="text" />
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+
+                <h4>Dota 2</h4>
+                <div class="card card-default">
+                    <div class="card-header">Username</div>
+                    <div class="card-body card-6-6">
+                        <div class="card-left">
+                            <img src="https://emblemsbf.com/img/115.webp" class="img-responsive">
+                        </div>
+                        <div class="card-right">
+                            <h1>Username</h1>
+                            <p>Kills: 10<br />Deaths: 5<br />  Assist:2</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Ea est appetere honestatis, pri at definiebas repudiandae, no his adhuc omnium commodo. Duo tritani suscipit voluptatibus ut, pro ei dicit euismod impedit. An nulla similique qui. Soluta nostrum ea eos, summo falli ea nec.</p>
+                    </div>
+                    <div class="card-footer">Footer</div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>League Of Legends</h4>
+                <div class="card card-default">
+                    <div class="card-header">Header</div>
+                    <div class="card-body card-6-6">
+                        <div class="card-left">
+                            <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/4f/ed/7f/4fed7f64-e3ec-abe2-d090-82ac70096c97/Prod_AppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-7.png/320x0w.jpg" class="img-responsive">
+                        </div>
+                        <div class="card-right">
+                            <h1>Username</h1>
+                            <p>Kills: 10<br />Deaths: 5<br />  Assist:2</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Ea est appetere honestatis, pri at definiebas repudiandae, no his adhuc omnium commodo. Duo tritani suscipit voluptatibus ut, pro ei dicit euismod impedit. An nulla similique qui. Soluta nostrum ea eos, summo falli ea nec.</p>
+                    </div>
+                    <div class="card-footer">Footer</div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Overwatch</h4>
+                <div class="card card-default">
+                    <div class="card-header">Header</div>
+                    <div class="card-body card-6-6">
+                        <div class="card-left">
+                            <img src="https://pbs.twimg.com/profile_images/774244317418299392/BCchF00k_400x400.jpg" class="img-responsive">
+                        </div>
+                        <div class="card-right">
+                            <h1>Username</h1>
+                            <p>Kills: 10<br />Deaths: 5<br />  Assist:2</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <p>Ea est appetere honestatis, pri at definiebas repudiandae, no his adhuc omnium commodo. Duo tritani suscipit voluptatibus ut, pro ei dicit euismod impedit. An nulla similique qui. Soluta nostrum ea eos, summo falli ea nec.</p>
+                    </div>
+                    <div class="card-footer">Footer</div>
+                </div>
+
+            </div>
+        </div>
+
+
+        @*<div class="row">
+            <div class="col-sm-4">
+
+                <h4>5:7 column layout</h4>
+                <div class="card card-default">
+                    <div class="card-header">Header</div>
+                    <div class="card-body card-5-7">
+                        <div class="card-left">
+                            <img src="https://fillmurray.com/g/320/320" class="img-responsive">
+                        </div>
+                        <div class="card-right">
+                            <h4>Heading</h4>
+                            <p>A stitch in time saves nine.  All good things come to those who wait.  Too  many cooks spoil the broth.</p>
+                        </div>
+                    </div>
+                    <div class="card-footer">Footer</div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Card with Image heading</h4>
+                <div class="card card-default">
+                    <div class="card-header">Image card</div>
+                    <div class="card-img">
+                        <img src="https://fillmurray.com/g/640/320" class="img-responsive">
+                    </div>
+                    <div class="card-body">
+                        <h4>Heading One Two Three</h4>
+                        <p>A stitch in time saves nine.  All good things come to those who wait.  Too  many cooks spoil the broth.</p>
+                        <p><a href="#">More...</a></p>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Linked Image Card</h4>
+                <div class="card card-default">
+                    <a href="#" class="card-link">
+                        <span class="card-img">
+                            <img src="https://fillmurray.com/g/640/320" class="img-responsive">
+                        </span>
+                        <span class="card-body">
+                            <span class="h3 heading">Heading</span>
+                            <p>A stitch in time saves nine.  All good things come to those who wait.  Too  many cooks spoil the broth.</p>
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4">
+
+                <h4>Price Card</h4>
+                <div class="card card-price">
+                    <div class="card-img">
+                        <a href="#">
+                            <img src="http://placeimg.com/640/320/nature/grayscale" class="img-responsive">
+                            <div class="card-caption">
+                                <span class="h2">Big Item</span>
+                                <p>100% silk</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="price">$20 <small>each</small></div>
+                        <div class="lead">Wrap yourself in luxury</div>
+                        <ul class="details">
+                            <li>A stitch in time saves nine.</li>
+                            <li>All good things come to those who wait.</li>
+                            <li><b>Shipping:</b> $10 in USA, $15 outside USA</li>
+                        </ul>
+                        <a href="#" class="btn btn-primary btn-lg btn-block buy-now">
+                            Buy now <span class="glyphicon glyphicon-triangle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+
+                <h4>Price Card with table of items</h4>
+                <div class="card card-price">
+                    <div class="card-img">
+                        <a href="#">
+                            <img src="http://placeimg.com/640/320/nature/grayscale" class="img-responsive">
+                            <div class="card-caption">
+                                <span class="h2">Many Items</span>
+                                <p>Gluten free</p>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <div class="lead">So many choices.</div>
+                        <ul class="details">
+                            <li>A stitch in time saves nine.</li>
+                            <li>All good things come to those who wait.</li>
+                            <li>There's a pony in that pile.</li>
+                        </ul>
+                        <table class="table">
+                            <tr><th></th><th>Price</th><th>Shipping</th></tr>
+                            <tr><td>Small</td><td class="price">$20</td><td class="note">$3 ground service</td></tr>
+                            <tr><td>Medium</td><td class="price">$30</td><td class="note">$6 ground service</td></tr>
+                            <tr><td>Large</td><td class="price">$45</td><td class="note">$7 ground service</td></tr>
+                        </table>
+                        <a href="#" class="btn btn-primary btn-lg btn-block buy-now">
+                            Buy now <span class="glyphicon glyphicon-triangle-right"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>*@
+
+
+        <!-- /container -->
+    </div>
+

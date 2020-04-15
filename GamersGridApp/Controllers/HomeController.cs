@@ -25,7 +25,13 @@ namespace GamersGridApp.Controllers
         {
             base.Dispose(disposing);
         }
-        public ActionResult Index(string search)
+    
+    public ViewResult SearchEngine()
+    {
+
+        return View();
+    }
+    public ActionResult Index(string search)
         {
             if (!String.IsNullOrEmpty(search))
             {
