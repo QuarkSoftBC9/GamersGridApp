@@ -271,5 +271,11 @@ namespace GamersGridApp.Controllers
 
             return RedirectToAction("ProfilePage");
         }
+
+        public ViewResult Leaderboards()
+        {
+
+            return View();
+        }
     }
 }

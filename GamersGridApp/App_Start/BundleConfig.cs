@@ -53,8 +53,9 @@ namespace GamersGridApp
                         ));
 
             bundles.Add(new ScriptBundle("~/bundles/gameProfile").Include(
-            "~/Scripts/GameProfile.js"
+                            "~/Scripts/GameProfile.js"
             ));
+
 
 
             bundles.Add(new ScriptBundle("~/bundles/RegisterJs").Include(
@@ -89,6 +90,9 @@ namespace GamersGridApp
 
             bundles.Add(new StyleBundle("~/Content/GameProfile").Include(
                  "~/Content/GameProfile.css"));
+
+            bundles.Add(new StyleBundle("~/Content/LeaderBoard").Include(
+                 "~/Content/LeaderBoard.css"));
 
 
             bundles.Add(new StyleBundle("~/Content/css").Include(

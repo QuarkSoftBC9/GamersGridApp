@@ -620,6 +620,7 @@
     <Content Include="Content\Images\valve-logo.png" />
     <Content Include="Content\Images\wizardpurple.jpg" />
     <Content Include="Content\Images\youtubelogo.png" />
+    <Content Include="Content\LeaderBoard.css" />
     <Content Include="Content\loginStyle.css" />
     <Content Include="Content\NewLoginCss\login.css" />
     <Content Include="Content\NewRegisterCss\bootstrap.min.css" />
@@ -1164,6 +1165,7 @@
     <Content Include="Views\User\DotaAccount.cshtml" />
     <Content Include="Views\User\OverWatchAccount.cshtml" />
     <Content Include="Views\User\PostMessage.cshtml" />
+    <Content Include="Views\User\Leaderboards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
