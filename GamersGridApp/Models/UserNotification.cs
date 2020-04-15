@@ -6,12 +6,12 @@ namespace GamersGridApp.Models
 {
     public class UserNotification
     {
-        [Key]
-        [Column(Order = 1)]
+        //[Key]
+        //[Column(Order = 1)]
         public int UserId { get; set; }
 
-        [Key]
-        [Column(Order = 2)]
+        //[Key]
+        //[Column(Order = 2)]
         public int NotificationId { get; set; }
 
         public User User { get; set; }
