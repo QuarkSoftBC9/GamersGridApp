@@ -46,7 +46,10 @@ namespace GamersGridApp.ViewModels
 
             SteamId = dotaRelation == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
             BattleTag = lolRelation == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
-            LolUsername = overwatchRelation == null ? "" : lolRelation.GameAccount.NickName; 
+            if(lolRelation != null)
+            {
+                LolUsername = overwatchRelation == null ? "" : lolRelation.GameAccount.NickName;
+            }
 
             BattleNetRegions = new List<string>() { "us", "eu", "asia" };
             RiotGamesRegions = new List<string>() { "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1",
