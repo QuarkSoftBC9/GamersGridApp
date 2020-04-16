@@ -16,7 +16,7 @@
                 <div class="thumb">
                     <a href="@(User.Identity.IsAuthenticated ? $"{Url.Action("ProfilePage", "User",new { userid = @user.ID })}" : "#")">
 
-                        <img src="@(String.IsNullOrEmpty(user.Avatar) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@user.ID}/{@user.Avatar}")" alt="gamer" class="img-responsive">
+                        <img src="@((user.Avatar == "nofile.png" || String.IsNullOrEmpty(user.Avatar)) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@user.ID}/{@user.Avatar}")" class="img-responsive">
                         <div class="hover-opaque">
                             <div class="centered">@Model.UserFavoriteGame[user.ID]<br> @*234 <br>points*@</div>
                         </div>
@@ -24,78 +24,15 @@
                 </div>
                 <div class=" thumb-caption text-center ">
                     <figcaption><a href="@Url.Action("ProfilePage", "User",new { userid = @user.ID })">@user.NickName</a></figcaption>
-                    @*@if (User.Identity.IsAuthenticated)
-                    {
-                        <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-                    }*@
 
                 </div>
             </div>
 
         }
 
-        @*<div class="col-sm-4 col-md-3">
-                <div class="thumb">
-                    <a href="#">
-                        <img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-responsive">
-                        <div class="hover-opaque">
-                            <div class="centered">DOTA<br> 234 <br>points</div>
-                        </div>
-                    </a>
-                </div>
-                <div class=" thumb-caption text-center ">
-                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
-
-                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-                </div>
-            </div>
-            <div class="col-sm-4 col-md-3">
-                <div class="thumb">
-                    <a href="#">
-                        <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
-                        <div class="hover-opaque">
-                            <div class="centered">DOTA<br> 234 <br>points</div>
-                        </div>
-                    </a>
-                </div>
-                <div class=" thumb-caption text-center ">
-                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
-
-                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-                </div>
-            </div><div class="col-sm-4 col-md-3">
-                <div class="thumb">
-                    <a href="#">
-                        <img src="~/Content/images/esports bw.jpg" alt="gamer" class="img-responsive">
-                        <div class="hover-opaque">
-                            <div class="centered">DOTA<br> 234 <br>points</div>
-                        </div>
-                    </a>
-                </div>
-                <div class=" thumb-caption text-center ">
-                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
-
-                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-                </div>
-            </div><div class="col-sm-4 col-md-3">
-                <div class="thumb">
-                    <a href="#">
-                        <img src="~/Content/images/clans bw.jpg" alt="gamer" class="img-responsive">
-                        <div class="hover-opaque">
-                            <div class="centered">DOTA<br> 234 <br>points</div>
-                        </div>
-                    </a>
-                </div>
-                <div class="thumb-caption text-center ">
-                    <figcaption><a href="#">MIKE HAJNON</a></figcaption>
-
-                    <p><a href="#" class="btn btn-primary btn-of-player" role="button">Follow</a></p>
-                </div>
-            </div>*@
 
 
     </div>
-    <!-- end-row -->
 
 
 </div>

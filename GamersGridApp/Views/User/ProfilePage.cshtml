@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="profile__avatar col-xs-12 col-sm-5">
-                        <img src="@(String.IsNullOrEmpty(Model.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" alt="...">
+                        <img src="@(!String.IsNullOrWhiteSpace(Model.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" >
                     </div>
                     <div class="profile__header col-xs-12 col-sm-7">
                         <h2>@Html.DisplayFor(u => u.User.FirstName) @Html.DisplayFor(u => u.User.LastName)</h2>
