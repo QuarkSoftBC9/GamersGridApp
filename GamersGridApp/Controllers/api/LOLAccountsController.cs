@@ -21,7 +21,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
+        private readonly string api = "RGAPI-d466cf9c-9f85-49a9-9d79-b02bd9fdd884";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
         private readonly GameAccountStatsRepository gameAccountStats;
@@ -30,6 +30,8 @@ namespace GamersGridApp.Controllers.api
         public LOLAccountsController()
         {
             context = new ApplicationDbContext();
+            gameAccounts = new GameAccountRepository(context);
+            gameAccountStats = new GameAccountStatsRepository(context);
         }
         protected override void Dispose(bool disposing)
         {
