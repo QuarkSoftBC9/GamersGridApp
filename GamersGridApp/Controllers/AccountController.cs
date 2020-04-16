@@ -147,8 +147,8 @@ namespace GamersGridApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            RegisterViewModelAvraam model = new RegisterViewModelAvraam() { };
-            return View("~/Views/User/RegisterStrange.cshtml", model);
+            RegisterViewModelAvraam model = new RegisterViewModelAvraam();
+            return View("Register", model);
         }
 
         //
@@ -192,7 +192,6 @@ namespace GamersGridApp.Controllers
                     {
                         var gameToSelect = context.Games.Single(g => g.Title.Contains(model.FavoriteGame));
                         context.UserGameRelations.Add(new UserGame(gameToSelect, userId, true));
-
                     }
                     //if (model.Dota)
                     //{

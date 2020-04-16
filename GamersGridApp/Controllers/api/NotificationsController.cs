@@ -34,7 +34,7 @@ namespace GamersGridApp.Controllers.api
                    .Select(un => un.Notification)
                    .ToList();
 
-            return Ok();
+            return Ok(userNotifications);
 
 
         }

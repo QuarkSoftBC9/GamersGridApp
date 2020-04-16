@@ -77,6 +77,8 @@ namespace GamersGridApp.Controllers
                 FollowsCount = context.Follows.Count(f => f.UserId == user.ID),
                 FollowingCount = context.Follows.Count(f => f.FollowerId == user.ID),
                 User = user,
+                FavouriteGame = favoritegame,
+                FavoriteGameID = favoritegameID
             };
 
             //variables bound in viewmodel to be used for razor page logic between profile page and current logged user
@@ -97,59 +99,34 @@ namespace GamersGridApp.Controllers
                 viewModel.LoggedUserId = currentLoggedUser.ID;
             }
             //including stats 
-            var userGame = context.UserGameRelations
+            var userGames = context.UserGameRelations
                 .Where(u => u.UserId == user.ID)
                 .Include(g => g.Game)
                 .Include(ga => ga.GameAccount)
                 .Include(gs => gs.GameAccount.GameAccountStats).ToList();
 
-            viewModel.GamesStats = userGame
-                .Where(u => u.UserId == user.ID)
-                .Select(ga => ga.GameAccount.GameAccountStats)
-                .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
+            bool accountsFilled = true;
+
+            foreach (var usergame in userGames)
+            {
+                if (usergame.GameAccount == null)
+                    accountsFilled = false;
+            }
+
+            if (accountsFilled)
+            {
+                viewModel.GamesStats = userGames
+                    .Where(u => u.UserId == user.ID)
+                    .Select(ga => ga.GameAccount.GameAccountStats)
+                    .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
+            }
 
             return View(viewModel);
         }
 
-        ////Get
-        //[Authorize]
-        ////[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id)
-        //{
-        //    var aspNetUserID = User.Identity.GetUserId();
-        //    var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
-        //        .Include(c => c.UserAccount)
-        //        .SingleOrDefault();
-        //    //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
-        //    //aspNetUser.UserAccount = userContent;
-
-        //    if (aspNetUser.UserId == id)
-        //    {
-        //        var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
-        //        return View(viewmodel);
-        //    }
-        //    return HttpNotFound();
-        //}
 
         [Authorize]
-        [HttpPost, ActionName("Edit")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult SaveEdit(UserFormEditViewModel viewmodel)
-        {
-            var userContent = context.GamersGridUsers
-                .SingleOrDefault(u => u.ID == viewmodel.ID);
-            userContent.Update(
-                viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
-                viewmodel.Description, viewmodel.Country, viewmodel.Country);
-
-
-            context.SaveChanges();
-
-            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
-        }
-
-        [Authorize]
-        public ActionResult EditAvraam2()
+        public ActionResult Customize()
         {
             var aspNetUserID = User.Identity.GetUserId();
             var ggtUser = context.Users.Where(u => u.Id == aspNetUserID)
@@ -176,11 +153,8 @@ namespace GamersGridApp.Controllers
                .SingleOrDefault();
 
 
-            //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
-            //aspNetUser.UserAccount = userContent;
-
             var viewmodel = new UserFormEditViewModel(ggtUser, userGameRelationDota, userGameRelationLol, userGameRelationOverwatch);
-            return View("EditAvraam2", viewmodel);
+            return View("Customize", viewmodel);
 
         }
 
@@ -194,7 +168,7 @@ namespace GamersGridApp.Controllers
                 .SingleOrDefault(u => u.ID == viewmodel.ID);
             userContent.Update(
                 viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
-                viewmodel.Description, viewmodel.Country, viewmodel.Country);
+                viewmodel.Description, viewmodel.Country, viewmodel.City);
 
             if (!(file is null))
             {

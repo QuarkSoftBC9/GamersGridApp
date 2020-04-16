@@ -65,14 +65,22 @@ namespace GamersGridApp.Controllers.api
                 .SingleOrDefault(ga => ga.UserId == user.ID && ga.GameID == overwatchId);
 
 
-            if (userGame == null)
+            if (userGame != null && userGame.GameAccount == null)
             {
-                var newUserGameRelation = UserGame.CreateNewRelationWithAccountOverWatch(user.ID,viewModel.BattleTag,viewModel.Region,owCompleteDto);
+                userGame.GameAccount = new GameAccount(owCompleteDto.name,viewModel.BattleTag,viewModel.Region);
+                userGame.GameAccount.GameAccountStats = new GameAccountStats();
+                userGame.GameAccount.GameAccountStats.Update(owCompleteDto);
+                context.SaveChanges();
+            }
+            else if (userGame == null )
+            {
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountOverWatch(user.ID, viewModel.BattleTag, viewModel.Region, owCompleteDto);
                 try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
                     context.SaveChanges();
-                }catch(Exception e)
+                }
+                catch (Exception e)
                 {
                     return BadRequest(e.Message);
                 }

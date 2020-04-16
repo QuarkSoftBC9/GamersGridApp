@@ -15,20 +15,20 @@
             <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName()<span class="caret"></span></a>
                 @*@Html.ActionLink(User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })*@
-            <ul class="dropdown-menu">
-                @*<li><a href="@Url.Action("Index", "Home")">Test</a></li>*@
-                <li class="nav-item">
-                    @Html.ActionLink("My Profile", "ProfilePage", "User", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Customize", "EditAvraam2", "User", null, new { @class = "nav-link" })
-                </li>
-                <li class="nav-item">
-                    @Html.ActionLink("Messages", "MessageBoard", "Message", null, new { @class = "nav-link" })
-                </li>
-                <li role="separator" class="divider"></li>
-                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-            </ul>
+                <ul class="dropdown-menu">
+                    @*<li><a href="@Url.Action("Index", "Home")">Test</a></li>*@
+                    <li class="nav-item">
+                        @Html.ActionLink("My Profile", "ProfilePage", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Customize", "Customize", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Messages", "MessageBoard", "Message", null, new { @class = "nav-link" })
+                    </li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                </ul>
             </li>
         </ul>
     }
@@ -40,6 +40,11 @@ else
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>
 }
+
+@section scripts {
+    @Scripts.Render("~/Scripts/app/Notifcations.js")
+    }
+
 
 @*@using Microsoft.AspNet.Identity
     @if (Request.IsAuthenticated)

@@ -28,7 +28,6 @@ namespace GamersGridApp.Helpers
             }
             return "nofile.png";
         }
-
         public static double CalculateKda(List<DotaMatchDto> matches)
         {
             int KillsAssists = 0;
@@ -38,12 +37,13 @@ namespace GamersGridApp.Helpers
                 KillsAssists += dotaMatch.kills + dotaMatch.assists;
                 deaths += dotaMatch.deaths;
             }
-            if(deaths == 0)
+            if (deaths == 0)
             {
                 return 0;
             }
             return KillsAssists / deaths;
         }
+
         public static double CalculateKda(double avgDeaths, double avgEliminations)
         {
 

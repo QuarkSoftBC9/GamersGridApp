@@ -61,9 +61,16 @@ namespace GamersGridApp.Controllers.api
                 .SingleOrDefault(ug => ug.GameID == 2 && ug.UserId == ggUser.ID);
 
 
-            if (userGameRelation == null)
+            if (userGameRelation != null && userGameRelation.GameAccount ==null )
             {
-                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(ggUser.ID,dotaDto,dotaWLDto, dotaMatchesDto);
+                userGameRelation.GameAccount = new GameAccount(dotaDto.profile.personaname, accountid, dotaService.SteamId, dotaDto.profile.loccountrycode);
+                userGameRelation.GameAccount.GameAccountStats = new GameAccountStats();
+                userGameRelation.GameAccount.GameAccountStats.Update(dotaDto, dotaWLDto, Convert.ToString(dotaService.KDA));
+                context.SaveChanges();
+            }
+            else if(userGameRelation == null)
+            {
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(ggUser.ID, dotaDto, dotaWLDto, dotaMatchesDto);
                 try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
@@ -77,7 +84,7 @@ namespace GamersGridApp.Controllers.api
             else
             {
                 userGameRelation.GameAccount.UpdateAccount(dotaDto);
-                userGameRelation.GameAccount.GameAccountStats.Update(dotaDto,dotaWLDto, dotaMatchesDto);
+                userGameRelation.GameAccount.GameAccountStats.Update(dotaDto,dotaWLDto, Convert.ToString(dotaService.KDA));
                 context.SaveChanges();
             }
 

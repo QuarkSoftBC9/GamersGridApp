@@ -1086,7 +1086,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Scripts\RegisterJs\popper.min.js" />
     <Content Include="Scripts\src\index.js" />
     <Content Include="Scripts\src\methods\defaults.js" />
     <Content Include="Scripts\src\methods\destroy.js" />
@@ -1175,7 +1174,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\IndexOld.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -1183,7 +1181,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -1198,8 +1195,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\User\UserFormEdit.cshtml" />
-    <Content Include="Views\User\UserFormRegister.cshtml" />
-    <Content Include="Views\User\RegisterStrange.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Game\GameProfile.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
@@ -1219,8 +1215,8 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Game\Games.cshtml" />
-    <Content Include="Views\Home\AvraamGamers.cshtml" />
-    <Content Include="Views\User\EditAvraam2.cshtml" />
+    <Content Include="Views\Home\Gamers.cshtml" />
+    <Content Include="Views\User\Customize.cshtml" />
     <Content Include="Views\Message\_ListofChatboxes.cshtml" />
     <Content Include="Views\Message\_ListOfChats.cshtml" />
     <Content Include="Views\Home\GamersStats.cshtml" />
@@ -1244,9 +1240,7 @@
     <Content Include="webfonts\fa-brands-400.eot" />
     <Content Include="Views\User\UsersList.cshtml" />
     <Content Include="Views\User\LOLAccount.cshtml" />
-    <Content Include="Views\User\Edit.cshtml" />
     <Content Include="Views\User\NewsFeed.cshtml" />
-    <Content Include="Views\User\EditAvraam.cshtml" />
     <Content Include="Views\Shared\_LoginSearchPartial.cshtml" />
     <Content Include="Views\User\DotaAccount.cshtml" />
     <Content Include="Views\User\OverWatchAccount.cshtml" />
