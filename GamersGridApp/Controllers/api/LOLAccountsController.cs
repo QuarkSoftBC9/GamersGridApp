@@ -24,7 +24,8 @@ namespace GamersGridApp.Controllers.api
         private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
-        private readonly GameAccountStatsRepository accountStats;
+        private readonly GameAccountStatsRepository gameAccountStats;
+        private readonly GameAccountRepository gameAccounts;
 
         public LOLAccountsController()
         {
@@ -35,12 +36,12 @@ namespace GamersGridApp.Controllers.api
             base.Dispose(disposing);
         }
         [HttpPost]
-        public LOLStatsDto AddAccount(AddLOLAccountViewmodel viewModel)
+        public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
         {
             //Check if data was returned correctly
             if ((String.IsNullOrEmpty(viewModel.UserName)) || (String.IsNullOrEmpty(viewModel.Region)))
                 throw new HttpResponseException(HttpStatusCode.NotFound);
-
+            
             //Get the logged in  User 
             var appUserId = User.Identity.GetUserId();
             var userContent = context.Users
@@ -51,7 +52,12 @@ namespace GamersGridApp.Controllers.api
 
             //Check if userContent exists
             if (userContent == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return BadRequest("No such account was found");
+
+            //Check if Game Account with such credential alrady exists
+            var accountExists = gameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
+            if (accountExists != null && accountExists.Id != userContent.ID)
+                return BadRequest("The account already exists");
 
             //Download LOL Account 
             LOLDto accDto = new LOLDto();
@@ -66,36 +72,39 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            userGame.GameAccount.GameAccountStats = accountStats.GetGameAccStatsByID(userGame.Id);
+            userGame.GameAccount.GameAccountStats = gameAccountStats.GetGameAccStatsByID(userGame.Id);
             userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
 
+            //Getting List of matche ids
+            var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
+            var gameIds = matchIds.matches.Select(g => g.gameId);
+
+            //getting the list of matches
+            var matches = LolDataService.GetMatches(api, gameIds);
+            userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
+
             context.SaveChanges();
-            return statsDto[0];
+            return Ok(statsDto[0]);
 
         }
-        //[HttpGet]
-        //public List<LOLMatchesDto> GetStats()
-        //{
-        //    //getting user
-        //    var appUserId = User.Identity.GetUserId();
-        //    var gameAccount = context.Users
-        //        .Where(u => u.Id == appUserId)
-        //        .Select(u => u.UserAccount)
-        //        .Select(g => g.UserGames.Where(ug => ug.GameID == lolID).Select(ga => ga.GameAccount).FirstOrDefault())
-        //        .Include(gs => gs.GameAccountStats)
-        //        .SingleOrDefault();
-        //    if (gameAccount == null || gameAccount.GameAccountStats == null)
-        //        throw new HttpResponseException(HttpStatusCode.NotFound);
-        //    //Getting List of matche ids
-        //    var matchIds = LolDataService.GetMatcheList(gameAccount.AccountIdentifier2, api);
-        //    var gameIds = matchIds.matches.Select(g => g.gameId);
 
-        //    //getting the list of matches
-        //    var matches = LolDataService.GetMatches(api, gameIds);
-        //    gameAccount.GameAccountStats.UpdateKDA(matches, gameAccount.AccountIdentifier2);
+        public FullStatsDto GetStats(AddLOLAccountViewmodel viewModel)
+        {
+            //get account
+            FullStatsDto fullStatsDto = new FullStatsDto();
+            fullStatsDto.Account = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
 
-        //    context.SaveChanges();
-        //    return matches;
-        //}
+            //get stats
+            fullStatsDto.Stats = LolDataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
+
+            //get latest match
+            var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
+            var gameIds = matchIds.matches.Select(g => g.gameId);
+            var matches = LolDataService.GetMatches(api, gameIds);
+            fullStatsDto.SingleMatch = matches[0];
+
+            return fullStatsDto;
+        }
+
     }
 }
