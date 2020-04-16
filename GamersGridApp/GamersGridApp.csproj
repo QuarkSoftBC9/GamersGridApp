@@ -1172,7 +1172,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\IndexOld.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -1194,7 +1193,6 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\User\UserFormEdit.cshtml" />
-    <Content Include="Views\User\UserFormRegister.cshtml" />
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Game\GameProfile.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -1215,7 +1213,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Game\Games.cshtml" />
-    <Content Include="Views\Home\AvraamGamers.cshtml" />
+    <Content Include="Views\Home\Gamers.cshtml" />
     <Content Include="Views\User\Customize.cshtml" />
     <Content Include="Views\Message\_ListofChatboxes.cshtml" />
     <Content Include="Views\Message\_ListOfChats.cshtml" />

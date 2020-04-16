@@ -35,6 +35,7 @@ namespace GamersGridApp.ViewModels
         {
             if (user.ID == 0)
                 throw new ArgumentNullException("User id is 0");
+
             ID = user.ID;
             FirstName = user.FirstName;
             LastName = user.LastName;

@@ -124,42 +124,6 @@ namespace GamersGridApp.Controllers
             return View(viewModel);
         }
 
-        ////Get
-        //[Authorize]
-        ////[ValidateAntiForgeryToken]
-        //public ActionResult Edit(int id)
-        //{
-        //    var aspNetUserID = User.Identity.GetUserId();
-        //    var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
-        //        .Include(c => c.UserAccount)
-        //        .SingleOrDefault();
-        //    //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
-        //    //aspNetUser.UserAccount = userContent;
-
-        //    if (aspNetUser.UserId == id)
-        //    {
-        //        var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
-        //        return View(viewmodel);
-        //    }
-        //    return HttpNotFound();
-        //}
-
-        [Authorize]
-        [HttpPost, ActionName("Edit")]
-        //[ValidateAntiForgeryToken]
-        public ActionResult SaveEdit(UserFormEditViewModel viewmodel)
-        {
-            var userContent = context.GamersGridUsers
-                .SingleOrDefault(u => u.ID == viewmodel.ID);
-            userContent.Update(
-                viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
-                viewmodel.Description, viewmodel.Country, viewmodel.Country);
-
-
-            context.SaveChanges();
-
-            return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
-        }
 
         [Authorize]
         public ActionResult Customize()
@@ -189,9 +153,6 @@ namespace GamersGridApp.Controllers
                .SingleOrDefault();
 
 
-            //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
-            //aspNetUser.UserAccount = userContent;
-
             var viewmodel = new UserFormEditViewModel(ggtUser, userGameRelationDota, userGameRelationLol, userGameRelationOverwatch);
             return View("Customize", viewmodel);
 
@@ -207,7 +168,7 @@ namespace GamersGridApp.Controllers
                 .SingleOrDefault(u => u.ID == viewmodel.ID);
             userContent.Update(
                 viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
-                viewmodel.Description, viewmodel.Country, viewmodel.Country);
+                viewmodel.Description, viewmodel.Country, viewmodel.City);
 
             if (!(file is null))
             {

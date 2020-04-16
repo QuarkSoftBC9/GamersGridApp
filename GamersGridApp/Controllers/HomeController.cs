@@ -52,45 +52,10 @@ namespace GamersGridApp.Controllers
             return View();
         }
 
-        public ActionResult AvraamGamers()
+        public ActionResult Gamers()
         {
             List<User> otherUsers;
 
-                //var viewModel = new PlayersListViewModel();
-
-
-                //    dict = dt.DataValues.Where(d => sensorIDs.Contains(d.SensorID))
-                //    .GroupBy(a => a.DataID)
-                //     .Join(dt.Datas, a => a.Key, a => a.DataId,
-                //            (a, b) => new { Key = b, Value = a.ToList() })
-                //.ToDictionary(a => a.Key, a => a.Value);
-
-                //Getting the user
-                //if (User.Identity.IsAuthenticated)
-                //{
-                //    var userId = User.Identity.GetUserId();
-                //    var user = context.Users.Where(d => d.Id == userId).Select(d => d.UserAccount).SingleOrDefault();
-
-                //    //Show User except the one who is logged in
-                //    otherUsers = context.GamersGridUsers.Where(u => u.ID != user.ID).ToList();
-                //    Dictionary<int, string> DictionaryForViewModel = new Dictionary<int, string>();
-                //    foreach (var userGamer in otherUsers)
-                //    {
-                //        var favoriteGameId = context.UserGameRelations
-                //                    .Where(u => u.UserId == userGamer.ID && u.IsFavoriteGame == true)
-                //                    .Select(g => g.GameID)
-                //                    .SingleOrDefault();
-
-                //        var favoriteGameTitle = context.Games
-                //                    .Where(g => g.ID == favoriteGameId)
-                //                    .Select(g => g.Title)
-                //                    .SingleOrDefault();
-
-                //        DictionaryForViewModel.Add(userGamer.ID, favoriteGameTitle);
-                //    }
-
-                //}
-                //else
 
                 otherUsers = context.GamersGridUsers.ToList();
                 Dictionary<int, string> DictionaryForViewModel = new Dictionary<int, string>();
@@ -128,26 +93,30 @@ namespace GamersGridApp.Controllers
         }
         public ActionResult Search([FromBody]string searchString)
         {
-            if (string.IsNullOrEmpty(searchString))
-                return HttpNotFound();
+            //if (string.IsNullOrEmpty(searchString))
+            //    return HttpNotFound();
 
             // We can create a custom page to return as view in case of empty string
             // or redirect to games page
+            if (!string.IsNullOrWhiteSpace(searchString))
+            {
+                var game = context.Games.FirstOrDefault(g => g.Title.Contains(searchString));
 
-            var game = context.Games.SingleOrDefault(g => g.Title.Contains(searchString));
+                if (game != null)
+                    return RedirectToAction("GameProfile", "Game", new { gameName = game.Title });
 
-            if (game != null)
-               return  RedirectToAction("GameProfile", "Game", new { gameName = game.Title });
+                var users = context.GamersGridUsers.Where(ggu => ggu.NickName.Contains(searchString)).ToList();
 
-            var users = context.GamersGridUsers.Where(ggu => ggu.NickName.Contains(searchString)).ToList();
-            
-            if (users.Count == 0) 
-                return HttpNotFound();
-           
-            if (users.Count == 1)
-                return RedirectToAction("ProfilePage", "User", new { userid = users[0].ID });
+                //if (users.Count == 0) 
+                //    return HttpNotFound();
 
-            return RedirectToAction("AvraamGamers");
+                if (users.Count == 1)
+                    return RedirectToAction("ProfilePage", "User", new { userid = users[0].ID });
+
+            }
+
+            return RedirectToAction("Gamers");
+
 
             //if (!String.IsNullOrEmpty(searchString))
             //{
