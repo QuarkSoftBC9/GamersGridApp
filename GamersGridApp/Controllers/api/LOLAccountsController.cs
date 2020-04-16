@@ -2,6 +2,7 @@
 using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Dtos.ApiStatsDto;
 using GamersGridApp.Models;
+using GamersGridApp.Repositories;
 using GamersGridApp.ViewModels;
 using GamersGridApp.WebServices;
 using Microsoft.AspNet.Identity;
@@ -23,6 +24,7 @@ namespace GamersGridApp.Controllers.api
         private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
+        private readonly GameAccountStatsRepository accountStats;
 
         public LOLAccountsController()
         {
@@ -64,7 +66,7 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            userGame.GameAccount.GameAccountStats = context.GameAccountStats.Where(gs => gs.Id == userGame.Id).SingleOrDefault();
+            userGame.GameAccount.GameAccountStats = accountStats.GetGameAccStatsByID(userGame.Id);
             userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
 
             context.SaveChanges();

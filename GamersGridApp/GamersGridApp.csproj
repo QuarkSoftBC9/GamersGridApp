@@ -566,8 +566,11 @@
     <Compile Include="Perstistence\EntityConfigurations\UserPostingConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\VideoConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\GameAccountRepository.cs" />
+    <Compile Include="Repositories\GameAccountStatsRepository.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\UserGameRelations.cs" />
+    <Compile Include="Repositories\UserNotificationRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AddDotaAccountViewModel.cs" />

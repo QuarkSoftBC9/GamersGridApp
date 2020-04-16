@@ -13,6 +13,8 @@ using System.Web;
 using GamersGridApp.Dtos.ApiStatsDto;
 using GamersGridApp.WebServices;
 using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Repositories;
+using GamersGridApp.WebServices;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -20,11 +22,13 @@ namespace GamersGridApp.Controllers.api
     public class LOLAccountsCheckController : ApiController
     {
         private readonly ApplicationDbContext context;
-        private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
+        private readonly GameAccountRepository gameAccounts;
+        private readonly string api = "RGAPI-e06e9739-e073-454b-a242-5a35b1c38a02";
 
         public LOLAccountsCheckController()
         {
             context = new ApplicationDbContext();
+            gameAccounts = new GameAccountRepository(context);
         }
         protected override void Dispose(bool disposing)
         {
@@ -33,11 +37,11 @@ namespace GamersGridApp.Controllers.api
         //[System.Web.Http.HttpPost]
         public IHttpActionResult CheckAccount(AddLOLAccountViewmodel user)
         {
+            //cuur ID
             if (String.IsNullOrEmpty(user.UserName) || String.IsNullOrEmpty(user.Region))
                 return BadRequest("they are null");
-            var accountExists = context.GameAccounts
-                .Where(la => la.NickName == user.UserName && la.AccountRegions == user.Region)
-                .SingleOrDefault();
+            var accountExists = gameAccounts.GetGameAccByNameAndRegion(user.UserName, user.Region);
+
             if (accountExists != null)
                 return BadRequest("The account already exists");
             else
@@ -47,15 +51,19 @@ namespace GamersGridApp.Controllers.api
         //Add here Get Stats Method
         public FullStatsDto GetStats(AddLOLAccountViewmodel viewModel)
         {
+            //get account
             FullStatsDto fullStatsDto = new FullStatsDto();
             fullStatsDto.Account = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
 
+            //get stats
             fullStatsDto.Stats = LolDataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
 
+            //get latest match
             var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
             var gameIds = matchIds.matches.Select(g => g.gameId);
             var matches = LolDataService.GetMatches(api, gameIds);
             fullStatsDto.SingleMatch = matches[0];
+
             return fullStatsDto;
         }
     }
