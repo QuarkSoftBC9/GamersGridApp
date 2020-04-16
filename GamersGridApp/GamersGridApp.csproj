@@ -717,6 +717,7 @@
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\favicon.png" />
     <Content Include="Content\Images\wizard.jpg" />
+    <Content Include="Content\SearchEngine\search.css" />
     <Content Include="Content\SearchResults\SearchResultStyle.css" />
     <Content Include="Content\toastr.css" />
     <Content Include="Content\toastr.min.css" />

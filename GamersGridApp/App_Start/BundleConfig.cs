@@ -88,6 +88,9 @@ namespace GamersGridApp
             bundles.Add(new StyleBundle("~/Content/SiteCss").Include(
                  "~/Content/Site.css"));
 
+            bundles.Add(new StyleBundle("~/Content/SearchEngine").Include(
+                "~/Content/SearchEngine/search.css"));
+
             bundles.Add(new StyleBundle("~/Content/GameProfile").Include(
                  "~/Content/GameProfile.css"));
 
