@@ -20,29 +20,29 @@ namespace GamersGridApp.Controllers.api
         }
 
 
-        [HttpGet]
-        public IHttpActionResult CheckRelation(int followeeId, int followerId)
-        {
-            var followRelation1 = db.Follows
-                                   .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
-
-            var followRelation2 = db.Follows
-                             .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
-
-            if (followRelation1 == null || followRelation2 == null)
-                return BadRequest();
-            else
-                return Ok();
-        }
         //[HttpGet]
-        //public IHttpActionResult FindMutualFollowers()
+        //public IHttpActionResult CheckRelation(int followeeId, int followerId)
         //{
-        //    var userId = User.Identity.GetUserId();
-        //    var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+        //    var followRelation1 = db.Follows
+        //                           .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
 
-        //    var users = db.GamersGridUsers.Where(g => g.Followees.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followers.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
-        //    return Ok(users);
+        //    var followRelation2 = db.Follows
+        //                     .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
+
+        //    if (followRelation1 == null || followRelation2 == null)
+        //        return BadRequest();
+        //    else
+        //        return Ok();
         //}
+        [HttpGet]
+        public IHttpActionResult FindMutualFollowers()
+        {
+            var userId = User.Identity.GetUserId();
+            var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+
+            var users = db.GamersGridUsers.Where(g => g.Followers.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followees.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
+            return Ok(users);
+        }
 
         //[HttpGet]
         //public IHttpActionResult FindMessageChats(int ID)

@@ -24,70 +24,98 @@
                         </div>
                     </div>
                 </div>
-                <div class="inbox_chat">
+                <ul class="inbox_chat" style="list-style-type:none;">
                     @if (Model.MessageChats != null)
                     {
                         foreach (var messagechat in Model.MessageChats)
                         {
-                            <div class="chat_list chatLeft" id="@messagechat.ID" @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
-                                <div class="chat_people">
-                                    <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                    <div class="chat_ib">
+                    <li class="chat_list chatLeft selected" id="@messagechat.ID">
+                        @if (messagechat.ChatHistory.Count != 0)
+                        {
+                            <div class="chat_people">
+                                <div class="chat_img"> <img src="@(String.IsNullOrEmpty(messagechat.ChatHistory.LastOrDefault().User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{messagechat.ChatHistory.LastOrDefault().User.ID}/{messagechat.ChatHistory.LastOrDefault().User.Avatar}")" alt="sunil"> </div>
+                                <div class="chat_ib">
 
-                                        <h5>@messagechat.Name</h5>
-                                        @*@if (messagechat.ChatHistory.Count != 0)
-                                            {
-                                            <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
-                                            <p>
-                                                @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
-                                            </p>
-                                            }*@
-                                    </div>
+                                    <h5>@messagechat.Name</h5>
+                                    @if (messagechat.ChatHistory.Count != 0)
+                                    {
+                                        <span class="chat_date">@messagechat.ChatHistory.LastOrDefault().Time</span>
+                                        <p>
+                                            @messagechat.ChatHistory.Last().MessageString
+                                        </p>
+                                    }
                                 </div>
                             </div>
+
+                        }
+                        else
+                        {
+                            <div class="chat_people">
+                                <div class="chat_img"> <img src="@(String.IsNullOrEmpty(messagechat.MessageChatUsers.LastOrDefault().User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{messagechat.ChatHistory.LastOrDefault().User.ID}/{messagechat.ChatHistory.LastOrDefault().User.Avatar}")" alt="sunil"> </div>
+                                <div class="chat_ib">
+
+                                    <h5>@messagechat.Name</h5>
+                                    @if (messagechat.ChatHistory.Count != 0)
+                                    {
+                                        <span class="chat_date">@messagechat.ChatHistory.LastOrDefault().Time</span>
+                                        <p>
+                                            @messagechat.ChatHistory.Last().MessageString
+                                        </p>
+                                    }
+                                </div>
+                            </div>
+
+                        }
+
+                    </li>
                         }
                     }
-                </div>
+                </ul>
             </div>
             <div class="mesgs" id="chatbox">
                 <div class="msg_history" id="messageboard">
                     @if (Model.MessageChats != null)
                     {
-                        foreach (var message in Model.MessageChats.FirstOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.OrderBy(c => c.Time))
+                        if (Model.MessageChats.LastOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.Count!=0)
                         {
-                            if (Model.CurrentUserNickName != message.User.NickName)
+                            foreach (var message in Model.MessageChats.LastOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.OrderBy(c => c.Time))
                             {
-                                <div class="incoming_msg">
-                                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
-                                    <div class="received_msg">
-                                        <div class="received_withd_msg">
+
+                                if (Model.CurrentUserNickName != message.User.NickName)
+                                {
+                                    <div class="incoming_msg">
+                                        <div class="incoming_msg_img"> <img src="@(String.IsNullOrEmpty(message.User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{message.User.ID}/{message.User.Avatar}")" alt="sunil"> </div>
+                                        <div class="received_msg">
+                                            <div class="received_withd_msg">
+                                                <p>
+                                                    @message.MessageString
+                                                </p>
+                                                <span class="time_date"> @message.Time</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                }
+                                else
+                                {
+                                    <div class="outgoing_msg">
+                                        <div class="sent_msg">
                                             <p>
                                                 @message.MessageString
                                             </p>
-                                            <span class="time_date"> @message.Time</span>
+                                            <span class="time_date">  @message.Time</span>
                                         </div>
                                     </div>
-                                </div>
+                                }
 
                             }
-                            else
-                            {
-                                <div class="outgoing_msg">
-                                    <div class="sent_msg">
-                                        <p>
-                                            @message.MessageString
-                                        </p>
-                                        <span class="time_date">  @message.Time</span>
-                                    </div>
-                                </div>
-                            }
+
                         }
                     }
                 </div>
                 <div class="type_msg">
                     <div class="input_msg_write">
-                        @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })
-                        @*<input type="text" id="type" class="write_msg" autocomplete="off" />*@
+                        @Html.TextBox("NewText", "", new { @id = "txtMessage", @class = "write_msg", @autocomplete = "off" })                        
                         <button class="msg_send_btn" type="button" data-chat-id="@Model.CurrentChatID" id="btnSendMessage"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
                     </div>
                 </div>
@@ -103,10 +131,11 @@
 
     <script>
 
-        var MessageChats = [];
+       
 
         $(document).ready(function () { //This section will run whenever we call Chat.cshtml page
-
+                  
+            
             var objHub = $.connection.chatHub;
             var chatid = $("#btnSendMessage").attr("data-chat-id");
 
@@ -115,7 +144,7 @@
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('title'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         remote: {
-            url: '/api/follows?query=%QUERY',
+            url: '/api/messages?query=%QUERY',
             wildcard: '%QUERY'
         }
         });
@@ -139,8 +168,13 @@
                     data: { ID: user.id },
                     type: 'GET',                    
                     success: function (data) {
-                        console.log("ASDASDa")
-                        $('#chatbox').replaceWith(data);
+                         
+                         $('#chatbox').replaceWith(data);
+                        $(".chatLeft").removeClass("active_chat");
+                         var chatId= $("#btnSendMessage").attr("data-chat-id");
+                         $("#"+chatId).addClass("active_chat");    
+                        
+
                     }
                 });        
 
@@ -178,6 +212,7 @@
 
                 var msg = $("#txtMessage").val();
                 var chatboxid = $("#btnSendMessage").attr("data-chat-id");
+                
 
                 if (msg.length > 0) {
 
@@ -189,10 +224,11 @@
             });
 
 
-            $(".chatLeft").on("click",function (e) {
-
-                var messageChatId = $(e.target).attr("id");
-
+            $(".chat_people").on("click", function (e) {
+                var parent = $(e.target).closest("li");               
+                var messageChatId = parent.attr("id");                 
+                $(".chatLeft").removeClass("active_chat");
+                parent.addClass("active_chat");               
                 $.ajax({
                     url: '/Message/GetPartial',
                     data: { chatId : messageChatId },

@@ -25,6 +25,7 @@ namespace GamersGridApp.Controllers
             var messageChats = db.MessageChats
                 .Where(mc => mc.MessageChatUsers.Select(mcu=>mcu.UserId).Any(u=>u.Equals(currentUser.ID)))
                 .Include(c => c.ChatHistory.Select(ch=>ch.User))
+                .Include(mc=>mc.MessageChatUsers.Select(mcu=>mcu.User))
                 .ToList();
 
             if (messageChats.Count != 0)
@@ -35,7 +36,7 @@ namespace GamersGridApp.Controllers
             }
             else
             {
-                var viewmodel = new MessageBoardViewModel(null, null, currentUser.NickName);
+                var viewmodel = new MessageBoardViewModel(new List<MessageChat>(), null, currentUser.NickName);
                 return View(viewmodel);
             }
 
@@ -49,7 +50,7 @@ namespace GamersGridApp.Controllers
             var user = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).SingleOrDefault();
             var RequestedUser = db.Users.Select(u => u.UserAccount).FirstOrDefault(u => u.ID == ID);
             
-            var messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == ID))
+            var messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
             .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
             .Where(m => m.MessageChatUsers.Count == 2)
             .Include(c=>c.ChatHistory.Select(ch=>ch.User))
@@ -76,15 +77,15 @@ namespace GamersGridApp.Controllers
                     Chat = newMessageChat
                 };
 
-                db.MessageChatUsers.Add(messageChatUser1);
-                db.MessageChatUsers.Add(messageChatUser2);
+                //db.MessageChatUsers.Add(messageChatUser1);
+                //db.MessageChatUsers.Add(messageChatUser2);
                 newMessageChat.MessageChatUsers.Add(messageChatUser1);
                 newMessageChat.MessageChatUsers.Add(messageChatUser1);
 
                 db.MessageChats.Add(newMessageChat);
                 db.SaveChanges();
 
-                 messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == ID))
+                 messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
                             .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
                             .Where(m => m.MessageChatUsers.Count == 2)
                             .Include(c => c.ChatHistory.Select(ch => ch.User))

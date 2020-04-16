@@ -20,6 +20,15 @@ namespace GamersGridApp.ViewModels
         }
         public MessageBoardViewModel(List<MessageChat> messageChats, int? currentChatId , string currentUserNickname)
         {
+            foreach (var messageChat in messageChats)
+            {
+                if (messageChat.ChatHistory==null)
+                {
+                    messageChat.ChatHistory = new List<Message>();
+                }
+            }
+
+
                 MessageChats = messageChats;
                 CurrentChatID = currentChatId;
                 CurrentUserNickName = currentUserNickname;

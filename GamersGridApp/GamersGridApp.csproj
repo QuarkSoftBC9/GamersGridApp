@@ -568,6 +568,8 @@
     <Compile Include="Repositories\GameAccountRepository.cs" />
     <Compile Include="Repositories\GameAccountStatsRepository.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Repositories\MessageChatRepository.cs" />
+    <Compile Include="Repositories\MessageChatUserRepository.cs" />
     <Compile Include="Repositories\UserGameRelations.cs" />
     <Compile Include="Repositories\UserNotificationRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
