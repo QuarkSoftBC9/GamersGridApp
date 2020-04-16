@@ -58,7 +58,7 @@ namespace GamersGridApp.Controllers.api
             var userGameRelation = context.UserGameRelations
                 .Include(ug => ug.GameAccount)
                 .Include(ug => ug.GameAccount.GameAccountStats)
-                .SingleOrDefault(ug => ug.GameID == 3 && ug.UserId == ggUser.ID);
+                .SingleOrDefault(ug => ug.GameID == 2 && ug.UserId == ggUser.ID);
 
 
             if (userGameRelation == null)

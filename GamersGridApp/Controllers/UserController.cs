@@ -111,25 +111,25 @@ namespace GamersGridApp.Controllers
             return View(viewModel);
         }
 
-        //Get
-        [Authorize]
-        //[ValidateAntiForgeryToken]
-        public ActionResult Edit(int id)
-        {
-            var aspNetUserID = User.Identity.GetUserId();
-            var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
-                .Include(c => c.UserAccount)
-                .SingleOrDefault();
-            //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
-            //aspNetUser.UserAccount = userContent;
+        ////Get
+        //[Authorize]
+        ////[ValidateAntiForgeryToken]
+        //public ActionResult Edit(int id)
+        //{
+        //    var aspNetUserID = User.Identity.GetUserId();
+        //    var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
+        //        .Include(c => c.UserAccount)
+        //        .SingleOrDefault();
+        //    //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
+        //    //aspNetUser.UserAccount = userContent;
 
-            if (aspNetUser.UserId == id)
-            {
-                var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
-                return View(viewmodel);
-            }
-            return HttpNotFound();
-        }
+        //    if (aspNetUser.UserId == id)
+        //    {
+        //        var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
+        //        return View(viewmodel);
+        //    }
+        //    return HttpNotFound();
+        //}
 
         [Authorize]
         [HttpPost, ActionName("Edit")]
@@ -152,13 +152,34 @@ namespace GamersGridApp.Controllers
         public ActionResult EditAvraam2()
         {
             var aspNetUserID = User.Identity.GetUserId();
-            var aspNetUser = context.Users.Where(u => u.Id == aspNetUserID)
-                .Include(c => c.UserAccount)
+            var ggtUser = context.Users.Where(u => u.Id == aspNetUserID)
+                .Select(c => c.UserAccount)
                 .SingleOrDefault();
+
+            const int lolId = 1;
+            const int dotaId = 2;
+            const int overwatchId = 3;
+
+            var userGameRelationLol = context.UserGameRelations
+                .Where(ugr => ugr.GameID == lolId && ugr.UserId == ggtUser.ID)
+                .Include(ugr=>ugr.GameAccount)
+                .SingleOrDefault();
+
+            var userGameRelationDota = context.UserGameRelations
+               .Where(ugr => ugr.GameID == dotaId && ugr.UserId == ggtUser.ID)
+               .Include(ugr => ugr.GameAccount)
+               .SingleOrDefault();
+
+            var userGameRelationOverwatch = context.UserGameRelations
+               .Where(ugr => ugr.GameID == overwatchId && ugr.UserId == ggtUser.ID)
+               .Include(ugr => ugr.GameAccount)
+               .SingleOrDefault();
+
+
             //var userContent = context.GamersGridUsers.SingleOrDefault(u => u.ID == aspNetUser.UserId);
             //aspNetUser.UserAccount = userContent;
 
-            var viewmodel = new UserFormEditViewModel(aspNetUser.UserAccount);
+            var viewmodel = new UserFormEditViewModel(ggtUser, userGameRelationDota, userGameRelationLol, userGameRelationOverwatch);
             return View("EditAvraam2", viewmodel);
 
         }

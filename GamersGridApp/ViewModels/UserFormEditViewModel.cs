@@ -24,7 +24,14 @@ namespace GamersGridApp.ViewModels
 
         public string City { get; set; }
 
-        public UserFormEditViewModel(User user)
+        public string SteamId { get; set; }
+        public string BattleTag { get; set; }
+        public string LolUsername { get; set; }
+        public List<string> BattleNetRegions { get; set; }
+        public List<string> RiotGamesRegions { get; set; }
+        
+
+        public UserFormEditViewModel(User user,UserGame dotaRelation,UserGame lolRelation,UserGame overwatchRelation)
         {
             if (user.ID == 0)
                 throw new ArgumentNullException("User id is 0");
@@ -36,6 +43,15 @@ namespace GamersGridApp.ViewModels
             Country = user.Country;
             City = user.City;
             Avatar = user.Avatar;
+
+            SteamId = dotaRelation == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
+            BattleTag = lolRelation == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
+            LolUsername = overwatchRelation == null ? "" : lolRelation.GameAccount.NickName; 
+
+            BattleNetRegions = new List<string>() { "us", "eu", "asia" };
+            RiotGamesRegions = new List<string>() { "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1",
+                "OC1", "RU", "TR1"};
+
         }
         public UserFormEditViewModel() { }
     }
