@@ -147,8 +147,8 @@ namespace GamersGridApp.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            RegisterViewModelAvraam model = new RegisterViewModelAvraam() { };
-            return View("~/Views/User/RegisterStrange.cshtml", model);
+            RegisterViewModelAvraam model = new RegisterViewModelAvraam();
+            return View("Register", model);
         }
 
         //

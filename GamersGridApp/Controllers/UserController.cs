@@ -77,6 +77,8 @@ namespace GamersGridApp.Controllers
                 FollowsCount = context.Follows.Count(f => f.UserId == user.ID),
                 FollowingCount = context.Follows.Count(f => f.FollowerId == user.ID),
                 User = user,
+                FavouriteGame = favoritegame,
+                FavoriteGameID = favoritegameID
             };
 
             //variables bound in viewmodel to be used for razor page logic between profile page and current logged user
@@ -160,7 +162,7 @@ namespace GamersGridApp.Controllers
         }
 
         [Authorize]
-        public ActionResult EditAvraam2()
+        public ActionResult Customize()
         {
             var aspNetUserID = User.Identity.GetUserId();
             var ggtUser = context.Users.Where(u => u.Id == aspNetUserID)
@@ -191,7 +193,7 @@ namespace GamersGridApp.Controllers
             //aspNetUser.UserAccount = userContent;
 
             var viewmodel = new UserFormEditViewModel(ggtUser, userGameRelationDota, userGameRelationLol, userGameRelationOverwatch);
-            return View("EditAvraam2", viewmodel);
+            return View("Customize", viewmodel);
 
         }
 

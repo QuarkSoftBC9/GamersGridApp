@@ -44,9 +44,18 @@ namespace GamersGridApp.ViewModels
             City = user.City;
             Avatar = user.Avatar;
 
-            SteamId = dotaRelation == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
-            BattleTag = lolRelation == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
-            if(lolRelation != null)
+            
+            if(dotaRelation.GameAccount != null)
+            {
+                SteamId = dotaRelation == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
+            }
+
+            if(lolRelation == null)
+            {
+                BattleTag = lolRelation == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
+
+            }
+            if (lolRelation != null)
             {
                 LolUsername = overwatchRelation == null ? "" : lolRelation.GameAccount.NickName;
             }

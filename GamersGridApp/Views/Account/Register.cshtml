@@ -1,41 +1,167 @@
 ﻿@model GamersGridApp.ViewModels.RegisterViewModelAvraam
+
 @{
-    ViewBag.Title = "Register";
+    ViewData["Title"] = "Register";
 }
 
-<h2>@ViewBag.Title.</h2>
+@Styles.Render("~/Content/NewRegisterCss")
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-{
-    @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
-    @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+<div class="image-container set-full-height"
+     style=" background-color:gray;  background-image: url('/Content/Images/backa.png');">
 
-@section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
-}
+    <!--   Big    container   -->
+    <div class="   container">
+        <div class="   row">
+            <div class="   col-sm-8    col-sm-offset-2">
+
+                <!--      Wizard container        -->
+                <div class="wizard-container">
+
+                    <div class="card wizard-card" data-color="blue" id="wizardProfile">
+                        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <!--        You can switch ' data-color="orange" '  with one of the next bright colors: "blue", "green", "orange", "red"          -->
+
+                            <div class="wizard-header">
+                                <h3>
+                                    <b>BUILD</b> YOUR PROFILE <br>
+                                   
+                                </h3>
+                                <h4>
+                                    This information will let us know more about you.
+                                </h4>
+                            </div>
+
+                            <div class="wizard-navigation">
+                                <ul>
+                                    <li class="avraamli"><a href="#about" data-toggle="tab">About</a></li>
+                                    <li class="avraamli"><a href="#account" data-toggle="tab">Account</a></li>
+                                    <li class="avraamli"><a href="#address" data-toggle="tab">Address</a></li>
+                                </ul>
+
+                            </div>
+
+                            <div class="   tab-content">
+                                <div class="   tab-pane" id="about">
+                                    <div class="   row">
+                                        <h4 class="info-text"> Let's start with the basic information</h4>
+                                        <div class="   col-sm-4    col-sm-offset-1">
+                                            <div class="picture-container">
+                                                <div class="picture">
+                                                    <img src="~/Content/Images/icon1--02.jpg" class="picture-src"
+                                                         id="wizardPicturePreview" title="" />
+                                                    <input type='file' name="file" id="wizard-picture" accept=".png, .jpg, .jpeg">
+                                                </div>
+                                                <h6>Choose Picture</h6>
+                                            </div>
+                                        </div>
+                                        <div class="   col-sm-6">
+                                            <div class="   form-group">
+                                                <label>Email <small>(required)</small></label>
+                                                @Html.TextBoxFor(v => v.Email, new { @class = "   form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="   col-sm-6">
+                                            <div class="   form-group">
+                                                <label>Password <small>(required)</small></label>
+                                                @Html.PasswordFor(v => v.Password, new { @class = "form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                        <div class="   form-group col-sm-10    col-sm-offset-1">
+                                            <label>First Name <small>(required)</small></label>
+                                            @Html.TextBoxFor(v => v.FirstName, new { @class = "   form-control", required = "required" })
+                                        </div>
+                                        <div class="   form-group col-sm-10    col-sm-offset-1">
+                                            <label>Last Name <small>(required)</small></label>
+                                            @Html.TextBoxFor(v => v.LastName, new { @class = "   form-control", required = "required" })
+                                        </div>
+                                        <div class="   form-group col-sm-10    col-sm-offset-1">
+                                            <label>Nick Name <small>(required)</small></label>
+                                            @Html.TextBoxFor(v => v.NickName, new { @class = "   form-control", required = "required" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="   tab-pane" id="account">
+                                    <h4 class="info-text"> What is your Favorite Game? </h4>
+                                    <div class="   row">
+
+                                        <div class="col-sm-10    col-sm-offset-1">
+                                            <div class="   col-sm-4">
+                                                <div class="choice" data-toggle="wizard-radio">
+                                                    @Html.RadioButtonFor(v => v.FavoriteGame, "Dota 2", new { @class = "   form-control " })
+                                                    <div class="icon">
+                                                        <i class="fab fa-old-republic"></i>
+                                                    </div>
+                                                    <h6>Dota 2</h6>
+                                                </div>
+                                            </div>
+                                            <div class="   col-sm-4">
+                                                <div class="choice" data-toggle="wizard-radio">
+                                                    @Html.RadioButtonFor(v => v.FavoriteGame, "League Of Legends", new { @class = "   form-control" })
+                                                    <div class="icon">
+                                                        <i class="fas fa-fist-raised"></i>
+                                                    </div>
+                                                    <h6>League Of Legends</h6>
+                                                </div>
+
+                                            </div>
+                                            <div class="   col-sm-4">
+                                                <div class="choice" data-toggle="wizard-radio">
+                                                    @Html.RadioButtonFor(v => v.FavoriteGame, "Overwatch", new { @class = "   form-control" })
+                                                    <div class="icon">
+                                                        <i class="fas fa-crosshairs"></i>
+                                                    </div>
+                                                    <h6>Overwatch</h6>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="   tab-pane" id="address">
+                                    <div class="   row">
+                                        <div class="   col-sm-12">
+                                            <h4 class="info-text"> Are you living in a nice area? </h4>
+                                        </div>
+                                        <div class="   col-sm-5    col-sm-offset-1">
+                                            <div class="   form-group">
+                                                <label>Country</label><br>
+                                                <select id="Country" name="Country" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="   col-sm-5 ">
+                                            <div class="   form-group">
+                                                <label>City</label>
+                                                @Html.TextBoxFor(v => v.City, new { @class = "   form-control", required = "required" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="wizard-footer height-wizard">
+                                <div class="pull-right">
+                                    <input type='button'
+                                           class='btn btn-next btn-fill btn-warning btn-wd btn-sm btn-register' name='next'
+                                           value='Next' />
+                                    <input type='submit'
+                                           class='btn btn-finish btn-fill btn-warning btn-wd btn-sm' name='finish'
+                                           value='Finish' />
+
+                                </div>
+
+                                <div class="pull-left">
+                                    <input type='button'
+                                           class='btn btn-previous btn-fill btn-default btn-wd btn-sm btn-register' name='previous'
+                                           value='Previous' />
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        }
+                    </div>
+                </div> <!-- wizard container -->
+            </div>
+        </div><!-- end    row -->
+    </div> <!--  big container -->
+</div> 
