@@ -9,42 +9,31 @@ using System.Web.Script.Serialization;
 
 namespace GamersGridApp.WebServices
 {
-    public  class LolDataService
+    public class DataService
     {
-        public static LOLDto GetAccount(string region, string nickname, string api)
+        public static LOLDto GetAccount(string url)
         {
-            string urlAccount = String.Format("https://{0}.api.riotgames.com/lol/summoner/v4/summoners/by-name/{1}?api_key={2}",region, nickname
-                , api);
-            urlAccount = HttpUtility.UrlPathEncode(urlAccount);
-
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(urlAccount);
+                string json = client.DownloadString(url);
                 var accountDto = (new JavaScriptSerializer()).Deserialize<LOLDto>(json);
                 return accountDto;
             }
         }
-        public static List<LOLStatsDto> GetStats(string region, string accIdentifier, string api)
+        public static List<LOLStatsDto> GetStats(string url)
         {
-            var urlStats = String.Format("https://{0}.api.riotgames.com/lol/league/v4/entries/by-summoner/{1}?api_key={2}",
-                region, accIdentifier, api);
-            urlStats = HttpUtility.UrlPathEncode(urlStats);
-            List<LOLStatsDto> statsList;
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(urlStats);
-                statsList = (new JavaScriptSerializer()).Deserialize<List<LOLStatsDto>>(json);
+                string json = client.DownloadString(url);
+                var statsList = (new JavaScriptSerializer()).Deserialize<List<LOLStatsDto>>(json);
+                return statsList;
             }
-            return statsList;
         }
-        public static LOLMatchesListDto GetMatcheList(string identifier2, string api, int startIndex = 0, int endIndex = 9)
+        public static LOLMatchesListDto GetMatcheList(string url)
         {
-            var urlMatchesList = String.Format("https://eun1.api.riotgames.com/lol/match/v4/matchlists/by-account/{0}?endIndex={1}&beginIndex={2}&api_key={3}",
-                identifier2,endIndex, startIndex, api);
-            urlMatchesList = HttpUtility.UrlPathEncode(urlMatchesList);
             using (WebClient client = new WebClient())
             {
-                string json = client.DownloadString(urlMatchesList);
+                string json = client.DownloadString(url);
                 var matches = (new JavaScriptSerializer()).Deserialize<LOLMatchesListDto>(json);
                 return matches;
             }
