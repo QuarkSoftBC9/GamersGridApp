@@ -43,9 +43,9 @@ namespace GamersGridApp.Models
             Losses = losses;
         }
         //Dota Update
-        public void Update(DotaDto mainDto, DotaWinsLosesDto dotaWLDto, List<DotaMatchDto> matchesDto)
+        public void Update(DotaDto mainDto, DotaWinsLosesDto dotaWLDto, string kda)
         {
-            KDA = Convert.ToString(ExtraMethods.CalculateKda(matchesDto));
+            KDA = kda;
             Wins = dotaWLDto.win;
             Losses = dotaWLDto.lose;
             Rank = Convert.ToString(mainDto.rank_tier);

@@ -66,9 +66,13 @@ namespace GamersGridApp.Models
         public static UserGame CreateNewRelationWithAccountOverWatch(int userId,string battletag,string region, OverWatchCompleteDto completeProfileDto)
         {
             const int overwatchId = 3;
-            string kda = Convert.ToString(ExtraMethods.CalculateKda(
-                completeProfileDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
-                completeProfileDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
+            string kda = "0";
+            if (completeProfileDto.competitiveStats != null)
+            {
+                kda = Convert.ToString(ExtraMethods.CalculateKda(
+                   completeProfileDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
+                   completeProfileDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
+            }
 
             var userGame = new UserGame(userId, overwatchId);
             userGame.GameAccount = new GameAccount(completeProfileDto.name,battletag,region );

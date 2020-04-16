@@ -97,16 +97,27 @@ namespace GamersGridApp.Controllers
                 viewModel.LoggedUserId = currentLoggedUser.ID;
             }
             //including stats 
-            var userGame = context.UserGameRelations
+            var userGames = context.UserGameRelations
                 .Where(u => u.UserId == user.ID)
                 .Include(g => g.Game)
                 .Include(ga => ga.GameAccount)
                 .Include(gs => gs.GameAccount.GameAccountStats).ToList();
 
-            viewModel.GamesStats = userGame
-                .Where(u => u.UserId == user.ID)
-                .Select(ga => ga.GameAccount.GameAccountStats)
-                .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
+            bool accountsFilled = true;
+
+            foreach (var usergame in userGames)
+            {
+                if (usergame.GameAccount == null)
+                    accountsFilled = false;
+            }
+
+            if (accountsFilled)
+            {
+                viewModel.GamesStats = userGames
+                    .Where(u => u.UserId == user.ID)
+                    .Select(ga => ga.GameAccount.GameAccountStats)
+                    .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
+            }
 
             return View(viewModel);
         }
