@@ -41,44 +41,10 @@ else
     </ul>
 }
 
-
 @section scripts {
-    <script type="text/x-template" id="notifications-template">
-        <ul class="notifications">
-            <%
-            _.each(notifications, function(notification) { %>
-            <li>
-                <%= notification.content %>
-            </li>
-            <% }) %>
-        </ul>
-    </script>
-    <script>
-        $(document).ready(function () {
-            $.getJSON("/api/notifications", function (notifications) {
-                console.log("so far");
-                if (notifications.length == 0)
-                    return;
+    @Scripts.Render("~/Scripts/app/Notifcations.js")
+    }
 
-                $(".js-notifications-count")
-                    .text(notifications.length)
-                    .removeClass("hide")
-                    .addClass("animated bounceInDown");
-
-                $(".notifications").popover({
-                    html: true,
-                    title: "Notifications",
-                    content: function () {
-                        var compiled = _.template($("#notifications-template").html());
-                        var html = compiled({ notifications: notifications })
-                        return html;
-                    },
-                    placement: "bottom"
-                })
-            });
-        });
-    </script>
-}
 
 @*@using Microsoft.AspNet.Identity
     @if (Request.IsAuthenticated)
