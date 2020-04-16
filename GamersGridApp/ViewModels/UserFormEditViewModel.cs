@@ -44,21 +44,11 @@ namespace GamersGridApp.ViewModels
             City = user.City;
             Avatar = user.Avatar;
 
-            
-            if(dotaRelation.GameAccount != null)
-            {
-                SteamId = dotaRelation == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
-            }
 
-            if(lolRelation == null)
-            {
-                BattleTag = lolRelation == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
-
-            }
-            if (lolRelation != null)
-            {
-                LolUsername = overwatchRelation == null ? "" : lolRelation.GameAccount.NickName;
-            }
+                SteamId = dotaRelation == null || dotaRelation.GameAccount == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
+                BattleTag = lolRelation == null || dotaRelation.GameAccount == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
+                LolUsername = overwatchRelation == null || dotaRelation.GameAccount==null ? "" : lolRelation.GameAccount.NickName;
+  
 
             BattleNetRegions = new List<string>() { "us", "eu", "asia" };
             RiotGamesRegions = new List<string>() { "BR1", "EUN1", "EUW1", "JP1","KR", "LA1", "LA2", "NA1",
