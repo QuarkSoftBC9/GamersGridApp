@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Script.Serialization;
 using System.Data.Entity;
+using GamersGridApp.WebServices;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -31,32 +32,22 @@ namespace GamersGridApp.Controllers.api
             if (string.IsNullOrEmpty(accountid))
                 return BadRequest();
 
-            string url = HttpUtility.UrlPathEncode($"https://api.opendota.com/api/players/{accountid}");
-            string urlWinsLoses = HttpUtility.UrlPathEncode($"https://api.opendota.com/api/players/{accountid}/wl");
-            string urlRecentMatches = HttpUtility.UrlPathEncode($"https://api.opendota.com/api/players/{accountid}/recentMatches");
-
+            DotaDataService dotaService = new DotaDataService(accountid);
             DotaDto dotaDto;
             DotaWinsLosesDto dotaWLDto;
-            List<DotaMatch> dotaMatches;
+            List<DotaMatchDto> dotaMatchesDto;
 
-            using (WebClient client = new WebClient())
+            try
             {
-                string json = client.DownloadString(url);
-                string jsonWL = client.DownloadString(urlWinsLoses);
-                string jsonMatches = client.DownloadString(urlRecentMatches);
-                try
-                {
-                    dotaDto = (new JavaScriptSerializer().Deserialize<DotaDto>(json));
-                    dotaWLDto = (new JavaScriptSerializer().Deserialize<DotaWinsLosesDto>(jsonWL));
-                    dotaMatches = (new JavaScriptSerializer().Deserialize<List<DotaMatch>>(jsonMatches));
-                    if (dotaDto.profile == null)
-                        throw new ArgumentNullException();
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
+                dotaDto = dotaService.GetAccountDto();
+                dotaWLDto = dotaService.GetWLDto();
+                dotaMatchesDto = dotaService.GetMatches();
             }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
 
             string loggedUserId = User.Identity.GetUserId();
             var ggUser = context.Users
@@ -69,11 +60,10 @@ namespace GamersGridApp.Controllers.api
                 .Include(ug => ug.GameAccount.GameAccountStats)
                 .SingleOrDefault(ug => ug.GameID == 3 && ug.UserId == ggUser.ID);
 
-            var kda = Convert.ToString(ExtraMethods.CalculateKda(dotaMatches));
 
             if (userGameRelation == null)
             {
-                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(3, ggUser.ID, dotaDto.profile.personaname, Convert.ToString(accountid), dotaWLDto.win, dotaWLDto.lose, kda);
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountDota(ggUser.ID,dotaDto,dotaWLDto, dotaMatchesDto);
                 try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
@@ -83,51 +73,50 @@ namespace GamersGridApp.Controllers.api
                 {
                     return BadRequest(e.Message);
                 }
-                return Ok();
-
             }
             else
             {
-                userGameRelation.GameAccount.UpdateAccount(dotaDto.profile.personaname, accountid, dotaDto.profile.loccountrycode);
-                userGameRelation.GameAccount.GameAccountStats.Update(kda, dotaWLDto.win, dotaWLDto.lose);
+                userGameRelation.GameAccount.UpdateAccount(dotaDto);
+                userGameRelation.GameAccount.GameAccountStats.Update(dotaDto,dotaWLDto, dotaMatchesDto);
                 context.SaveChanges();
-
-                return Ok();
             }
 
+            return Ok();
+
+         
 
         }
 
-        [HttpGet]
-        public IHttpActionResult GetStats(string accountid)
-        {
-            if (string.IsNullOrEmpty(accountid))
-                return BadRequest();
+        //[HttpGet]
+        //public IHttpActionResult CheckAccount(string accountid)
+        //{
+        //    if (string.IsNullOrEmpty(accountid))
+        //        return BadRequest("empty");
 
-            //string apikey = "079035b2-9fd0-4f5f-8bde-fde9270029fd";
+        //    //string apikey = "079035b2-9fd0-4f5f-8bde-fde9270029fd";
 
-            string url = HttpUtility.UrlPathEncode($"https://api.opendota.com/api/players/{accountid}");
+        //    string url = HttpUtility.UrlPathEncode($"https://api.opendota.com/api/players/{accountid}");
 
-            using (WebClient client = new WebClient())
-            {
-                string json = client.DownloadString(url);
-                DotaDto dotaDto;
+        //    using (WebClient client = new WebClient())
+        //    {
+        //        string json = client.DownloadString(url);
+        //        DotaDto dotaDto;
 
-                try
-                {
-                    dotaDto = (new JavaScriptSerializer().Deserialize<DotaDto>(json));
-                    if (dotaDto.profile == null)
-                        throw new ArgumentNullException();
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
+        //        try
+        //        {
+        //            dotaDto = (new JavaScriptSerializer().Deserialize<DotaDto>(json));
+        //            if (dotaDto.profile == null)
+        //                throw new ArgumentNullException();
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return BadRequest(e.Message);
+        //        }
 
-                return Ok(dotaDto);
-            }
+        //        return Ok(dotaDto);
+        //    }
 
 
-        }
+        //}
     }
 }

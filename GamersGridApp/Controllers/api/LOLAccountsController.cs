@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-e06e9739-e073-454b-a242-5a35b1c38a02";
+        private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
 
@@ -53,7 +53,7 @@ namespace GamersGridApp.Controllers.api
 
             //Download LOL Account 
             LOLDto accDto = new LOLDto();
-            accDto = DataService.GetAccount(viewModel.Region, viewModel.UserName, api);
+            accDto = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
             
             //New Game Account
             var userGame = userContent.NewUserGame(lolID);
@@ -61,7 +61,7 @@ namespace GamersGridApp.Controllers.api
 
             //Download LOL Stats
             List<LOLStatsDto> statsDto = new List<LOLStatsDto>();
-            statsDto = DataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
+            statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
             userGame.GameAccount.GameAccountStats = context.GameAccountStats.Where(gs => gs.Id == userGame.Id).SingleOrDefault();
@@ -71,29 +71,29 @@ namespace GamersGridApp.Controllers.api
             return statsDto[0];
 
         }
-        [HttpGet]
-        public List<LOLMatchesDto> GetStats()
-        {
-            //getting user
-            var appUserId = User.Identity.GetUserId();
-            var gameAccount = context.Users
-                .Where(u => u.Id == appUserId)
-                .Select(u => u.UserAccount)
-                .Select(g => g.UserGames.Where(ug => ug.GameID == lolID).Select(ga => ga.GameAccount).FirstOrDefault())
-                .Include(gs => gs.GameAccountStats)
-                .SingleOrDefault();
-            if (gameAccount == null || gameAccount.GameAccountStats == null)
-                throw new HttpResponseException(HttpStatusCode.NotFound);
-            //Getting List of matche ids
-            var matchIds = DataService.GetMatcheList(gameAccount.AccountIdentifier2, api);
-            var gameIds = matchIds.matches.Select(g => g.gameId);
+        //[HttpGet]
+        //public List<LOLMatchesDto> GetStats()
+        //{
+        //    //getting user
+        //    var appUserId = User.Identity.GetUserId();
+        //    var gameAccount = context.Users
+        //        .Where(u => u.Id == appUserId)
+        //        .Select(u => u.UserAccount)
+        //        .Select(g => g.UserGames.Where(ug => ug.GameID == lolID).Select(ga => ga.GameAccount).FirstOrDefault())
+        //        .Include(gs => gs.GameAccountStats)
+        //        .SingleOrDefault();
+        //    if (gameAccount == null || gameAccount.GameAccountStats == null)
+        //        throw new HttpResponseException(HttpStatusCode.NotFound);
+        //    //Getting List of matche ids
+        //    var matchIds = LolDataService.GetMatcheList(gameAccount.AccountIdentifier2, api);
+        //    var gameIds = matchIds.matches.Select(g => g.gameId);
 
-            //getting the list of matches
-            var matches = DataService.GetMatches(api, gameIds);
-            gameAccount.GameAccountStats.UpdateKDA(matches, gameAccount.AccountIdentifier2);
+        //    //getting the list of matches
+        //    var matches = LolDataService.GetMatches(api, gameIds);
+        //    gameAccount.GameAccountStats.UpdateKDA(matches, gameAccount.AccountIdentifier2);
 
-            context.SaveChanges();
-            return matches;
-        }
+        //    context.SaveChanges();
+        //    return matches;
+        //}
     }
 }

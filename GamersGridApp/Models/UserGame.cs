@@ -1,4 +1,6 @@
-﻿using System;
+﻿using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -50,28 +52,27 @@ namespace GamersGridApp.Models
             else
                 GameAccount.UpdateAccount(nickName, identifier1, identifier2, region);
         }
-        //new gameAccount for Dota2 and Overwatch
-        public void NewGameAccount(string nickName, string identifier1, string region)
-        {
-            if (GameAccount == null)
-                GameAccount = new GameAccount(nickName, identifier1, region);
-            else
-                GameAccount.UpdateAccount(nickName, identifier1, region);
-        }
 
-        public static UserGame CreateNewRelationWithAccountDota(int gameId, int userId, string nickname, string uniqueId, int wins, int loses, string kda)
+        public static UserGame CreateNewRelationWithAccountDota(int userId,DotaDto dotaDto,DotaWinsLosesDto wlDto, List<DotaMatchDto> matchesDto )
         {
-            var userGame = new UserGame(userId, gameId);
-            userGame.GameAccount = new GameAccount(nickname, uniqueId, null);
-            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, null, wins, loses, kda);
+            const int dotaId = 2;
+            var kda = Convert.ToString(ExtraMethods.CalculateKda(matchesDto));
+            var userGame = new UserGame(userId, dotaId);
+            userGame.GameAccount = new GameAccount(dotaDto.profile.personaname,Convert.ToString(dotaDto.profile.account_id), dotaDto.profile.loccountrycode);
+            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, Convert.ToString(dotaDto.rank_tier),wlDto.win, wlDto.lose, kda);
 
             return userGame;
         }
-        public static UserGame CreateNewRelationWithAccountOverWatch(int gameId, int userId, string nickname,string region, string uniqueId, int wins, int loses, string kda)
+        public static UserGame CreateNewRelationWithAccountOverWatch(int userId,string battletag,string region, OverWatchCompleteDto completeProfileDto)
         {
-            var userGame = new UserGame(userId, gameId);
-            userGame.GameAccount = new GameAccount(nickname, uniqueId, region);
-            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, null, wins, loses, kda);
+            const int overwatchId = 3;
+            string kda = Convert.ToString(ExtraMethods.CalculateKda(
+                completeProfileDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
+                completeProfileDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
+
+            var userGame = new UserGame(userId, overwatchId);
+            userGame.GameAccount = new GameAccount(completeProfileDto.name,battletag,region );
+            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, Convert.ToString(completeProfileDto.rating), completeProfileDto.gamesWon, 0, kda);
 
             return userGame;
         }
@@ -79,28 +80,5 @@ namespace GamersGridApp.Models
 
 
 
-        //public UserGame(int gameID, int userid, GameAccount gameAccount)
-        //{
-        //    GameID = gameID;
-        //    UserId = userid;
-        //    GameAccount = gameAccount;
-        //}
-
-
-
-        //public void AddNewAccount()
-        //{
-        //    if (GameAccount == null)
-        //        CreateNewAccount();
-        //    UpdateAccount();
-        //}
-        //public void CreateNewAccount()
-        //{
-
-        //}
-        //public void UpdateAccount()
-        //{
-
-        //}
     }
 }

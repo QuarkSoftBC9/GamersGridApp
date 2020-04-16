@@ -6,7 +6,7 @@ using System.Web;
 namespace GamersGridApp.Dtos.ApiAcountsDtos
 {
 
-    public class DotaMatch
+    public class DotaMatchDto
     {
         //public int? match_id { get; set; }
         public int? player_slot { get; set; }

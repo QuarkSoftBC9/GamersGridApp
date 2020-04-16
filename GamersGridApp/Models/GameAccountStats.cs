@@ -1,5 +1,6 @@
 ﻿using AutoMapper.QueryableExtensions;
 using GamersGridApp.Dtos.ApiAcountsDtos;
+using GamersGridApp.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -16,10 +17,10 @@ namespace GamersGridApp.Models
         [ForeignKey("GameAccount")]
         [Key]
         public int Id { get; set; }
-        public GameAccount GameAccount { get;  set; }
-        public string KDA { get;  set; }
-        public string Rank { get;  set; }
-        public int Wins { get;  set; }
+        public GameAccount GameAccount { get; set; }
+        public string KDA { get; set; }
+        public string Rank { get; set; }
+        public int Wins { get; set; }
 
         public int Losses { get; set; }
         public int HoursPlayed { get; set; }
@@ -41,18 +42,32 @@ namespace GamersGridApp.Models
             Wins = wins;
             Losses = losses;
         }
-        public void Update(string kda, int wins, int losses)
+        //Dota Update
+        public void Update(DotaDto mainDto, DotaWinsLosesDto dotaWLDto, List<DotaMatchDto> matchesDto)
         {
-            KDA = kda;
-            Wins = wins;
-            Losses = losses;
+            KDA = Convert.ToString(ExtraMethods.CalculateKda(matchesDto));
+            Wins = dotaWLDto.win;
+            Losses = dotaWLDto.lose;
+            Rank = Convert.ToString(mainDto.rank_tier);
         }
-        public void Update(string kda, int wins, int losses,string rank)
+
+
+        public void Update(OverWatchCompleteDto completeOwProfileDto)
         {
+            string kda;
+
+            if (completeOwProfileDto.competitiveStats.careerStats == null)
+                kda = 0.ToString();
+            else
+            {
+                kda = Convert.ToString(ExtraMethods.CalculateKda(
+           completeOwProfileDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
+           completeOwProfileDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
+            }
             KDA = kda;
-            Wins = wins;
-            Losses = losses;
-            Rank = rank;
+            Wins = completeOwProfileDto.gamesWon;
+            Losses = 0;
+            Rank = Convert.ToString(completeOwProfileDto.rating);
         }
         public void UpdateStats(string rank, int wins, int losses)
         {
@@ -64,7 +79,7 @@ namespace GamersGridApp.Models
         {
             //some defensive programming should be added for values
             var kda = new List<double>();
-            for(int i =0, let = listOfMatches.Count; i < let; i++)
+            for (int i = 0, let = listOfMatches.Count; i < let; i++)
             {
                 int playerId = listOfMatches[0].participantIdentities
                 .Where(p => p.player.accountId == accountId)
@@ -73,9 +88,9 @@ namespace GamersGridApp.Models
                 kda.Add(GetKDA(listOfMatches[i], playerId));
             }
             var average = kda.Average();
-            KDA =  average.ToString("0.00");
+            KDA = average.ToString("0.00");
         }
-        public double GetKDA(LOLMatchesDto match , int playerID)
+        public double GetKDA(LOLMatchesDto match, int playerID)
         {
             int kills = match.participants
                 .Where(p => p.participantId == playerID)

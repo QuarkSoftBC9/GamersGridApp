@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
+using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Enums;
 
 namespace GamersGridApp.Models
@@ -46,11 +47,20 @@ namespace GamersGridApp.Models
             AccountIdentifier2 = identifier2;
             AccountRegions = region;
         }
-        //Update stats for Dota2 and Overwatch
-        public void UpdateAccount(string nickname, string identifier, string region)
+        //Update stats for Dota2 
+        public void UpdateAccount(DotaDto dotaDto)
         {
-            NickName = nickname;
-            AccountIdentifier = identifier;
+            NickName = dotaDto.profile.personaname;
+            AccountIdentifier = Convert.ToString(dotaDto.profile.account_id);
+            AccountRegions = dotaDto.profile.loccountrycode;
+        }
+
+        //Update stats for Overwatch
+        public void UpdateAccount(string nickName,string battleTag,string region)
+        {
+            int nickNameSpecialCharLocation = nickName.IndexOf("#");
+            NickName = nickName.Substring(0, nickNameSpecialCharLocation);
+            AccountIdentifier = battleTag;
             AccountRegions = region;
         }
         //Update stats for Leage of Legends

@@ -583,7 +583,9 @@
     <Compile Include="ViewModels\UserFormEditViewModel.cs" />
     <Compile Include="ViewModels\UserProfilePageViewModel.cs" />
     <Compile Include="ViewModels\UserRegisterViewModel.cs" />
-    <Compile Include="WebServices\DataService.cs" />
+    <Compile Include="WebServices\DotaDataService.cs" />
+    <Compile Include="WebServices\LolDataService.cs" />
+    <Compile Include="WebServices\OverwatchDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\animate.css" />

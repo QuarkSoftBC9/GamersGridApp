@@ -9,7 +9,7 @@ using System.Web.Script.Serialization;
 
 namespace GamersGridApp.WebServices
 {
-    public class DataService
+    public  class LolDataService
     {
         public static LOLDto GetAccount(string region, string nickname, string api)
         {

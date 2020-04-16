@@ -224,7 +224,7 @@ namespace GamersGridApp.Controllers
             var userGame = context.UserGameRelations
                 .SingleOrDefault(ug => ug.UserId == userContent.ID && ug.GameID == overwatchID);
             if (userGame != null)
-                return View(new AddOverwatchAccViewModel(userGame.GameAccount.NickName, userGame.GameAccount.AccountRegions));
+                return View(new AddOverwatchAccViewModel(userGame.GameAccount.AccountIdentifier, userGame.GameAccount.AccountRegions));
             return View(new AddOverwatchAccViewModel());
         }
 

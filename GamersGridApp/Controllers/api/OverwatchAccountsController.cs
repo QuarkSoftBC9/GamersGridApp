@@ -2,6 +2,7 @@
 using GamersGridApp.Helpers;
 using GamersGridApp.Models;
 using GamersGridApp.ViewModels;
+using GamersGridApp.WebServices;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -34,35 +35,21 @@ namespace GamersGridApp.Controllers.api
             if (String.IsNullOrEmpty(viewModel.BattleTag))
                 return BadRequest("Name is not set");
 
-            
 
-
-            string url = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{viewModel.Region}/{viewModel.GetBattleTag()}/profile");
-            string urlComplete = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{viewModel.Region}/{viewModel.GetBattleTag()}/complete");
-
-            OverWatchProfileDto owProfileDto;
+            OverwatchDataService overwatchService = new OverwatchDataService(viewModel.BattleTag,viewModel.Region);
             OverWatchCompleteDto owCompleteDto;
 
-
-            using (WebClient client = new WebClient())
+            try
             {
-                string json = client.DownloadString(url);
-                string jsonComplete = client.DownloadString(urlComplete);
-
-                try
-                {
-                    owProfileDto = new JavaScriptSerializer().Deserialize<OverWatchProfileDto>(json);
-                    owCompleteDto = new JavaScriptSerializer().Deserialize<OverWatchCompleteDto>(jsonComplete);
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
+                owCompleteDto = overwatchService.GetCompleteProfileDto();
+            } catch (Exception e)
+            {
+                return BadRequest(e.Message);
             }
 
-            // OverWatchID
-            const int overwatchId = 4;
 
+            // OverWatchID
+            const int overwatchId = 3;
 
             //geting User
             var appUserId = User.Identity.GetUserId();
@@ -71,20 +58,16 @@ namespace GamersGridApp.Controllers.api
                 .Select(u => u.UserAccount)
                 .SingleOrDefault();
 
-            //if (userContent == null)
 
             var userGame = context.UserGameRelations
                 .Include(ga=>ga.GameAccount)
                 .Include(ga => ga.GameAccount.GameAccountStats)
                 .SingleOrDefault(ga => ga.UserId == user.ID && ga.GameID == overwatchId);
 
-            string kda = Convert.ToString(ExtraMethods.CalculateKda(
-                owCompleteDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
-                owCompleteDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
 
             if (userGame == null)
             {
-                var newUserGameRelation = UserGame.CreateNewRelationWithAccountOverWatch(overwatchId, user.ID, owProfileDto.name, viewModel.Region, viewModel.BattleTag, owCompleteDto.gamesWon, 0, kda);
+                var newUserGameRelation = UserGame.CreateNewRelationWithAccountOverWatch(user.ID,viewModel.BattleTag,viewModel.Region,owCompleteDto);
                 try
                 {
                     context.UserGameRelations.Add(newUserGameRelation);
@@ -96,8 +79,8 @@ namespace GamersGridApp.Controllers.api
             }
             else
             {
-                userGame.GameAccount.UpdateAccount(owProfileDto.name, viewModel.BattleTag, viewModel.Region);
-                userGame.GameAccount.GameAccountStats.Update(kda, owCompleteDto.gamesWon, 0, Convert.ToString(owProfileDto.rating));
+                userGame.GameAccount.UpdateAccount(owCompleteDto.name, viewModel.BattleTag, viewModel.Region);
+                userGame.GameAccount.GameAccountStats.Update(owCompleteDto);
                 context.SaveChanges();
             }
 
@@ -105,40 +88,40 @@ namespace GamersGridApp.Controllers.api
    
         }
 
-        [HttpGet]
-        public IHttpActionResult CheckAccount(string battleTag, string region)
-        {
-            if (String.IsNullOrEmpty(battleTag))
-                return BadRequest("Name is not set");
+        //[HttpGet]
+        //public IHttpActionResult CheckAccount(string battleTag, string region)
+        //{
+        //    if (String.IsNullOrEmpty(battleTag))
+        //        return BadRequest("Name is not set");
 
-            battleTag = battleTag.Replace("#", "-");
+        //    battleTag = battleTag.Replace("#", "-");
 
-            string url = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/profile");
-            string urlComplete = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/complete");
+        //    string url = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/profile");
+        //    string urlComplete = HttpUtility.UrlPathEncode($"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/complete");
 
-            OverWatchProfileDto owProfileDto;
-            OverWatchCompleteDto owCompleteDto;
+        //    OverWatchProfileDto owProfileDto;
+        //    OverWatchCompleteDto owCompleteDto;
 
-            string jsonComplete;
-            using (WebClient client = new WebClient())
-            {
-                string json = client.DownloadString(url);
-                jsonComplete = client.DownloadString(urlComplete);
+        //    string jsonComplete;
+        //    using (WebClient client = new WebClient())
+        //    {
+        //        string json = client.DownloadString(url);
+        //        jsonComplete = client.DownloadString(urlComplete);
 
-                try
-                {
-                    owProfileDto = new JavaScriptSerializer().Deserialize<OverWatchProfileDto>(json);
-                    owCompleteDto = new JavaScriptSerializer().Deserialize<OverWatchCompleteDto>(jsonComplete);
-                }
-                catch (Exception e)
-                {
-                    return BadRequest(e.Message);
-                }
-            }
+        //        try
+        //        {
+        //            owProfileDto = new JavaScriptSerializer().Deserialize<OverWatchProfileDto>(json);
+        //            owCompleteDto = new JavaScriptSerializer().Deserialize<OverWatchCompleteDto>(jsonComplete);
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            return BadRequest(e.Message);
+        //        }
+        //    }
 
 
-            return Ok(owCompleteDto);
-        }
+        //    return Ok(owCompleteDto);
+        //}
     }
 }
 

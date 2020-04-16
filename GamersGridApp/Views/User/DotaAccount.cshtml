@@ -20,7 +20,7 @@
 
 <div class="form-group">
     <button id="save" class="btn btn-primary"> Save</button>
-    <button id="get" class="btn btn-primary"> Get</button>
+    @*<button id="get" class="btn btn-primary"> Get</button>*@
 </div>
 
 
@@ -42,17 +42,17 @@
                 });
             });
 
-            $("#get").on("click", function () {
-                let accountid = $("#accountid").val();
-                $.ajax({
-                    url: "/api/DotaAccounts?accountid=" + accountid,
-                    method: "get"
-                }).done(function (data) {
-                    toastr.success("Account found for " + data.profile.personaname);
-                }).fail(function () {
-                    toastr.error("Account was either empty or not found");
-                });
-            });
+            //$("#get").on("click", function () {
+            //    let accountid = $("#accountid").val();
+            //    $.ajax({
+            //        url: "/api/DotaAccounts?accountid=" + accountid,
+            //        method: "get"
+            //    }).done(function (data) {
+            //        toastr.success("Account found for " + data.profile.personaname);
+            //    }).fail(function () {
+            //        toastr.error("Account was either empty or not found");
+            //    });
+            //});
 
         });
     </script>

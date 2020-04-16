@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     public class LOLAccountsCheckController : ApiController
     {
         private readonly ApplicationDbContext context;
-        private readonly string api = "RGAPI-e06e9739-e073-454b-a242-5a35b1c38a02";
+        private readonly string api = "RGAPI-89701b27-a5b5-4404-8f33-d1ca1015645e";
 
         public LOLAccountsCheckController()
         {
@@ -48,13 +48,13 @@ namespace GamersGridApp.Controllers.api
         public FullStatsDto GetStats(AddLOLAccountViewmodel viewModel)
         {
             FullStatsDto fullStatsDto = new FullStatsDto();
-            fullStatsDto.Account = DataService.GetAccount(viewModel.Region, viewModel.UserName, api);
+            fullStatsDto.Account = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
 
-            fullStatsDto.Stats = DataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
+            fullStatsDto.Stats = LolDataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
 
-            var matchIds = DataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
+            var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
             var gameIds = matchIds.matches.Select(g => g.gameId);
-            var matches = DataService.GetMatches(api, gameIds);
+            var matches = LolDataService.GetMatches(api, gameIds);
             fullStatsDto.SingleMatch = matches[0];
             return fullStatsDto;
         }

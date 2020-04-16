@@ -29,7 +29,7 @@ namespace GamersGridApp.Helpers
             return "nofile.png";
         }
 
-        public static double CalculateKda(List<DotaMatch> matches)
+        public static double CalculateKda(List<DotaMatchDto> matches)
         {
             int KillsAssists = 0;
             int deaths = 0;

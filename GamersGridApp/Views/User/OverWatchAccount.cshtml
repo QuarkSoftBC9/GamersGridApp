@@ -13,7 +13,7 @@
 @Html.TextBoxFor(u => u.BattleTag, new { @class = "form=control required js-username", name = "username", id = "username-js" })
 
 <button type="submit" class="btn js-validate-user" id="submitOverwatch">Save</button>
-<button type="submit" class="btn " id="checkOverwatch">Check</button>
+@*<button type="submit" class="btn " id="checkOverwatch">Check</button>*@
 
 @section scripts
 {
@@ -38,22 +38,22 @@
                 });
             });
 
-            $("#checkOverwatch").on("click", function () {
-                let userName = $("#username-js").val();
-                let region = $("#region-js").val();
-                let viewModel = { battleTag: userName, region: region };
-                $.ajax({
-                    url: "/api/OverwatchAccounts",
-                    data: viewModel,
-                    method: "GET"
-                }).done(function () {
-                    toastr.success("Account found");
-                }).fail(function () {
-                    toastr.error("Account was either empty or not found");
-                });
-            });
+        //    $("#checkOverwatch").on("click", function () {
+        //        let userName = $("#username-js").val();
+        //        let region = $("#region-js").val();
+        //        let viewModel = { battleTag: userName, region: region };
+        //        $.ajax({
+        //            url: "/api/OverwatchAccounts",
+        //            data: viewModel,
+        //            method: "GET"
+        //        }).done(function () {
+        //            toastr.success("Account found");
+        //        }).fail(function () {
+        //            toastr.error("Account was either empty or not found");
+        //        });
+        //    });
 
-        });
+        //});
 
             //    DOMStrings = {
             //        usernameInput: '#username-js',
