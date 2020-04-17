@@ -39,6 +39,19 @@ namespace GamersGridApp.Repositories
             return _context.Games
                 .SingleOrDefault(g => g.Title.Contains(title));
         }
+        public int GetGameId(string title)
+        {
+            return _context.Games
+                .Where(g => g.Title == title)
+                .Select(g => g.ID)
+                .SingleOrDefault();
+        }
+
+        public UserGame GetUserGameById(User usercontent,int id)
+        {
+            return usercontent.UserGames
+                .SingleOrDefault(g => g.Id == id);
+        }
 
 
     }

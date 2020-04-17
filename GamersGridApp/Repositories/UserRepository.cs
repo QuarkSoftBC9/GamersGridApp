@@ -1,6 +1,7 @@
 ﻿using GamersGridApp.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
@@ -20,6 +21,11 @@ namespace GamersGridApp.Repositories
         {
             return _context.GamersGridUsers
                 .SingleOrDefault(u => u.NickName.Contains(name));
+        }
+        public User GetUser(int? userid)
+        {
+            return _context.GamersGridUsers
+                .SingleOrDefault(u => u.ID == userid);
         }
         public User GetLoggedUser(string loggedUserId)
         {
@@ -44,6 +50,35 @@ namespace GamersGridApp.Repositories
         //        .SingleOrDefault(f => f.FollowerId == loggeduserid && f.UserId == seconduserid);
         //}
 
+        public List<User> SearchUsers(string searchstring)
+        {
+           return _context.GamersGridUsers
+                .Where(ggu => ggu.NickName.Contains(searchstring))
+                .ToList();
+        }
+
+        public User GetUserContent(string appUserId)
+        {
+            return _context.Users
+                .Where(u => u.Id == appUserId)
+                .Select(u => u.UserAccount)
+                .Include(ug => ug.UserGames.Select(g => g.GameAccount))
+                .SingleOrDefault();
+        }
+        
+        public List<ApplicationUser> GetOtherUsers(string loggeduserid)
+        {
+            return _context.Users
+                .Where(u => u.Id != loggeduserid)
+                .ToList();
+        }
+        public int GetUserIdBasedOnAppID(string id)
+        {
+            return _context.Users
+                .Where(u => u.Id == id)
+                .Select(u => u.UserId)
+                .Single();
+        }
         
     }
 }

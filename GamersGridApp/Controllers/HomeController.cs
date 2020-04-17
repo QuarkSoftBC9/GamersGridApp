@@ -7,17 +7,26 @@ using GamersGridApp.ViewModels;
 using GamersGridApp.Models;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
+using GamersGridApp.Repositories;
 
 namespace GamersGridApp.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext context;
+        private readonly GameRepository gameRepository;
+        private readonly UserGameRelationsRepository userGameRelationsRepository;
+        private readonly UserRepository userRepository;
+
         // MyDbContext();
         //Uncomment for costum DbContext
         public HomeController()
         {
             context = new ApplicationDbContext();
+            gameRepository = new GameRepository(context);
+            userGameRelationsRepository = new UserGameRelationsRepository(context);
+            userRepository = new UserRepository(context);
+
             // context = new MyDbContext();
             // Uncomment for costum DbContext
         }
@@ -62,15 +71,19 @@ namespace GamersGridApp.Controllers
 
                 foreach (var userGamer in otherUsers)
                 {
-                    var favoriteGameId = context.UserGameRelations
-                                .Where(u => u.UserId == userGamer.ID && u.IsFavoriteGame == true)
-                                .Select(g => g.GameID)
-                                .SingleOrDefault();
+                //var favoriteGameId = context.UserGameRelations
+                //            .Where(u => u.UserId == userGamer.ID && u.IsFavoriteGame == true)
+                //            .Select(g => g.GameID)
+                //            .SingleOrDefault();
 
-                    var favoriteGameTitle = context.Games
-                                .Where(g => g.ID == favoriteGameId)
-                                .Select(g => g.Title)
-                                .SingleOrDefault();
+                    var favoriteGameId = gameRepository.GetFavouriteGameId(userGamer.ID);
+
+                //var favoriteGameTitle = context.Games
+                //            .Where(g => g.ID == favoriteGameId)
+                //            .Select(g => g.Title)
+                //            .SingleOrDefault();
+
+                   var favoriteGameTitle = gameRepository.GetFavouriteGameTitle(favoriteGameId);
 
                     DictionaryForViewModel.Add(userGamer.ID, favoriteGameTitle);
                 }
@@ -100,12 +113,15 @@ namespace GamersGridApp.Controllers
             // or redirect to games page
             if (!string.IsNullOrWhiteSpace(searchString))
             {
-                var game = context.Games.FirstOrDefault(g => g.Title.Contains(searchString));
+                //var game = context.Games.FirstOrDefault(g => g.Title.Contains(searchString));
+                var game = gameRepository.GetGame(searchString);
 
                 if (game != null)
                     return RedirectToAction("GameProfile", "Game", new { gameName = game.Title });
 
-                var users = context.GamersGridUsers.Where(ggu => ggu.NickName.Contains(searchString)).ToList();
+                //var users = context.GamersGridUsers.Where(ggu => ggu.NickName.Contains(searchString)).ToList();
+
+                var users = userRepository.SearchUsers(searchString);
 
                 //if (users.Count == 0) 
                 //    return HttpNotFound();
