@@ -1,0 +1,191 @@
+﻿@model  GamersGridApp.ViewModels.LeaderBoardViewModel
+@{
+    ViewBag.Title = "Leaderboards";
+    int dotaCounter = 0;
+    int overwatchCounter = 0;
+    int lolCounter = 0;
+}
+@Styles.Render("~/Content/LeaderBoard")
+
+<section class="section how-it-works" id="how-it-works">
+    <div class="container">
+        <div class="row text-center">
+
+        </div>
+        <div class="row">
+            <div class="col-md-12 board">
+                <!-- <h2>Welcome to IGHALO!<sup>™</sup></h2>-->
+                <div class="board-inner">
+                    <ul class=" center-il nav nav-tabs" id="myTab">
+                        <div class="liner"></div>
+                        <li class="active">
+                            <a href="#lol" aria-controls="lol" role="tab" data-toggle="tab" title="LOL">
+                                <span class="round-tabs one">
+
+                                </span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="#dota" aria-controls="dota" role="tab" data-toggle="tab" title="Dota 2">
+                                <span class="round-tabs two">
+
+                                </span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#overwatch" aria-controls="overwatch" role="tab" data-toggle="tab" title="Overwatch">
+                                <span class="round-tabs three">
+                                </span>
+                            </a>
+                        </li>
+
+
+
+                    </ul>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="lol">
+
+
+                        @if (Model.TopLolStats.Count == 0)
+                        {
+                            <h3 class="head text-center"><strong>Oops, seems like we do not have any data yet</strong></h3>
+                        }
+                        else
+                        {
+                            <h3 class="head text-center">Top players in</h3>
+                            <h3 class="head text-center"><strong>LOL</strong></h3>
+
+                            <div class="container con-table">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Avatar</th>
+                                            <th>Nickname</th>
+                                            <th>Wins</th>
+                                            <th>Losses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+
+
+                                        @foreach (var gameAccountStats in Model.TopLolStats)
+                                        {
+
+
+                                            lolCounter++;
+
+                                            <tr>
+                                                <td>@lolCounter</td>
+                                                <td><img src="/Content/Images/UserPhotos/@gameAccountStats.GameAccount.UserGame.User.ID/@gameAccountStats.GameAccount.UserGame.User.Avatar" alt="" height=50 width=50></td>
+                                                <td><a href="@Url.Action("ProfilePage", "User",new { userid = @gameAccountStats.GameAccount.UserGame.User.ID })">@gameAccountStats.GameAccount.UserGame.User.NickName</a></td>
+                                                <td>@gameAccountStats.Wins</td>
+                                                <td>@gameAccountStats.Losses</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="dota">
+
+                        @if (Model.TopDotaStats.Count == 0)
+                        {
+                            <h3 class="head text-center"><strong>Oops, seems like we do not have any data yet</strong></h3>
+                        }
+                        else
+                        {
+
+                            <h3 class="head text-center">Top players in</h3>
+                            <h3 class="head text-center"><strong>DOTA</strong></h3>
+
+                            <div class="container con-table">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Avatar</th>
+                                            <th>Nickname</th>
+                                            <th>Wins</th>
+                                            <th>Losses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var gameAccountStats in Model.TopDotaStats)
+                                        {
+
+                                            dotaCounter++;
+
+                                            <tr>
+                                                <td>@dotaCounter</td>
+                                                <td><img src="/Content/Images/UserPhotos/@gameAccountStats.GameAccount.UserGame.User.ID/@gameAccountStats.GameAccount.UserGame.User.Avatar" alt="" height=50 width=50></td>
+                                                <td><a href="@Url.Action("ProfilePage", "User", new { userid = @gameAccountStats.GameAccount.UserGame.User.ID })">@gameAccountStats.GameAccount.UserGame.User.NickName</a></td>
+                                                <td>@gameAccountStats.Wins</td>
+                                                <td>@gameAccountStats.Losses</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+                    <div class="tab-pane fade" id="overwatch">
+                        @if (Model.TopOverwatchStats.Count == 0)
+                        {
+                            <h3 class="head text-center"><strong>Oops, seems like we do not have any data yet</strong></h3>
+                        }
+                        else
+                        {
+                            <h3 class="head text-center">Top players in</h3>
+                            <h3 class="head text-center"><strong>OVERWATCH</strong></h3>
+
+                            <div class="container con-table">
+
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Avatar</th>
+                                            <th>Nickname</th>
+                                            <th>Wins</th>
+                                            <th>Losses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var gameAccountStats in Model.TopOverwatchStats)
+                                        {
+
+                                            overwatchCounter++;
+
+                                            <tr>
+                                                <td>@overwatchCounter</td>
+                                                <td><img src="/Content/Images/UserPhotos/@gameAccountStats.GameAccount.UserGame.User.ID/@gameAccountStats.GameAccount.UserGame.User.Avatar" alt="" height=50 width=50></td>
+                                                <td><a href="@Url.Action("ProfilePage", "User", new { userid = @gameAccountStats.GameAccount.UserGame.User.ID })">@gameAccountStats.GameAccount.UserGame.User.NickName</a></td>
+                                                <td>@gameAccountStats.Wins</td>
+                                                <td>@gameAccountStats.Losses</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        }
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
