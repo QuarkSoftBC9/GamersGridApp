@@ -118,7 +118,14 @@ namespace GamersGridApp.Controllers
 
         public ActionResult ChatWith(int currentUserId, int requestedUserID)
         {
+            var followRelation1 = db.Follows
+                                   .SingleOrDefault(f => f.FollowerId == currentUserId && f.UserId == requestedUserID);
 
+            var followRelation2 = db.Follows
+                             .SingleOrDefault(f => f.FollowerId == requestedUserID && f.UserId == currentUserId);
+
+            if (followRelation1 == null || followRelation2 == null)
+                return HttpNotFound();
 
             var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == currentUserId);
             var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == requestedUserID);

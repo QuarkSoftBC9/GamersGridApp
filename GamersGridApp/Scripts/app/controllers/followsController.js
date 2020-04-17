@@ -59,6 +59,7 @@
         toastr.error("Something went wrong");
     };
 
+
     return {
         enableFollows: initial,
         enableMessaging: second

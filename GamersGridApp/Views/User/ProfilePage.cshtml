@@ -157,9 +157,9 @@
                         <a id="followbtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">@followText</a>
                     </p>
                     <p>
-                        <a id="messageBtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
+                        <button id="messageBtn"  class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
                             Message me
-                        </a>
+                        </button>
                     </p>
                 }
                 else
@@ -181,7 +181,7 @@
 
                 </div>
                 <div class="profile_followees">
-                    <p>FOLLOWEES</p>
+                    <p>FOLLOWING</p>
                     <h3>@Model.FollowingCount</h3>
                 </div>
             </div>

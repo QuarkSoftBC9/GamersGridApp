@@ -74,7 +74,7 @@
             </div>
             <div class="mesgs" id="chatbox">
                 <div class="msg_history" id="messageboard">
-                    @if (Model.MessageChats != null)
+                    @if (Model.MessageChats.Count != 0)
                     {
                         if (Model.MessageChats.LastOrDefault(c => c.ID == Model.CurrentChatID).ChatHistory.Count!=0)
                         {

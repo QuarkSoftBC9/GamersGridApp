@@ -18,22 +18,10 @@ namespace GamersGridApp.Controllers.api
         {
             db = new ApplicationDbContext();
         }
+    
 
 
-        //[HttpGet]
-        //public IHttpActionResult CheckRelation(int followeeId, int followerId)
-        //{
-        //    var followRelation1 = db.Follows
-        //                           .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
 
-        //    var followRelation2 = db.Follows
-        //                     .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
-
-        //    if (followRelation1 == null || followRelation2 == null)
-        //        return BadRequest();
-        //    else
-        //        return Ok();
-        //}
         [HttpGet]
         public IHttpActionResult FindMutualFollowers()
         {

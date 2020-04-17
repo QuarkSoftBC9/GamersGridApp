@@ -1,13 +1,8 @@
 ﻿let MessagesService = function () {
-    let redirectToMessageChat = function (dataModel, url) {
-        $.ajax({
-            url: "/api/messages",
-            method: "GET",
-            data: dataModel,
-            contentType: "application/json"
-        })
+    let redirectToMessageChat = function (dataModel, redirectUrl) {
+        $.get("/api/Follows", dataModel)
             .done(function () {
-                window.location.href = url;
+                window.location.href = redirectUrl;
             })
             .fail(function () {
                 toastr.error("No mutual follow relation found");

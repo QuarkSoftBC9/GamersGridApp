@@ -7,11 +7,11 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class UserGameRelations
+    public class UserGameRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public UserGameRelations(ApplicationDbContext context)
+        public UserGameRepository(ApplicationDbContext context)
         {
             _context = context;
         }

@@ -20,12 +20,22 @@ namespace GamersGridApp.Controllers.api
         {
             dbContext = new ApplicationDbContext();
         }
-        [HttpGet] 
-        public int GetFollowers(int id)
+
+        [HttpGet]
+        public IHttpActionResult CheckRelation(int followerId, int followeeId)
         {
-            var userfollowers = dbContext.Follows.Where(u => u.UserId == id).ToList().Count;
-            return userfollowers;
+            var followRelation1 = dbContext.Follows
+                                   .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
+
+            var followRelation2 = dbContext.Follows
+                             .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
+
+            if (followRelation1 == null || followRelation2 == null)
+                return BadRequest("no mutual relation");
+            else
+                return Ok();
         }
+
         [HttpPost]
         public IHttpActionResult Follow(FollowsDto followDto)
         {
@@ -162,5 +172,11 @@ namespace GamersGridApp.Controllers.api
 
             return Ok();
         }
+        //[HttpGet] 
+        //public int GetFollowers(int id)
+        //{
+        //    var userfollowers = dbContext.Follows.Where(u => u.UserId == id).ToList().Count;
+        //    return userfollowers;
+        //}
     }
 }
