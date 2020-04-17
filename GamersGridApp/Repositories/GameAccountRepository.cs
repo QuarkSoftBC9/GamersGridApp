@@ -20,5 +20,6 @@ namespace GamersGridApp.Repositories
                 .Where(la => la.NickName == nickName && la.AccountRegions == region)
                 .SingleOrDefault();
         }
+
     }
 }

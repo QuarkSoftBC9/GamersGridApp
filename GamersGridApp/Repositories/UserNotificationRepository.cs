@@ -16,7 +16,7 @@ namespace GamersGridApp.Repositories
             _context = context;
         }
 
-        public IEnumerable<Notification> GetUserNotifications(int  userid)
+        public IEnumerable<Notification> GetUserNotifications(int userid)
         {
             return _context.UserNotifications
                           .Where(un => un.UserId == userid && !un.IsRead)

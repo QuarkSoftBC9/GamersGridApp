@@ -570,7 +570,7 @@
     <Compile Include="Repositories\GameRepository.cs" />
     <Compile Include="Repositories\MessageChatRepository.cs" />
     <Compile Include="Repositories\MessageChatUserRepository.cs" />
-    <Compile Include="Repositories\UserGameRelations.cs" />
+    <Compile Include="Repositories\UserGameRelationsRepository.cs" />
     <Compile Include="Repositories\UserNotificationRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />

@@ -7,11 +7,11 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class UserGameRelations
+    public class UserGameRelationsRepository
     {
         private readonly ApplicationDbContext _context;
 
-        public UserGameRelations(ApplicationDbContext context)
+        public UserGameRelationsRepository(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -31,7 +31,19 @@ namespace GamersGridApp.Repositories
                 .Select(ga => ga.GameAccount.GameAccountStats)
                 .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
         }
-
+        public IEnumerable<int> GetGamesIdFocus(Game game)
+        {
+            return _context.UserGameRelations.
+                Where(g => g.Game.Title == game.Title && g.IsFavoriteGame == true)
+                .Select(g => g.GameID).ToList();
+        }
+        public UserGame GetUserGameRelationWithExistingGame(int gameid,int userid)
+        {
+           return  _context.UserGameRelations
+                           .Where(ugr => ugr.GameID == gameid && ugr.UserId == userid)
+                           .Include(ugr => ugr.GameAccount)
+                           .SingleOrDefault();
+        }
 
     }
 }

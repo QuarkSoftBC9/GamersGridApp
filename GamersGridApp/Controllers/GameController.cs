@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Models;
+using GamersGridApp.Repositories;
 using GamersGridApp.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,14 @@ namespace GamersGridApp.Controllers
     {
 
         private ApplicationDbContext dbContext;
+        private readonly GameRepository gameRepository;
+        private readonly UserGameRelationsRepository userGameRelationsRepository;
 
         public GameController()
         {
             dbContext = new ApplicationDbContext();
+            gameRepository = new GameRepository(dbContext);
+            userGameRelationsRepository = new UserGameRelationsRepository(dbContext);
         }
         // GET: Game
         public ViewResult Index()
@@ -37,8 +42,12 @@ namespace GamersGridApp.Controllers
             //    return RedirectToAction("Index");
 
             //testing
-            var gameTest = dbContext.Games.SingleOrDefault(g => g.Title.Contains(gameName));
-            var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameTest.Title && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
+            //var gameTest = dbContext.Games.SingleOrDefault(g => g.Title.Contains(gameName));
+            var gameTest = gameRepository.GetGame(gameName);
+
+            //var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameTest.Title && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
+            var usersFocusing = userGameRelationsRepository.GetGamesIdFocus(gameTest);
+
             var numberOfUsersFocusing = usersFocusing.Count();
 
             var profileGame = new ProfileGameViewModel()
