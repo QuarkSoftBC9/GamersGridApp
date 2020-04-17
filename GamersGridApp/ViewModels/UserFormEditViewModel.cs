@@ -47,8 +47,8 @@ namespace GamersGridApp.ViewModels
 
 
                 SteamId = dotaRelation == null || dotaRelation.GameAccount == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
-                BattleTag = lolRelation == null || dotaRelation.GameAccount == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
-                LolUsername = overwatchRelation == null || dotaRelation.GameAccount==null ? "" : lolRelation.GameAccount.NickName;
+                BattleTag = overwatchRelation == null || overwatchRelation.GameAccount == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
+                LolUsername = lolRelation == null || lolRelation.GameAccount==null ? "" : lolRelation.GameAccount.NickName;
   
 
             BattleNetRegions = new List<string>() { "us", "eu", "asia" };
