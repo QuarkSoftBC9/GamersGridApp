@@ -1,4 +1,5 @@
 ﻿using GamersGridApp.Models;
+using GamersGridApp.Perstistence;
 using GamersGridApp.Repositories;
 using GamersGridApp.ViewModels;
 using System;
@@ -15,12 +16,16 @@ namespace GamersGridApp.Controllers
         private ApplicationDbContext dbContext;
         private readonly GameRepository gameRepository;
         private readonly UserGameRepository userGameRelationsRepository;
+        private readonly UnitOfWork unitOfWork;
+
 
         public GameController()
         {
             dbContext = new ApplicationDbContext();
             gameRepository = new GameRepository(dbContext);
             userGameRelationsRepository = new UserGameRepository(dbContext);
+            unitOfWork = new UnitOfWork(dbContext);
+
         }
         // GET: Game
         public ViewResult Index()

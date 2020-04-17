@@ -89,6 +89,9 @@ namespace GamersGridApp.Repositories
                 .Select(u => u.UserId)
                 .Single();
         }
-        
+        public void AddUserPost(UserPosting userPosting)
+        {
+            _context.UserPostings.Add(userPosting);
+        }
     }
 }

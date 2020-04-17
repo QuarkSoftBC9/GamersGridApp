@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 using System.Data.Entity;
 using GamersGridApp.Interfaces;
 using GamersGridApp.Repositories;
+using GamersGridApp.Perstistence;
 
 namespace GamersGridApp.Controllers
 {
@@ -26,6 +27,8 @@ namespace GamersGridApp.Controllers
         private readonly UserRepository userRepository;
         private readonly UserNotificationRepository userNotificationRepository;
         private readonly FollowsRepository followsRepository;
+        private readonly UnitOfWork unitOfWork;
+
 
 
         public UserController()
@@ -36,6 +39,8 @@ namespace GamersGridApp.Controllers
             userRepository = new UserRepository(context);
             userNotificationRepository = new UserNotificationRepository(context);
             followsRepository = new FollowsRepository(context);
+            unitOfWork = new UnitOfWork(context);
+
 
         }
 
@@ -157,9 +162,10 @@ namespace GamersGridApp.Controllers
         public ActionResult Customize()
         {
             var aspNetUserID = User.Identity.GetUserId();
-            var ggtUser = context.Users.Where(u => u.Id == aspNetUserID)
-                .Select(c => c.UserAccount)
-                .SingleOrDefault();
+            //var ggtUser = context.Users.Where(u => u.Id == aspNetUserID)
+            //    .Select(c => c.UserAccount)
+            //    .SingleOrDefault();
+            var ggtUser = userRepository.GetLoggedUser(aspNetUserID);
 
             const int lolId = 1;
             const int dotaId = 2;
@@ -195,8 +201,9 @@ namespace GamersGridApp.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Save(UserFormEditViewModel viewmodel, HttpPostedFileBase file)
         {
-            var userContent = context.GamersGridUsers
-                .SingleOrDefault(u => u.ID == viewmodel.ID);
+            //var userContent = context.GamersGridUsers
+            //    .SingleOrDefault(u => u.ID == viewmodel.ID);
+            var userContent = userRepository.GetUser(viewmodel.ID);
             userContent.Update(
                 viewmodel.FirstName, viewmodel.LastName, viewmodel.NickName,
                 viewmodel.Description, viewmodel.Country, viewmodel.City);
@@ -206,7 +213,7 @@ namespace GamersGridApp.Controllers
                 userContent.Update(ExtraMethods.UploadPhoto(userContent.ID, file));
             }
 
-            context.SaveChanges();
+            unitOfWork.Complete();
 
             return RedirectToAction("ProfilePage", new { nickname = userContent.NickName });
         }
@@ -314,8 +321,9 @@ namespace GamersGridApp.Controllers
             var appUserId = User.Identity.GetUserId();
             //var posterid = context.Users.Where(u => u.Id == appUserId).Select(u => u.UserId).Single();
             var posterid = userRepository.GetUserIdBasedOnAppID(appUserId);
-            context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
-            context.SaveChanges();
+            //context.UserPostings.Add(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+            userRepository.AddUserPost(new UserPosting(viewModel.PostingMessage, viewModel.OwnerId, posterid));
+            unitOfWork.Complete();
 
 
             return RedirectToAction("ProfilePage");

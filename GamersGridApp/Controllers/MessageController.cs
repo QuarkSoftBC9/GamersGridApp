@@ -7,7 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-
+using GamersGridApp.Perstistence;
 
 namespace GamersGridApp.Controllers
 {
@@ -15,9 +15,16 @@ namespace GamersGridApp.Controllers
     public class MessageController : Controller
     {
         // GET: Message
-        private ApplicationDbContext db = new ApplicationDbContext();
-        //var currentUser = db.Users.Where(u => u.Id == CurrentUserID).SingleOrDefault();
+        private ApplicationDbContext db;
+        private readonly UnitOfWork unitOfWork;
 
+        //var currentUser = db.Users.Where(u => u.Id == CurrentUserID).SingleOrDefault();
+        public MessageController()
+        {
+            db = new ApplicationDbContext();
+            unitOfWork = new UnitOfWork(db);
+
+        }
         public ActionResult MessageBoard()
         {
             var CurrentUserID = User.Identity.GetUserId();
@@ -83,9 +90,9 @@ namespace GamersGridApp.Controllers
                 newMessageChat.MessageChatUsers.Add(messageChatUser1);
 
                 db.MessageChats.Add(newMessageChat);
-                db.SaveChanges();
+                unitOfWork.Complete();
 
-                 messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
+                messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
                             .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
                             .Where(m => m.MessageChatUsers.Count == 2)
                             .Include(c => c.ChatHistory.Select(ch => ch.User))
@@ -175,7 +182,7 @@ namespace GamersGridApp.Controllers
                 db.MessageChatUsers.Add(messageChatUser1);
                 db.MessageChatUsers.Add(messageChatUser2);
                 db.MessageChats.Add(newMessageChat);
-                db.SaveChanges();
+                unitOfWork.Complete();
 
                 messageChats = db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
                 messageChatsOfRequestedUser = db.MessageChatUsers.Where(mcu => mcu.UserId == requestedGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
