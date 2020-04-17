@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
+
 
 namespace GamersGridApp.Repositories
 {
@@ -10,11 +12,16 @@ namespace GamersGridApp.Repositories
     {
         private readonly ApplicationDbContext _context;
 
+
         public GameRepository(ApplicationDbContext context)
         {
             _context = context;
-        }
 
+        }
+        public IQueryable<Game> GetGames()
+        {
+            return _context.Games.AsQueryable();
+        }
         public Game GetFavouriteGame(int favoriteGameId)
         {
             return _context.Games
@@ -52,6 +59,8 @@ namespace GamersGridApp.Repositories
             return usercontent.UserGames
                 .SingleOrDefault(g => g.Id == id);
         }
+
+
 
 
     }

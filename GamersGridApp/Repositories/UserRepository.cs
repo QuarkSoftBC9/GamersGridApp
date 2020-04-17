@@ -21,6 +21,11 @@ namespace GamersGridApp.Repositories
             return _context.GamersGridUsers
                 .SingleOrDefault(u => u.NickName.Contains(name));
         }
+        public List<User> GetUsers()
+        {
+            return _context.GamersGridUsers.ToList();
+        }
+
         public User GetUser(int? userid)
         {
             return _context.GamersGridUsers
@@ -53,6 +58,12 @@ namespace GamersGridApp.Repositories
         {
            return _context.GamersGridUsers
                 .Where(ggu => ggu.NickName.Contains(searchstring))
+                .ToList();
+        }
+        public List<User> BetterSearchUsers(string searchstring)
+        {
+            return _context.GamersGridUsers
+                .Where(u => u.LastName.Contains(searchstring) || u.FirstName.Contains(searchstring) || u.NickName.Contains(searchstring))
                 .ToList();
         }
 

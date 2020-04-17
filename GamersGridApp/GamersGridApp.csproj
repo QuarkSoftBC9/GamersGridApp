@@ -564,6 +564,7 @@
     <Compile Include="Perstistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\UserPostingConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\VideoConfiguration.cs" />
+    <Compile Include="Perstistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FollowsRepository.cs" />
     <Compile Include="Repositories\GameAccountRepository.cs" />

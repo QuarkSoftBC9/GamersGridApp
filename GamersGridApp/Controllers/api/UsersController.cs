@@ -7,36 +7,49 @@ using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using GamersGridApp.Dtos;
+using GamersGridApp.Repositories;
+using GamersGridApp.Perstistence;
 
 namespace GamersGridApp.Controllers.api
 {
     public class UsersController : ApiController
     {
 
-        private ApplicationDbContext dbContext;
+        private ApplicationDbContext context;
+        private readonly GameRepository gameRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
+        private readonly UserRepository userRepository;
+        private readonly UnitOfWork unitOfWork;
         public UsersController()
         {
-            dbContext = new ApplicationDbContext();
+            context = new ApplicationDbContext();
+            gameRepository = new GameRepository(context);
+            userGameRelationsRepository = new UserGameRepository(context);
+            userRepository = new UserRepository(context);
+            unitOfWork = new UnitOfWork(context);
         }
 
         //GET : /api/users
         [HttpGet]
         public IHttpActionResult GetUsers(string query = null)
         {
-            var gamersQuery = dbContext.GamersGridUsers.AsQueryable();
+            //var gamersQuery = dbContext.GamersGridUsers.AsQueryable();
+            var gamersQuery = userRepository.GetUsers();
+
             //Do work here !!!!
             IEnumerable<UserDto> search;
             //We check if the search string is contained in NickName/FirstName/LastName and take the first 5 elements
             if (!String.IsNullOrEmpty(query))
             {
-                search = dbContext.GamersGridUsers
-                .Where(u => u.LastName.Contains(query) || u.FirstName.Contains(query) || u.NickName.Contains(query))
-                .ToList()
-                .Select(Mapper.Map<User, UserDto>);
+                //search = dbContext.GamersGridUsers
+                //.Where(u => u.LastName.Contains(query) || u.FirstName.Contains(query) || u.NickName.Contains(query))
+                //.ToList()
+                //.Select(Mapper.Map<User, UserDto>);
+                search = userRepository.BetterSearchUsers(query).Select(Mapper.Map<User, UserDto>);
                 return Ok(search);
             }
 
-            var gamers = gamersQuery.ToList()
+            var gamers = gamersQuery
                 .Select(Mapper.Map<User, UserDto>);
 
             return Ok(gamers);

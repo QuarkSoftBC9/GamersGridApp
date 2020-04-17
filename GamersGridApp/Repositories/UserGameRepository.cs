@@ -45,5 +45,26 @@ namespace GamersGridApp.Repositories
                             .Include(ugr => ugr.GameAccount)
                             .SingleOrDefault();
         }
+        public UserGame GetUserGameRelationWithExistingGameWithStats(int gameid, int userid)
+        {
+            return _context.UserGameRelations
+                            .Where(ugr => ugr.GameID == gameid && ugr.UserId == userid)
+                            .Include(ugr => ugr.GameAccount)
+                            .Include(ga => ga.GameAccount.GameAccountStats)
+                            .SingleOrDefault();
+        }
+        public UserGame GetGameStatsByUser(int userid)
+        {
+            return _context.UserGameRelations
+                      .Include(ug => ug.GameAccount)
+                      .Include(ug => ug.GameAccount.GameAccountStats)
+                      .SingleOrDefault(ug => ug.GameID == 2 && ug.UserId == userid);
+        }
+
+        public void Add(UserGame userGame)
+        {
+            _context.UserGameRelations.Add(userGame);
+
+        }
     }
 }

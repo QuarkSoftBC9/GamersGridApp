@@ -2,6 +2,7 @@
 using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Dtos.ApiStatsDto;
 using GamersGridApp.Models;
+using GamersGridApp.Perstistence;
 using GamersGridApp.Repositories;
 using GamersGridApp.ViewModels;
 using GamersGridApp.WebServices;
@@ -26,12 +27,19 @@ namespace GamersGridApp.Controllers.api
         private readonly ApplicationDbContext context;
         private readonly GameAccountStatsRepository gameAccountStats;
         private readonly GameAccountRepository gameAccounts;
+        private readonly UserGameRepository userGameRelationsRepository;
+        private readonly UserRepository userRepository;
+        private readonly UnitOfWork unitOfWork;
+
 
         public LOLAccountsController()
         {
             context = new ApplicationDbContext();
             gameAccounts = new GameAccountRepository(context);
             gameAccountStats = new GameAccountStatsRepository(context);
+            userGameRelationsRepository = new UserGameRepository(context);
+            userRepository = new UserRepository(context);
+            unitOfWork = new UnitOfWork(context);
         }
         protected override void Dispose(bool disposing)
         {
@@ -46,11 +54,12 @@ namespace GamersGridApp.Controllers.api
             
             //Get the logged in  User 
             var appUserId = User.Identity.GetUserId();
-            var userContent = context.Users
-                .Where(u => u.Id == appUserId)
-                .Select(u => u.UserAccount)
-                .Include(g => g.UserGames.Select(ga => ga.GameAccount))
-                .SingleOrDefault();
+            //var userContent = context.Users
+            //    .Where(u => u.Id == appUserId)
+            //    .Select(u => u.UserAccount)
+            //    .Include(g => g.UserGames.Select(ga => ga.GameAccount))
+            //    .SingleOrDefault();
+            var userContent = userRepository.GetUserContent(appUserId);
 
             //Check if userContent exists
             if (userContent == null)
@@ -85,7 +94,7 @@ namespace GamersGridApp.Controllers.api
             var matches = LolDataService.GetMatches(api, gameIds);
             userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
 
-            context.SaveChanges();
+            unitOfWork.Complete();
             return Ok(statsDto[0]);
 
         }

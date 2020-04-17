@@ -7,22 +7,35 @@ using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 using GamersGridApp.Dtos;
+using GamersGridApp.Repositories;
+using GamersGridApp.Perstistence;
 
 namespace GamersGridApp.Controllers.api
 {
     public class GamesController : ApiController
     {
         private ApplicationDbContext dbContext;
+        private readonly GameRepository gameRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
+        private readonly UserRepository userRepository;
+        private readonly UnitOfWork unitOfWork;
+        private readonly FollowsRepository followsRepository;
         public GamesController()
         {
             dbContext = new ApplicationDbContext();
+            gameRepository = new GameRepository(dbContext);
+            userGameRelationsRepository = new UserGameRepository(dbContext);
+            userRepository = new UserRepository(dbContext);
+            unitOfWork = new UnitOfWork(dbContext);
+            followsRepository = new FollowsRepository(dbContext);
         }
 
         //GET : /api/games
         [HttpGet]
         public IHttpActionResult GetGames(string query = null)
         {
-            var gamesQuery = dbContext.Games.AsQueryable();
+            //var gamesQuery = dbContext.Games.AsQueryable();
+            var gamesQuery = gameRepository.GetGames();
 
             if (!String.IsNullOrEmpty(query))
                 gamesQuery = gamesQuery.Where(g => g.Title.Contains(query));

@@ -1,5 +1,7 @@
 ﻿using GamersGridApp.Dtos;
 using GamersGridApp.Models;
+using GamersGridApp.Perstistence;
+using GamersGridApp.Repositories;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,21 @@ namespace GamersGridApp.Controllers.api
 {
     public class MessagesController : ApiController
     {
-        private ApplicationDbContext db;
+        private ApplicationDbContext context;
+        private readonly GameRepository gameRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
+        private readonly UserRepository userRepository;
+        private readonly FollowsRepository followsRepository;
+        private readonly UnitOfWork unitOfWork;
+
         public MessagesController()
         {
-            db = new ApplicationDbContext();
+            context = new ApplicationDbContext();
+            gameRepository = new GameRepository(context);
+            userGameRelationsRepository = new UserGameRepository(context);
+            userRepository = new UserRepository(context);
+            unitOfWork = new UnitOfWork(context);
+            followsRepository = new FollowsRepository(context);
         }
     
 
@@ -26,9 +39,13 @@ namespace GamersGridApp.Controllers.api
         public IHttpActionResult FindMutualFollowers()
         {
             var userId = User.Identity.GetUserId();
-            var dev = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+            //var dev = context.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
+            var dev = userRepository.GetLoggedUser(userId);
 
-            var users = db.GamersGridUsers.Where(g => g.Followers.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followees.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
+            //var users = context.GamersGridUsers.Where(g => g.Followers.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followees.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
+
+            var users = followsRepository.GetMessageUsersRelation(dev.ID);
+
             return Ok(users);
         }
 
