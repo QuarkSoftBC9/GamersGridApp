@@ -87,6 +87,8 @@ namespace GamersGridApp.Controllers
             //var favoritegame = context.Games
             //  .Where(g => g.ID == favoritegameID)
             //  .SingleOrDefault();
+            if (favoritegameID == 0)
+                favoritegameID = 3;
             var favoritegame = gameRepository.GetFavouriteGame(favoritegameID);
 
             if (user == null)
