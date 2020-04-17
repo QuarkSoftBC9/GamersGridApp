@@ -15,7 +15,7 @@ namespace GamersGridApp.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly GameRepository gameRepository;
-        private readonly UserGameRelationsRepository userGameRelationsRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
         private readonly UserRepository userRepository;
 
         // MyDbContext();
@@ -24,7 +24,7 @@ namespace GamersGridApp.Controllers
         {
             context = new ApplicationDbContext();
             gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRelationsRepository(context);
+            userGameRelationsRepository = new UserGameRepository(context);
             userRepository = new UserRepository(context);
 
             // context = new MyDbContext();

@@ -32,6 +32,18 @@ namespace GamersGridApp.Repositories
                 .ToDictionary(g => g.GameAccount.UserGame.Game.Title);
         }
 
-
+        public IEnumerable<int> GetGamesIdFocus(Game game)
+        {
+            return _context.UserGameRelations.
+                Where(g => g.Game.Title == game.Title && g.IsFavoriteGame == true)
+                .Select(g => g.GameID).ToList();
+        }
+        public UserGame GetUserGameRelationWithExistingGame(int gameid, int userid)
+        {
+            return _context.UserGameRelations
+                            .Where(ugr => ugr.GameID == gameid && ugr.UserId == userid)
+                            .Include(ugr => ugr.GameAccount)
+                            .SingleOrDefault();
+        }
     }
 }

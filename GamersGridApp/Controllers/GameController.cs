@@ -14,13 +14,13 @@ namespace GamersGridApp.Controllers
 
         private ApplicationDbContext dbContext;
         private readonly GameRepository gameRepository;
-        private readonly UserGameRelationsRepository userGameRelationsRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
 
         public GameController()
         {
             dbContext = new ApplicationDbContext();
             gameRepository = new GameRepository(dbContext);
-            userGameRelationsRepository = new UserGameRelationsRepository(dbContext);
+            userGameRelationsRepository = new UserGameRepository(dbContext);
         }
         // GET: Game
         public ViewResult Index()

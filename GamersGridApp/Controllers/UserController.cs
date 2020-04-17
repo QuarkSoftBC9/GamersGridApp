@@ -22,18 +22,20 @@ namespace GamersGridApp.Controllers
     {
         private ApplicationDbContext context = new ApplicationDbContext();
         private readonly GameRepository gameRepository;
-        private readonly UserGameRelationsRepository userGameRelationsRepository;
+        private readonly UserGameRepository userGameRelationsRepository;
         private readonly UserRepository userRepository;
         private readonly UserNotificationRepository userNotificationRepository;
+        private readonly FollowsRepository followsRepository;
 
 
         public UserController()
         {
             context = new ApplicationDbContext();
             gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRelationsRepository(context);
+            userGameRelationsRepository = new UserGameRepository(context);
             userRepository = new UserRepository(context);
             userNotificationRepository = new UserNotificationRepository(context);
+            followsRepository = new FollowsRepository(context);
 
         }
 
@@ -109,7 +111,7 @@ namespace GamersGridApp.Controllers
             else
             {
                 //var followRelation = context.Follows.SingleOrDefault(f => f.FollowerId == currentLoggedUser.ID && f.UserId == user.ID);
-                var followRelation = userRepository.GetFollowingRelation(currentLoggedUser.ID, user.ID);
+                var followRelation = followsRepository.GetFollowRelationOfTwoUsers(currentLoggedUser.ID, user.ID);
                 if (followRelation == null)
                     viewModel.IsFollowing = false;
                 else
