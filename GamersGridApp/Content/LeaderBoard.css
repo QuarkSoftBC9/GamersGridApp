@@ -114,6 +114,7 @@ span.round-tabs.three {
         }
 
 .tab-content {
+
 }
 
 .tab-pane {
@@ -150,6 +151,7 @@ span.round-tabs.three {
 
     .tab-content .head {
         font-size: 20px;
+        font-family: 'Josefin Sans', sans-serif;
     }
 
     .nav-tabs > li a {
@@ -168,3 +170,43 @@ span.round-tabs.three {
         padding: 12px 20px;
     }
 }
+
+.table {
+    width: 80%;
+    margin: 0 auto;
+    counter-reset: rowNumber;
+}
+
+    table th {
+        margin: 0 auto; /* or margin: 0 auto 0 auto */
+        text-align: center;
+        vertical-align: central;
+    }
+
+.table > tbody > tr > td {
+    text-align: center;
+    vertical-align: middle !important;
+}
+
+
+    .table > tbody > tr > td:first-child {
+        /*font-weight: 700;*/
+        font-size: 20px;
+        color: #000000;
+        font-family: 'Bungee Inline', cursive;
+        content: counter(rowNumber);
+    }
+
+.con-table {
+    width: 100%;
+}
+
+
+/*table tr td:first-child {
+    border: none;
+}
+
+table tr th:first-child {
+    border: none;
+}*/
+

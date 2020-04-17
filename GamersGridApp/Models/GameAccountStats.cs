@@ -1,4 +1,5 @@
-﻿using AutoMapper.QueryableExtensions;
+﻿
+using AutoMapper.QueryableExtensions;
 using GamersGridApp.Dtos.ApiAcountsDtos;
 using GamersGridApp.Helpers;
 using System;

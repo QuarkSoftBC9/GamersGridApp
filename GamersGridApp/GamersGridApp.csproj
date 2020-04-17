@@ -581,6 +581,7 @@
     <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
     <Compile Include="ViewModels\AddOverwatchAccViewModel.cs" />
     <Compile Include="ViewModels\ChatBoxViewModel.cs" />
+    <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
     <Compile Include="ViewModels\MessageBoardViewModel.cs" />
     <Compile Include="ViewModels\PlayersListViewModel.cs" />
     <Compile Include="ViewModels\PostMessageViewModel.cs" />
@@ -1248,7 +1249,7 @@
     <Content Include="Views\User\DotaAccount.cshtml" />
     <Content Include="Views\User\OverWatchAccount.cshtml" />
     <Content Include="Views\User\PostMessage.cshtml" />
-    <Content Include="Views\User\Leaderboards.cshtml" />
+    <Content Include="Views\Home\Leaderboards.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

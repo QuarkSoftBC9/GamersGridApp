@@ -8,6 +8,7 @@ using GamersGridApp.Models;
 using System.Web.Http;
 using Microsoft.AspNet.Identity;
 using GamersGridApp.Repositories;
+using System.Data.Entity;
 
 namespace GamersGridApp.Controllers
 {
@@ -155,6 +156,60 @@ namespace GamersGridApp.Controllers
             //var searchviewModelEmpty = new SearchViewModel(new List<User>(), games, false, true);
 
             //return View(searchviewModelEmpty);
+        }
+
+        public ViewResult Leaderboards()
+        {
+
+
+            //DOTA
+            int dotaID = context.Games
+              .Where(g => g.Title == "Dota 2")
+              .Select(g => g.ID)
+              .SingleOrDefault();
+
+            var BestDotaUsers = context.GameAccountStats
+                .Where(g => g.GameAccount.UserGame.GameID == dotaID)
+                .Include(g => g.GameAccount.UserGame.User)
+                .OrderByDescending(g => g.Wins)
+                .Take(4) //Takes a certain ammount of results
+                .ToList();
+
+            //LOL
+            int lolID = context.Games
+               .Where(g => g.Title == "League Of Legends")
+               .Select(g => g.ID)
+               .SingleOrDefault();
+            var BestLolUsers = context.GameAccountStats
+                .Where(g => g.GameAccount.UserGame.GameID == lolID)
+                .Include(g => g.GameAccount.UserGame.User)
+                .OrderByDescending(g => g.Wins)
+                .Take(4)
+                .ToList();
+
+
+            //OVERWATCH
+            int overwatchID = context.Games
+                .Where(g => g.Title == "Overwatch")
+                .Select(g => g.ID)
+                .SingleOrDefault();
+
+            var BestOverWatchUsers = context.GameAccountStats
+                .Where(g => g.GameAccount.UserGame.GameID == overwatchID)
+                .Include(g => g.GameAccount.UserGame.User)
+                .OrderByDescending(g => g.Wins)
+                .Take(4)
+                .ToList();
+
+            var LeaderBoardVM = new LeaderBoardViewModel()
+            {
+                TopDotaStats = BestDotaUsers,
+                TopLolStats = BestLolUsers,
+                TopOverwatchStats = BestOverWatchUsers
+            };
+
+            return View(LeaderBoardVM);
+
         }
     }
 }
