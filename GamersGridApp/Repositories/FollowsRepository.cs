@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace GamersGridApp.Repositories
 {
-    public class FollowsRepository
+    public class FollowsRepository : IFollowsRepository
     {
         private readonly ApplicationDbContext _context;
 

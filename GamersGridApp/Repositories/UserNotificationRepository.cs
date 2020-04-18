@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class UserNotificationRepository
+    public class UserNotificationRepository : IUserNotificationRepository
     {
         private readonly ApplicationDbContext _context;
 

@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class GameAccountRepository
+    public class GameAccountRepository : IGameAccountRepository
     {
         private readonly ApplicationDbContext _context;
 

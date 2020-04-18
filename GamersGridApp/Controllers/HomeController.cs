@@ -15,9 +15,9 @@ namespace GamersGridApp.Controllers
     public class HomeController : Controller
     {
         private readonly ApplicationDbContext context;
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
 
         // MyDbContext();
         //Uncomment for costum DbContext

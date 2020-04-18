@@ -16,7 +16,7 @@ namespace GamersGridApp.Controllers
     {
         // GET: Message
         private ApplicationDbContext db;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         //var currentUser = db.Users.Where(u => u.Id == CurrentUserID).SingleOrDefault();
         public MessageController()

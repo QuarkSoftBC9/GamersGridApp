@@ -300,6 +300,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
@@ -570,6 +571,16 @@
     <Compile Include="Repositories\GameAccountRepository.cs" />
     <Compile Include="Repositories\GameAccountStatsRepository.cs" />
     <Compile Include="Repositories\GameRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IFollowsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IGameAccountRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IGameAccountStatsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IGameRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IMessageChatRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IMessageChatUserRepository.cs" />
+    <Compile Include="Perstistence\Repositories\INotificationsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IUserGameRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IUserNotificationRepository.cs" />
+    <Compile Include="Perstistence\Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\MessageChatRepository.cs" />
     <Compile Include="Repositories\MessageChatUserRepository.cs" />
     <Compile Include="Repositories\NotificationsRepository.cs" />

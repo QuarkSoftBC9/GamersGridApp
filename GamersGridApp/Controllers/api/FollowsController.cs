@@ -17,11 +17,11 @@ namespace GamersGridApp.Controllers.api
     public class FollowsController : ApiController
     {
         private ApplicationDbContext dbContext;
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
-        private readonly UnitOfWork unitOfWork;
-        private readonly FollowsRepository followsRepository;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IFollowsRepository followsRepository;
 
         public FollowsController()
         {

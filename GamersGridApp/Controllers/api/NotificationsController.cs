@@ -15,11 +15,11 @@ namespace GamersGridApp.Controllers.api
     public class NotificationsController : ApiController
     {
         private ApplicationDbContext context;
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
-        private readonly FollowsRepository followsRepository;
-        private readonly UserNotificationRepository userNotificationRepository;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IFollowsRepository followsRepository;
+        private readonly IUserNotificationRepository userNotificationRepository;
 
         public NotificationsController()
         {

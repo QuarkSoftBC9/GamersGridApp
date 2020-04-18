@@ -22,12 +22,12 @@ namespace GamersGridApp.Controllers
     public class UserController : Controller
     {
         private ApplicationDbContext context = new ApplicationDbContext();
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
-        private readonly UserNotificationRepository userNotificationRepository;
-        private readonly FollowsRepository followsRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IUserNotificationRepository userNotificationRepository;
+        private readonly IFollowsRepository followsRepository;
+        private readonly IUnitOfWork unitOfWork;
 
 
 
