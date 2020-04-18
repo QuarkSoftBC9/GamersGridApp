@@ -300,7 +300,6 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
@@ -566,6 +565,7 @@
     <Compile Include="Perstistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\UserPostingConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\VideoConfiguration.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Perstistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\FollowsRepository.cs" />

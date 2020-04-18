@@ -16,16 +16,16 @@ namespace GamersGridApp.Controllers.api
     {
 
         private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
+        //private readonly IGameRepository gameRepository;
+        //private readonly IUserGameRepository userGameRelationsRepository;
+        //private readonly IUserRepository userRepository;
         private readonly IUnitOfWork unitOfWork;
         public UsersController()
         {
             context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
+            //gameRepository = new GameRepository(context);
+            //userGameRelationsRepository = new UserGameRepository(context);
+            //userRepository = new UserRepository(context);
             unitOfWork = new UnitOfWork(context);
         }
 
@@ -34,7 +34,7 @@ namespace GamersGridApp.Controllers.api
         public IHttpActionResult GetUsers(string query = null)
         {
             //var gamersQuery = dbContext.GamersGridUsers.AsQueryable();
-            var gamersQuery = userRepository.GetUsers();
+            var gamersQuery = unitOfWork.Users.GetUsers();
 
             //Do work here !!!!
             IEnumerable<UserDto> search;
@@ -45,7 +45,7 @@ namespace GamersGridApp.Controllers.api
                 //.Where(u => u.LastName.Contains(query) || u.FirstName.Contains(query) || u.NickName.Contains(query))
                 //.ToList()
                 //.Select(Mapper.Map<User, UserDto>);
-                search = userRepository.BetterSearchUsers(query).Select(Mapper.Map<User, UserDto>);
+                search = unitOfWork.Users.BetterSearchUsers(query).Select(Mapper.Map<User, UserDto>);
                 return Ok(search);
             }
 

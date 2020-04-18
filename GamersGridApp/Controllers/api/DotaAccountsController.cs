@@ -22,9 +22,9 @@ namespace GamersGridApp.Controllers.api
     public class DotaAccountsController : ApiController
     {
         private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
+        //private readonly IGameRepository gameRepository;
+        //private readonly IUserGameRepository userGameRelationsRepository;
+        //private readonly IUserRepository userRepository;
         private readonly IUnitOfWork unitOfWork;
 
 
@@ -32,9 +32,9 @@ namespace GamersGridApp.Controllers.api
         public DotaAccountsController()
         {
             context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
+            //gameRepository = new GameRepository(context);
+            //userGameRelationsRepository = new UserGameRepository(context);
+            //userRepository = new UserRepository(context);
             unitOfWork = new UnitOfWork(context);
         }
 
@@ -93,13 +93,13 @@ namespace GamersGridApp.Controllers.api
             //    .Where(u => u.Id == loggedUserId)
             //    .Select(u => u.UserAccount)
             //    .SingleOrDefault();
-            var ggUser = userRepository.GetLoggedUser(loggedUserId);
+            var ggUser = unitOfWork.Users.GetLoggedUser(loggedUserId);
 
             //var userGameRelation = context.UserGameRelations
             //    .Include(ug => ug.GameAccount)
             //    .Include(ug => ug.GameAccount.GameAccountStats)
             //    .SingleOrDefault(ug => ug.GameID == 2 && ug.UserId == ggUser.ID);
-            var userGameRelation = userGameRelationsRepository.GetUserGameRelationWithExistingGameWithStats(2, ggUser.ID);
+            var userGameRelation = unitOfWork.UserGames.GetUserGameRelationWithExistingGameWithStats(2, ggUser.ID);
 
 
             if (userGameRelation != null && userGameRelation.GameAccount ==null )
@@ -115,7 +115,7 @@ namespace GamersGridApp.Controllers.api
                 try
                 {
                     //context.UserGameRelations.Add(newUserGameRelation);
-                    userGameRelationsRepository.Add(newUserGameRelation);
+                    unitOfWork.UserGames.Add(newUserGameRelation);
                     unitOfWork.Complete();
                 }
                 catch (Exception e)

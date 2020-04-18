@@ -25,20 +25,20 @@ namespace GamersGridApp.Controllers.api
         private readonly string api = "RGAPI-d466cf9c-9f85-49a9-9d79-b02bd9fdd884";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
-        private readonly IGameAccountStatsRepository gameAccountStats;
-        private readonly IGameAccountRepository gameAccounts;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
+        //private readonly IGameAccountStatsRepository gameAccountStats;
+        //private readonly IGameAccountRepository gameAccounts;
+        //private readonly IUserGameRepository userGameRelationsRepository;
+        //private readonly IUserRepository userRepository;
         private readonly IUnitOfWork unitOfWork;
 
 
         public LOLAccountsController()
         {
             context = new ApplicationDbContext();
-            gameAccounts = new GameAccountRepository(context);
-            gameAccountStats = new GameAccountStatsRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
+            //gameAccounts = new GameAccountRepository(context);
+            //gameAccountStats = new GameAccountStatsRepository(context);
+            //userGameRelationsRepository = new UserGameRepository(context);
+            //userRepository = new UserRepository(context);
             unitOfWork = new UnitOfWork(context);
         }
         protected override void Dispose(bool disposing)
@@ -59,14 +59,14 @@ namespace GamersGridApp.Controllers.api
             //    .Select(u => u.UserAccount)
             //    .Include(g => g.UserGames.Select(ga => ga.GameAccount))
             //    .SingleOrDefault();
-            var userContent = userRepository.GetUserContent(appUserId);
+            var userContent = unitOfWork.Users.GetUserContent(appUserId);
 
             //Check if userContent exists
             if (userContent == null)
                 return BadRequest("No such account was found");
 
             //Check if Game Account with such credential alrady exists
-            var accountExists = gameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
+            var accountExists = unitOfWork.GameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
             if (accountExists != null && accountExists.Id != userContent.ID)
                 return BadRequest("The account already exists");
 
@@ -83,7 +83,7 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            userGame.GameAccount.GameAccountStats = gameAccountStats.GetGameAccStatsByID(userGame.Id);
+            userGame.GameAccount.GameAccountStats = unitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
             userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
 
             //Getting List of matche ids
