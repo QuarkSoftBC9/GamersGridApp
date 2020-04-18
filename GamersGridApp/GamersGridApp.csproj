@@ -309,6 +309,7 @@
     <Compile Include="Dtos\ApiStatsDto\FullStatsDto.cs" />
     <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
     <Compile Include="Dtos\GameDto.cs" />
+    <Compile Include="Dtos\SearchEngine\DotaSearchDto.cs" />
     <Compile Include="Dtos\UserDto.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">

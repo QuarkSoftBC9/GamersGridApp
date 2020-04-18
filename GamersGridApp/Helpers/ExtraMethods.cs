@@ -41,7 +41,7 @@ namespace GamersGridApp.Helpers
             {
                 return 0;
             }
-            return (double)KillsAssists / deaths;
+            return Math.Round((double)KillsAssists / deaths,2);
         }
 
         public static double CalculateKda(double avgDeaths, double avgEliminations)

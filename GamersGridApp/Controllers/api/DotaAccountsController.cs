@@ -15,6 +15,7 @@ using System.Data.Entity;
 using GamersGridApp.WebServices;
 using GamersGridApp.Repositories;
 using GamersGridApp.Perstistence;
+using GamersGridApp.Dtos.SearchEngine;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -35,6 +36,32 @@ namespace GamersGridApp.Controllers.api
             userGameRelationsRepository = new UserGameRepository(context);
             userRepository = new UserRepository(context);
             unitOfWork = new UnitOfWork(context);
+        }
+
+        [HttpGet]
+
+        public IHttpActionResult GetStats(string accountId)
+        {
+            if (string.IsNullOrEmpty(accountId))
+                return BadRequest();
+
+            DotaDataService dotaService = new DotaDataService(accountId);
+            DotaDto dotaDto;
+            DotaWinsLosesDto dotaWLDto;
+            List<DotaMatchDto> dotaMatchesDto;
+
+            try
+            {
+                dotaDto = dotaService.GetAccountDto();
+                dotaWLDto = dotaService.GetWLDto();
+                dotaMatchesDto = dotaService.GetMatches();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(new DotaSearchDto(dotaDto, dotaWLDto, dotaMatchesDto));
         }
 
 

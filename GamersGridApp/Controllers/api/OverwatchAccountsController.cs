@@ -39,6 +39,28 @@ namespace GamersGridApp.Controllers.api
             base.Dispose(disposing);
         }
 
+
+        [HttpGet]
+        public IHttpActionResult GetStats(string battleTag, string region)
+        {
+            if (String.IsNullOrEmpty(battleTag) || string.IsNullOrEmpty(region))
+                return BadRequest();
+
+
+            OverwatchDataService overwatchService = new OverwatchDataService(battleTag, region);
+            OverWatchCompleteDto owCompleteDto;
+
+            try
+            {
+                owCompleteDto = overwatchService.GetCompleteProfileDto();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(owCompleteDto);
+        }
         [HttpPost]
         public IHttpActionResult AddAccount(AddOverwatchAccViewModel viewModel)
         {
