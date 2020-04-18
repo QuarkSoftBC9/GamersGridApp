@@ -16,10 +16,10 @@ namespace GamersGridApp.Controllers.api
     public class MessagesController : ApiController
     {
         private ApplicationDbContext context;
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
-        private readonly FollowsRepository followsRepository;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IFollowsRepository followsRepository;
         private readonly UnitOfWork unitOfWork;
 
         public MessagesController()

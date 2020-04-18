@@ -14,8 +14,8 @@ namespace GamersGridApp.Controllers
     {
 
         private ApplicationDbContext dbContext;
-        private readonly GameRepository gameRepository;
-        private readonly UserGameRepository userGameRelationsRepository;
+        private readonly IGameRepository gameRepository;
+        private readonly IUserGameRepository userGameRelationsRepository;
         private readonly UnitOfWork unitOfWork;
 
 
