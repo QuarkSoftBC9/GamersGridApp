@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GamersGridApp.Perstistence
 {
-    public class UnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
 
