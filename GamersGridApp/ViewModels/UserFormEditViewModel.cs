@@ -46,7 +46,7 @@ namespace GamersGridApp.ViewModels
             Avatar = user.Avatar;
 
 
-                SteamId = dotaRelation == null || dotaRelation.GameAccount == null ? "" : dotaRelation.GameAccount.AccountIdentifier;
+                SteamId = dotaRelation == null || dotaRelation.GameAccount == null ? "" : dotaRelation.GameAccount.AccountIdentifier2;
                 BattleTag = overwatchRelation == null || overwatchRelation.GameAccount == null ? "" : overwatchRelation.GameAccount.AccountIdentifier;
                 LolUsername = lolRelation == null || lolRelation.GameAccount==null ? "" : lolRelation.GameAccount.NickName;
   

@@ -41,13 +41,13 @@ namespace GamersGridApp.Helpers
             {
                 return 0;
             }
-            return KillsAssists / deaths;
+            return (double)KillsAssists / deaths;
         }
 
         public static double CalculateKda(double avgDeaths, double avgEliminations)
         {
 
-            return Math.Round(avgEliminations / avgDeaths);
+            return Math.Round(avgEliminations / avgDeaths,2);
         }
     }
 }

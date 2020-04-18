@@ -50,8 +50,9 @@ namespace GamersGridApp.Models
         //Update stats for Dota2 
         public void UpdateAccount(DotaDto dotaDto)
         {
+            AccountIdentifier = dotaDto.profile.steamid;
+            AccountIdentifier2 = Convert.ToString(dotaDto.profile.account_id);
             NickName = dotaDto.profile.personaname;
-            AccountIdentifier = Convert.ToString(dotaDto.profile.account_id);
             AccountRegions = dotaDto.profile.loccountrycode;
         }
 

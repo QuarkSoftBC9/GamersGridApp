@@ -69,6 +69,7 @@ namespace GamersGridApp.WebServices
         {
             int KillsAssists = 0;
             int deaths = 0;
+            
             foreach (var dotaMatch in matches)
             {
                 KillsAssists += dotaMatch.kills + dotaMatch.assists;
@@ -76,9 +77,10 @@ namespace GamersGridApp.WebServices
             }
             if (deaths == 0)
             {
-                return 0;
+                return KillsAssists;
             }
-            return KillsAssists / deaths;
+            double result = Math.Round((double)KillsAssists / deaths, 2);
+            return result;
         }
 
 

@@ -58,8 +58,8 @@ namespace GamersGridApp.Models
             const int dotaId = 2;
             var kda = Convert.ToString(ExtraMethods.CalculateKda(matchesDto));
             var userGame = new UserGame(userId, dotaId);
-            userGame.GameAccount = new GameAccount(dotaDto.profile.personaname,Convert.ToString(dotaDto.profile.account_id), dotaDto.profile.loccountrycode);
-            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, Convert.ToString(dotaDto.rank_tier),wlDto.win, wlDto.lose, kda);
+            userGame.GameAccount = new GameAccount(dotaDto.profile.personaname,Convert.ToString(dotaDto.profile.account_id),dotaDto.profile.steamid, dotaDto.profile.loccountrycode);
+            userGame.GameAccount.GameAccountStats = new GameAccountStats(userGame.GameAccount, Convert.ToString(dotaDto.competitive_rank),wlDto.win, wlDto.lose, kda);
 
             return userGame;
         }

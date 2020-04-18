@@ -43,6 +43,7 @@ namespace GamersGridApp.Repositories
             return _context.UserGameRelations
                             .Where(ugr => ugr.GameID == gameid && ugr.UserId == userid)
                             .Include(ugr => ugr.GameAccount)
+                            .Include(ugr => ugr.GameAccount.GameAccountStats)
                             .SingleOrDefault();
         }
         public UserGame GetUserGameRelationWithExistingGameWithStats(int gameid, int userid)

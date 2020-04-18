@@ -49,7 +49,7 @@ namespace GamersGridApp.Models
             KDA = kda;
             Wins = dotaWLDto.win;
             Losses = dotaWLDto.lose;
-            Rank = Convert.ToString(mainDto.rank_tier);
+            Rank = Convert.ToString(mainDto.competitive_rank);
         }
 
 
