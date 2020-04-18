@@ -16,7 +16,7 @@ namespace GamersGridApp.Controllers
         private ApplicationDbContext dbContext;
         private readonly IGameRepository gameRepository;
         private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
 
         public GameController()

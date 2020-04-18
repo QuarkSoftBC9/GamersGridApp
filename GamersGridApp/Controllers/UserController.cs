@@ -27,7 +27,7 @@ namespace GamersGridApp.Controllers
         private readonly IUserRepository userRepository;
         private readonly IUserNotificationRepository userNotificationRepository;
         private readonly IFollowsRepository followsRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
 
 

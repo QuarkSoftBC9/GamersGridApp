@@ -24,7 +24,7 @@ namespace GamersGridApp.Controllers.api
         private readonly IGameRepository gameRepository;
         private readonly IUserGameRepository userGameRelationsRepository;
         private readonly IUserRepository userRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IUnitOfWork unitOfWork;
 
         public OverwatchAccountsController()
         {

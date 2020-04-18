@@ -25,11 +25,11 @@ namespace GamersGridApp.Controllers.api
         private readonly string api = "RGAPI-d466cf9c-9f85-49a9-9d79-b02bd9fdd884";
         private readonly int lolID = 1;
         private readonly ApplicationDbContext context;
-        private readonly GameAccountStatsRepository gameAccountStats;
-        private readonly GameAccountRepository gameAccounts;
-        private readonly UserGameRepository userGameRelationsRepository;
-        private readonly UserRepository userRepository;
-        private readonly UnitOfWork unitOfWork;
+        private readonly IGameAccountStatsRepository gameAccountStats;
+        private readonly IGameAccountRepository gameAccounts;
+        private readonly IUserGameRepository userGameRelationsRepository;
+        private readonly IUserRepository userRepository;
+        private readonly IUnitOfWork unitOfWork;
 
 
         public LOLAccountsController()

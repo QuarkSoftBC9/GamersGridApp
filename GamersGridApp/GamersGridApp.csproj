@@ -300,6 +300,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
