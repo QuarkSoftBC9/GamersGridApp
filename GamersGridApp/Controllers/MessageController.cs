@@ -1,5 +1,4 @@
-﻿using GamersGridApp.Models;
-using GamersGridApp.ViewModels;
+﻿
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
 using GamersGridApp.Perstistence;
+using GamersGridApp.Core;
+using GamersGridApp.Core.ViewModels;
+using GamersGridApp.Core.Models;
 
 namespace GamersGridApp.Controllers
 {
@@ -15,25 +17,26 @@ namespace GamersGridApp.Controllers
     public class MessageController : Controller
     {
         // GET: Message
-        private ApplicationDbContext db;
-        private readonly IUnitOfWork unitOfWork;
+
+        private readonly IUnitOfWork UnitOfWork;
 
         //var currentUser = db.Users.Where(u => u.Id == CurrentUserID).SingleOrDefault();
-        public MessageController()
+        public MessageController(IUnitOfWork unitofwork)
         {
-            db = new ApplicationDbContext();
-            unitOfWork = new UnitOfWork(db);
+            UnitOfWork = unitofwork;
 
         }
         public ActionResult MessageBoard()
         {
             var CurrentUserID = User.Identity.GetUserId();
-            var currentUser = db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).SingleOrDefault();
-            var messageChats = db.MessageChats
-                .Where(mc => mc.MessageChatUsers.Select(mcu=>mcu.UserId).Any(u=>u.Equals(currentUser.ID)))
-                .Include(c => c.ChatHistory.Select(ch=>ch.User))
-                .Include(mc=>mc.MessageChatUsers.Select(mcu=>mcu.User))
-                .ToList();
+            var currentUser = UnitOfWork.GGUsers.GetLoggedUser(CurrentUserID);
+            //db.Users.Where(u => u.Id == CurrentUserID).Select(u => u.UserAccount).SingleOrDefault();
+            var messageChats = UnitOfWork.MessageChats.GetMessageChats(currentUser.ID);
+                //db.MessageChats
+                //.Where(mc => mc.MessageChatUsers.Select(mcu=>mcu.UserId).Any(u=>u.Equals(currentUser.ID)))
+                //.Include(c => c.ChatHistory.Select(ch=>ch.User))
+                //.Include(mc=>mc.MessageChatUsers.Select(mcu=>mcu.User))
+                //.ToList();
 
             if (messageChats.Count != 0)
             {
@@ -54,14 +57,17 @@ namespace GamersGridApp.Controllers
         public ActionResult FindMessageChats(int ID)
         {
             var userId = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).SingleOrDefault();
-            var RequestedUser = db.Users.Select(u => u.UserAccount).FirstOrDefault(u => u.ID == ID);
-            
-            var messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
-            .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
-            .Where(m => m.MessageChatUsers.Count == 2)
-            .Include(c=>c.ChatHistory.Select(ch=>ch.User))
-            .Include(c=>c.MessageChatUsers).FirstOrDefault();
+            var user = UnitOfWork.GGUsers.GetLoggedUser(userId);
+            //db.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).SingleOrDefault();
+            var RequestedUser = UnitOfWork.GGUsers.GetUser(ID);
+            //db.Users.Select(u => u.UserAccount).FirstOrDefault(u => u.ID == ID);
+
+            var messageChat = UnitOfWork.MessageChats.GetMessageChatOfTwoUsers(user.ID, RequestedUser.ID);
+            //    db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
+            //.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
+            //.Where(m => m.MessageChatUsers.Count == 2)
+            //.Include(c=>c.ChatHistory.Select(ch=>ch.User))
+            //.Include(c=>c.MessageChatUsers).FirstOrDefault();
 
             if(messageChat==null)
             {
@@ -89,14 +95,18 @@ namespace GamersGridApp.Controllers
                 newMessageChat.MessageChatUsers.Add(messageChatUser1);
                 newMessageChat.MessageChatUsers.Add(messageChatUser1);
 
-                db.MessageChats.Add(newMessageChat);
-                unitOfWork.Complete();
+                UnitOfWork.MessageChats.AddMessageChatToDB(newMessageChat);
+                //db.MessageChats.Add(newMessageChat);
+                UnitOfWork.Complete();
 
-                messageChat = db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
-                            .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
-                            .Where(m => m.MessageChatUsers.Count == 2)
-                            .Include(c => c.ChatHistory.Select(ch => ch.User))
-                            .Include(c => c.MessageChatUsers).FirstOrDefault();
+             messageChat = UnitOfWork.MessageChats.GetMessageChatOfTwoUsers(user.ID, RequestedUser.ID);
+
+
+                    //db.MessageChats.Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == user.ID))
+                    //        .Where(m => m.MessageChatUsers.Any(mcu => mcu.UserId == RequestedUser.ID))
+                    //        .Where(m => m.MessageChatUsers.Count == 2)
+                    //        .Include(c => c.ChatHistory.Select(ch => ch.User))
+                    //        .Include(c => c.MessageChatUsers).FirstOrDefault();
 
             }
             var viewModel = new ChatBoxViewModel { MessageChat = messageChat, CurrentUserNickName = user.NickName, CurrentMessageChatID = messageChat.ID };
@@ -108,13 +118,15 @@ namespace GamersGridApp.Controllers
         {
             
             var aspNetUserId = User.Identity.GetUserId();
-            var user = db.Users.Where(u => u.Id == aspNetUserId).Select(u => u.UserAccount).SingleOrDefault();
-            var messageChat = db.MessageChatUsers
-                         .Where(mcu => mcu.MessageChatId == chatId)
-                         .Include(mcu => mcu.Chat)
-                         .Select(mcu => mcu.Chat)
-                         .Include(c => c.ChatHistory.Select(ch=>ch.User))
-                         .FirstOrDefault();
+            var user = UnitOfWork.GGUsers.GetLoggedUser(aspNetUserId);
+            //db.Users.Where(u => u.Id == aspNetUserId).Select(u => u.UserAccount).SingleOrDefault();
+            var messageChat = UnitOfWork.MessageChats.GetMessageChat(chatId);
+                //db.MessageChatUsers
+                //         .Where(mcu => mcu.MessageChatId == chatId)
+                //         .Include(mcu => mcu.Chat)
+                //         .Select(mcu => mcu.Chat)
+                //         .Include(c => c.ChatHistory.Select(ch=>ch.User))
+                //         .FirstOrDefault();
             
             var viewModel = new ChatBoxViewModel {  MessageChat= messageChat, CurrentUserNickName=user.NickName, CurrentMessageChatID=messageChat.ID };
 
@@ -125,24 +137,24 @@ namespace GamersGridApp.Controllers
 
         public ActionResult ChatWith(int currentUserId, int requestedUserID)
         {
-            var followRelation1 = db.Follows
-                                   .SingleOrDefault(f => f.FollowerId == currentUserId && f.UserId == requestedUserID);
-
-            var followRelation2 = db.Follows
-                             .SingleOrDefault(f => f.FollowerId == requestedUserID && f.UserId == currentUserId);
+            var followRelation1 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(currentUserId, requestedUserID);
+            var followRelation2 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(requestedUserID, currentUserId);
 
             if (followRelation1 == null || followRelation2 == null)
                 return HttpNotFound();
 
-            var currentGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == currentUserId);
-            var requestedGGuser = db.GamersGridUsers.SingleOrDefault(u => u.ID == requestedUserID);
+            var currentGGuser = UnitOfWork.GGUsers.GetUser(currentUserId);
+            var requestedGGuser = UnitOfWork.GGUsers.GetUser(requestedUserID);
 
 
-            var messageChatsUsersBoth = db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID || mcu.UserId == requestedGGuser.ID).Include(mcu => mcu.Chat).ToList();
+            var messageChatsUsersBoth = UnitOfWork.MessageChatUsers.GetMessageChatRelationsForTwoUsers(currentUserId, requestedUserID);
+            //db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID || mcu.UserId == requestedGGuser.ID).Include(mcu => mcu.Chat).ToList();
 
 
-            var messageChats = db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
-            var messageChatsOfRequestedUser = db.MessageChatUsers.Where(mcu => mcu.UserId == requestedGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
+            var messageChats = UnitOfWork.MessageChats.GetMessageChatsIncludedChatHistory(currentGGuser.ID);
+            //db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
+            var messageChatsOfRequestedUser = UnitOfWork.MessageChats.GetMessageChatsIncludedChatHistory(requestedGGuser.ID);
+                //db.MessageChatUsers.Where(mcu => mcu.UserId == requestedGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
 
 
             int requestedChatId = 0;
@@ -179,13 +191,19 @@ namespace GamersGridApp.Controllers
                     Chat = newMessageChat
                 };
 
-                db.MessageChatUsers.Add(messageChatUser1);
-                db.MessageChatUsers.Add(messageChatUser2);
-                db.MessageChats.Add(newMessageChat);
-                unitOfWork.Complete();
 
-                messageChats = db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
-                messageChatsOfRequestedUser = db.MessageChatUsers.Where(mcu => mcu.UserId == requestedGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
+                UnitOfWork.MessageChatUsers.AddMessageChatUserToDB(messageChatUser1);
+                UnitOfWork.MessageChatUsers.AddMessageChatUserToDB(messageChatUser2);
+                //db.MessageChatUsers.Add(messageChatUser1);
+                //db.MessageChatUsers.Add(messageChatUser2);
+                UnitOfWork.MessageChats.AddMessageChatToDB(newMessageChat);
+                //db.MessageChats.Add(newMessageChat);
+                UnitOfWork.Complete();
+
+                messageChats = UnitOfWork.MessageChats.GetMessageChatsIncludedChatHistory(currentGGuser.ID);
+                //db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
+                messageChatsOfRequestedUser = UnitOfWork.MessageChats.GetMessageChatsIncludedChatHistory(currentGGuser.ID);
+                //db.MessageChatUsers.Where(mcu => mcu.UserId == requestedGGuser.ID).Select(mcu => mcu.Chat).Include(c => c.ChatHistory).ToList();
 
                 foreach (var messageChat in messageChats)
                 {

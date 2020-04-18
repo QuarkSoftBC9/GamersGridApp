@@ -10,7 +10,8 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
-using GamersGridApp.Models;
+using GamersGridApp.Core.Models;
+using GamersGridApp.Persistence;
 
 namespace GamersGridApp
 {

@@ -1,7 +1,4 @@
-﻿using GamersGridApp.Dtos;
-using GamersGridApp.Dtos.ApiAcountsDtos;
-using GamersGridApp.Helpers;
-using GamersGridApp.Models;
+﻿
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -13,29 +10,22 @@ using System.Web.Http;
 using System.Web.Script.Serialization;
 using System.Data.Entity;
 using GamersGridApp.WebServices;
-using GamersGridApp.Repositories;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Dtos.SearchEngine;
+using GamersGridApp.Core;
+using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Dto.SearchEngine;
+using GamersGridApp.Core.Models;
 
 namespace GamersGridApp.Controllers.api
 {
     public class DotaAccountsController : ApiController
     {
-        private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork UnitOfWork;
 
 
 
-        public DotaAccountsController()
+        public DotaAccountsController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            unitOfWork = new UnitOfWork(context);
+            UnitOfWork = unitofwork;
         }
 
         [HttpGet]
@@ -93,13 +83,13 @@ namespace GamersGridApp.Controllers.api
             //    .Where(u => u.Id == loggedUserId)
             //    .Select(u => u.UserAccount)
             //    .SingleOrDefault();
-            var ggUser = userRepository.GetLoggedUser(loggedUserId);
+            var ggUser = UnitOfWork.GGUsers.GetLoggedUser(loggedUserId);
 
             //var userGameRelation = context.UserGameRelations
             //    .Include(ug => ug.GameAccount)
             //    .Include(ug => ug.GameAccount.GameAccountStats)
             //    .SingleOrDefault(ug => ug.GameID == 2 && ug.UserId == ggUser.ID);
-            var userGameRelation = userGameRelationsRepository.GetUserGameRelationWithExistingGameWithStats(2, ggUser.ID);
+            var userGameRelation = UnitOfWork.UserGames.GetUserGameRelationWithExistingGameWithStats(2, ggUser.ID);
 
 
             if (userGameRelation != null && userGameRelation.GameAccount ==null )
@@ -107,7 +97,7 @@ namespace GamersGridApp.Controllers.api
                 userGameRelation.GameAccount = new GameAccount(dotaDto.profile.personaname, accountid, dotaService.SteamId, dotaDto.profile.loccountrycode);
                 userGameRelation.GameAccount.GameAccountStats = new GameAccountStats();
                 userGameRelation.GameAccount.GameAccountStats.Update(dotaDto, dotaWLDto, Convert.ToString(dotaService.KDA));
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
             }
             else if(userGameRelation == null)
             {
@@ -115,8 +105,8 @@ namespace GamersGridApp.Controllers.api
                 try
                 {
                     //context.UserGameRelations.Add(newUserGameRelation);
-                    userGameRelationsRepository.Add(newUserGameRelation);
-                    unitOfWork.Complete();
+                    UnitOfWork.UserGames.Add(newUserGameRelation);
+                    UnitOfWork.Complete();
                 }
                 catch (Exception e)
                 {
@@ -127,7 +117,7 @@ namespace GamersGridApp.Controllers.api
             {
                 userGameRelation.GameAccount.UpdateAccount(dotaDto);
                 userGameRelation.GameAccount.GameAccountStats.Update(dotaDto,dotaWLDto, Convert.ToString(dotaService.KDA));
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
             }
 
             return Ok();

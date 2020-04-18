@@ -1,4 +1,4 @@
-﻿using GamersGridApp.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,27 +6,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
-using GamersGridApp.Dtos;
-using GamersGridApp.Repositories;
+
 using GamersGridApp.Perstistence;
+using GamersGridApp.Core;
+using GamersGridApp.Core.Dtos;
+using GamersGridApp.Core.Models;
 
 namespace GamersGridApp.Controllers.api
 {
     public class UsersController : ApiController
     {
 
-        private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork unitOfWork;
-        public UsersController()
+
+        private readonly IUnitOfWork UnitOfWork;
+        public UsersController(IUnitOfWork unitofWork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            unitOfWork = new UnitOfWork(context);
+            UnitOfWork = unitofWork;
         }
 
         //GET : /api/users
@@ -34,7 +29,7 @@ namespace GamersGridApp.Controllers.api
         public IHttpActionResult GetUsers(string query = null)
         {
             //var gamersQuery = dbContext.GamersGridUsers.AsQueryable();
-            var gamersQuery = userRepository.GetUsers();
+            var gamersQuery = UnitOfWork.GGUsers.GetUsers();
 
             //Do work here !!!!
             IEnumerable<UserDto> search;
@@ -45,7 +40,7 @@ namespace GamersGridApp.Controllers.api
                 //.Where(u => u.LastName.Contains(query) || u.FirstName.Contains(query) || u.NickName.Contains(query))
                 //.ToList()
                 //.Select(Mapper.Map<User, UserDto>);
-                search = userRepository.BetterSearchUsers(query).Select(Mapper.Map<User, UserDto>);
+                search = UnitOfWork.GGUsers.BetterSearchUsers(query).Select(Mapper.Map<User, UserDto>);
                 return Ok(search);
             }
 

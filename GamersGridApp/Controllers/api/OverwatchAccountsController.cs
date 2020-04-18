@@ -1,9 +1,7 @@
-﻿using GamersGridApp.Dtos.ApiAcountsDtos;
-using GamersGridApp.Helpers;
-using GamersGridApp.Models;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Repositories;
-using GamersGridApp.ViewModels;
+﻿using GamersGridApp.Core;
+using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Models;
+using GamersGridApp.Core.ViewModels;
 using GamersGridApp.WebServices;
 using Microsoft.AspNet.Identity;
 using System;
@@ -20,19 +18,12 @@ namespace GamersGridApp.Controllers.api
 {
     public class OverwatchAccountsController : ApiController
     {
-        private readonly ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork unitOfWork;
 
-        public OverwatchAccountsController()
+        private readonly IUnitOfWork UnitOfWork;
+
+        public OverwatchAccountsController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            unitOfWork = new UnitOfWork(context);
+            UnitOfWork = unitofwork;
         }
         protected override void Dispose(bool disposing)
         {
@@ -89,14 +80,14 @@ namespace GamersGridApp.Controllers.api
             //    .Where(u => u.Id == appUserId)
             //    .Select(u => u.UserAccount)
             //    .SingleOrDefault();
-            var user = userRepository.GetLoggedUser(appUserId);
+            var user = UnitOfWork.GGUsers.GetLoggedUser(appUserId);
 
             //var userGame = context.UserGameRelations
             //    .Include(ga=>ga.GameAccount)
             //    .Include(ga => ga.GameAccount.GameAccountStats)
             //    .SingleOrDefault(ga => ga.UserId == user.ID && ga.GameID == overwatchId);
 
-            var userGame = userGameRelationsRepository.GetUserGameRelationWithExistingGame(overwatchId,user.ID);
+            var userGame = UnitOfWork.UserGames.GetUserGameRelationWithExistingGame(overwatchId,user.ID);
 
 
 
@@ -105,7 +96,7 @@ namespace GamersGridApp.Controllers.api
                 userGame.GameAccount = new GameAccount(owCompleteDto.name,viewModel.BattleTag,viewModel.Region);
                 userGame.GameAccount.GameAccountStats = new GameAccountStats();
                 userGame.GameAccount.GameAccountStats.Update(owCompleteDto);
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
             }
             else if (userGame == null )
             {
@@ -113,8 +104,8 @@ namespace GamersGridApp.Controllers.api
                 try
                 {
                     //context.UserGameRelations.Add(newUserGameRelation);
-                    userGameRelationsRepository.Add(newUserGameRelation);
-                    unitOfWork.Complete();
+                    UnitOfWork.UserGames.Add(newUserGameRelation);
+                    UnitOfWork.Complete();
                 }
                 catch (Exception e)
                 {
@@ -125,7 +116,7 @@ namespace GamersGridApp.Controllers.api
             {
                 userGame.GameAccount.UpdateAccount(owCompleteDto.name, viewModel.BattleTag, viewModel.Region);
                 userGame.GameAccount.GameAccountStats.Update(owCompleteDto);
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
             }
 
             return Ok(owCompleteDto);

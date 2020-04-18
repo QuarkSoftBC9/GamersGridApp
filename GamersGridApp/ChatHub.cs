@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GamersGridApp.Models;
+using GamersGridApp.Persistence;
 using Microsoft.AspNet.SignalR;
 using System.Data.Entity;
+using GamersGridApp.Core.Models;
 
 namespace GamersGridApp
 {

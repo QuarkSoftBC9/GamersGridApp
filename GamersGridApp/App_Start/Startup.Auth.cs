@@ -5,7 +5,8 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
-using GamersGridApp.Models;
+using GamersGridApp.Persistence;
+using GamersGridApp.Core.Models;
 
 namespace GamersGridApp
 {

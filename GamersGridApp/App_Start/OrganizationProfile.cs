@@ -1,10 +1,12 @@
 ﻿using AutoMapper;
+
+using GamersGridApp.Core.Dtos;
+using GamersGridApp.Core.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using GamersGridApp.Models;
-using GamersGridApp.Dtos;
+
 
 
 namespace GamersGridApp.App_Start

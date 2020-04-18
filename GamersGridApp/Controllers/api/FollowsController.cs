@@ -1,8 +1,7 @@
-﻿using GamersGridApp.Dtos;
-using GamersGridApp.Enums;
-using GamersGridApp.Models;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Repositories;
+﻿
+using GamersGridApp.Core;
+using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Models;
 using Microsoft.Ajax.Utilities;
 using System;
 using System.Collections.Generic;
@@ -16,22 +15,15 @@ namespace GamersGridApp.Controllers.api
 {
     public class FollowsController : ApiController
     {
-        private ApplicationDbContext dbContext;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork unitOfWork;
-        private readonly IFollowsRepository followsRepository;
 
-        public FollowsController()
+        private readonly IUnitOfWork UnitOfWork;
+
+
+        public FollowsController(IUnitOfWork unitofwork)
         {
-            dbContext = new ApplicationDbContext();
-            gameRepository = new GameRepository(dbContext);
-            userGameRelationsRepository = new UserGameRepository(dbContext);
-            userRepository = new UserRepository(dbContext);
-            unitOfWork = new UnitOfWork(dbContext);
-            followsRepository = new FollowsRepository(dbContext);
+            UnitOfWork = unitofwork;
         }
+
 
         [HttpGet]
         public IHttpActionResult CheckRelation(int followerId, int followeeId)
@@ -39,12 +31,12 @@ namespace GamersGridApp.Controllers.api
             //var followRelation1 = dbContext.Follows
             //                       .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
 
-            var followRelation1 = followsRepository.GetFollowRelationOfTwoUsers(followerId, followeeId);
+            var followRelation1 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(followerId, followeeId);
 
             //var followRelation2 = dbContext.Follows
             //                 .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
 
-            var followRelation2 = followsRepository.GetFollowRelationOfTwoUsers(followeeId, followerId);
+            var followRelation2 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(followeeId, followerId);
 
             if (followRelation1 == null || followRelation2 == null)
                 return BadRequest("no mutual relation");
@@ -69,8 +61,8 @@ namespace GamersGridApp.Controllers.api
             try //Create the realation in db
             {
                 //dbContext.Follows.Add(newFollow);
-                followsRepository.Add(newFollow);
-                unitOfWork.Complete();
+                UnitOfWork.Follows.Add(newFollow);
+                UnitOfWork.Complete();
             }
             catch (Exception e)//Case that userId and followerId inside dto are incorrect
             {
@@ -79,10 +71,10 @@ namespace GamersGridApp.Controllers.api
             finally 
             {
                 //var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
-                var follower = userRepository.GetUser(followDto.FollowerId);
+                var follower = UnitOfWork.GGUsers.GetUser(followDto.FollowerId);
 
                 //var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FolloweeId);
-                var followee = userRepository.GetUser(followDto.FolloweeId);
+                var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
                 followee.Notify(Notification.FollowPersonal(follower));
@@ -96,7 +88,7 @@ namespace GamersGridApp.Controllers.api
                 //    .Distinct()
                 //    .Include(u => u.Followees)
                 //    .ToList();
-                var usersToNotifyBuffer = userRepository.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
+                var usersToNotifyBuffer = UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
 
                 var usersToNotify = new List<User>();
 
@@ -121,7 +113,7 @@ namespace GamersGridApp.Controllers.api
 
                 //Write Notifications in Db
                 //dbContext.SaveChanges();
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
 
             }
 
@@ -134,16 +126,16 @@ namespace GamersGridApp.Controllers.api
             //Follow existingFollowInDb = dbContext.Follows
             //              .Include(f => f.User)
             //              .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
-            Follow existingFollowInDb = followsRepository.GetFollowRelationOfTwoUsersIncludingUser(followDto.FolloweeId, followDto.FollowerId);
+            Follow existingFollowInDb = UnitOfWork.Follows.GetFollowRelationOfTwoUsersIncludingUser(followDto.FolloweeId, followDto.FollowerId);
 
 
             // if yes
             try 
             {
                 //dbContext.Follows.Remove(existingFollowInDb);
-                followsRepository.Remove(existingFollowInDb);
+                UnitOfWork.Follows.Remove(existingFollowInDb);
                 //dbContext.SaveChanges();
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
 
             }
             catch //Case that userId and followerId inside dto are incorrect
@@ -154,8 +146,8 @@ namespace GamersGridApp.Controllers.api
             {
                 //var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
                 //var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FolloweeId);
-                var follower = userRepository.GetUser(followDto.FollowerId);
-                var followee = userRepository.GetUser(followDto.FolloweeId);
+                var follower = UnitOfWork.GGUsers.GetUser(followDto.FollowerId);
+                var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
                 followee.Notify(Notification.UnfollowPersonal(follower));
@@ -168,7 +160,7 @@ namespace GamersGridApp.Controllers.api
                 //    .Select(f => f.Follower)
                 //    .Include(u => u.Followees)
                 //    .ToList();
-                var usersToNotifyBuffer =  userRepository.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
+                var usersToNotifyBuffer =  UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
 
                 var usersToNotify = new List<User>();
 
@@ -194,7 +186,7 @@ namespace GamersGridApp.Controllers.api
 
 
                 //Write Notifications in Db
-                unitOfWork.Complete();
+                UnitOfWork.Complete();
 
             }
 

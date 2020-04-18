@@ -301,255 +301,255 @@
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\DotaDto.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\FollowsDto.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\OverwatchDto.cs" />
-    <Compile Include="Dtos\ApiStatsDto\FullStatsDto.cs" />
-    <Compile Include="Dtos\ApiStatsDto\LOLStatsDto.cs" />
-    <Compile Include="Dtos\GameDto.cs" />
-    <Compile Include="Dtos\SearchEngine\DotaSearchDto.cs" />
-    <Compile Include="Dtos\UserDto.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\DotaDto.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\FollowsDto.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\LOLMatchesDto.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\LOLMatchesListDto.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\OverwatchDto.cs" />
+    <Compile Include="Core\Dtos\ApiStatsDto\FullStatsDto.cs" />
+    <Compile Include="Core\Dtos\ApiStatsDto\LOLStatsDto.cs" />
+    <Compile Include="Core\Dtos\GameDto.cs" />
+    <Compile Include="Core\Dtos\SearchEngine\DotaSearchDto.cs" />
+    <Compile Include="Core\Dtos\UserDto.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExtraMethods.cs" />
     <Compile Include="Interfaces\INewsFeed.cs" />
-    <Compile Include="Migrations\202002210115245_InitialModel.cs" />
-    <Compile Include="Migrations\202002210115245_InitialModel.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002210115245_InitialModel.cs" />
+    <Compile Include="Perstistence\Migrations\202002210115245_InitialModel.Designer.cs">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002210117073_UserAdded.cs" />
-    <Compile Include="Migrations\202002210117073_UserAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002210117073_UserAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002210117073_UserAdded.Designer.cs">
       <DependentUpon>202002210117073_UserAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002210212056_UserFollowerRelation.cs" />
-    <Compile Include="Migrations\202002210212056_UserFollowerRelation.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002210212056_UserFollowerRelation.cs" />
+    <Compile Include="Perstistence\Migrations\202002210212056_UserFollowerRelation.Designer.cs">
       <DependentUpon>202002210212056_UserFollowerRelation.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002211310575_GameAdded.cs" />
-    <Compile Include="Migrations\202002211310575_GameAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002211310575_GameAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002211310575_GameAdded.Designer.cs">
       <DependentUpon>202002211310575_GameAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002211325377_UserGameRelationAdded.cs" />
-    <Compile Include="Migrations\202002211325377_UserGameRelationAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002211325377_UserGameRelationAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002211325377_UserGameRelationAdded.Designer.cs">
       <DependentUpon>202002211325377_UserGameRelationAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002211331184_PhotoAdded.cs" />
-    <Compile Include="Migrations\202002211331184_PhotoAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002211331184_PhotoAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002211331184_PhotoAdded.Designer.cs">
       <DependentUpon>202002211331184_PhotoAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002211335537_VideoAdded.cs" />
-    <Compile Include="Migrations\202002211335537_VideoAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002211335537_VideoAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002211335537_VideoAdded.Designer.cs">
       <DependentUpon>202002211335537_VideoAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002211337279_UserAddedIdentityAccount.cs" />
-    <Compile Include="Migrations\202002211337279_UserAddedIdentityAccount.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002211337279_UserAddedIdentityAccount.cs" />
+    <Compile Include="Perstistence\Migrations\202002211337279_UserAddedIdentityAccount.Designer.cs">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002261938374_UserMoreProperties.cs" />
-    <Compile Include="Migrations\202002261938374_UserMoreProperties.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002261938374_UserMoreProperties.cs" />
+    <Compile Include="Perstistence\Migrations\202002261938374_UserMoreProperties.Designer.cs">
       <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002271627451_SomethingToAdd.cs" />
-    <Compile Include="Migrations\202002271627451_SomethingToAdd.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002271627451_SomethingToAdd.cs" />
+    <Compile Include="Perstistence\Migrations\202002271627451_SomethingToAdd.Designer.cs">
       <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.cs" />
-    <Compile Include="Migrations\202002271949346_UserFollowNNAdjust.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002271949346_UserFollowNNAdjust.cs" />
+    <Compile Include="Perstistence\Migrations\202002271949346_UserFollowNNAdjust.Designer.cs">
       <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.cs" />
-    <Compile Include="Migrations\202002291447168_FollowUniqueIndexFix.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002291447168_FollowUniqueIndexFix.cs" />
+    <Compile Include="Perstistence\Migrations\202002291447168_FollowUniqueIndexFix.Designer.cs">
       <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002291533563_GameDescriptionPropertyAdded.cs" />
-    <Compile Include="Migrations\202002291533563_GameDescriptionPropertyAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002291533563_GameDescriptionPropertyAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202002291533563_GameDescriptionPropertyAdded.Designer.cs">
       <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.cs" />
-    <Compile Include="Migrations\202002291609313_UserGamesRelationAdjust.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002291609313_UserGamesRelationAdjust.cs" />
+    <Compile Include="Perstistence\Migrations\202002291609313_UserGamesRelationAdjust.Designer.cs">
       <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.cs" />
-    <Compile Include="Migrations\202002291614071_UserListCoursesRemmoved.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002291614071_UserListCoursesRemmoved.cs" />
+    <Compile Include="Perstistence\Migrations\202002291614071_UserListCoursesRemmoved.Designer.cs">
       <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002291619105_LeagueProfileStandard.cs" />
-    <Compile Include="Migrations\202002291619105_LeagueProfileStandard.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202002291619105_LeagueProfileStandard.cs" />
+    <Compile Include="Perstistence\Migrations\202002291619105_LeagueProfileStandard.Designer.cs">
       <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003032154203_AppUserIncludeUser.cs" />
-    <Compile Include="Migrations\202003032154203_AppUserIncludeUser.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003032154203_AppUserIncludeUser.cs" />
+    <Compile Include="Perstistence\Migrations\202003032154203_AppUserIncludeUser.Designer.cs">
       <DependentUpon>202003032154203_AppUserIncludeUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.cs" />
-    <Compile Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.cs" />
+    <Compile Include="Perstistence\Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.Designer.cs">
       <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003032257148_UserPropertiesSetToNullable.cs" />
-    <Compile Include="Migrations\202003032257148_UserPropertiesSetToNullable.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003032257148_UserPropertiesSetToNullable.cs" />
+    <Compile Include="Perstistence\Migrations\202003032257148_UserPropertiesSetToNullable.Designer.cs">
       <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003131856223_InlcudeAvatarStringPath.cs" />
-    <Compile Include="Migrations\202003131856223_InlcudeAvatarStringPath.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003131856223_InlcudeAvatarStringPath.cs" />
+    <Compile Include="Perstistence\Migrations\202003131856223_InlcudeAvatarStringPath.Designer.cs">
       <DependentUpon>202003131856223_InlcudeAvatarStringPath.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003151939229_IconPathPropertyForGamesAdded.cs" />
-    <Compile Include="Migrations\202003151939229_IconPathPropertyForGamesAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003151939229_IconPathPropertyForGamesAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202003151939229_IconPathPropertyForGamesAdded.Designer.cs">
       <DependentUpon>202003151939229_IconPathPropertyForGamesAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003171150459_ImplimentMessagesFirstTry.cs" />
-    <Compile Include="Migrations\202003171150459_ImplimentMessagesFirstTry.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003171150459_ImplimentMessagesFirstTry.cs" />
+    <Compile Include="Perstistence\Migrations\202003171150459_ImplimentMessagesFirstTry.Designer.cs">
       <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs" />
-    <Compile Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs" />
+    <Compile Include="Perstistence\Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.Designer.cs">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.cs" />
-    <Compile Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.cs" />
+    <Compile Include="Perstistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.Designer.cs">
       <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181314389_AddingDotaAndCS.cs" />
-    <Compile Include="Migrations\202003181314389_AddingDotaAndCS.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003181314389_AddingDotaAndCS.cs" />
+    <Compile Include="Perstistence\Migrations\202003181314389_AddingDotaAndCS.Designer.cs">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.cs" />
-    <Compile Include="Migrations\202003181406490_PhotosAddedToGamesModel.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003181406490_PhotosAddedToGamesModel.cs" />
+    <Compile Include="Perstistence\Migrations\202003181406490_PhotosAddedToGamesModel.Designer.cs">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003181546212_SearchIconsForGames.cs" />
-    <Compile Include="Migrations\202003181546212_SearchIconsForGames.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003181546212_SearchIconsForGames.cs" />
+    <Compile Include="Perstistence\Migrations\202003181546212_SearchIconsForGames.Designer.cs">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.cs" />
-    <Compile Include="Migrations\202003191421179_AddingLolApiToUserAccount.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003191421179_AddingLolApiToUserAccount.cs" />
+    <Compile Include="Perstistence\Migrations\202003191421179_AddingLolApiToUserAccount.Designer.cs">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.cs" />
-    <Compile Include="Migrations\202003200109199_refactoringUserAccordingToOOD.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003200109199_refactoringUserAccordingToOOD.cs" />
+    <Compile Include="Perstistence\Migrations\202003200109199_refactoringUserAccordingToOOD.Designer.cs">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs" />
-    <Compile Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs" />
+    <Compile Include="Perstistence\Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.Designer.cs">
       <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003240852545_correctNames.cs" />
-    <Compile Include="Migrations\202003240852545_correctNames.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003240852545_correctNames.cs" />
+    <Compile Include="Perstistence\Migrations\202003240852545_correctNames.Designer.cs">
       <DependentUpon>202003240852545_correctNames.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003241039281_GameAccountTableAndRelations.cs" />
-    <Compile Include="Migrations\202003241039281_GameAccountTableAndRelations.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003241039281_GameAccountTableAndRelations.cs" />
+    <Compile Include="Perstistence\Migrations\202003241039281_GameAccountTableAndRelations.Designer.cs">
       <DependentUpon>202003241039281_GameAccountTableAndRelations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003241107049_GameAccountsStatsAdded.cs" />
-    <Compile Include="Migrations\202003241107049_GameAccountsStatsAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003241107049_GameAccountsStatsAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202003241107049_GameAccountsStatsAdded.Designer.cs">
       <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003241141374_RemovingLolAccountFromModel.cs" />
-    <Compile Include="Migrations\202003241141374_RemovingLolAccountFromModel.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003241141374_RemovingLolAccountFromModel.cs" />
+    <Compile Include="Perstistence\Migrations\202003241141374_RemovingLolAccountFromModel.Designer.cs">
       <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003250900069_changeusertoappuseringamerelations.cs" />
-    <Compile Include="Migrations\202003250900069_changeusertoappuseringamerelations.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003250900069_changeusertoappuseringamerelations.cs" />
+    <Compile Include="Perstistence\Migrations\202003250900069_changeusertoappuseringamerelations.Designer.cs">
       <DependentUpon>202003250900069_changeusertoappuseringamerelations.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003250912095_changetooldmigration-UsergameUser.cs" />
-    <Compile Include="Migrations\202003250912095_changetooldmigration-UsergameUser.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003250912095_changetooldmigration-UsergameUser.cs" />
+    <Compile Include="Perstistence\Migrations\202003250912095_changetooldmigration-UsergameUser.Designer.cs">
       <DependentUpon>202003250912095_changetooldmigration-UsergameUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003250916538_adddatetimenullableingame.cs" />
-    <Compile Include="Migrations\202003250916538_adddatetimenullableingame.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003250916538_adddatetimenullableingame.cs" />
+    <Compile Include="Perstistence\Migrations\202003250916538_adddatetimenullableingame.Designer.cs">
       <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003251437239_UserFolloweesNameChange.cs" />
-    <Compile Include="Migrations\202003251437239_UserFolloweesNameChange.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003251437239_UserFolloweesNameChange.cs" />
+    <Compile Include="Perstistence\Migrations\202003251437239_UserFolloweesNameChange.Designer.cs">
       <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.cs" />
-    <Compile Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003271138236_IntermediateTableMessageChatUserInclude.cs" />
+    <Compile Include="Perstistence\Migrations\202003271138236_IntermediateTableMessageChatUserInclude.Designer.cs">
       <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.cs" />
-    <Compile Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003291616432_removingNullableReleaseDateFromGame.cs" />
+    <Compile Include="Perstistence\Migrations\202003291616432_removingNullableReleaseDateFromGame.Designer.cs">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.cs" />
-    <Compile Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202003311302027_AddingNickNamePropToGameAccount.cs" />
+    <Compile Include="Perstistence\Migrations\202003311302027_AddingNickNamePropToGameAccount.Designer.cs">
       <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004030751356_UserPosting.cs" />
-    <Compile Include="Migrations\202004030751356_UserPosting.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004030751356_UserPosting.cs" />
+    <Compile Include="Perstistence\Migrations\202004030751356_UserPosting.Designer.cs">
       <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.cs" />
-    <Compile Include="Migrations\202004092024575_GameAccountRegionChangedTOString.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004092024575_GameAccountRegionChangedTOString.cs" />
+    <Compile Include="Perstistence\Migrations\202004092024575_GameAccountRegionChangedTOString.Designer.cs">
       <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004092102542_OvrWatchAdded.cs" />
-    <Compile Include="Migrations\202004092102542_OvrWatchAdded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004092102542_OvrWatchAdded.cs" />
+    <Compile Include="Perstistence\Migrations\202004092102542_OvrWatchAdded.Designer.cs">
       <DependentUpon>202004092102542_OvrWatchAdded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.cs" />
-    <Compile Include="Migrations\202004092327453_LosesAddedToGameStats.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004092327453_LosesAddedToGameStats.cs" />
+    <Compile Include="Perstistence\Migrations\202004092327453_LosesAddedToGameStats.Designer.cs">
       <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.cs" />
-    <Compile Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004101229194_SeconGaeAccIdentifierAddded.cs" />
+    <Compile Include="Perstistence\Migrations\202004101229194_SeconGaeAccIdentifierAddded.Designer.cs">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.cs" />
-    <Compile Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121558202_removingGameStatsGameAccRelationship.cs" />
+    <Compile Include="Perstistence\Migrations\202004121558202_removingGameStatsGameAccRelationship.Designer.cs">
       <DependentUpon>202004121558202_removingGameStatsGameAccRelationship.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.cs" />
-    <Compile Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121603225_CuttingGameAccGameStatsRelationship.cs" />
+    <Compile Include="Perstistence\Migrations\202004121603225_CuttingGameAccGameStatsRelationship.Designer.cs">
       <DependentUpon>202004121603225_CuttingGameAccGameStatsRelationship.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.cs" />
-    <Compile Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121612517_CuttingGameAccUserGameRelationship.cs" />
+    <Compile Include="Perstistence\Migrations\202004121612517_CuttingGameAccUserGameRelationship.Designer.cs">
       <DependentUpon>202004121612517_CuttingGameAccUserGameRelationship.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs" />
-    <Compile Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs" />
+    <Compile Include="Perstistence\Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.Designer.cs">
       <DependentUpon>202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.cs" />
-    <Compile Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121617561_CreatingGameAccGameStatsRelationship.cs" />
+    <Compile Include="Perstistence\Migrations\202004121617561_CreatingGameAccGameStatsRelationship.Designer.cs">
       <DependentUpon>202004121617561_CreatingGameAccGameStatsRelationship.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.cs" />
-    <Compile Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121954117_dropingGameAccGameStatsColumns.cs" />
+    <Compile Include="Perstistence\Migrations\202004121954117_dropingGameAccGameStatsColumns.Designer.cs">
       <DependentUpon>202004121954117_dropingGameAccGameStatsColumns.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202004121957445_addingGameStatsGameAcc.cs" />
-    <Compile Include="Migrations\202004121957445_addingGameStatsGameAcc.Designer.cs">
+    <Compile Include="Perstistence\Migrations\202004121957445_addingGameStatsGameAcc.cs" />
+    <Compile Include="Perstistence\Migrations\202004121957445_addingGameStatsGameAcc.Designer.cs">
       <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Perstistence\Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ApplicationDbContext.cs" />
-    <Compile Include="Models\ApplicationUser.cs" />
-    <Compile Include="Models\Follow.cs" />
-    <Compile Include="Models\Game.cs" />
-    <Compile Include="Models\GameAccount.cs" />
-    <Compile Include="Models\GameAccountStats.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\Message.cs" />
-    <Compile Include="Models\MessageChat.cs" />
-    <Compile Include="Models\MessageChatUser.cs" />
-    <Compile Include="Models\Notification.cs" />
-    <Compile Include="Models\Photo.cs" />
-    <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
-    <Compile Include="Models\User.cs" />
-    <Compile Include="Models\UserGame.cs" />
-    <Compile Include="Models\UserNotification.cs" />
-    <Compile Include="Models\UserPosting.cs" />
-    <Compile Include="Models\Video.cs" />
+    <Compile Include="Core\ViewModels\AccountViewModels.cs" />
+    <Compile Include="Perstistence\ApplicationDbContext.cs" />
+    <Compile Include="Core\Models\ApplicationUser.cs" />
+    <Compile Include="Core\Models\Follow.cs" />
+    <Compile Include="Core\Models\Game.cs" />
+    <Compile Include="Core\Models\GameAccount.cs" />
+    <Compile Include="Core\Models\GameAccountStats.cs" />
+    <Compile Include="Core\Models\ManageViewModels.cs" />
+    <Compile Include="Core\Models\Message.cs" />
+    <Compile Include="Core\Models\MessageChat.cs" />
+    <Compile Include="Core\Models\MessageChatUser.cs" />
+    <Compile Include="Core\Models\Notification.cs" />
+    <Compile Include="Core\Models\Photo.cs" />
+    <Compile Include="Core\Dtos\ApiAcountsDtos\LOLDto.cs" />
+    <Compile Include="Core\Models\User.cs" />
+    <Compile Include="Core\Models\UserGame.cs" />
+    <Compile Include="Core\Models\UserNotification.cs" />
+    <Compile Include="Core\Models\UserPosting.cs" />
+    <Compile Include="Core\Models\Video.cs" />
     <Compile Include="ChatHub.cs" />
     <Compile Include="Perstistence\EntityConfigurations\ApplicationUserConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\FollowConfiguration.cs" />
@@ -568,41 +568,41 @@
     <Compile Include="Perstistence\EntityConfigurations\VideoConfiguration.cs" />
     <Compile Include="Perstistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\FollowsRepository.cs" />
-    <Compile Include="Repositories\GameAccountRepository.cs" />
-    <Compile Include="Repositories\GameAccountStatsRepository.cs" />
-    <Compile Include="Repositories\GameRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IFollowsRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IGameAccountRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IGameAccountStatsRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IGameRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IMessageChatRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IMessageChatUserRepository.cs" />
-    <Compile Include="Perstistence\Repositories\INotificationsRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IUserGameRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IUserNotificationRepository.cs" />
-    <Compile Include="Perstistence\Repositories\IUserRepository.cs" />
-    <Compile Include="Repositories\MessageChatRepository.cs" />
-    <Compile Include="Repositories\MessageChatUserRepository.cs" />
-    <Compile Include="Repositories\NotificationsRepository.cs" />
-    <Compile Include="Repositories\UserGameRepository.cs" />
-    <Compile Include="Repositories\UserNotificationRepository.cs" />
-    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Perstistence\Repositories\FollowsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\GameAccountRepository.cs" />
+    <Compile Include="Perstistence\Repositories\GameAccountStatsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\GameRepository.cs" />
+    <Compile Include="Core\Repositories\IFollowsRepository.cs" />
+    <Compile Include="Core\Repositories\IGameAccountRepository.cs" />
+    <Compile Include="Core\Repositories\IGameAccountStatsRepository.cs" />
+    <Compile Include="Core\Repositories\IGameRepository.cs" />
+    <Compile Include="Core\Repositories\IMessageChatRepository.cs" />
+    <Compile Include="Core\Repositories\IMessageChatUserRepository.cs" />
+    <Compile Include="Core\Repositories\INotificationsRepository.cs" />
+    <Compile Include="Core\Repositories\IUserGameRepository.cs" />
+    <Compile Include="Core\Repositories\IUserNotificationRepository.cs" />
+    <Compile Include="Core\Repositories\IUserRepository.cs" />
+    <Compile Include="Perstistence\Repositories\MessageChatRepository.cs" />
+    <Compile Include="Perstistence\Repositories\MessageChatUserRepository.cs" />
+    <Compile Include="Perstistence\Repositories\NotificationsRepository.cs" />
+    <Compile Include="Perstistence\Repositories\UserGameRepository.cs" />
+    <Compile Include="Perstistence\Repositories\UserNotificationRepository.cs" />
+    <Compile Include="Perstistence\Repositories\UserRepository.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AddDotaAccountViewModel.cs" />
-    <Compile Include="ViewModels\AddLOLAccountViewmodel.cs" />
-    <Compile Include="ViewModels\AddOverwatchAccViewModel.cs" />
-    <Compile Include="ViewModels\ChatBoxViewModel.cs" />
-    <Compile Include="ViewModels\LeaderBoardViewModel.cs" />
-    <Compile Include="ViewModels\MessageBoardViewModel.cs" />
-    <Compile Include="ViewModels\PlayersListViewModel.cs" />
-    <Compile Include="ViewModels\PostMessageViewModel.cs" />
-    <Compile Include="ViewModels\ProfileGameViewModel.cs" />
-    <Compile Include="ViewModels\RegisterViewModelAvraam.cs" />
-    <Compile Include="ViewModels\SearchViewModel.cs" />
-    <Compile Include="ViewModels\UserFormEditViewModel.cs" />
-    <Compile Include="ViewModels\UserProfilePageViewModel.cs" />
-    <Compile Include="ViewModels\UserRegisterViewModel.cs" />
+    <Compile Include="Core\ViewModels\AddDotaAccountViewModel.cs" />
+    <Compile Include="Core\ViewModels\AddLOLAccountViewmodel.cs" />
+    <Compile Include="Core\ViewModels\AddOverwatchAccViewModel.cs" />
+    <Compile Include="Core\ViewModels\ChatBoxViewModel.cs" />
+    <Compile Include="Core\ViewModels\LeaderBoardViewModel.cs" />
+    <Compile Include="Core\ViewModels\MessageBoardViewModel.cs" />
+    <Compile Include="Core\ViewModels\PlayersListViewModel.cs" />
+    <Compile Include="Core\ViewModels\PostMessageViewModel.cs" />
+    <Compile Include="Core\ViewModels\ProfileGameViewModel.cs" />
+    <Compile Include="Core\ViewModels\RegisterViewModelAvraam.cs" />
+    <Compile Include="Core\ViewModels\SearchViewModel.cs" />
+    <Compile Include="Core\ViewModels\UserFormEditViewModel.cs" />
+    <Compile Include="Core\ViewModels\UserProfilePageViewModel.cs" />
+    <Compile Include="Core\ViewModels\UserRegisterViewModel.cs" />
     <Compile Include="WebServices\DotaDataService.cs" />
     <Compile Include="WebServices\LolDataService.cs" />
     <Compile Include="WebServices\OverwatchDataService.cs" />
@@ -1265,6 +1265,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -1272,163 +1273,163 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002210115245_InitialModel.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002210115245_InitialModel.resx">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002210117073_UserAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002210117073_UserAdded.resx">
       <DependentUpon>202002210117073_UserAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002210212056_UserFollowerRelation.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002210212056_UserFollowerRelation.resx">
       <DependentUpon>202002210212056_UserFollowerRelation.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002211310575_GameAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002211310575_GameAdded.resx">
       <DependentUpon>202002211310575_GameAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002211325377_UserGameRelationAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002211325377_UserGameRelationAdded.resx">
       <DependentUpon>202002211325377_UserGameRelationAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002211331184_PhotoAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002211331184_PhotoAdded.resx">
       <DependentUpon>202002211331184_PhotoAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002211335537_VideoAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002211335537_VideoAdded.resx">
       <DependentUpon>202002211335537_VideoAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002211337279_UserAddedIdentityAccount.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002211337279_UserAddedIdentityAccount.resx">
       <DependentUpon>202002211337279_UserAddedIdentityAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002261938374_UserMoreProperties.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002261938374_UserMoreProperties.resx">
       <DependentUpon>202002261938374_UserMoreProperties.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271627451_SomethingToAdd.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002271627451_SomethingToAdd.resx">
       <DependentUpon>202002271627451_SomethingToAdd.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002271949346_UserFollowNNAdjust.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002271949346_UserFollowNNAdjust.resx">
       <DependentUpon>202002271949346_UserFollowNNAdjust.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291447168_FollowUniqueIndexFix.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002291447168_FollowUniqueIndexFix.resx">
       <DependentUpon>202002291447168_FollowUniqueIndexFix.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291533563_GameDescriptionPropertyAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002291533563_GameDescriptionPropertyAdded.resx">
       <DependentUpon>202002291533563_GameDescriptionPropertyAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291609313_UserGamesRelationAdjust.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002291609313_UserGamesRelationAdjust.resx">
       <DependentUpon>202002291609313_UserGamesRelationAdjust.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291614071_UserListCoursesRemmoved.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002291614071_UserListCoursesRemmoved.resx">
       <DependentUpon>202002291614071_UserListCoursesRemmoved.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202002291619105_LeagueProfileStandard.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202002291619105_LeagueProfileStandard.resx">
       <DependentUpon>202002291619105_LeagueProfileStandard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003032154203_AppUserIncludeUser.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003032154203_AppUserIncludeUser.resx">
       <DependentUpon>202003032154203_AppUserIncludeUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003032200067_RemovingStreetAddressAndNumberFromUser.resx">
       <DependentUpon>202003032200067_RemovingStreetAddressAndNumberFromUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003032257148_UserPropertiesSetToNullable.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003032257148_UserPropertiesSetToNullable.resx">
       <DependentUpon>202003032257148_UserPropertiesSetToNullable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003131856223_InlcudeAvatarStringPath.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003131856223_InlcudeAvatarStringPath.resx">
       <DependentUpon>202003131856223_InlcudeAvatarStringPath.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003151939229_IconPathPropertyForGamesAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003151939229_IconPathPropertyForGamesAdded.resx">
       <DependentUpon>202003151939229_IconPathPropertyForGamesAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003171150459_ImplimentMessagesFirstTry.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003171150459_ImplimentMessagesFirstTry.resx">
       <DependentUpon>202003171150459_ImplimentMessagesFirstTry.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.resx">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181156006_PopulatingUsersAndAspNetUsers.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.resx">
       <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181314389_AddingDotaAndCS.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003181314389_AddingDotaAndCS.resx">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181406490_PhotosAddedToGamesModel.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003181406490_PhotosAddedToGamesModel.resx">
       <DependentUpon>202003181406490_PhotosAddedToGamesModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003181546212_SearchIconsForGames.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003181546212_SearchIconsForGames.resx">
       <DependentUpon>202003181546212_SearchIconsForGames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003191421179_AddingLolApiToUserAccount.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003191421179_AddingLolApiToUserAccount.resx">
       <DependentUpon>202003191421179_AddingLolApiToUserAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003200109199_refactoringUserAccordingToOOD.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003200109199_refactoringUserAccordingToOOD.resx">
       <DependentUpon>202003200109199_refactoringUserAccordingToOOD.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003231420038_AddNotificationsToProjectAddTimestampToFollow.resx">
       <DependentUpon>202003231420038_AddNotificationsToProjectAddTimestampToFollow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003240852545_correctNames.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003240852545_correctNames.resx">
       <DependentUpon>202003240852545_correctNames.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003241039281_GameAccountTableAndRelations.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003241039281_GameAccountTableAndRelations.resx">
       <DependentUpon>202003241039281_GameAccountTableAndRelations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003241107049_GameAccountsStatsAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003241107049_GameAccountsStatsAdded.resx">
       <DependentUpon>202003241107049_GameAccountsStatsAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003241141374_RemovingLolAccountFromModel.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003241141374_RemovingLolAccountFromModel.resx">
       <DependentUpon>202003241141374_RemovingLolAccountFromModel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003250900069_changeusertoappuseringamerelations.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003250900069_changeusertoappuseringamerelations.resx">
       <DependentUpon>202003250900069_changeusertoappuseringamerelations.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003250912095_changetooldmigration-UsergameUser.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003250912095_changetooldmigration-UsergameUser.resx">
       <DependentUpon>202003250912095_changetooldmigration-UsergameUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003250916538_adddatetimenullableingame.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003250916538_adddatetimenullableingame.resx">
       <DependentUpon>202003250916538_adddatetimenullableingame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003251437239_UserFolloweesNameChange.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003251437239_UserFolloweesNameChange.resx">
       <DependentUpon>202003251437239_UserFolloweesNameChange.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003271138236_IntermediateTableMessageChatUserInclude.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003271138236_IntermediateTableMessageChatUserInclude.resx">
       <DependentUpon>202003271138236_IntermediateTableMessageChatUserInclude.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003291616432_removingNullableReleaseDateFromGame.resx">
       <DependentUpon>202003291616432_removingNullableReleaseDateFromGame.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202003311302027_AddingNickNamePropToGameAccount.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202003311302027_AddingNickNamePropToGameAccount.resx">
       <DependentUpon>202003311302027_AddingNickNamePropToGameAccount.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004030751356_UserPosting.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004030751356_UserPosting.resx">
       <DependentUpon>202004030751356_UserPosting.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004092024575_GameAccountRegionChangedTOString.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004092024575_GameAccountRegionChangedTOString.resx">
       <DependentUpon>202004092024575_GameAccountRegionChangedTOString.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004092102542_OvrWatchAdded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004092102542_OvrWatchAdded.resx">
       <DependentUpon>202004092102542_OvrWatchAdded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004092327453_LosesAddedToGameStats.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004092327453_LosesAddedToGameStats.resx">
       <DependentUpon>202004092327453_LosesAddedToGameStats.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004101229194_SeconGaeAccIdentifierAddded.resx">
       <DependentUpon>202004101229194_SeconGaeAccIdentifierAddded.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121558202_removingGameStatsGameAccRelationship.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121558202_removingGameStatsGameAccRelationship.resx">
       <DependentUpon>202004121558202_removingGameStatsGameAccRelationship.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121603225_CuttingGameAccGameStatsRelationship.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121603225_CuttingGameAccGameStatsRelationship.resx">
       <DependentUpon>202004121603225_CuttingGameAccGameStatsRelationship.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121612517_CuttingGameAccUserGameRelationship.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121612517_CuttingGameAccUserGameRelationship.resx">
       <DependentUpon>202004121612517_CuttingGameAccUserGameRelationship.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121615170_Creating1to1relationshipUserGame_GamaeAcc.resx">
       <DependentUpon>202004121615170_Creating1to1relationshipUserGame_GamaeAcc.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121617561_CreatingGameAccGameStatsRelationship.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121617561_CreatingGameAccGameStatsRelationship.resx">
       <DependentUpon>202004121617561_CreatingGameAccGameStatsRelationship.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121954117_dropingGameAccGameStatsColumns.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121954117_dropingGameAccGameStatsColumns.resx">
       <DependentUpon>202004121954117_dropingGameAccGameStatsColumns.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202004121957445_addingGameStatsGameAcc.resx">
+    <EmbeddedResource Include="Perstistence\Migrations\202004121957445_addingGameStatsGameAcc.resx">
       <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>

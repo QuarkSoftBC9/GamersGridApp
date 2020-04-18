@@ -1,5 +1,5 @@
-﻿using GamersGridApp.Dtos.ApiAcountsDtos;
-using GamersGridApp.Dtos.ApiStatsDto;
+﻿using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Dtos.ApiStatsDto;
 using System;
 using System.Collections.Generic;
 using System.Linq;

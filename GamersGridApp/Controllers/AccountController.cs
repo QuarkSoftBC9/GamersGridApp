@@ -8,10 +8,13 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
-using GamersGridApp.Models;
+using GamersGridApp.Persistence;
 using System.Web.Security;
-using GamersGridApp.ViewModels;
+
 using GamersGridApp.Helpers;
+using GamersGridApp.Core.ViewModels;
+using GamersGridApp.Core.Models;
+
 
 namespace GamersGridApp.Controllers
 {

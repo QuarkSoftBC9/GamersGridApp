@@ -1,5 +1,5 @@
-﻿using GamersGridApp.Models;
-using GamersGridApp.Repositories;
+﻿
+using GamersGridApp.Core;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -14,22 +14,13 @@ namespace GamersGridApp.Controllers.api
     [Authorize]
     public class NotificationsController : ApiController
     {
-        private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IFollowsRepository followsRepository;
-        private readonly IUserNotificationRepository userNotificationRepository;
-
-        public NotificationsController()
+        private readonly IUnitOfWork UnitOfWork;
+        public NotificationsController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            followsRepository = new FollowsRepository(context);
-            userNotificationRepository = new UserNotificationRepository(context);
+            UnitOfWork = unitofwork;
         }
+
+
 
         public IHttpActionResult GetNotifications()
         {
@@ -37,7 +28,7 @@ namespace GamersGridApp.Controllers.api
             var userId = User.Identity.GetUserId();
 
             //var user = context.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).Single();
-            var user = userRepository.GetLoggedUser(userId);
+            var user = UnitOfWork.GGUsers.GetLoggedUser(userId);
 
             //var userNotifications = context.UserNotifications
             //       .Where(u => u.UserId == user.ID && !u.IsRead)
@@ -45,7 +36,7 @@ namespace GamersGridApp.Controllers.api
             //       .Select(un => un.Notification)
             //       .ToList();
 
-            var userNotifications = userNotificationRepository.GetUserNotifications(user.ID);
+            var userNotifications = UnitOfWork.UserNotifications.GetUserNotifications(user.ID);
 
             return Ok(userNotifications);
 

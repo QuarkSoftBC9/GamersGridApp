@@ -1,7 +1,5 @@
-﻿using GamersGridApp.Dtos;
-using GamersGridApp.Models;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Repositories;
+﻿
+using GamersGridApp.Core;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -15,21 +13,12 @@ namespace GamersGridApp.Controllers.api
 {
     public class MessagesController : ApiController
     {
-        private ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IFollowsRepository followsRepository;
-        private readonly IUnitOfWork unitOfWork;
 
-        public MessagesController()
+        private readonly IUnitOfWork UnitOfWork;
+
+        public MessagesController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            unitOfWork = new UnitOfWork(context);
-            followsRepository = new FollowsRepository(context);
+            UnitOfWork = unitofwork;
         }
     
 
@@ -40,11 +29,11 @@ namespace GamersGridApp.Controllers.api
         {
             var userId = User.Identity.GetUserId();
             //var dev = context.Users.Where(u => u.Id == userId).Select(u => u.UserAccount).FirstOrDefault();
-            var dev = userRepository.GetLoggedUser(userId);
+            var dev = UnitOfWork.GGUsers.GetLoggedUser(userId);
 
             //var users = context.GamersGridUsers.Where(g => g.Followers.Select(fo => fo.FollowerId).Contains(dev.ID) && g.Followees.Select(fo => fo.UserId).Contains(dev.ID)).ToList();
 
-            var users = followsRepository.GetMessageUsersRelation(dev.ID);
+            var users = UnitOfWork.Follows.GetMessageUsersRelation(dev.ID);
 
             return Ok(users);
         }

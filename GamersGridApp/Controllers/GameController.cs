@@ -1,7 +1,5 @@
-﻿using GamersGridApp.Models;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Repositories;
-using GamersGridApp.ViewModels;
+﻿using GamersGridApp.Core;
+using GamersGridApp.Core.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,24 +11,18 @@ namespace GamersGridApp.Controllers
     public class GameController : Controller
     {
 
-        private ApplicationDbContext dbContext;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUnitOfWork unitOfWork;
+        private readonly IUnitOfWork UnitOfWork;
 
 
-        public GameController()
+        public GameController(IUnitOfWork unitofwork)
         {
-            dbContext = new ApplicationDbContext();
-            gameRepository = new GameRepository(dbContext);
-            userGameRelationsRepository = new UserGameRepository(dbContext);
-            unitOfWork = new UnitOfWork(dbContext);
+            UnitOfWork = unitofwork;
 
         }
         // GET: Game
         public ViewResult Index()
         {
-            var games = dbContext.Games.ToList();
+            var games = UnitOfWork.Games.GetGames().ToList();
             return View("Games", games);
             //return View("GamesList");
         }
@@ -48,10 +40,10 @@ namespace GamersGridApp.Controllers
 
             //testing
             //var gameTest = dbContext.Games.SingleOrDefault(g => g.Title.Contains(gameName));
-            var gameTest = gameRepository.GetGame(gameName);
+            var gameTest = UnitOfWork.Games.GetGame(gameName);
 
             //var usersFocusing = dbContext.UserGameRelations.Where(g => g.Game.Title == gameTest.Title && g.IsFavoriteGame == true).Select(g => g.GameID).ToList();
-            var usersFocusing = userGameRelationsRepository.GetGamesIdFocus(gameTest);
+            var usersFocusing = UnitOfWork.UserGames.GetGamesIdFocus(gameTest);
 
             var numberOfUsersFocusing = usersFocusing.Count();
 

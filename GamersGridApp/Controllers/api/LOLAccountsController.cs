@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
-using GamersGridApp.Dtos.ApiAcountsDtos;
-using GamersGridApp.Dtos.ApiStatsDto;
-using GamersGridApp.Models;
-using GamersGridApp.Perstistence;
-using GamersGridApp.Repositories;
-using GamersGridApp.ViewModels;
+using GamersGridApp.Core;
+using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Dtos.ApiStatsDto;
+using GamersGridApp.Core.ViewModels;
 using GamersGridApp.WebServices;
 using Microsoft.AspNet.Identity;
 using System;
@@ -24,22 +22,13 @@ namespace GamersGridApp.Controllers.api
     {
         private readonly string api = "RGAPI-d466cf9c-9f85-49a9-9d79-b02bd9fdd884";
         private readonly int lolID = 1;
-        private readonly ApplicationDbContext context;
-        private readonly IGameAccountStatsRepository gameAccountStats;
-        private readonly IGameAccountRepository gameAccounts;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
-        private readonly IUnitOfWork unitOfWork;
+
+        private readonly IUnitOfWork UnitOfWork;
 
 
-        public LOLAccountsController()
+        public LOLAccountsController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameAccounts = new GameAccountRepository(context);
-            gameAccountStats = new GameAccountStatsRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
-            unitOfWork = new UnitOfWork(context);
+            UnitOfWork = unitofwork;
         }
         protected override void Dispose(bool disposing)
         {
@@ -59,14 +48,14 @@ namespace GamersGridApp.Controllers.api
             //    .Select(u => u.UserAccount)
             //    .Include(g => g.UserGames.Select(ga => ga.GameAccount))
             //    .SingleOrDefault();
-            var userContent = userRepository.GetUserContent(appUserId);
+            var userContent = UnitOfWork.GGUsers.GetUserContent(appUserId);
 
             //Check if userContent exists
             if (userContent == null)
                 return BadRequest("No such account was found");
 
             //Check if Game Account with such credential alrady exists
-            var accountExists = gameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
+            var accountExists = UnitOfWork.GameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
             if (accountExists != null && accountExists.Id != userContent.ID)
                 return BadRequest("The account already exists");
 
@@ -83,7 +72,7 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            userGame.GameAccount.GameAccountStats = gameAccountStats.GetGameAccStatsByID(userGame.Id);
+            userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
             userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
 
             //Getting List of matche ids
@@ -94,7 +83,7 @@ namespace GamersGridApp.Controllers.api
             var matches = LolDataService.GetMatches(api, gameIds);
             userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
 
-            unitOfWork.Complete();
+            UnitOfWork.Complete();
             return Ok(statsDto[0]);
 
         }

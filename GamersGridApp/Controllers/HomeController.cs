@@ -3,30 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using GamersGridApp.ViewModels;
-using GamersGridApp.Models;
+
 using System.Web.Http;
-using Microsoft.AspNet.Identity;
-using GamersGridApp.Repositories;
+
 using System.Data.Entity;
+using GamersGridApp.Core;
+using GamersGridApp.Core.Models;
+using GamersGridApp.Core.ViewModels;
 
 namespace GamersGridApp.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ApplicationDbContext context;
-        private readonly IGameRepository gameRepository;
-        private readonly IUserGameRepository userGameRelationsRepository;
-        private readonly IUserRepository userRepository;
 
+        private readonly IUnitOfWork UnitOfWork;
         // MyDbContext();
         //Uncomment for costum DbContext
-        public HomeController()
+        public HomeController(IUnitOfWork unitofwork)
         {
-            context = new ApplicationDbContext();
-            gameRepository = new GameRepository(context);
-            userGameRelationsRepository = new UserGameRepository(context);
-            userRepository = new UserRepository(context);
+            UnitOfWork = unitofwork;
 
             // context = new MyDbContext();
             // Uncomment for costum DbContext
@@ -67,7 +62,7 @@ namespace GamersGridApp.Controllers
             List<User> otherUsers;
 
 
-                otherUsers = context.GamersGridUsers.ToList();
+            otherUsers = UnitOfWork.GGUsers.GetUsers();
                 Dictionary<int, string> DictionaryForViewModel = new Dictionary<int, string>();
 
                 foreach (var userGamer in otherUsers)
@@ -77,14 +72,14 @@ namespace GamersGridApp.Controllers
                 //            .Select(g => g.GameID)
                 //            .SingleOrDefault();
 
-                    var favoriteGameId = gameRepository.GetFavouriteGameId(userGamer.ID);
+                    var favoriteGameId = UnitOfWork.Games.GetFavouriteGameId(userGamer.ID);
 
                 //var favoriteGameTitle = context.Games
                 //            .Where(g => g.ID == favoriteGameId)
                 //            .Select(g => g.Title)
                 //            .SingleOrDefault();
 
-                   var favoriteGameTitle = gameRepository.GetFavouriteGameTitle(favoriteGameId);
+                   var favoriteGameTitle = UnitOfWork.Games.GetFavouriteGameTitle(favoriteGameId);
 
                     DictionaryForViewModel.Add(userGamer.ID, favoriteGameTitle);
                 }
@@ -115,14 +110,14 @@ namespace GamersGridApp.Controllers
             if (!string.IsNullOrWhiteSpace(searchString))
             {
                 //var game = context.Games.FirstOrDefault(g => g.Title.Contains(searchString));
-                var game = gameRepository.GetGame(searchString);
+                var game = UnitOfWork.Games.GetGame(searchString);
 
                 if (game != null)
                     return RedirectToAction("GameProfile", "Game", new { gameName = game.Title });
 
                 //var users = context.GamersGridUsers.Where(ggu => ggu.NickName.Contains(searchString)).ToList();
 
-                var users = userRepository.SearchUsers(searchString);
+                var users = UnitOfWork.GGUsers.SearchUsers(searchString);
 
                 //if (users.Count == 0) 
                 //    return HttpNotFound();
@@ -158,58 +153,60 @@ namespace GamersGridApp.Controllers
             //return View(searchviewModelEmpty);
         }
 
-        public ViewResult Leaderboards()
-        {
+        //public ViewResult Leaderboards()
+        //{
 
 
-            //DOTA
-            int dotaID = context.Games
-              .Where(g => g.Title == "Dota 2")
-              .Select(g => g.ID)
-              .SingleOrDefault();
+        //    //DOTA
+        //    int dotaID = 2;
+        //      //  context.Games
+        //      //.Where(g => g.Title == "Dota 2")
+        //      //.Select(g => g.ID)
+        //      //.SingleOrDefault();
 
-            var BestDotaUsers = context.GameAccountStats
-                .Where(g => g.GameAccount.UserGame.GameID == dotaID)
-                .Include(g => g.GameAccount.UserGame.User)
-                .OrderByDescending(g => g.Wins)
-                .Take(4) //Takes a certain ammount of results
-                .ToList();
+        //    var BestDotaUsers = context.GameAccountStats
+        //        .Where(g => g.GameAccount.UserGame.GameID == dotaID)
+        //        .Include(g => g.GameAccount.UserGame.User)
+        //        .OrderByDescending(g => g.Wins)
+        //        .Take(4) //Takes a certain ammount of results
+        //        .ToList();
 
-            //LOL
-            int lolID = context.Games
-               .Where(g => g.Title == "League Of Legends")
-               .Select(g => g.ID)
-               .SingleOrDefault();
-            var BestLolUsers = context.GameAccountStats
-                .Where(g => g.GameAccount.UserGame.GameID == lolID)
-                .Include(g => g.GameAccount.UserGame.User)
-                .OrderByDescending(g => g.Wins)
-                .Take(4)
-                .ToList();
+        //    //LOL
+        //    int lolID = 1;
+        //       // context.Games
+        //       //.Where(g => g.Title == "League Of Legends")
+        //       //.Select(g => g.ID)
+        //       //.SingleOrDefault();
+        //    var BestLolUsers = context.GameAccountStats
+        //        .Where(g => g.GameAccount.UserGame.GameID == lolID)
+        //        .Include(g => g.GameAccount.UserGame.User)
+        //        .OrderByDescending(g => g.Wins)
+        //        .Take(4)
+        //        .ToList();
 
 
-            //OVERWATCH
-            int overwatchID = context.Games
-                .Where(g => g.Title == "Overwatch")
-                .Select(g => g.ID)
-                .SingleOrDefault();
+        //    //OVERWATCH
+        //    int overwatchID = context.Games
+        //        .Where(g => g.Title == "Overwatch")
+        //        .Select(g => g.ID)
+        //        .SingleOrDefault();
 
-            var BestOverWatchUsers = context.GameAccountStats
-                .Where(g => g.GameAccount.UserGame.GameID == overwatchID)
-                .Include(g => g.GameAccount.UserGame.User)
-                .OrderByDescending(g => g.Wins)
-                .Take(4)
-                .ToList();
+        //    var BestOverWatchUsers = context.GameAccountStats
+        //        .Where(g => g.GameAccount.UserGame.GameID == overwatchID)
+        //        .Include(g => g.GameAccount.UserGame.User)
+        //        .OrderByDescending(g => g.Wins)
+        //        .Take(4)
+        //        .ToList();
 
-            var LeaderBoardVM = new LeaderBoardViewModel()
-            {
-                TopDotaStats = BestDotaUsers,
-                TopLolStats = BestLolUsers,
-                TopOverwatchStats = BestOverWatchUsers
-            };
+        //    var LeaderBoardVM = new LeaderBoardViewModel()
+        //    {
+        //        TopDotaStats = BestDotaUsers,
+        //        TopLolStats = BestLolUsers,
+        //        TopOverwatchStats = BestOverWatchUsers
+        //    };
 
-            return View(LeaderBoardVM);
+        //    return View(LeaderBoardVM);
 
-        }
+        //}
     }
 }
