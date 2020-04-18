@@ -6,7 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
-using GamersGridApp.Perstistence;
+using GamersGridApp.Persistence;
 using GamersGridApp.Core;
 using GamersGridApp.Core.ViewModels;
 using GamersGridApp.Core.Models;

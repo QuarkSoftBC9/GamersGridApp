@@ -10,7 +10,7 @@ using GamersGridApp.Core;
 using GamersGridApp.Core.Models;
 using GamersGridApp.Core.Dtos;
 
-using GamersGridApp.Perstistence;
+using GamersGridApp.Persistence;
 
 namespace GamersGridApp.Controllers.api
 {

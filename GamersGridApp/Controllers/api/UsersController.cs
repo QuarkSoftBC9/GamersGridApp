@@ -7,7 +7,7 @@ using System.Net.Http;
 using System.Web.Http;
 using AutoMapper;
 
-using GamersGridApp.Perstistence;
+using GamersGridApp.Persistence;
 using GamersGridApp.Core;
 using GamersGridApp.Core.Dtos;
 using GamersGridApp.Core.Models;
