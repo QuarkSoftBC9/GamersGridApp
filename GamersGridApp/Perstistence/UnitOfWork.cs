@@ -28,6 +28,14 @@ namespace GamersGridApp.Persistence
         {
             _context = context;
             Follows = new FollowsRepository(context);
+            Games = new GameRepository(context);
+            GameAccounts = new GameAccountRepository(context);
+            GameAccountStats = new GameAccountStatsRepository(context);
+            MessageChats = new MessageChatRepository(context);
+            MessageChatUsers = new MessageChatUserRepository(context);
+            Notifications = new NotificationsRepository(context);
+            UserGames = new UserGameRepository(context);
+            GGUsers = new UserRepository(context);
 
         }
 
