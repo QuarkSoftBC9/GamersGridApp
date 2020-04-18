@@ -1263,7 +1263,6 @@
     <Content Include="Views\User\Customize.cshtml" />
     <Content Include="Views\Message\_ListofChatboxes.cshtml" />
     <Content Include="Views\Message\_ListOfChats.cshtml" />
-    <Content Include="Views\Home\GamersStats.cshtml" />
     <Content Include="Views\Home\SearchEngine.cshtml" />
     <None Include="Views\Shared\_LayoutAfterLogin.cshtml" />
     <Content Include="Views\Shared\_NavBar.cshtml" />
