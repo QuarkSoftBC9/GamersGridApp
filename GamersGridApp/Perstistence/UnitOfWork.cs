@@ -36,6 +36,7 @@ namespace GamersGridApp.Persistence
             Notifications = new NotificationsRepository(context);
             UserGames = new UserGameRepository(context);
             GGUsers = new UserRepository(context);
+            UserNotifications = new UserNotificationRepository(context);
 
         }
 

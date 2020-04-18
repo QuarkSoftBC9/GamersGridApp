@@ -22,6 +22,7 @@ namespace GamersGridApp.Perstistence.Repositories
             return _context.MessageChats
                 .Where(mc => mc.MessageChatUsers.Select(mcu => mcu.UserId).Any(u => u.Equals(userid)))
                 .Include(c => c.ChatHistory.Select(ch => ch.User))
+                .Include(c=> c.MessageChatUsers.Select(mcu=>mcu.User))
                 .ToList();
         }
 
