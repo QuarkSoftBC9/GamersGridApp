@@ -7,7 +7,7 @@ using System.Data.Entity;
 
 namespace GamersGridApp.Repositories
 {
-    public class MessageChatRepository
+    public class MessageChatRepository : IMessageChatRepository
     {
         private readonly ApplicationDbContext _context;
 

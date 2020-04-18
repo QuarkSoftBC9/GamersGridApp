@@ -6,7 +6,7 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class MessageChatUserRepository
+    public class MessageChatUserRepository : IMessageChatUserRepository
     {
         private readonly ApplicationDbContext _context;
 

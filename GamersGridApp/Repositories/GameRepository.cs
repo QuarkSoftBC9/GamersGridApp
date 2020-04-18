@@ -8,7 +8,7 @@ using System.Data.Entity;
 
 namespace GamersGridApp.Repositories
 {
-    public class GameRepository
+    public class GameRepository : IGameRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -41,7 +41,7 @@ namespace GamersGridApp.Repositories
                .Select(g => g.Title).SingleOrDefault();
         }
 
-        public Game GetGame(string title)  
+        public Game GetGame(string title)
         {
             return _context.Games
                 .SingleOrDefault(g => g.Title.Contains(title));
@@ -54,7 +54,7 @@ namespace GamersGridApp.Repositories
                 .SingleOrDefault();
         }
 
-        public UserGame GetUserGameById(User usercontent,int id)
+        public UserGame GetUserGameById(User usercontent, int id)
         {
             return usercontent.UserGames
                 .SingleOrDefault(g => g.Id == id);

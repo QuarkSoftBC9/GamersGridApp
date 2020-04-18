@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -56,9 +56,9 @@ namespace GamersGridApp.Repositories
 
         public List<User> SearchUsers(string searchstring)
         {
-           return _context.GamersGridUsers
-                .Where(ggu => ggu.NickName.Contains(searchstring))
-                .ToList();
+            return _context.GamersGridUsers
+                 .Where(ggu => ggu.NickName.Contains(searchstring))
+                 .ToList();
         }
         public List<User> BetterSearchUsers(string searchstring)
         {
@@ -75,7 +75,7 @@ namespace GamersGridApp.Repositories
                 .Include(ug => ug.UserGames.Select(g => g.GameAccount))
                 .SingleOrDefault();
         }
-        
+
         public List<ApplicationUser> GetOtherUsers(string loggeduserid)
         {
             return _context.Users

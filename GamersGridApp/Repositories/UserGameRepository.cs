@@ -7,7 +7,7 @@ using System.Web;
 
 namespace GamersGridApp.Repositories
 {
-    public class UserGameRepository
+    public class UserGameRepository : IUserGameRepository
     {
         private readonly ApplicationDbContext _context;
 
@@ -24,7 +24,7 @@ namespace GamersGridApp.Repositories
                 .Include(ga => ga.GameAccount)
                 .Include(gs => gs.GameAccount.GameAccountStats).ToList();
         }
-        public Dictionary<string,GameAccountStats> GetGamesTitlesDict(List<UserGame> usergamelist,int userid)
+        public Dictionary<string, GameAccountStats> GetGamesTitlesDict(List<UserGame> usergamelist, int userid)
         {
             return usergamelist
                 .Where(u => u.UserId == userid)
