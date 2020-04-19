@@ -153,60 +153,30 @@ namespace GamersGridApp.Controllers
             //return View(searchviewModelEmpty);
         }
 
-        //public ViewResult Leaderboards()
-        //{
+        public ViewResult Leaderboards()
+        {
 
+            //DOTA
+            const int dotaId = 2;
+            var BestDotaUsers = UnitOfWork.GameAccountStats.GetBestGameAccStatsByGameID(dotaId);
 
-        //    //DOTA
-        //    int dotaID = 2;
-        //      //  context.Games
-        //      //.Where(g => g.Title == "Dota 2")
-        //      //.Select(g => g.ID)
-        //      //.SingleOrDefault();
+            //LOL
+            const int lolId = 1;
+            var BestLolUsers = UnitOfWork.GameAccountStats.GetBestGameAccStatsByGameID(lolId);
 
-        //    var BestDotaUsers = context.GameAccountStats
-        //        .Where(g => g.GameAccount.UserGame.GameID == dotaID)
-        //        .Include(g => g.GameAccount.UserGame.User)
-        //        .OrderByDescending(g => g.Wins)
-        //        .Take(4) //Takes a certain ammount of results
-        //        .ToList();
+            //OVERWATCH
+            const int overwatchId = 3;
+            var BestOverWatchUsers = UnitOfWork.GameAccountStats.GetBestGameAccStatsByGameID(overwatchId);
 
-        //    //LOL
-        //    int lolID = 1;
-        //       // context.Games
-        //       //.Where(g => g.Title == "League Of Legends")
-        //       //.Select(g => g.ID)
-        //       //.SingleOrDefault();
-        //    var BestLolUsers = context.GameAccountStats
-        //        .Where(g => g.GameAccount.UserGame.GameID == lolID)
-        //        .Include(g => g.GameAccount.UserGame.User)
-        //        .OrderByDescending(g => g.Wins)
-        //        .Take(4)
-        //        .ToList();
+            var LeaderBoardVM = new LeaderBoardViewModel()
+            {
+                TopDotaStats = BestDotaUsers,
+                TopLolStats = BestLolUsers,
+                TopOverwatchStats = BestOverWatchUsers
+            };
 
+            return View(LeaderBoardVM);
 
-        //    //OVERWATCH
-        //    int overwatchID = context.Games
-        //        .Where(g => g.Title == "Overwatch")
-        //        .Select(g => g.ID)
-        //        .SingleOrDefault();
-
-        //    var BestOverWatchUsers = context.GameAccountStats
-        //        .Where(g => g.GameAccount.UserGame.GameID == overwatchID)
-        //        .Include(g => g.GameAccount.UserGame.User)
-        //        .OrderByDescending(g => g.Wins)
-        //        .Take(4)
-        //        .ToList();
-
-        //    var LeaderBoardVM = new LeaderBoardViewModel()
-        //    {
-        //        TopDotaStats = BestDotaUsers,
-        //        TopLolStats = BestLolUsers,
-        //        TopOverwatchStats = BestOverWatchUsers
-        //    };
-
-        //    return View(LeaderBoardVM);
-
-        //}
+        }
     }
 }
