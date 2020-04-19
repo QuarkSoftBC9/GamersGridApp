@@ -20,39 +20,25 @@
 
 <button type="submit" class="btn js-validate-user" id="submitLOL">Save</button>
 
-<button type="button" class="btn js-get-stats">Get stats</button>
-<button type="button" class="btn js-get-KDA">Get KDA</button>
-
 @section scripts
 {
     <script>
         let APIController = (function () {
             let sendAccount = function (account) {
-                $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
-                    .done(function (returnVal) {
-                        console.log(returnVal)
-                    })
-                    .fail(function (returnVal) {
-                        alert("Something failed");
-                        console.log(returnVal)
-                    })
+               
             }
 
             return {
                 addAccount: function (account) {
                     //validation for account to be already claimed
-                    $.post("/api/LOLAccountsCheck", { userName: account.username, region: account.region })
-                        .done(function (e) {
-                            if (e == 'Ok') {
-                                sendAccount(account);
-                            }
-                            else {
-                                alert(e)
-                            }
+                    $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
+                        .done(function (returnVal) {
+                            console.log(returnVal)
                         })
-                        .fail(function () {
+                        .fail(function (returnVal) {
                             alert("Something failed");
-                        });
+                            console.log(returnVal)
+                        })
                 },
                 GetKDA: function () {
                     $.get("/api/LOLAccounts", function (stats) {
@@ -73,10 +59,7 @@
             DOMStrings = {
                 usernameInput: '#username-js',
                 regionInput: '#region-js',
-                getLOLAccount: '.js-validate-user',
-                lolWins: '.LOLwins',
-                lolRank: '.LOLrank',
-                getLOLKDA: '.js-get-KDA'
+                getLOLAccount: '.js-validate-user'
             }
             return {
                 GetDOMStrings: function () {
@@ -93,7 +76,6 @@
                 ShowStats: function (stats) {
                     console.log('%c Show Stats UICntrl', 'color: #bada55 ')
                     console.log(stats);
-                    //$(DOMStrings.lolWins).textContent = stats[0].wins;
                     $(DOMStrings.lolRank).textContent = stats[0].tier + " " + stats[0].rank;
                 }
             }
@@ -101,31 +83,19 @@
         MainController = (function (UICntrl, APICntrl) {
             let SetupEventListeners = function () {
                 let DOM = UICntrl.GetDOMStrings();
-                $(DOM.getLOLAccount).click(GetLOLAcc)
-                $(DOM.getLOLStats).click(GetLOLStats)
-                $(DOM.getLOLKDA).click(GetLOLKDA)
+                $(DOM.getLOLAccount).click(GetLOLAcc);
             }
             let GetLOLKDA = function () {
                 APICntrl.GetKDA();
             }
             let GetLOLAcc = function (event) {
-                //Check if account has been already saved
-                //0 prevent event from triggering
-                //event.preventDefault();
-                //1 select the elements
                 const account = UICntrl.SelectAccData();
-                //2 make api call
                 console.log(account);
                 APICntrl.addAccount(account);
-                //3 log the result
-                //4 alternativly if call is succesfull and accObj is returned UI may be filled with returned data
             }
             let GetLOLStats = function (event) {
-                //event.preventDefault();
-                //0 make an api call
                 const stats = APICntrl.GetAccStats();
                 console.log('%c Show Stats MainController', 'color: #bada55 ')
-                //1 Show the data to the user
                 UICntrl.ShowStats(stats);
             }
             return {

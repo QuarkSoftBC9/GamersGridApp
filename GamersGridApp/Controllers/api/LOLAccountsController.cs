@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-d466cf9c-9f85-49a9-9d79-b02bd9fdd884";
+        private readonly string api = "RGAPI-4597ec4d-319d-4bc9-89ab-d8eec3b5d0f8";
         private readonly int lolID = 1;
 
         private readonly IUnitOfWork UnitOfWork;
@@ -37,17 +37,15 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult AddAccount(AddLOLAccountViewmodel viewModel)
         {
+            LOLDto accDto = new LOLDto();
+            List<LOLStatsDto> statsDto = new List<LOLStatsDto>();
+
             //Check if data was returned correctly
             if ((String.IsNullOrEmpty(viewModel.UserName)) || (String.IsNullOrEmpty(viewModel.Region)))
                 throw new HttpResponseException(HttpStatusCode.NotFound);
             
             //Get the logged in  User 
             var appUserId = User.Identity.GetUserId();
-            //var userContent = context.Users
-            //    .Where(u => u.Id == appUserId)
-            //    .Select(u => u.UserAccount)
-            //    .Include(g => g.UserGames.Select(ga => ga.GameAccount))
-            //    .SingleOrDefault();
             var userContent = UnitOfWork.GGUsers.GetUserContent(appUserId);
 
             //Check if userContent exists
@@ -56,11 +54,10 @@ namespace GamersGridApp.Controllers.api
 
             //Check if Game Account with such credential alrady exists
             var accountExists = UnitOfWork.GameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
-            if (accountExists != null && accountExists.Id != userContent.ID)
+            if (accountExists != null && accountExists.Id != userContent.UserGames.SingleOrDefault(g => g.Id == lolID).Id)
                 return BadRequest("The account already exists");
 
             //Download LOL Account 
-            LOLDto accDto = new LOLDto();
             accDto = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
             
             //New Game Account
@@ -68,12 +65,12 @@ namespace GamersGridApp.Controllers.api
             userGame.NewGameAccount(viewModel.UserName, accDto.id, accDto.accountId, viewModel.Region);
 
             //Download LOL Stats
-            List<LOLStatsDto> statsDto = new List<LOLStatsDto>();
+            
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
             userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
-            userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);
+            userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);//break here check
 
             //Getting List of matche ids
             var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
