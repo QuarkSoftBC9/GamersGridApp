@@ -5,49 +5,31 @@ using System.Web;
 
 namespace GamersGridApp.Core.ApiAcountsDtos
 {
-    public class OverWatchCompleteDto
-    {
-        public CompetitiveStats competitiveStats { get; set; }
-        public int endorsement { get; set; }
-        public string endorsementIcon { get; set; }
-        public int gamesWon { get; set; }
-        public string icon { get; set; }
-        public int level { get; set; }
-        public string levelIcon { get; set; }
-        public string name { get; set; }
-        public int prestige { get; set; }
-        public string prestigeIcon { get; set; }
-        public bool @private { get; set; }
-        public QuickPlayStats quickPlayStats { get; set; }
-        public int rating { get; set; }
-        public string ratingIcon { get; set; }
-        public object ratings { get; set; }
-    }
     public class Awards
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsSilver { get; set; }
-        public int medalsGold { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsSilver { get; set; }
+        public double medalsGold { get; set; }
     }
 
     public class Assists
     {
-        public int defensiveAssists { get; set; }
-        public int healingDone { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
+        public double healingDone { get; set; }
+        public double offensiveAssists { get; set; }
     }
 
     public class Average
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
-        public int eliminationsAvgPer10Min { get; set; }
+        public double eliminationsAvgPer10Min { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -56,51 +38,51 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
     }
 
     public class Game
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
-        public int gamesWon { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class AllHeroes
@@ -118,98 +100,98 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists2
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average2
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
     }
 
     public class Best2
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat2
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific
     {
-        public int bioticGrenadeKills { get; set; }
-        public int enemiesSlept { get; set; }
+        public double bioticGrenadeKills { get; set; }
+        public double enemiesSlept { get; set; }
         public double enemiesSleptAvgPer10Min { get; set; }
-        public int enemiesSleptMostInGame { get; set; }
-        public int healingAmplified { get; set; }
-        public int healingAmplifiedAvgPer10Min { get; set; }
-        public int healingAmplifiedMostInGame { get; set; }
-        public int nanoBoostAssists { get; set; }
+        public double enemiesSleptMostInGame { get; set; }
+        public double healingAmplified { get; set; }
+        public double healingAmplifiedAvgPer10Min { get; set; }
+        public double healingAmplifiedMostInGame { get; set; }
+        public double nanoBoostAssists { get; set; }
         public double nanoBoostAssistsAvgPer10Min { get; set; }
-        public int nanoBoostAssistsMostInGame { get; set; }
-        public int nanoBoostsApplied { get; set; }
+        public double nanoBoostAssistsMostInGame { get; set; }
+        public double nanoBoostsApplied { get; set; }
         public double nanoBoostsAppliedAvgPer10Min { get; set; }
-        public int nanoBoostsAppliedMostInGame { get; set; }
+        public double nanoBoostsAppliedMostInGame { get; set; }
         public string scopedAccuracy { get; set; }
         public string scopedAccuracyBestInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
         public string unscopedAccuracy { get; set; }
         public string unscopedAccuracyBestInGame { get; set; }
     }
 
     public class Game2
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
-        public int gamesWon { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
         public string winPercentage { get; set; }
     }
 
     public class MatchAwards2
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Ana
@@ -227,14 +209,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average3
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -243,64 +225,64 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best3
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat3
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific2
     {
-        public int dragonstrikeKills { get; set; }
+        public double dragonstrikeKills { get; set; }
         public double dragonstrikeKillsAvgPer10Min { get; set; }
-        public int dragonstrikeKillsMostInGame { get; set; }
-        public int stormArrowKills { get; set; }
+        public double dragonstrikeKillsMostInGame { get; set; }
+        public double stormArrowKills { get; set; }
         public double stormArrowKillsAvgPer10Min { get; set; }
-        public int stormArrowKillsMostInGame { get; set; }
+        public double stormArrowKillsMostInGame { get; set; }
     }
 
     public class Game3
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards3
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
     }
 
     public class Hanzo
@@ -318,54 +300,54 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average4
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
     }
 
     public class Best4
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat4
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int heroDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double heroDamageDone { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class Game4
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards4
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
     }
 
     public class Mccree
@@ -383,23 +365,23 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists3
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
     }
 
     public class Average5
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public string timeSpentOnFireAvgPer10Min { get; set; }
@@ -407,31 +389,31 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best5
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat5
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
         public string timeSpentOnFire { get; set; }
@@ -439,33 +421,33 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class HeroSpecific3
     {
-        public int coalescenceHealing { get; set; }
-        public int coalescenceHealingAvgPer10Min { get; set; }
-        public int coalescenceHealingMostInGame { get; set; }
-        public int coalescenceKills { get; set; }
+        public double coalescenceHealing { get; set; }
+        public double coalescenceHealingAvgPer10Min { get; set; }
+        public double coalescenceHealingMostInGame { get; set; }
+        public double coalescenceKills { get; set; }
         public double coalescenceKillsAvgPer10Min { get; set; }
-        public int coalescenceKillsMostInGame { get; set; }
+        public double coalescenceKillsMostInGame { get; set; }
         public string secondaryFireAccuracy { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game5
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
-        public int gamesWon { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
         public string winPercentage { get; set; }
     }
 
     public class MatchAwards5
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Moira
@@ -483,53 +465,53 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average6
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
     }
 
     public class Best6
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat6
     {
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int heroDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double heroDamageDone { get; set; }
         public string objectiveTime { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific4
     {
-        public int healthRecovered { get; set; }
-        public int healthRecoveredAvgPer10Min { get; set; }
-        public int healthRecoveredMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double healthRecovered { get; set; }
+        public double healthRecoveredAvgPer10Min { get; set; }
+        public double healthRecoveredMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game6
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards6
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
     }
 
     public class Tracer
@@ -547,84 +529,84 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists4
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average7
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
     }
 
     public class Best7
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat7
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific5
     {
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int transcendenceHealing { get; set; }
-        public int transcendenceHealingBest { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double transcendenceHealing { get; set; }
+        public double transcendenceHealingBest { get; set; }
     }
 
     public class Game7
     {
-        public int gamesLost { get; set; }
-        public int gamesPlayed { get; set; }
-        public int gamesWon { get; set; }
+        public double gamesLost { get; set; }
+        public double gamesPlayed { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
         public string winPercentage { get; set; }
     }
 
     public class MatchAwards7
     {
-        public int medals { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Zenyatta
@@ -653,74 +635,74 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Games
     {
-        public int played { get; set; }
-        public int won { get; set; }
+        public double played { get; set; }
+        public double won { get; set; }
     }
 
     public class Ana2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Hanzo2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Mccree2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Moira2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Tracer2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
-        public int eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
+        public double eliminationsPerLife { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Zenyatta2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class TopHeroes
@@ -743,30 +725,30 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Awards2
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsSilver { get; set; }
-        public int medalsGold { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsSilver { get; set; }
+        public double medalsGold { get; set; }
     }
 
     public class Assists5
     {
-        public int defensiveAssists { get; set; }
-        public int healingDone { get; set; }
-        public int offensiveAssists { get; set; }
-        public int reconAssists { get; set; }
+        public double defensiveAssists { get; set; }
+        public double healingDone { get; set; }
+        public double offensiveAssists { get; set; }
+        public double reconAssists { get; set; }
     }
 
     public class Average8
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -775,63 +757,63 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best8
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int environmentalKillsMostInGame { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double environmentalKillsMostInGame { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
-        public int reconAssistsMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
-        public int teleporterPadsDestroyedMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
+        public double reconAssistsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
+        public double teleporterPadsDestroyedMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
-        public int turretsDestroyedMostInGame { get; set; }
+        public double turretsDestroyedMostInGame { get; set; }
     }
 
     public class Combat8
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
     }
 
     public class Game8
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards8
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous
     {
-        public int teleporterPadsDestroyed { get; set; }
-        public int turretsDestroyed { get; set; }
+        public double teleporterPadsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class AllHeroes2
@@ -849,26 +831,26 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists6
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average9
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -878,85 +860,85 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best9
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat9
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific6
     {
-        public int bioticGrenadeKills { get; set; }
-        public int enemiesSlept { get; set; }
+        public double bioticGrenadeKills { get; set; }
+        public double enemiesSlept { get; set; }
         public double enemiesSleptAvgPer10Min { get; set; }
-        public int enemiesSleptMostInGame { get; set; }
-        public int healingAmplified { get; set; }
-        public int healingAmplifiedAvgPer10Min { get; set; }
-        public int healingAmplifiedMostInGame { get; set; }
-        public int nanoBoostAssists { get; set; }
+        public double enemiesSleptMostInGame { get; set; }
+        public double healingAmplified { get; set; }
+        public double healingAmplifiedAvgPer10Min { get; set; }
+        public double healingAmplifiedMostInGame { get; set; }
+        public double nanoBoostAssists { get; set; }
         public double nanoBoostAssistsAvgPer10Min { get; set; }
-        public int nanoBoostAssistsMostInGame { get; set; }
-        public int nanoBoostsApplied { get; set; }
+        public double nanoBoostAssistsMostInGame { get; set; }
+        public double nanoBoostsApplied { get; set; }
         public double nanoBoostsAppliedAvgPer10Min { get; set; }
-        public int nanoBoostsAppliedMostInGame { get; set; }
+        public double nanoBoostsAppliedMostInGame { get; set; }
         public string scopedAccuracy { get; set; }
         public string scopedAccuracyBestInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
         public string unscopedAccuracy { get; set; }
         public string unscopedAccuracyBestInGame { get; set; }
     }
 
     public class Game9
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards9
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous2
     {
-        public int teleporterPadsDestroyed { get; set; }
-        public int turretsDestroyed { get; set; }
+        public double teleporterPadsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Ana3
@@ -974,14 +956,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average10
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -990,80 +972,80 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best10
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat10
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific7
     {
-        public int bobKills { get; set; }
+        public double bobKills { get; set; }
         public double bobKillsAvgPer10Min { get; set; }
-        public int bobKillsMostInGame { get; set; }
-        public int coachGunKills { get; set; }
+        public double bobKillsMostInGame { get; set; }
+        public double coachGunKills { get; set; }
         public double coachGunKillsAvgPer10Min { get; set; }
-        public int coachGunKillsMostInGame { get; set; }
-        public int dynamiteKills { get; set; }
+        public double coachGunKillsMostInGame { get; set; }
+        public double dynamiteKills { get; set; }
         public double dynamiteKillsAvgPer10Min { get; set; }
-        public int dynamiteKillsMostInGame { get; set; }
+        public double dynamiteKillsMostInGame { get; set; }
         public string scopedAccuracy { get; set; }
         public string scopedAccuracyBestInGame { get; set; }
-        public int scopedCriticalHits { get; set; }
+        public double scopedCriticalHits { get; set; }
         public string scopedCriticalHitsAccuracy { get; set; }
         public double scopedCriticalHitsAvgPer10Min { get; set; }
-        public int scopedCriticalHitsKills { get; set; }
+        public double scopedCriticalHitsKills { get; set; }
         public double scopedCriticalHitsKillsAvgPer10Min { get; set; }
-        public int scopedCriticalHitsMostInGame { get; set; }
+        public double scopedCriticalHitsMostInGame { get; set; }
     }
 
     public class Game10
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards10
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous3
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Ashe
@@ -1081,41 +1063,41 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists7
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
     }
 
     public class Average11
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public string timeSpentOnFireAvgPer10Min { get; set; }
     }
 
     public class Best11
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
@@ -1123,14 +1105,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Combat11
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
         public string objectiveTime { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
@@ -1138,34 +1120,34 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class HeroSpecific8
     {
-        public int amplificationMatrixCasts { get; set; }
+        public double amplificationMatrixCasts { get; set; }
         public double amplificationMatrixCastsAvgPer10Min { get; set; }
-        public int amplificationMatrixCastsMostInGame { get; set; }
-        public int damageAmplified { get; set; }
-        public int damageAmplifiedAvgPer10Min { get; set; }
-        public int damageAmplifiedMostInGame { get; set; }
+        public double amplificationMatrixCastsMostInGame { get; set; }
+        public double damageAmplified { get; set; }
+        public double damageAmplifiedAvgPer10Min { get; set; }
+        public double damageAmplifiedMostInGame { get; set; }
         public string healingAccuracy { get; set; }
         public string healingAccuracyBestInGame { get; set; }
-        public int immortalityFieldDeathsPrevented { get; set; }
+        public double immortalityFieldDeathsPrevented { get; set; }
         public double immortalityFieldDeathsPreventedAvgPer10Min { get; set; }
-        public int immortalityFieldDeathsPreventedMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double immortalityFieldDeathsPreventedMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game11
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards11
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Baptiste
@@ -1183,15 +1165,15 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average12
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -1200,77 +1182,77 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best12
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat12
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific9
     {
-        public int reconKills { get; set; }
+        public double reconKills { get; set; }
         public double reconKillsAvgPer10Min { get; set; }
-        public int reconKillsMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int sentryKills { get; set; }
+        public double reconKillsMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double sentryKills { get; set; }
         public double sentryKillsAvgPer10Min { get; set; }
-        public int sentryKillsMostInGame { get; set; }
-        public int tankKills { get; set; }
+        public double sentryKillsMostInGame { get; set; }
+        public double tankKills { get; set; }
         public double tankKillsAvgPer10Min { get; set; }
-        public int tankKillsMostInGame { get; set; }
+        public double tankKillsMostInGame { get; set; }
     }
 
     public class Game12
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards12
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous4
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Bastion
@@ -1288,23 +1270,23 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists8
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int healingDone { get; set; }
-        public int offensiveAssists { get; set; }
+        public double healingDone { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
     }
 
     public class Average13
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -1313,60 +1295,60 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best13
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat13
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
     }
 
     public class HeroSpecific10
     {
-        public int armorProvided { get; set; }
-        public int armorProvidedAvgPer10Min { get; set; }
-        public int armorProvidedMostInGame { get; set; }
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
+        public double armorProvided { get; set; }
+        public double armorProvidedAvgPer10Min { get; set; }
+        public double armorProvidedMostInGame { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
         public string inspireUptimePercentage { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
     }
 
     public class Game13
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards13
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Brigitte
@@ -1384,15 +1366,15 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average14
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
-        public int criticalHitsAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
+        public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
         public double healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -1402,78 +1384,78 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best14
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat14
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific11
     {
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int mechDeaths { get; set; }
-        public int mechsCalled { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double mechDeaths { get; set; }
+        public double mechsCalled { get; set; }
         public double mechsCalledAvgPer10Min { get; set; }
-        public int mechsCalledMostInGame { get; set; }
-        public int selfDestructKills { get; set; }
+        public double mechsCalledMostInGame { get; set; }
+        public double selfDestructKills { get; set; }
         public double selfDestructKillsAvgPer10Min { get; set; }
-        public int selfDestructKillsMostInGame { get; set; }
+        public double selfDestructKillsMostInGame { get; set; }
     }
 
     public class Game14
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards14
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous5
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class DVa
@@ -1491,13 +1473,13 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average15
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -1506,68 +1488,68 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best15
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat15
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific12
     {
-        public int abilityDamageDone { get; set; }
-        public int abilityDamageDoneAvgPer10Min { get; set; }
-        public int abilityDamageDoneMostInGame { get; set; }
-        public int meteorStrikeKills { get; set; }
+        public double abilityDamageDone { get; set; }
+        public double abilityDamageDoneAvgPer10Min { get; set; }
+        public double abilityDamageDoneMostInGame { get; set; }
+        public double meteorStrikeKills { get; set; }
         public double meteorStrikeKillsAvgPer10Min { get; set; }
-        public int meteorStrikeKillsMostInGame { get; set; }
-        public int shieldsCreated { get; set; }
-        public int shieldsCreatedAvgPer10Min { get; set; }
-        public int shieldsCreatedMostInGame { get; set; }
+        public double meteorStrikeKillsMostInGame { get; set; }
+        public double shieldsCreated { get; set; }
+        public double shieldsCreatedAvgPer10Min { get; set; }
+        public double shieldsCreatedMostInGame { get; set; }
     }
 
     public class Game15
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards15
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous6
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Doomfist
@@ -1585,14 +1567,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average16
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -1602,76 +1584,76 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best16
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat16
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific13
     {
-        public int damageReflected { get; set; }
-        public int damageReflectedAvgPer10Min { get; set; }
-        public int damageReflectedMostInGame { get; set; }
-        public int deflectionKills { get; set; }
-        public int dragonbladesKills { get; set; }
-        public int dragonbladesKillsAvgPer10Min { get; set; }
-        public int dragonbladesKillsMostInGame { get; set; }
+        public double damageReflected { get; set; }
+        public double damageReflectedAvgPer10Min { get; set; }
+        public double damageReflectedMostInGame { get; set; }
+        public double deflectionKills { get; set; }
+        public double dragonbladesKills { get; set; }
+        public double dragonbladesKillsAvgPer10Min { get; set; }
+        public double dragonbladesKillsMostInGame { get; set; }
     }
 
     public class Game16
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards16
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous7
     {
-        public int teleporterPadsDestroyed { get; set; }
-        public int turretsDestroyed { get; set; }
+        public double teleporterPadsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Genji
@@ -1689,21 +1671,21 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists9
     {
-        public int reconAssists { get; set; }
+        public double reconAssists { get; set; }
         public double reconAssistsAvgPer10Min { get; set; }
-        public int reconAssistsMostInGame { get; set; }
+        public double reconAssistsMostInGame { get; set; }
     }
 
     public class Average17
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -1713,77 +1695,77 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best17
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat17
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific14
     {
-        public int dragonstrikeKills { get; set; }
+        public double dragonstrikeKills { get; set; }
         public double dragonstrikeKillsAvgPer10Min { get; set; }
-        public int dragonstrikeKillsMostInGame { get; set; }
-        public int scatterArrowKills { get; set; }
+        public double dragonstrikeKillsMostInGame { get; set; }
+        public double scatterArrowKills { get; set; }
         public double scatterArrowKillsAvgPer10Min { get; set; }
-        public int scatterArrowKillsMostInGame { get; set; }
-        public int stormArrowKills { get; set; }
+        public double scatterArrowKillsMostInGame { get; set; }
+        public double stormArrowKills { get; set; }
         public double stormArrowKillsAvgPer10Min { get; set; }
-        public int stormArrowKillsMostInGame { get; set; }
+        public double stormArrowKillsMostInGame { get; set; }
     }
 
     public class Game17
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards17
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous8
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Hanzo3
@@ -1801,20 +1783,20 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists10
     {
-        public int offensiveAssists { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average18
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -1823,67 +1805,67 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best18
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat18
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific15
     {
-        public int concussionMineKills { get; set; }
+        public double concussionMineKills { get; set; }
         public double concussionMineKillsAvgPer10Min { get; set; }
-        public int concussionMineKillsMostInGame { get; set; }
-        public int enemiesTrapped { get; set; }
+        public double concussionMineKillsMostInGame { get; set; }
+        public double enemiesTrapped { get; set; }
         public double enemiesTrappedAvgPer10Min { get; set; }
-        public int enemiesTrappedMostInGame { get; set; }
-        public int ripTireKills { get; set; }
+        public double enemiesTrappedMostInGame { get; set; }
+        public double ripTireKills { get; set; }
         public double ripTireKillsAvgPer10Min { get; set; }
-        public int ripTireKillsMostInGame { get; set; }
+        public double ripTireKillsMostInGame { get; set; }
     }
 
     public class Game18
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards18
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous9
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Junkrat
@@ -1901,27 +1883,27 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists11
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average19
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
-        public int eliminationsAvgPer10Min { get; set; }
+        public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -1931,75 +1913,75 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best19
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat19
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific16
     {
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int soundBarriersProvided { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double soundBarriersProvided { get; set; }
         public double soundBarriersProvidedAvgPer10Min { get; set; }
-        public int soundBarriersProvidedMostInGame { get; set; }
+        public double soundBarriersProvidedMostInGame { get; set; }
     }
 
     public class Game19
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards19
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous10
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Lucio
@@ -2017,14 +1999,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average20
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -2034,74 +2016,74 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best20
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat20
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific17
     {
-        public int deadeyeKills { get; set; }
+        public double deadeyeKills { get; set; }
         public double deadeyeKillsAvgPer10Min { get; set; }
-        public int deadeyeKillsMostInGame { get; set; }
-        public int fanTheHammerKills { get; set; }
+        public double deadeyeKillsMostInGame { get; set; }
+        public double fanTheHammerKills { get; set; }
         public double fanTheHammerKillsAvgPer10Min { get; set; }
-        public int fanTheHammerKillsMostInGame { get; set; }
+        public double fanTheHammerKillsMostInGame { get; set; }
     }
 
     public class Game20
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards20
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous11
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Mccree3
@@ -2119,22 +2101,22 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists12
     {
-        public int offensiveAssists { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average21
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -2142,54 +2124,54 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best21
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat21
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific18
     {
-        public int blizzardKills { get; set; }
+        public double blizzardKills { get; set; }
         public double blizzardKillsAvgPer10Min { get; set; }
-        public int blizzardKillsMostInGame { get; set; }
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int enemiesFrozen { get; set; }
+        public double blizzardKillsMostInGame { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double enemiesFrozen { get; set; }
         public double enemiesFrozenAvgPer10Min { get; set; }
-        public int enemiesFrozenMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double enemiesFrozenMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game21
@@ -2199,16 +2181,16 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class MatchAwards21
     {
-        public int cards { get; set; }
-        public int medalBronze { get; set; }
-        public int medals { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medalBronze { get; set; }
+        public double medals { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous12
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Mei
@@ -2226,79 +2208,79 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists13
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average22
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
     }
 
     public class Best22
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat22
     {
-        public int criticalHits { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int eliminations { get; set; }
-        public int heroDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double eliminations { get; set; }
+        public double heroDamageDone { get; set; }
         public string objectiveTime { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific19
     {
-        public int blasterKills { get; set; }
+        public double blasterKills { get; set; }
         public double blasterKillsAvgPer10Min { get; set; }
-        public int blasterKillsMostInGame { get; set; }
-        public int damageAmplified { get; set; }
-        public int damageAmplifiedAvgPer10Min { get; set; }
-        public int damageAmplifiedMostInGame { get; set; }
-        public int playersResurrected { get; set; }
+        public double blasterKillsMostInGame { get; set; }
+        public double damageAmplified { get; set; }
+        public double damageAmplifiedAvgPer10Min { get; set; }
+        public double damageAmplifiedMostInGame { get; set; }
+        public double playersResurrected { get; set; }
         public double playersResurrectedAvgPer10Min { get; set; }
-        public int playersResurrectedMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double playersResurrectedMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game22
     {
-        public int gameWon { get; set; }
+        public double gameWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards22
     {
-        public int cards { get; set; }
-        public int medal { get; set; }
-        public int medalGold { get; set; }
+        public double cards { get; set; }
+        public double medal { get; set; }
+        public double medalGold { get; set; }
     }
 
     public class Mercy
@@ -2316,23 +2298,23 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists14
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
     }
 
     public class Average23
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -2342,73 +2324,73 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best23
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat23
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
     }
 
     public class HeroSpecific20
     {
-        public int coalescenceHealing { get; set; }
-        public int coalescenceHealingAvgPer10Min { get; set; }
-        public int coalescenceHealingMostInGame { get; set; }
-        public int coalescenceKills { get; set; }
+        public double coalescenceHealing { get; set; }
+        public double coalescenceHealingAvgPer10Min { get; set; }
+        public double coalescenceHealingMostInGame { get; set; }
+        public double coalescenceKills { get; set; }
         public double coalescenceKillsAvgPer10Min { get; set; }
-        public int coalescenceKillsMostInGame { get; set; }
+        public double coalescenceKillsMostInGame { get; set; }
         public string secondaryFireAccuracy { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game23
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards23
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous13
     {
-        public int teleporterPadsDestroyed { get; set; }
-        public int turretsDestroyed { get; set; }
+        public double teleporterPadsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Moira3
@@ -2426,39 +2408,39 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average24
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
     }
 
     public class Best24
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat24
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
         public string weaponAccuracy { get; set; }
@@ -2466,12 +2448,12 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class HeroSpecific21
     {
-        public int damageAmplified { get; set; }
-        public int damageAmplifiedAvgPer10Min { get; set; }
-        public int damageAmplifiedMostInGame { get; set; }
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
+        public double damageAmplified { get; set; }
+        public double damageAmplifiedAvgPer10Min { get; set; }
+        public double damageAmplifiedMostInGame { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
     }
 
     public class Game24
@@ -2481,10 +2463,10 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class MatchAwards24
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Orisa
@@ -2502,13 +2484,13 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average25
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -2517,66 +2499,66 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best25
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat25
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific22
     {
-        public int barrageKills { get; set; }
+        public double barrageKills { get; set; }
         public double barrageKillsAvgPer10Min { get; set; }
-        public int barrageKillsMostInGame { get; set; }
+        public double barrageKillsMostInGame { get; set; }
         public string directHitsAccuracy { get; set; }
-        public int rocketDirectHits { get; set; }
+        public double rocketDirectHits { get; set; }
         public double rocketDirectHitsAvgPer10Min { get; set; }
-        public int rocketDirectHitsMostInGame { get; set; }
+        public double rocketDirectHitsMostInGame { get; set; }
     }
 
     public class Game25
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards25
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous14
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Pharah
@@ -2594,15 +2576,15 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average26
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -2611,69 +2593,69 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best26
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat26
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific23
     {
-        public int deathsBlossomKills { get; set; }
+        public double deathsBlossomKills { get; set; }
         public double deathsBlossomKillsAvgPer10Min { get; set; }
-        public int deathsBlossomKillsMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double deathsBlossomKillsMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game26
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards26
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous15
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Reaper
@@ -2691,20 +2673,20 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists15
     {
-        public int offensiveAssists { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average27
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -2713,73 +2695,73 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best27
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat27
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
     }
 
     public class HeroSpecific24
     {
-        public int chargeKills { get; set; }
+        public double chargeKills { get; set; }
         public double chargeKillsAvgPer10Min { get; set; }
-        public int chargeKillsMostInGame { get; set; }
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int earthshatterKills { get; set; }
+        public double chargeKillsMostInGame { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double earthshatterKills { get; set; }
         public double earthshatterKillsAvgPer10Min { get; set; }
-        public int earthshatterKillsMostInGame { get; set; }
-        public int fireStrikeKills { get; set; }
+        public double earthshatterKillsMostInGame { get; set; }
+        public double fireStrikeKills { get; set; }
         public double fireStrikeKillsAvgPer10Min { get; set; }
-        public int fireStrikeKillsMostInGame { get; set; }
+        public double fireStrikeKillsMostInGame { get; set; }
         public string rocketHammerMeleeAccuracy { get; set; }
     }
 
     public class Game27
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards27
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous16
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Reinhardt
@@ -2797,22 +2779,22 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists16
     {
-        public int offensiveAssists { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average28
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -2822,81 +2804,81 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best28
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat28
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int environmentalKills { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double environmentalKills { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific25
     {
-        public int enemiesHooked { get; set; }
+        public double enemiesHooked { get; set; }
         public double enemiesHookedAvgPer10Min { get; set; }
-        public int enemiesHookedMostInGame { get; set; }
+        public double enemiesHookedMostInGame { get; set; }
         public string hookAccuracy { get; set; }
         public string hookAccuracyBestInGame { get; set; }
-        public int hooksAttempted { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int wholeHogKills { get; set; }
+        public double hooksAttempted { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double wholeHogKills { get; set; }
         public double wholeHogKillsAvgPer10Min { get; set; }
-        public int wholeHogKillsMostInGame { get; set; }
+        public double wholeHogKillsMostInGame { get; set; }
     }
 
     public class Game28
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards28
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous17
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Roadhog
@@ -2914,24 +2896,24 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists17
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
     }
 
     public class Average29
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -2940,77 +2922,77 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best29
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat29
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific26
     {
-        public int bioticFieldHealingDone { get; set; }
-        public int bioticFieldsDeployed { get; set; }
-        public int helixRocketKills { get; set; }
+        public double bioticFieldHealingDone { get; set; }
+        public double bioticFieldsDeployed { get; set; }
+        public double helixRocketKills { get; set; }
         public double helixRocketKillsAvgPer10Min { get; set; }
-        public int helixRocketKillsMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int tacticalVisorKills { get; set; }
+        public double helixRocketKillsMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double tacticalVisorKills { get; set; }
         public double tacticalVisorKillsAvgPer10Min { get; set; }
-        public int tacticalVisorKillsMostInGame { get; set; }
+        public double tacticalVisorKillsMostInGame { get; set; }
     }
 
     public class Game29
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards29
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous18
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Soldier76
@@ -3028,22 +3010,22 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists18
     {
-        public int offensiveAssists { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average30
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3052,61 +3034,61 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best30
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat30
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific27
     {
-        public int enemiesEmpd { get; set; }
+        public double enemiesEmpd { get; set; }
         public double enemiesEmpdAvgPer10Min { get; set; }
-        public int enemiesEmpdMostInGame { get; set; }
-        public int enemiesHacked { get; set; }
+        public double enemiesEmpdMostInGame { get; set; }
+        public double enemiesHacked { get; set; }
         public double enemiesHackedAvgPer10Min { get; set; }
-        public int enemiesHackedMostInGame { get; set; }
+        public double enemiesHackedMostInGame { get; set; }
     }
 
     public class Game30
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards30
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Sombra
@@ -3124,13 +3106,13 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average31
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3139,70 +3121,70 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best31
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat31
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific28
     {
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int playersTeleported { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double playersTeleported { get; set; }
         public double playersTeleportedAvgPer10Min { get; set; }
-        public int playersTeleportedMostInGame { get; set; }
+        public double playersTeleportedMostInGame { get; set; }
         public string primaryFireAccuracy { get; set; }
         public double secondaryDirectHitsAvgPer10Min { get; set; }
-        public int sentryTurretsKills { get; set; }
+        public double sentryTurretsKills { get; set; }
         public double sentryTurretsKillsAvgPer10Min { get; set; }
-        public int sentryTurretsKillsMostInGame { get; set; }
+        public double sentryTurretsKillsMostInGame { get; set; }
     }
 
     public class Game31
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards31
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous19
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Symmetra
@@ -3220,14 +3202,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average32
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3236,78 +3218,78 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best32
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat32
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific29
     {
-        public int armorPacksCreated { get; set; }
+        public double armorPacksCreated { get; set; }
         public double armorPacksCreatedAvgPer10Min { get; set; }
-        public int armorPacksCreatedMostInGame { get; set; }
-        public int moltenCoreKills { get; set; }
+        public double armorPacksCreatedMostInGame { get; set; }
+        public double moltenCoreKills { get; set; }
         public double moltenCoreKillsAvgPer10Min { get; set; }
-        public int moltenCoreKillsMostInGame { get; set; }
-        public int overloadKills { get; set; }
-        public int overloadKillsMostInGame { get; set; }
-        public int torbjornKills { get; set; }
+        public double moltenCoreKillsMostInGame { get; set; }
+        public double overloadKills { get; set; }
+        public double overloadKillsMostInGame { get; set; }
+        public double torbjornKills { get; set; }
         public double torbjornKillsAvgPer10Min { get; set; }
-        public int torbjornKillsMostInGame { get; set; }
-        public int turretsDamageAvgPer10Min { get; set; }
-        public int turretsKills { get; set; }
+        public double torbjornKillsMostInGame { get; set; }
+        public double turretsDamageAvgPer10Min { get; set; }
+        public double turretsKills { get; set; }
         public double turretsKillsAvgPer10Min { get; set; }
-        public int turretsKillsMostInGame { get; set; }
+        public double turretsKillsMostInGame { get; set; }
     }
 
     public class Game32
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards32
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous20
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Torbjorn
@@ -3325,14 +3307,14 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average33
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
-        public int eliminationsAvgPer10Min { get; set; }
+        public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -3342,80 +3324,80 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best33
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat33
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific30
     {
-        public int healthRecovered { get; set; }
-        public int healthRecoveredAvgPer10Min { get; set; }
-        public int healthRecoveredMostInGame { get; set; }
-        public int pulseBombsAttached { get; set; }
+        public double healthRecovered { get; set; }
+        public double healthRecoveredAvgPer10Min { get; set; }
+        public double healthRecoveredMostInGame { get; set; }
+        public double pulseBombsAttached { get; set; }
         public double pulseBombsAttachedAvgPer10Min { get; set; }
-        public int pulseBombsAttachedMostInGame { get; set; }
-        public int pulseBombsKills { get; set; }
+        public double pulseBombsAttachedMostInGame { get; set; }
+        public double pulseBombsKills { get; set; }
         public double pulseBombsKillsAvgPer10Min { get; set; }
-        public int pulseBombsKillsMostInGame { get; set; }
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
+        public double pulseBombsKillsMostInGame { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
     }
 
     public class Game33
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards33
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous21
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Tracer3
@@ -3433,21 +3415,21 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists19
     {
-        public int reconAssists { get; set; }
+        public double reconAssists { get; set; }
         public double reconAssistsAvgPer10Min { get; set; }
-        public int reconAssistsMostInGame { get; set; }
+        public double reconAssistsMostInGame { get; set; }
     }
 
     public class Average34
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3456,38 +3438,38 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best34
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat34
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
@@ -3496,33 +3478,33 @@ namespace GamersGridApp.Core.ApiAcountsDtos
     {
         public string scopedAccuracy { get; set; }
         public string scopedAccuracyBestInGame { get; set; }
-        public int scopedCriticalHits { get; set; }
+        public double scopedCriticalHits { get; set; }
         public string scopedCriticalHitsAccuracy { get; set; }
         public double scopedCriticalHitsAvgPer10Min { get; set; }
-        public int scopedCriticalHitsMostInGame { get; set; }
-        public int venomMineKills { get; set; }
+        public double scopedCriticalHitsMostInGame { get; set; }
+        public double venomMineKills { get; set; }
         public double venomMineKillsAvgPer10Min { get; set; }
-        public int venomMineKillsMostInGame { get; set; }
+        public double venomMineKillsMostInGame { get; set; }
     }
 
     public class Game34
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards34
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous22
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Widowmaker
@@ -3540,13 +3522,13 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average35
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -3555,31 +3537,31 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best35
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
     }
 
     public class Combat35
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
         public string timeSpentOnFire { get; set; }
@@ -3587,44 +3569,44 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class HeroSpecific32
     {
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int jumpKills { get; set; }
-        public int jumpPackKills { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double jumpKills { get; set; }
+        public double jumpPackKills { get; set; }
         public double jumpPackKillsAvgPer10Min { get; set; }
-        public int jumpPackKillsMostInGame { get; set; }
-        public int meleeKills { get; set; }
+        public double jumpPackKillsMostInGame { get; set; }
+        public double meleeKills { get; set; }
         public double meleeKillsAvgPer10Min { get; set; }
-        public int meleeKillsMostInGame { get; set; }
-        public int playersKnockedBack { get; set; }
+        public double meleeKillsMostInGame { get; set; }
+        public double playersKnockedBack { get; set; }
         public double playersKnockedBackAvgPer10Min { get; set; }
-        public int playersKnockedBackMostInGame { get; set; }
-        public int primalRageKills { get; set; }
+        public double playersKnockedBackMostInGame { get; set; }
+        public double primalRageKills { get; set; }
         public double primalRageKillsAvgPer10Min { get; set; }
-        public int primalRageKillsMostInGame { get; set; }
+        public double primalRageKillsMostInGame { get; set; }
         public string primalRageMeleeAccuracy { get; set; }
         public string teslaCannonAccuracy { get; set; }
-        public int weaponKills { get; set; }
+        public double weaponKills { get; set; }
     }
 
     public class Game35
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards35
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous23
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Winston
@@ -3642,13 +3624,13 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Average36
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3656,67 +3638,67 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best36
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int multikillsBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double multikillsBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat36
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int multikills { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double multikills { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific33
     {
-        public int grapplingClawKills { get; set; }
+        public double grapplingClawKills { get; set; }
         public double grapplingClawKillsAvgPer10Min { get; set; }
-        public int grapplingClawKillsMostInGame { get; set; }
-        public int minefieldKills { get; set; }
+        public double grapplingClawKillsMostInGame { get; set; }
+        public double minefieldKills { get; set; }
         public double minefieldKillsAvgPer10Min { get; set; }
-        public int minefieldKillsMostInGame { get; set; }
-        public int playersKnockedBack { get; set; }
+        public double minefieldKillsMostInGame { get; set; }
+        public double playersKnockedBack { get; set; }
         public double playersKnockedBackAvgPer10Min { get; set; }
-        public int playersKnockedBackMostInGame { get; set; }
+        public double playersKnockedBackMostInGame { get; set; }
     }
 
     public class Game36
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards36
     {
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous24
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class WreckingBall
@@ -3734,23 +3716,23 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists20
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average37
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double meleeFinalBlowsAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
@@ -3760,36 +3742,36 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best37
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int meleeFinalBlowsMostInGame { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double meleeFinalBlowsMostInGame { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat37
     {
-        public int barrierDamageDone { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int meleeFinalBlows { get; set; }
-        public int objectiveKills { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double meleeFinalBlows { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
@@ -3798,34 +3780,34 @@ namespace GamersGridApp.Core.ApiAcountsDtos
     {
         public string averageEnergy { get; set; }
         public string averageEnergyBestInGame { get; set; }
-        public int damageBlocked { get; set; }
-        public int damageBlockedAvgPer10Min { get; set; }
-        public int damageBlockedMostInGame { get; set; }
-        public int gravitonSurgeKills { get; set; }
+        public double damageBlocked { get; set; }
+        public double damageBlockedAvgPer10Min { get; set; }
+        public double damageBlockedMostInGame { get; set; }
+        public double gravitonSurgeKills { get; set; }
         public double gravitonSurgeKillsAvgPer10Min { get; set; }
-        public int gravitonSurgeKillsMostInGame { get; set; }
-        public int highEnergyKills { get; set; }
+        public double gravitonSurgeKillsMostInGame { get; set; }
+        public double highEnergyKills { get; set; }
         public double highEnergyKillsAvgPer10Min { get; set; }
-        public int highEnergyKillsMostInGame { get; set; }
+        public double highEnergyKillsMostInGame { get; set; }
         public string primaryFireAccuracy { get; set; }
-        public int projectedBarriersApplied { get; set; }
+        public double projectedBarriersApplied { get; set; }
         public double projectedBarriersAppliedAvgPer10Min { get; set; }
-        public int projectedBarriersAppliedMostInGame { get; set; }
+        public double projectedBarriersAppliedMostInGame { get; set; }
     }
 
     public class Game37
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards37
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Zarya
@@ -3843,27 +3825,27 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Assists21
     {
-        public int defensiveAssists { get; set; }
+        public double defensiveAssists { get; set; }
         public double defensiveAssistsAvgPer10Min { get; set; }
-        public int defensiveAssistsMostInGame { get; set; }
-        public int healingDone { get; set; }
-        public int healingDoneMostInGame { get; set; }
-        public int offensiveAssists { get; set; }
+        public double defensiveAssistsMostInGame { get; set; }
+        public double healingDone { get; set; }
+        public double healingDoneMostInGame { get; set; }
+        public double offensiveAssists { get; set; }
         public double offensiveAssistsAvgPer10Min { get; set; }
-        public int offensiveAssistsMostInGame { get; set; }
+        public double offensiveAssistsMostInGame { get; set; }
     }
 
     public class Average38
     {
-        public int allDamageDoneAvgPer10Min { get; set; }
-        public int barrierDamageDoneAvgPer10Min { get; set; }
+        public double allDamageDoneAvgPer10Min { get; set; }
+        public double barrierDamageDoneAvgPer10Min { get; set; }
         public double criticalHitsAvgPer10Min { get; set; }
         public double deathsAvgPer10Min { get; set; }
         public double eliminationsAvgPer10Min { get; set; }
         public double eliminationsPerLife { get; set; }
         public double finalBlowsAvgPer10Min { get; set; }
-        public int healingDoneAvgPer10Min { get; set; }
-        public int heroDamageDoneAvgPer10Min { get; set; }
+        public double healingDoneAvgPer10Min { get; set; }
+        public double heroDamageDoneAvgPer10Min { get; set; }
         public double objectiveKillsAvgPer10Min { get; set; }
         public string objectiveTimeAvgPer10Min { get; set; }
         public double soloKillsAvgPer10Min { get; set; }
@@ -3872,69 +3854,69 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Best38
     {
-        public int allDamageDoneMostInGame { get; set; }
-        public int allDamageDoneMostInLife { get; set; }
-        public int barrierDamageDoneMostInGame { get; set; }
-        public int criticalHitsMostInGame { get; set; }
-        public int criticalHitsMostInLife { get; set; }
-        public int eliminationsMostInGame { get; set; }
-        public int eliminationsMostInLife { get; set; }
-        public int finalBlowsMostInGame { get; set; }
-        public int heroDamageDoneMostInGame { get; set; }
-        public int heroDamageDoneMostInLife { get; set; }
-        public int killsStreakBest { get; set; }
-        public int objectiveKillsMostInGame { get; set; }
+        public double allDamageDoneMostInGame { get; set; }
+        public double allDamageDoneMostInLife { get; set; }
+        public double barrierDamageDoneMostInGame { get; set; }
+        public double criticalHitsMostInGame { get; set; }
+        public double criticalHitsMostInLife { get; set; }
+        public double eliminationsMostInGame { get; set; }
+        public double eliminationsMostInLife { get; set; }
+        public double finalBlowsMostInGame { get; set; }
+        public double heroDamageDoneMostInGame { get; set; }
+        public double heroDamageDoneMostInLife { get; set; }
+        public double killsStreakBest { get; set; }
+        public double objectiveKillsMostInGame { get; set; }
         public string objectiveTimeMostInGame { get; set; }
-        public int soloKillsMostInGame { get; set; }
+        public double soloKillsMostInGame { get; set; }
         public string timeSpentOnFireMostInGame { get; set; }
         public string weaponAccuracyBestInGame { get; set; }
     }
 
     public class Combat38
     {
-        public int barrierDamageDone { get; set; }
-        public int criticalHits { get; set; }
+        public double barrierDamageDone { get; set; }
+        public double criticalHits { get; set; }
         public string criticalHitsAccuracy { get; set; }
-        public int damageDone { get; set; }
-        public int deaths { get; set; }
-        public int eliminations { get; set; }
-        public int finalBlows { get; set; }
-        public int heroDamageDone { get; set; }
-        public int objectiveKills { get; set; }
+        public double damageDone { get; set; }
+        public double deaths { get; set; }
+        public double eliminations { get; set; }
+        public double finalBlows { get; set; }
+        public double heroDamageDone { get; set; }
+        public double objectiveKills { get; set; }
         public string objectiveTime { get; set; }
         public string quickMeleeAccuracy { get; set; }
-        public int soloKills { get; set; }
+        public double soloKills { get; set; }
         public string timeSpentOnFire { get; set; }
         public string weaponAccuracy { get; set; }
     }
 
     public class HeroSpecific35
     {
-        public int selfHealing { get; set; }
-        public int selfHealingAvgPer10Min { get; set; }
-        public int selfHealingMostInGame { get; set; }
-        public int transcendenceHealing { get; set; }
-        public int transcendenceHealingBest { get; set; }
+        public double selfHealing { get; set; }
+        public double selfHealingAvgPer10Min { get; set; }
+        public double selfHealingMostInGame { get; set; }
+        public double transcendenceHealing { get; set; }
+        public double transcendenceHealingBest { get; set; }
     }
 
     public class Game38
     {
-        public int gamesWon { get; set; }
+        public double gamesWon { get; set; }
         public string timePlayed { get; set; }
     }
 
     public class MatchAwards38
     {
-        public int cards { get; set; }
-        public int medals { get; set; }
-        public int medalsBronze { get; set; }
-        public int medalsGold { get; set; }
-        public int medalsSilver { get; set; }
+        public double cards { get; set; }
+        public double medals { get; set; }
+        public double medalsBronze { get; set; }
+        public double medalsGold { get; set; }
+        public double medalsSilver { get; set; }
     }
 
     public class Miscellaneous25
     {
-        public int turretsDestroyed { get; set; }
+        public double turretsDestroyed { get; set; }
     }
 
     public class Zenyatta3
@@ -3987,338 +3969,338 @@ namespace GamersGridApp.Core.ApiAcountsDtos
 
     public class Games2
     {
-        public int played { get; set; }
-        public int won { get; set; }
+        public double played { get; set; }
+        public double won { get; set; }
     }
 
     public class Ana4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Ashe2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Baptiste2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Bastion2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Brigitte2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class DVa2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Doomfist2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Genji2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Hanzo4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Junkrat2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Lucio2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Mccree4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Mei2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Mercy2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
-        public int eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
+        public double eliminationsPerLife { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Moira4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Orisa2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Pharah2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Reaper2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Reinhardt2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Roadhog2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Soldier762
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Sombra2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Symmetra2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Torbjorn2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Tracer4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Widowmaker2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Winston2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class WreckingBall2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Zarya2
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class Zenyatta4
     {
         public string timePlayed { get; set; }
-        public int gamesWon { get; set; }
-        public int winPercentage { get; set; }
-        public int weaponAccuracy { get; set; }
+        public double gamesWon { get; set; }
+        public double winPercentage { get; set; }
+        public double weaponAccuracy { get; set; }
         public double eliminationsPerLife { get; set; }
-        public int multiKillBest { get; set; }
-        public int objectiveKills { get; set; }
+        public double multiKillBest { get; set; }
+        public double objectiveKills { get; set; }
     }
 
     public class TopHeroes2
@@ -4363,5 +4345,25 @@ namespace GamersGridApp.Core.ApiAcountsDtos
         public TopHeroes2 topHeroes { get; set; }
     }
 
-   
+    public class OverWatchCompleteDto
+    {
+        public CompetitiveStats competitiveStats { get; set; }
+        public double endorsement { get; set; }
+        public string endorsementIcon { get; set; }
+        public int gamesWon { get; set; }
+        public string icon { get; set; }
+        public double level { get; set; }
+        public string levelIcon { get; set; }
+        public string name { get; set; }
+        public double prestige { get; set; }
+        public string prestigeIcon { get; set; }
+        public bool @private { get; set; }
+        public QuickPlayStats quickPlayStats { get; set; }
+        public double rating { get; set; }
+        public string ratingIcon { get; set; }
+        public object ratings { get; set; }
+
+
+
+    }
 }
