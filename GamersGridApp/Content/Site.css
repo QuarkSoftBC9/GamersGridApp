@@ -997,3 +997,12 @@ content: "OR";
     background-color: initial;
     border: none;
 }
+
+#Description{
+    max-width: 100%;
+}
+
+input{
+    max-width: 100%;
+
+}

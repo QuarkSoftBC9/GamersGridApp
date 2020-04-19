@@ -30,7 +30,7 @@
 
                     </div>
                     <div class="profile__avatar col-xs-12 col-sm-5">
-                        <img src="@((Model.User.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.User.Avatar)) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")" >
+                        <img src="@((Model.User.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.User.Avatar)) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{Model.User.ID}/{Model.User.Avatar}")">
                     </div>
                     <div class="profile__header col-xs-12 col-sm-7">
                         <h2>@Html.DisplayFor(u => u.User.FirstName) @Html.DisplayFor(u => u.User.LastName)</h2>
@@ -39,195 +39,203 @@
                         <h4><strong>@Html.DisplayFor(u => u.FavouriteGame.Title)</strong></h4>
                         <h4>My quote:</h4>
                         <p class="text-muted">
-                            I don't need to "get a life".
-                            I'm a gamer. I have lots of lives.
-                        </p>
+                            @if (String.IsNullOrWhiteSpace(Model.User.Description))
+                            {
+                                <p style="color:#c4c4c4"><i>No quote yet</i></p>
+
+                            }
+                            else
+                            {
+                                <h4><strong>@Model.User.Description</strong></h4>
+                            }
+
+                            </>
+                        </div>
                     </div>
                 </div>
-            </div>
-            @if (Model.GamesStats != null)
-            {
-                foreach (var gameStats in Model.GamesStats)
+                @if (Model.GamesStats != null)
                 {
+                    foreach (var gameStats in Model.GamesStats)
                     {
-                        int sum = gameStats.Value.Wins + gameStats.Value.Losses;
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h2 class="panel-title"><strong>@gameStats.Key</strong></h2>
-                            </div>
-                            <div class="panel-body">
-                                <table class="table profile__table">
-                                    <tbody>
-                                        <tr>
-                                            <th><strong>Rank</strong></th>
-                                            <td>@gameStats.Value.Rank</td>
-                                        </tr>
-                                        <tr>
-                                            <th><strong>Wins</strong></th>
-                                            <td>
-                                                <div class="progress">
-                                                    <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="@gameStats.Value.Wins" aria-valuemin="0" aria-valuemax="@sum" style="width: 40%;">
-                                                        @gameStats.Value.Wins
+                        {
+                            int sum = gameStats.Value.Wins + gameStats.Value.Losses;
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <h2 class="panel-title"><strong>@gameStats.Key</strong></h2>
+                                </div>
+                                <div class="panel-body">
+                                    <table class="table profile__table">
+                                        <tbody>
+                                            <tr>
+                                                <th><strong>Rank</strong></th>
+                                                <td>@gameStats.Value.Rank</td>
+                                            </tr>
+                                            <tr>
+                                                <th><strong>Wins</strong></th>
+                                                <td>
+                                                    <div class="progress">
+                                                        <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="@gameStats.Value.Wins" aria-valuemin="0" aria-valuemax="@sum" style="width: 40%;">
+                                                            @gameStats.Value.Wins
+                                                        </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th><strong>KDA</strong></th>
-                                            <td>@gameStats.Value.KDA</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th><strong>KDA</strong></th>
+                                                <td>@gameStats.Value.KDA</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        }
                     }
                 }
-            }
-            <!-- Game 1 -->
-            <!-- <div>Static Fields</div>
+                <!-- Game 1 -->
+                <!-- <div>Static Fields</div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title"><strong>DOTA</strong></h2>
-                </div>
-                <div class="panel-body">
-                    <table class="table profile__table">
-                        <tbody>
-                            <tr>
-                                <th><strong>Level</strong></th>
-                                <td>456</td>
-                            </tr>
-                            <tr>
-                                <th><strong>Stat 1</strong></th>
-                                <td>
-                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                            60
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h2 class="panel-title"><strong>DOTA</strong></h2>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table profile__table">
+                            <tbody>
+                                <tr>
+                                    <th><strong>Level</strong></th>
+                                    <td>456</td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 1</strong></th>
+                                    <td>
+                                        <div class="progress">
+                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                60
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <th><strong>Stat 2</strong></th>
-                                <td>234</td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th><strong>Stat 2</strong></th>
+                                    <td>234</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
 
-                   <div class="panel panel-default">
-                       <div class="panel-heading">
-                           <h2 class="panel-title"><strong>Overwatch</strong></h2>
-                       </div>
-                       <div class="panel-body">
-                           <table class="table profile__table">
-                               <tbody>
-                                   <tr>
-                                       <th><strong>Level</strong></th>
-                                       <td>456</td>
-                                   </tr>
-                                   <tr>
-                                       <th><strong>Stat 1</strong></th>
-                                       <td>
-                                           <div class="progress">
-                                               <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                                                   60
+                       <div class="panel panel-default">
+                           <div class="panel-heading">
+                               <h2 class="panel-title"><strong>Overwatch</strong></h2>
+                           </div>
+                           <div class="panel-body">
+                               <table class="table profile__table">
+                                   <tbody>
+                                       <tr>
+                                           <th><strong>Level</strong></th>
+                                           <td>456</td>
+                                       </tr>
+                                       <tr>
+                                           <th><strong>Stat 1</strong></th>
+                                           <td>
+                                               <div class="progress">
+                                                   <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                                                       60
+                                                   </div>
                                                </div>
-                                           </div>
-                                       </td>
-                                   </tr>
-                                   <tr>
-                                       <th><strong>Stat 2</strong></th>
-                                       <td>234</td>
-                                   </tr>
-                               </tbody>
-                           </table>
+                                           </td>
+                                       </tr>
+                                       <tr>
+                                           <th><strong>Stat 2</strong></th>
+                                           <td>234</td>
+                                       </tr>
+                                   </tbody>
+                               </table>
+                           </div>
                        </div>
-                   </div>
-                   -->
-        </div>
-        <div class="col-xs-12 col-sm-3">
-
-            @{
-                if (!Model.IsCurrent)
-                {
-                    <!-- Contact user -->
-                    <p>
-                        <a id="followbtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">@followText</a>
-                    </p>
-                    <p>
-                        <button id="messageBtn"  class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
-                            Message me
-                        </button>
-                    </p>
-                }
-                else
-                {
-                    <p>
-                        @Html.ActionLink("Customize", "Customize", "User", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
-
-                    </p>
-
-                }
-
-            }
-
-
-            <div class="profile_follow">
-                <div class="profile_followers">
-                    <p>FOLLOWERS</p>
-                    <h3 id="followersCount"><strong>@Model.FollowsCount</strong></h3>
-
-                </div>
-                <div class="profile_followees">
-                    <p>FOLLOWING</p>
-                    <h3>@Model.FollowingCount</h3>
-                </div>
+                       -->
             </div>
+            <div class="col-xs-12 col-sm-3">
+
+                @{
+                    if (!Model.IsCurrent)
+                    {
+                        <!-- Contact user -->
+                        <p>
+                            <a id="followbtn" href="#" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form">@followText</a>
+                        </p>
+                        <p>
+                            <button id="messageBtn" class="profile__contact-btn btn btn-lg btn-block btn-info" data-toggle="modal" data-target="#profile__contact-form" data-redirect-url="@Url.Action("ChatWith","Message", new { currentUserId = Model.LoggedUserId , requestedUserId= Model.User.ID})">
+                                Message me
+                            </button>
+                        </p>
+                    }
+                    else
+                    {
+                        <p>
+                            @Html.ActionLink("Customize", "Customize", "User", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
+
+                        </p>
+
+                    }
+
+                }
 
 
-            <hr class="profile__contact-hr">
+                <div class="profile_follow">
+                    <div class="profile_followers">
+                        <p>FOLLOWERS</p>
+                        <h3 id="followersCount"><strong>@Model.FollowsCount</strong></h3>
 
-            <!-- Contact info -->
-            <div class="profile__contact-info">
-                <div class="profile__contact-info-item">
-
-                    <div class="profile__contact-info-body">
-                        <h5 class="profile__contact-info-heading">Country</h5>
-                        @Html.DisplayFor(u => u.User.Country)
+                    </div>
+                    <div class="profile_followees">
+                        <p>FOLLOWING</p>
+                        <h3>@Model.FollowingCount</h3>
                     </div>
                 </div>
-                <div class="profile__contact-info-item">
-                    <div class="profile__contact-info-body">
-                        <h5 class="profile__contact-info-heading">City</h5>
-                        @Html.DisplayFor(u => u.User.City)
-                    </div>
-                </div>
-                @*<div class="profile__contact-info-item">
-                        <div class="profile__contact-info-icon">
-                            <i class="fa fa-envelope-square"></i>
-                        </div>
+
+
+                <hr class="profile__contact-hr">
+
+                <!-- Contact info -->
+                <div class="profile__contact-info">
+                    <div class="profile__contact-info-item">
+
                         <div class="profile__contact-info-body">
-                            <h5 class="profile__contact-info-heading">E-mail address</h5>
-                            <a href="mailto:admin@domain.com">admin@domain.com</a>
+                            <h5 class="profile__contact-info-heading">Country</h5>
+                            @Html.DisplayFor(u => u.User.Country)
                         </div>
-                    </div>*@
-            </div>
+                    </div>
+                    <div class="profile__contact-info-item">
+                        <div class="profile__contact-info-body">
+                            <h5 class="profile__contact-info-heading">City</h5>
+                            @Html.DisplayFor(u => u.User.City)
+                        </div>
+                    </div>
+                    @*<div class="profile__contact-info-item">
+                            <div class="profile__contact-info-icon">
+                                <i class="fa fa-envelope-square"></i>
+                            </div>
+                            <div class="profile__contact-info-body">
+                                <h5 class="profile__contact-info-heading">E-mail address</h5>
+                                <a href="mailto:admin@domain.com">admin@domain.com</a>
+                            </div>
+                        </div>*@
+                </div>
 
+            </div>
         </div>
     </div>
-</div>
 
-@section scripts{
+    @section scripts{
 
-    @Scripts.Render("~/Scripts/toastr.js")
+        @Scripts.Render("~/Scripts/toastr.js")
 
-    <script>
+        <script>
 
-        $(document).ready(function () {
-            FollowsController.enableFollows("#followbtn");
-            FollowsController.enableMessaging("#messageBtn");
-        });
-    </script>
-}
+            $(document).ready(function () {
+                FollowsController.enableFollows("#followbtn");
+                FollowsController.enableMessaging("#messageBtn");
+            });
+        </script>
+    }
