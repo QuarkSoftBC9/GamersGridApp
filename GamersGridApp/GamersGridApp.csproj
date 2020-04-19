@@ -651,6 +651,16 @@
     <Content Include="Content\Images\csgo-banner.jpg" />
     <Content Include="Content\Images\dota2-banner.png" />
     <Content Include="Content\Images\dotaback1.jpg" />
+    <Content Include="Content\Images\GamersAvatars\1.jpg" />
+    <Content Include="Content\Images\GamersAvatars\10.jpg" />
+    <Content Include="Content\Images\GamersAvatars\2.jpg" />
+    <Content Include="Content\Images\GamersAvatars\3.jpg" />
+    <Content Include="Content\Images\GamersAvatars\4.jpg" />
+    <Content Include="Content\Images\GamersAvatars\5.jpg" />
+    <Content Include="Content\Images\GamersAvatars\6.jpg" />
+    <Content Include="Content\Images\GamersAvatars\7.jpg" />
+    <Content Include="Content\Images\GamersAvatars\8.jpg" />
+    <Content Include="Content\Images\GamersAvatars\9.jpg" />
     <Content Include="Content\Images\Games\cs.png" />
     <Content Include="Content\Images\Games\dota1.jpg" />
     <Content Include="Content\Images\Games\dota2.jpg" />
