@@ -765,6 +765,7 @@
     <Content Include="Content\Images\youtubelogo.png" />
     <Content Include="Content\LeaderBoard.css" />
     <Content Include="Content\loginStyle.css" />
+    <Content Include="Content\MessageCss\Message.css" />
     <Content Include="Content\NewLoginCss\login.css" />
     <Content Include="Content\NewRegisterCss\bootstrap.min.css" />
     <Content Include="Content\NewRegisterCss\demo.css" />
@@ -802,6 +803,7 @@
     <Content Include="Scripts\GameProfile.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.js" />
     <Content Include="Scripts\jquery.signalR-2.4.1.min.js" />
+    <Content Include="Scripts\Message\Message.js" />
     <Content Include="Scripts\NewLogin\login.js" />
     <Content Include="Scripts\popper-utils.js" />
     <Content Include="Scripts\popper-utils.min.js" />
