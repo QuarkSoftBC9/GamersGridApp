@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-4597ec4d-319d-4bc9-89ab-d8eec3b5d0f8";
+        private readonly string api = "RGAPI-30b05775-cdb2-42d5-b7a1-c96762b7b37d";
         private readonly int lolID = 1;
 
         private readonly IUnitOfWork UnitOfWork;
@@ -65,7 +65,6 @@ namespace GamersGridApp.Controllers.api
             userGame.NewGameAccount(viewModel.UserName, accDto.id, accDto.accountId, viewModel.Region);
 
             //Download LOL Stats
-            
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
@@ -84,15 +83,15 @@ namespace GamersGridApp.Controllers.api
             return Ok(statsDto[0]);
 
         }
-
-        public FullStatsDto GetStats(AddLOLAccountViewmodel viewModel)
+        [HttpGet]
+        public FullStatsDto GetStats(string region, string name)
         {
             //get account
             FullStatsDto fullStatsDto = new FullStatsDto();
-            fullStatsDto.Account = LolDataService.GetAccount(viewModel.Region, viewModel.UserName, api);
+            fullStatsDto.Account = LolDataService.GetAccount(region, name, api);
 
             //get stats
-            fullStatsDto.Stats = LolDataService.GetStats(viewModel.Region, fullStatsDto.Account.puuid, api).Single();
+            fullStatsDto.Stats = LolDataService.GetStats(region, fullStatsDto.Account.id, api).Single();
 
             //get latest match
             var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);

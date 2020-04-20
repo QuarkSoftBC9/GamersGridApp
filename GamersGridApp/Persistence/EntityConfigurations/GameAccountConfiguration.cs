@@ -19,6 +19,9 @@ namespace GamersGridApp.Persistence.EntityConfigurations
 
             Property(m => m.Id)
              .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+
+            HasOptional(gs => gs.GameAccountStats)
+                .WithRequired(ga => ga.GameAccount);
         }
     }
 }

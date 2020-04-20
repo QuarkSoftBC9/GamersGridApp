@@ -12,6 +12,9 @@ namespace GamersGridApp.Persistence.EntityConfigurations
         public UserGameConfiguration()
         {
             HasIndex(k => new { k.GameID, k.UserId }).IsUnique();
+
+            HasOptional(ga => ga.GameAccount)
+                .WithRequired(ug => ug.UserGame);
         }
     }
 }
