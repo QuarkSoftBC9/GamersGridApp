@@ -2,13 +2,13 @@
 
     let intialize = function () {
         console.log("League Search initialized");
-        $('.league-search-btn').click(getLeagueAccount);
+        $('.league-btn').click(getLeagueAccount);
     }
     let getLeagueAccount = function () {
         let account = LeagueUIController.selectAcc();
         LeagueSearchService.sendAcc(account)
             .then(stats => {
-                LeagueUIController.updateLeagueStats(stats);
+                LeagueUIController.updateLeagueStats(stats); // stats validation should be added
             })
     }
     return {

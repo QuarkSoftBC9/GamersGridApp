@@ -130,11 +130,11 @@
                             <div class="row">
                                 <div class="col-xs-6">
                                     <label>Region</label>
-                                    @Html.DropDownListFor(m => m.RiotGamesRegions, new SelectList(Model.RiotGamesRegions), "--Select--", new { @class = "form-control ", id = "riotGamesRegion" })
+                                    @Html.DropDownListFor(m => m.RiotGamesRegions, new SelectList(Model.RiotGamesRegions), "--Select--", new { @class = "form-control ", id = "league-region" })
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Summoner Name</label>
-                                    <input type="text" class="form-control" id="riotGamesName" value="@Model.LolUsername">
+                                    <input type="text" class="form-control" id="league-name" value="@Model.LolUsername">
                                 </div>
                             </div>
                         </div>
@@ -142,7 +142,7 @@
 
                             <div class="col-xs-12">
                                 <br>
-                                <button id="lolSave" type="button" class="btn btn-lg btn-default js-validate-user"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
+                                <button id="lolSave" type="button" class="btn btn-lg btn-default js-validate-user league-btn"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
                             </div>
                         </div>
                     </div>
@@ -230,74 +230,12 @@
         });
 
     </script>
-
+    @Scripts.Render("~/bundles/costumize")
     <script>
-        let APIController = (function () {
-            return {
-                addAccount: function (account) {
-                    //validation for account to be already claimed
-                    $.post("/api/LOLAccounts", { userName: account.username, region: account.region })
-                        .done(function (e) {
-                            console.log(e);
-                        })
-                        .fail(function () {
-                            alert("Something failed");
-                        });
-                },
-            }
-        })();
-        let UIController = (function () {
-            DOMStrings = {
-                usernameInput: '#riotGamesName',
-                regionInput: '#riotGamesRegion',
-                getLOLAccount: '.js-validate-user',
-            }
-            return {
-                GetDOMStrings: function () {
-                    return DOMStrings
-                },
-                SelectAccData: function () {
-                    const username = $(DOMStrings.usernameInput).val();
-                    const userRegion = $(DOMStrings.regionInput).val();
-                    console.log(username);
-                    return {
-                        username: username,
-                        region: userRegion
-                    }
-                },
-                ShowStats: function (stats) {
-                    console.log('%c Show Stats UICntrl', 'color: #bada55 ');
-                    $(DOMStrings.lolRank).textContent = stats[0].tier + " " + stats[0].rank;
-                }
-            }
-        })();
-        MainController = (function (UICntrl, APICntrl) {
-            let SetupEventListeners = function () {
-                let DOM = UICntrl.GetDOMStrings();
-                $(DOM.getLOLAccount).click(GetLOLAcc)
-                $(DOM.getLOLStats).click(GetLOLStats)
-                $(DOM.getLOLKDA).click(GetLOLKDA)
-            }
-            let GetLOLKDA = function () {
-                APICntrl.GetKDA();
-            }
-            let GetLOLAcc = function (event) {
-                const account = UICntrl.SelectAccData();
-                APICntrl.addAccount(account);
-            }
-            let GetLOLStats = function (event) {
-                const stats = APICntrl.GetAccStats();
-                console.log('%c Show Stats MainController', 'color: #bada55 ')
-                UICntrl.ShowStats(stats);
-            }
-            return {
-                init: function () {
-                    console.log('Application has started');
-                    SetupEventListeners();
-                }
-            }
-        })(UIController, APIController);
-        MainController.init();
+        $(document).ready(function () {
+            lolEditController.init();
+        });
+        
     </script>
 
 

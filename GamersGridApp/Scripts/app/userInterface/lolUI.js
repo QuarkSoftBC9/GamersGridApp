@@ -10,7 +10,6 @@
         leagueStatsWins: "#league-wins",
         leagueStatsLosses: "#league-losses",
         leagueRankIcon: "#league-rank-icon"
-
     }
     let updateLeagueStats = function (stats) {
         $(DOM.leagueStatsName).html(stats.account.name);

@@ -68,17 +68,19 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
-            userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);//break here check
+            if(statsDto != null)
+            {
+                userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
+                userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);//break here check
 
-            //Getting List of matche ids
-            var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
-            var gameIds = matchIds.matches.Select(g => g.gameId);
+                //Getting List of matche ids
+                var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
+                var gameIds = matchIds.matches.Select(g => g.gameId);
 
-            //getting the list of matches
-            var matches = LolDataService.GetMatches(api, gameIds);
-            userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
-
+                //getting the list of matches
+                var matches = LolDataService.GetMatches(api, gameIds);
+                userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
+            }
             UnitOfWork.Complete();
             return Ok(statsDto[0]);
 

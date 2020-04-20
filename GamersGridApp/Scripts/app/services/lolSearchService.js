@@ -8,7 +8,7 @@
                     console.log(stats);
                 }).done(function (stats) {
                     resolve(stats);
-                })
+                })//fail validation should be added
         });
     }
     return {
