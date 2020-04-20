@@ -33,9 +33,7 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.jquery.js",
                         "~/Scripts/Custom/TypeAheadSearchBar.js"
                 ));
-            bundles.Add(new ScriptBundle("~/bundles/toastr").Include(
-                    "~/Scripts/toastr.js"
-                  ));
+
 
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
@@ -69,7 +67,9 @@ namespace GamersGridApp
                         "~/Scripts/typeahead.bundle.js",
                         "~/Scripts/typeahead.jquery.js",
                         "~/Scripts/Custom/TypeAheadSearchBar.js",
-                        "~/Scripts/RegisterJs/Custom.js"
+                        "~/Scripts/RegisterJs/Custom.js",
+                       "~/Scripts/toastr.js"
+
                         ));
             bundles.Add(new ScriptBundle("~/bundles/TypeAheadSearchBar").Include(
                         "~/Scripts/Custom/TypeAheadSearchBar.js"));
