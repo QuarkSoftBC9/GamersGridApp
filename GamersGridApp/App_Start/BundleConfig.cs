@@ -10,12 +10,16 @@ namespace GamersGridApp
         public static void RegisterBundles(BundleCollection bundles)
         {
 
-
-
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
                         "~/Scripts/app/services/followsService.js",
                         "~/Scripts/app/services/messagesService.js",
                         "~/Scripts/app/controllers/followsController.js"
+                        
+                ));
+            bundles.Add(new ScriptBundle("~/bundles/searchEngine").Include(
+                    "~/Scripts/app/services/lolSearchService.js",
+                        "~/Scripts/app/userInterface/lolSearchUI.js",
+                        "~/Scripts/app/controllers/lolSearchController.js"
                 ));
 
 

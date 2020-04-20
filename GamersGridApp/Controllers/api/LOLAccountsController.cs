@@ -94,11 +94,19 @@ namespace GamersGridApp.Controllers.api
             fullStatsDto.Stats = LolDataService.GetStats(region, fullStatsDto.Account.id, api).Single();
 
             //get latest match
-            var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
-            var gameIds = matchIds.matches.Select(g => g.gameId);
-            var matches = LolDataService.GetMatches(api, gameIds);
-            fullStatsDto.SingleMatch = matches[0];
+            //if(fullStatsDto.Stats != null)
+            //{
+            //    var matchIds = LolDataService.GetMatcheList(fullStatsDto.Account.accountId, api, 0, 1);
+            //    var gameIds = matchIds.matches.Select(g => g.gameId);
+            //    var matches = LolDataService.GetMatches(api, gameIds);
+            //    var playerMatchID = matches[0].participantIdentities
+            //        .Where(p => p.player.accountId == fullStatsDto.Account.accountId)
+            //        .Select(pid => pid.participantId)
+            //        .SingleOrDefault();
 
+            //    var playerMatchStats = matches[0].participants.SingleOrDefault(ps => ps.participantId == playerMatchID);
+            //    fullStatsDto.SummonerStats = playerMatchStats;
+            //}
             return fullStatsDto;
         }
 

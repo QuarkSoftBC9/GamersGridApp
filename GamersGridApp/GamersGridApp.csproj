@@ -792,8 +792,11 @@
     <Content Include="Content\UserEditCss\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\controllers\followsController.js" />
+    <Content Include="Scripts\app\controllers\lolSearchController.js" />
     <Content Include="Scripts\app\services\followsService.js" />
+    <Content Include="Scripts\app\services\lolSearchService.js" />
     <Content Include="Scripts\app\services\messagesService.js" />
+    <Content Include="Scripts\app\userInterface\lolSearchUI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
@@ -1308,7 +1311,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Dtos\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

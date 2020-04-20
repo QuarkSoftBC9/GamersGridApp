@@ -11,6 +11,6 @@ namespace GamersGridApp.Core.Dtos.ApiStatsDto
     {
         public LOLStatsDto Stats { get; set; }
         public LOLDto Account { get; set; }
-        public LOLMatchesDto SingleMatch { get; set; }
+        //public Participant SummonerStats { get; set; }
     }
 }
