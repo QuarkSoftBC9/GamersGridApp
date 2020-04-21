@@ -75,6 +75,11 @@ namespace GamersGridApp.Core.ViewModels
                  "Herald1.png";
             return rankString;
         }
+        public string GetLOLRank()
+        {
+            string rankString = GamesStats.Where(gs => gs.Key == "League Of Legends").Select(rank => rank.Value.Rank).SingleOrDefault();
+            return rankString.Substring(0, rankString.IndexOf(" ")).ToLower() + ".png";
+        }
     }
     
 }

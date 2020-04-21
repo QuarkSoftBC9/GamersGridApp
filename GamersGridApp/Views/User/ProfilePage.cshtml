@@ -60,7 +60,7 @@
                         {
                             int sum = gameStats.Value.Wins + gameStats.Value.Losses;
                             string width = ((double)gameStats.Value.Wins / (double)sum * 100).ToString("0,00") + "%";
-                            string tierIcon = gameStats.Key == "League Of Legends" ? "/Content/Images/Games/LOLIcons/tier-icons-base/" + gameStats.Value.Rank.Substring(0, gameStats.Value.Rank.IndexOf(" ")).ToLower() + ".png" :
+                            string tierIcon = gameStats.Key == "League Of Legends" ? "/Content/Images/Games/LOLIcons/tier-icons-base/" + Model.GetLOLRank() :
                                 gameStats.Key == "Overwatch" ? "/Content/Images/Games/OverwatchIcons/" + Model.GetOverWatchRank() :
                                 "/Content/Images/Games/DotaIcons/" + Model.GetDota2Rank();
 
