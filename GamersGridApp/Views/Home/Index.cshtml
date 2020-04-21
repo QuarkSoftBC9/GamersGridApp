@@ -7,7 +7,12 @@
     <div class="container">
         <h1>Stay on the <br> pulse of gaming</h1>
         <p>Made by gamers for gamers</p>
-        <p><a class="btn btn-primary btn-lg sign-in-btn" href="@Url.Action("Register", "Account")" role="button">Register</a></p>
+        <p>
+            <a class="btn btn-primary btn-lg sign-in-btn" 
+               href='@(User.Identity.IsAuthenticated ? "#" : Url.Action("Register", "Account"))'
+              role="button">Register
+            </a>
+        </p>
     </div>
 </div>
 <div class="black">
