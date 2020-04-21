@@ -328,6 +328,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Core\Dtos\NotificationDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Core\Dtos\ApiAcountsDtos\FollowsDto.cs" />
@@ -795,10 +796,12 @@
     <Content Include="Scripts\app\controllers\followsController.js" />
     <Content Include="Scripts\app\controllers\lolEditController.js" />
     <Content Include="Scripts\app\controllers\lolSearchController.js" />
+    <Content Include="Scripts\app\controllers\NotificationsController.js" />
     <Content Include="Scripts\app\services\followsService.js" />
     <Content Include="Scripts\app\services\lolEditService.js" />
     <Content Include="Scripts\app\services\lolSearchService.js" />
     <Content Include="Scripts\app\services\messagesService.js" />
+    <Content Include="Scripts\app\services\NotificationSevice.js" />
     <Content Include="Scripts\app\userInterface\lolUI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1486,6 +1489,7 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

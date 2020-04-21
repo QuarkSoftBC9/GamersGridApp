@@ -25,5 +25,11 @@ namespace GamersGridApp.Persistence.Repositories
                           .Select(n => n.Notification)
                           .ToList();
         }
+
+        public UserNotification GetUserSpecificNotification(int userid, int notificationId)
+        {
+            return _context.UserNotifications
+                .SingleOrDefault(un => un.NotificationId == notificationId && un.UserId == userid);
+        }
     }
 }

@@ -34,6 +34,8 @@ namespace GamersGridApp.Core.Models
         }
 
 
+
+
         public static Notification Follow(User followee, User follower)
         {
             string content = $"{follower.NickName} is now following {followee.NickName}.";

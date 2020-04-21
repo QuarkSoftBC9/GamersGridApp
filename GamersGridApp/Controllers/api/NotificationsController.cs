@@ -1,5 +1,8 @@
 ﻿
+using AutoMapper;
 using GamersGridApp.Core;
+using GamersGridApp.Core.Dtos;
+using GamersGridApp.Core.Models;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
@@ -8,6 +11,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace GamersGridApp.Controllers.api
 {
@@ -41,6 +45,28 @@ namespace GamersGridApp.Controllers.api
             return Ok(userNotifications);
 
 
+        }
+
+        [HttpPut]
+        public IHttpActionResult UpdateNotifications(List<NotificationDto> notifications)
+        {
+            string aspnetuserid = User.Identity.GetUserId();
+            User ggUser = UnitOfWork.GGUsers.GetLoggedUser(aspnetuserid);
+
+            foreach (var notification in notifications)
+            {
+                var userNotification = UnitOfWork.UserNotifications.GetUserSpecificNotification(ggUser.ID, notification.id);
+                if (userNotification != null)
+                    userNotification.ReadNotification();
+            }
+            try
+            {
+                UnitOfWork.Complete();
+                return Ok();
+            } catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }
