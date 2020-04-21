@@ -60,6 +60,9 @@ namespace GamersGridApp.Models
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
             modelBuilder.Configurations.Add(new UserPostingConfiguration());
             modelBuilder.Configurations.Add(new VideoConfiguration());
+            modelBuilder.Configurations.Add(new TeamConfiguration());
+            modelBuilder.Configurations.Add(new TeamUserConfiguration());
+
 
 
             //schema builder for "Follows" table

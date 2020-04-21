@@ -57,6 +57,10 @@ namespace GamersGridApp.Models
 
         public ICollection<UserNotification> UserNotifications { get; set; }
 
+        public ICollection<TeamUser> TeamUsers { get; set; }
+
+        public ICollection<Team> Teams { get; set; }
+
         //Refactored ctors
         protected User()
         {

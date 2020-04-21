@@ -25,6 +25,9 @@ namespace GamersGridApp.Perstistence.EntityConfigurations
               .HasMaxLength(50);
 
 
+            HasMany(u => u.TeamUsers)
+               .WithRequired(f => f.User)
+               .WillCascadeOnDelete(false);
 
 
             HasMany(u => u.Followers)

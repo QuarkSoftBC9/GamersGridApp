@@ -528,11 +528,16 @@
     <Compile Include="Migrations\202004121957445_addingGameStatsGameAcc.Designer.cs">
       <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202004211129401_AddToModelTeamAndTeamUsers.cs" />
+    <Compile Include="Migrations\202004211129401_AddToModelTeamAndTeamUsers.Designer.cs">
+      <DependentUpon>202004211129401_AddToModelTeamAndTeamUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\Team.cs" />
     <Compile Include="Models\Follow.cs" />
     <Compile Include="Models\Game.cs" />
     <Compile Include="Models\GameAccount.cs" />
@@ -544,6 +549,7 @@
     <Compile Include="Models\Notification.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Dtos\ApiAcountsDtos\LOLDto.cs" />
+    <Compile Include="Models\TeamUser.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserGame.cs" />
     <Compile Include="Models\UserNotification.cs" />
@@ -560,6 +566,8 @@
     <Compile Include="Perstistence\EntityConfigurations\MessageConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\NotificationConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\PhotoConfiguration.cs" />
+    <Compile Include="Perstistence\EntityConfigurations\TeamConfiguration.cs" />
+    <Compile Include="Perstistence\EntityConfigurations\TeamUserConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\UserConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\UserGameConfiguration.cs" />
     <Compile Include="Perstistence\EntityConfigurations\UserNotificationConfiguration.cs" />
@@ -1430,6 +1438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202004121957445_addingGameStatsGameAcc.resx">
       <DependentUpon>202004121957445_addingGameStatsGameAcc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202004211129401_AddToModelTeamAndTeamUsers.resx">
+      <DependentUpon>202004211129401_AddToModelTeamAndTeamUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
