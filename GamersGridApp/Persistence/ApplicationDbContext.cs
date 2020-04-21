@@ -25,6 +25,9 @@ namespace GamersGridApp.Persistence
         public DbSet<Message> Messages { get; set; }
         public DbSet<UserNotification> UserNotifications { get; set; }
         public DbSet<UserPosting> UserPostings { get; set; }
+        public DbSet<Team> Teams { get; set; }
+        public DbSet<TeamUser> TeamUsers { get; set; }
+
 
         public ApplicationDbContext()
             : base("GamersGridDb", throwIfV1Schema: false)
@@ -57,7 +60,8 @@ namespace GamersGridApp.Persistence
             modelBuilder.Configurations.Add(new UserNotificationConfiguration());
             modelBuilder.Configurations.Add(new UserPostingConfiguration());
             modelBuilder.Configurations.Add(new VideoConfiguration());
-
+            modelBuilder.Configurations.Add(new TeamConfiguration());
+            modelBuilder.Configurations.Add(new TeamUserConfiguration());
 
             //schema builder for "Follows" table
             //modelBuilder.Entity<User>()

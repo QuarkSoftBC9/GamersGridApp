@@ -340,12 +340,16 @@
     <Compile Include="Core\Dtos\GameDto.cs" />
     <Compile Include="Core\Dtos\SearchEngine\DotaSearchDto.cs" />
     <Compile Include="Core\Dtos\UserDto.cs" />
+    <Compile Include="Core\Models\Team.cs" />
+    <Compile Include="Core\Models\TeamUser.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\ExtraMethods.cs" />
     <Compile Include="Interfaces\INewsFeed.cs" />
+    <Compile Include="Persistence\EntityConfigurations\TeamConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\TeamUserConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202002210115245_InitialModel.cs" />
     <Compile Include="Persistence\Migrations\202002210115245_InitialModel.Designer.cs">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>
@@ -561,6 +565,10 @@
     <Compile Include="Persistence\Migrations\202004182151374_somethingforstani.cs" />
     <Compile Include="Persistence\Migrations\202004182151374_somethingforstani.Designer.cs">
       <DependentUpon>202004182151374_somethingforstani.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202004211336526_TeamsAdded.cs" />
+    <Compile Include="Persistence\Migrations\202004211336526_TeamsAdded.Designer.cs">
+      <DependentUpon>202004211336526_TeamsAdded.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
@@ -1485,6 +1493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202004182151374_somethingforstani.resx">
       <DependentUpon>202004182151374_somethingforstani.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202004211336526_TeamsAdded.resx">
+      <DependentUpon>202004211336526_TeamsAdded.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
