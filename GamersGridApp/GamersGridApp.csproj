@@ -702,6 +702,7 @@
     <Content Include="Content\Images\Games\DotaIcons\Legend3.png" />
     <Content Include="Content\Images\Games\DotaIcons\Legend4.png" />
     <Content Include="Content\Images\Games\DotaIcons\Legend5.png" />
+    <Content Include="Content\Images\Icon\favicon.png" />
     <Content Include="Content\Images\Games\lol.jpg" />
     <Content Include="Content\Images\Games\lol1.jpg" />
     <Content Include="Content\Images\Games\lol2.jpg" />
