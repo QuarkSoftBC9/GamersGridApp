@@ -75,7 +75,7 @@ namespace GamersGridApp.Core.Models
             Wins = wins;
             Losses = losses;
         }
-        public string UpdateKDA(List<LOLMatchesDto> listOfMatches, string accountId)
+        public void UpdateKDA(List<LOLMatchesDto> listOfMatches, string accountId)
         {
             //some defensive programming should be added for values
             var kda = new List<double>();
@@ -88,7 +88,7 @@ namespace GamersGridApp.Core.Models
                 kda.Add(GetKDA(listOfMatches[i], playerId));
             }
             var average = kda.Average();
-            return  average.ToString("0.00");
+            KDA = average.ToString("0.00");
         }
         public double GetKDA(LOLMatchesDto match, int playerID)
         {

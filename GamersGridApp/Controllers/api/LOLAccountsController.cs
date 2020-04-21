@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-30b05775-cdb2-42d5-b7a1-c96762b7b37d";
+        private readonly string api = "RGAPI-4100f21e-cce1-4513-802c-c5f916f7ed4c";
         private readonly int lolID = 1;
 
         private readonly IUnitOfWork UnitOfWork;
@@ -54,7 +54,7 @@ namespace GamersGridApp.Controllers.api
 
             //Check if Game Account with such credential alrady exists
             var accountExists = UnitOfWork.GameAccounts.GetGameAccByNameAndRegion(viewModel.UserName, viewModel.Region);
-            if (accountExists != null && accountExists.Id != userContent.UserGames.SingleOrDefault(g => g.Id == lolID).Id)
+            if (accountExists != null && accountExists.Id != (userContent.UserGames.SingleOrDefault(g => g.GameID == lolID)).Id)
                 return BadRequest("The account already exists");
 
             //Download LOL Account 

@@ -33,8 +33,8 @@ namespace GamersGridApp.Controllers
     
     public ViewResult SearchEngine()
     {
-
-        return View();
+            var viewModel = new AddLOLAccountViewmodel();
+        return View(viewModel);
     }
     public ActionResult Index(string search)
         {
