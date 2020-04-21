@@ -19,19 +19,14 @@
 <body>
     @Html.Partial("_NavBar")
 
-    @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Edit") || ViewData["Title"].Equals("Leaderboards") || ViewData["Title"].Equals("SeachEngine"))
-
+    @if (!(ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Edit") || ViewData["Title"].Equals("Leaderboards") || ViewData["Title"].Equals("SeachEngine")))
     {
 
-
-    }
-
-    else
-    {
         <div class="container">
             @Html.Partial("_LoginSearchPartial")
         </div>
     }
+
 
     @if (ViewData["Title"].Equals("Home") || ViewData["Title"].Equals("Register") || ViewData["Title"].Equals("Login"))
 
