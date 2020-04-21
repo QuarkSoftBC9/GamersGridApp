@@ -10,7 +10,6 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using GamersGridApp.Persistence;
 using System.Web.Security;
-
 using GamersGridApp.Helpers;
 using GamersGridApp.Core.ViewModels;
 using GamersGridApp.Core.Models;
