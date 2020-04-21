@@ -1,6 +1,8 @@
-﻿@using Microsoft.AspNet.Identity
+﻿@using Microsoft.AspNet.Identity;
+@using GamersGridApp.Extensions;
 @if (Request.IsAuthenticated)
 {
+    <p hidden class="persistent-id" id="@User.Identity.GetGGUserId()"></p>
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()

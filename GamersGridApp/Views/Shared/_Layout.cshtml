@@ -46,7 +46,7 @@
         </div>
     }
 
-
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/underscore")
@@ -66,6 +66,8 @@
     @RenderSection("scripts", required: false)
     @if (User.Identity.IsAuthenticated)
     {
+        <script src="/signalr/hubs"></script>
+
         <script type="text/x-template" id="notifications-template">
             <ul class="notifications">
                 <%
@@ -77,11 +79,21 @@
             </ul>
         </script>
 
+        <script type="text/x-template" id="notification-template">
+            <ul class="notifications">
+                <li>
+                    <%= notification.content %>
+                </li>
+            </ul>
+        </script>
+
         <script>
             $(document).ready(function () {
                 let countElement = $(".js-notifications-count");
                 let badgeElement = $(".notifications");
                 NotificationsController.startNotifications(countElement, badgeElement);
+                let userid = $(".persistent-id").attr("id");
+                NotificationsController.enableSignalR(userid, countElement, badgeElement);
             });
         </script>
     }

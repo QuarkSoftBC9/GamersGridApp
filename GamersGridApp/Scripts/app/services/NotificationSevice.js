@@ -29,7 +29,7 @@ let NotificationService = function () {
                     return html;
                 },
                 placement: "bottom"
-            })
+            });
         });
     };
 

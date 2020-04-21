@@ -65,7 +65,8 @@ namespace GamersGridApp.Controllers.api
                 var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
-                followee.Notify(Notification.FollowPersonal(follower));
+                var personalNotification = Notification.FollowPersonal(follower);
+                followee.Notify(personalNotification);
 
                 //Creating the list of users with mutual follows with the 2 interacting users
                 var usersToNotifyBuffer = UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
@@ -82,10 +83,9 @@ namespace GamersGridApp.Controllers.api
                         usersToNotify.Add(user);
                 }
 
-
+                var notification = Notification.Follow(followee, follower);
                 if (usersToNotify.Count != 0)
                 {
-                    var notification = Notification.Follow(followee, follower);
                     foreach (var user in usersToNotify)
                     {   //Notify all Users
                         user.Notify(notification);
@@ -96,6 +96,11 @@ namespace GamersGridApp.Controllers.api
                 //dbContext.SaveChanges();
                 UnitOfWork.Complete();
 
+
+                //signlar logic start
+                NotificationsHub notificationsHub = new NotificationsHub();
+                notificationsHub.SendNotification(usersToNotify, notification);
+                notificationsHub.SendNotificationPersonal(followee, personalNotification);
             }
 
             return Ok();
@@ -126,7 +131,8 @@ namespace GamersGridApp.Controllers.api
                 var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
-                followee.Notify(Notification.UnfollowPersonal(follower));
+                var notificationPersonal = Notification.UnfollowPersonal(follower);
+                followee.Notify(notificationPersonal);
 
                 //Creating the list of users with mutual follows with the 2 interacting users
                 var usersToNotifyBuffer =  UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
@@ -144,19 +150,21 @@ namespace GamersGridApp.Controllers.api
                         usersToNotify.Add(user);
                 }
 
-
+                var notification = Notification.Unfollow(followee, follower);
                 if (usersToNotify.Count != 0)
                 {
-                    var notification = Notification.Unfollow(followee, follower);
                     foreach (var user in usersToNotify)
                     {   //Notify all Users
                         user.Notify(notification);
                     }
                 }
-
+                
 
                 //Write Notifications in Db
                 UnitOfWork.Complete();
+                NotificationsHub notificationsHub = new NotificationsHub();
+                notificationsHub.SendNotification(usersToNotify, notification);
+                notificationsHub.SendNotificationPersonal(followee, notificationPersonal);
 
             }
 
