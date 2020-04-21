@@ -1006,3 +1006,7 @@ input{
     max-width: 100%;
 
 }
+#users_paginate > span:nth-child(2) {
+    margin-left: 10px;
+    margin-right: 10px;
+}

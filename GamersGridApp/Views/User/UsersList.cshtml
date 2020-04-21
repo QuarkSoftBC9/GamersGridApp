@@ -6,7 +6,7 @@
 
 <h2>Users</h2>
 
-<table id="users" class="table table-bordered">
+<table id="users" class="table">
     <thead>
         <tr>
             <th>Nickname</th>
@@ -14,8 +14,7 @@
             <th>City</th>
         </tr>
     </thead>
-    <tbody>
-    </tbody>
+
 </table>
 
 @section scripts
@@ -25,10 +24,9 @@
 
     <script>
         $(document).ready(function () {
-            var table = $("#users").DataTable({
+             $("#users").DataTable({
                 ajax: {
                     url: "/api/users",
-                    // οtan exw polla objects vazw kai dataSrc, twra den xreiazetai
                     dataSrc: ""
                 },
                 columns: [
