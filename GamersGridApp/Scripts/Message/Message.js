@@ -4,6 +4,7 @@ $(document).ready(function () { //This section will run whenever we call Chat.cs
 
     var objHub = $.connection.chatHub;
     var chatid = $("#btnSendMessage").attr("data-chat-id");
+    var currentUserId = $("#usernickname").html();
 
 
     var searchUsers = new Bloodhound({ //*
@@ -51,7 +52,7 @@ $(document).ready(function () { //This section will run whenever we call Chat.cs
     objHub.client.getMessages = function (userName, message, time) {
         var div1class = "";
         var div2class = "";
-        if (userName == "@Model.CurrentUserNickName") {
+        if (userName == currentUserId) {
 
             div1class = "outgoing_msg";
             div2class = "sent_msg";
@@ -83,7 +84,7 @@ $(document).ready(function () { //This section will run whenever we call Chat.cs
 
 
             // <<<<<-- ***** Return to Server [  SendMessageToGroup  ] *****
-            objHub.server.sendMessageToGroup("@Model.CurrentUserNickName", msg, chatboxid);
+            objHub.server.sendMessageToGroup(currentUserId, msg, chatboxid);
         }
         $("#txtMessage").val("");
     });
