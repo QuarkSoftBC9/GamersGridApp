@@ -19,7 +19,6 @@ namespace GamersGridApp.Core.ViewModels
         public bool IsFollowing { get; set; }
         public IDictionary<string, GameAccountStats> GamesStats { get; set; }
 
-<<<<<<< Updated upstream
         public string GetOverWatchRank()
         {
             int rankInt;
@@ -92,9 +91,6 @@ namespace GamersGridApp.Core.ViewModels
             }
             return rankString;
         }
-=======
-        
->>>>>>> Stashed changes
     }
     
 }

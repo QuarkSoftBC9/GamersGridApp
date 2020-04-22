@@ -23,7 +23,6 @@ namespace GamersGridApp.Persistence
         public IUserGameRepository UserGames { get; set; }
         public IUserNotificationRepository UserNotifications { get; set; }
         public IUserRepository GGUsers { get; set; }
-        public ITeamRepository Teams { get; set; }
 
         public UnitOfWork(ApplicationDbContext context)
         {
@@ -38,7 +37,7 @@ namespace GamersGridApp.Persistence
             UserGames = new UserGameRepository(context);
             GGUsers = new UserRepository(context);
             UserNotifications = new UserNotificationRepository(context);
-            Teams = new TeamRepository(context);
+
         }
 
         public void Complete()

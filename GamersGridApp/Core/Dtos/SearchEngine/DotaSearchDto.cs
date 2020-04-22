@@ -1,6 +1,5 @@
 ﻿
 using GamersGridApp.Core.ApiAcountsDtos;
-using GamersGridApp.Core.Models;
 using GamersGridApp.Helpers;
 using System;
 using System.Collections.Generic;
@@ -17,8 +16,6 @@ namespace GamersGridApp.Core.Dto.SearchEngine
         public string AvatarUrl { get; set; }
         public double KDA { get; set; }
         public int Wins { get; set; }
-        public int Losses { get; set; }
-        public string RankIconPath { get; set; }
 
         public DotaSearchDto(DotaDto mainDto, DotaWinsLosesDto wlDto, List<DotaMatchDto> matchesDto)
         {
@@ -28,8 +25,6 @@ namespace GamersGridApp.Core.Dto.SearchEngine
             AvatarUrl = mainDto.profile.avatarmedium;
             KDA = ExtraMethods.CalculateKda(matchesDto);
             Wins = wlDto.win;
-            Losses = wlDto.lose;
-            RankIconPath = GameAccountStats.GetDota2Rank(CompetitiveRank);
         }
     }
 }

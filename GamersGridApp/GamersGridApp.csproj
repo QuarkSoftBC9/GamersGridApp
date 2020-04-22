@@ -327,7 +327,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
-    <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Dtos\NotificationDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
@@ -341,13 +340,6 @@
     <Compile Include="Core\Dtos\GameDto.cs" />
     <Compile Include="Core\Dtos\SearchEngine\DotaSearchDto.cs" />
     <Compile Include="Core\Dtos\UserDto.cs" />
-<<<<<<< Updated upstream
-=======
-    <Compile Include="Core\Models\Team.cs" />
-    <Compile Include="Core\Models\TeamUser.cs" />
-    <Compile Include="Core\Repositories\ITeamRepository.cs" />
-    <Compile Include="Core\ViewModels\NewTeamViewModel.cs" />
->>>>>>> Stashed changes
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -609,7 +601,6 @@
     <Compile Include="Persistence\EntityConfigurations\UserNotificationConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\UserPostingConfiguration.cs" />
     <Compile Include="Persistence\EntityConfigurations\VideoConfiguration.cs" />
-    <Compile Include="Persistence\Repositories\TeamRepository.cs" />
     <Compile Include="Persistence\UnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Persistence\Repositories\FollowsRepository.cs" />
@@ -804,18 +795,15 @@
     <Content Include="Content\toastr.min.css" />
     <Content Include="Content\UserEditCss\style.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
-    <Content Include="Scripts\app\controllers\dotaSearchController.js" />
     <Content Include="Scripts\app\controllers\followsController.js" />
     <Content Include="Scripts\app\controllers\lolEditController.js" />
     <Content Include="Scripts\app\controllers\lolSearchController.js" />
     <Content Include="Scripts\app\controllers\NotificationsController.js" />
-    <Content Include="Scripts\app\services\dotaSearchService.js" />
     <Content Include="Scripts\app\services\followsService.js" />
     <Content Include="Scripts\app\services\lolEditService.js" />
     <Content Include="Scripts\app\services\lolSearchService.js" />
     <Content Include="Scripts\app\services\messagesService.js" />
     <Content Include="Scripts\app\services\NotificationSevice.js" />
-    <Content Include="Scripts\app\userInterface\dotaUI.js" />
     <Content Include="Scripts\app\userInterface\lolUI.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -1328,8 +1316,6 @@
     <Content Include="Views\User\OverWatchAccount.cshtml" />
     <Content Include="Views\User\PostMessage.cshtml" />
     <Content Include="Views\Home\Leaderboards.cshtml" />
-    <Content Include="Views\Team\New.cshtml" />
-    <Content Include="Views\Team\Team.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
