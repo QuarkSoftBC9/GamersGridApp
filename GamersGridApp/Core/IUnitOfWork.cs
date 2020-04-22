@@ -15,6 +15,7 @@ namespace GamersGridApp.Core
         IUserGameRepository UserGames { get; set; }
         IUserNotificationRepository UserNotifications { get; set; }
         IUserRepository GGUsers { get; set; }
+        ITeamRepository Teams { get; set; }
         void Complete();
     }
 }

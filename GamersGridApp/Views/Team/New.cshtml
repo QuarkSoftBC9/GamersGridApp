@@ -1,0 +1,31 @@
+﻿@model GamersGridApp.Core.ViewModels.NewTeamViewModel
+@{
+    ViewBag.Title = "New";
+}
+
+<h2>Add New Team</h2>
+
+@using (Html.BeginForm("New", "Team"))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Team.AdminID)
+    <div class="form-group">
+        @Html.LabelFor(m => m.Team.Game)
+        @Html.DropDownListFor(m => m.Team.GameID, new SelectList(Model.Games, "ID", "Title"), "--Choose Game--", new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Team.GameID)
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Team.Name)
+        @Html.TextBoxFor(m => m.Team.Name)
+        @Html.ValidationMessageFor(m => m.Team.Name)
+    </div>
+    @*<div class="form-group">
+            @Html.LabelFor(m => m.Team.Description)
+            @Html.TextBoxFor(m => m.Team.Description)
+            @Html.ValidationMessageFor(m => m.Team.Description)
+        </div>*@
+    <button type="submit" class="btn btn-primary btn-lg">Save</button>
+
+
+
+}
