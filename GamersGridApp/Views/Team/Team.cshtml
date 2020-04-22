@@ -1,0 +1,49 @@
+﻿@model GamersGridApp.Core.Models.Team
+@{
+    ViewBag.Title = "Team";
+}
+
+<img src="@Model.Game.SearchIconPath" />
+<h2>@Model.Name</h2>
+
+<h3>Team leader @Model.Admin.NickName</h3>
+
+<div class="col-sm-4 col-md-3">
+    <div class="thumb">
+        <a href="@(User.Identity.IsAuthenticated ? $"{Url.Action("ProfilePage", "User",new { userid = Model.Admin.ID })}" : "#")">
+
+            <img src="@((Model.Admin.Avatar == "nofile.png" || String.IsNullOrEmpty(Model.Admin.Avatar)) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@Model.Admin.ID}/{@Model.Admin.Avatar}")" class="img-responsive">
+            @*<div class="hover-opaque">
+                    <div class="centered">@Model.UserFavoriteGame[teamUser.User.ID]<br> </div>
+                </div>*@
+        </a>
+    </div>
+    <div class=" thumb-caption text-center ">
+        <figcaption><a href="@Url.Action("ProfilePage", "User",new { userid = @Model.Admin.ID })">@Model.Admin.NickName</a></figcaption>
+
+    </div>
+</div>
+
+<h3>Team Members</h3>
+
+@foreach (var teamUser in Model.TeamUsers)
+{
+    <div class="col-sm-4 col-md-3">
+        <div class="thumb">
+            <a href="@(User.Identity.IsAuthenticated ? $"{Url.Action("ProfilePage", "User",new { userid = teamUser.User.ID })}" : "#")">
+
+                <img src="@((teamUser.User.Avatar == "nofile.png" || String.IsNullOrEmpty(teamUser.User.Avatar)) ? "/Content/Images/gamerdefault.jpg" :$"/Content/Images/UserPhotos/{@teamUser.User.ID}/{@teamUser.User.Avatar}")" class="img-responsive">
+                @*<div class="hover-opaque">
+                    <div class="centered">@Model.UserFavoriteGame[teamUser.User.ID]<br> </div>
+                </div>*@
+            </a>
+        </div>
+        <div class=" thumb-caption text-center ">
+            <figcaption><a href="@Url.Action("ProfilePage", "User",new { userid = @teamUser.User.ID })">@teamUser.User.NickName</a></figcaption>
+
+        </div>
+    </div>
+
+}
+
+
