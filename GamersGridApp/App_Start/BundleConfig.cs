@@ -16,6 +16,7 @@ namespace GamersGridApp
                         "~/Scripts/app/controllers/followsController.js",
                         "~/Scripts/app/services/NotificationSevice.js",
                         "~/Scripts/app/controllers/NotificationsController.js"
+                    
 
                 ));
             bundles.Add(new ScriptBundle("~/bundles/searchEngine").Include(
@@ -24,7 +25,9 @@ namespace GamersGridApp
                         "~/Scripts/app/controllers/lolSearchController.js",
                          "~/Scripts/app/services/dotaSearchService.js",
                         "~/Scripts/app/userInterface/dotaUI.js",
-                        "~/Scripts/app/controllers/dotaSearchController.js"
+                        "~/Scripts/app/controllers/dotaSearchController.js",
+                            "~/Scripts/app/services/OverwatchService.js",
+                        "~/Scripts/app/controllers/OverwatchSearchController.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/costumize").Include(

@@ -330,6 +330,7 @@
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Core\Dtos\NotificationDto.cs" />
+    <Compile Include="Core\Dtos\SearchEngine\OverwatchSearchDto.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Dtos\ApiAcountsDtos\DotaDto.cs" />
     <Compile Include="Core\Dtos\ApiAcountsDtos\FollowsDto.cs" />
@@ -345,6 +346,7 @@
     <Compile Include="Core\Models\TeamUser.cs" />
     <Compile Include="Core\Repositories\ITeamRepository.cs" />
     <Compile Include="Core\ViewModels\NewTeamViewModel.cs" />
+    <Compile Include="Core\ViewModels\SearchEngineViewModel.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -808,12 +810,14 @@
     <Content Include="Scripts\app\controllers\lolEditController.js" />
     <Content Include="Scripts\app\controllers\lolSearchController.js" />
     <Content Include="Scripts\app\controllers\NotificationsController.js" />
+    <Content Include="Scripts\app\controllers\OverwatchSearchController.js" />
     <Content Include="Scripts\app\services\dotaSearchService.js" />
     <Content Include="Scripts\app\services\followsService.js" />
     <Content Include="Scripts\app\services\lolEditService.js" />
     <Content Include="Scripts\app\services\lolSearchService.js" />
     <Content Include="Scripts\app\services\messagesService.js" />
     <Content Include="Scripts\app\services\NotificationSevice.js" />
+    <Content Include="Scripts\app\services\OverwatchService.js" />
     <Content Include="Scripts\app\userInterface\dotaUI.js" />
     <Content Include="Scripts\app\userInterface\lolUI.js" />
     <Content Include="Scripts\bootstrap.js" />

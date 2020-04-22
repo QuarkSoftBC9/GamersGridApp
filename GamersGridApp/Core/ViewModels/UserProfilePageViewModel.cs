@@ -32,7 +32,7 @@ namespace GamersGridApp.Core.ViewModels
                 rankInt > 2500 ? "Competitive_Platinum_Icon.png" :
                 rankInt > 2000 ? "Competitive_Gold_Icon.png" :
                 rankInt > 1500 ? "Competitive_Silver_Icon.png" :
-                rankInt > 0 ? "Competitive_Bronze_Icon.png" : "no data";
+                rankInt > 0 ? "Competitive_Bronze_Icon.png" : "Competitive_Bronze_Icon.png";
             }
             return rankString;
         }

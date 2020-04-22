@@ -1,5 +1,6 @@
 ﻿using GamersGridApp.Core;
 using GamersGridApp.Core.ApiAcountsDtos;
+using GamersGridApp.Core.Dtos.SearchEngine;
 using GamersGridApp.Core.Models;
 using GamersGridApp.Core.ViewModels;
 using GamersGridApp.WebServices;
@@ -49,8 +50,10 @@ namespace GamersGridApp.Controllers.api
             {
                 return BadRequest(e.Message);
             }
-
-            return Ok(owCompleteDto);
+            
+            OverwatchSearchDto searchDto = new OverwatchSearchDto(owCompleteDto,battleTag,region);
+            
+            return Ok(searchDto);
         }
         [HttpPost]
         public IHttpActionResult AddAccount(AddOverwatchAccViewModel viewModel)

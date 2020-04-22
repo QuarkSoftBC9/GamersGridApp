@@ -31,9 +31,9 @@ namespace GamersGridApp.Controllers
             base.Dispose(disposing);
         }
     
-    public ViewResult SearchEngine()
+    public ActionResult SearchEngine()
     {
-            var viewModel = new AddLOLAccountViewmodel();
+            var viewModel = new SearchEngineViewModel();
         return View(viewModel);
     }
     public ActionResult Index(string search)

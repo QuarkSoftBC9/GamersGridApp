@@ -98,9 +98,9 @@ namespace GamersGridApp.Controllers.api
 
 
                 //signlar logic start
-                NotificationsHub notificationsHub = new NotificationsHub();
-                notificationsHub.SendNotification(usersToNotify, notification);
-                notificationsHub.SendNotificationPersonal(followee, personalNotification);
+                //NotificationsHub notificationsHub = new NotificationsHub();
+                //notificationsHub.SendNotification(usersToNotify, notification);
+                //notificationsHub.SendNotificationPersonal(followee, personalNotification);
             }
 
             return Ok();
@@ -162,9 +162,9 @@ namespace GamersGridApp.Controllers.api
 
                 //Write Notifications in Db
                 UnitOfWork.Complete();
-                NotificationsHub notificationsHub = new NotificationsHub();
-                notificationsHub.SendNotification(usersToNotify, notification);
-                notificationsHub.SendNotificationPersonal(followee, notificationPersonal);
+                //NotificationsHub notificationsHub = new NotificationsHub();
+                //notificationsHub.SendNotification(usersToNotify, notification);
+                //notificationsHub.SendNotificationPersonal(followee, notificationPersonal);
 
             }
 
