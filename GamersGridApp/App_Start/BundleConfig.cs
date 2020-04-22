@@ -21,7 +21,10 @@ namespace GamersGridApp
             bundles.Add(new ScriptBundle("~/bundles/searchEngine").Include(
                     "~/Scripts/app/services/lolSearchService.js",
                         "~/Scripts/app/userInterface/lolUI.js",
-                        "~/Scripts/app/controllers/lolSearchController.js"
+                        "~/Scripts/app/controllers/lolSearchController.js",
+                         "~/Scripts/app/services/dotaSearchService.js",
+                        "~/Scripts/app/userInterface/dotaUI.js",
+                        "~/Scripts/app/controllers/dotaSearchController.js"
                 ));
 
             bundles.Add(new ScriptBundle("~/bundles/costumize").Include(

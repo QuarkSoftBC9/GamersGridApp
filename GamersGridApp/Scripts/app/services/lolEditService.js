@@ -4,10 +4,11 @@
             console.log(account);
             $.post("/api/LOLAccounts", { userName: account.name, region: account.region })
                 .done(function (e) {
+                    toastr.success("Account has been connected");
                     console.log(e);
                 })
-                .fail(function () {
-                    toastr.error("Something failed");
+                .fail(function (responseText) {
+                    toastr.error(responseText);
                 });
         },
     }
