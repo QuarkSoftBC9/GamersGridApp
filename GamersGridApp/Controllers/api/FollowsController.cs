@@ -28,13 +28,8 @@ namespace GamersGridApp.Controllers.api
         [HttpGet]
         public IHttpActionResult CheckRelation(int followerId, int followeeId)
         {
-            //var followRelation1 = dbContext.Follows
-            //                       .SingleOrDefault(f => f.FollowerId == followerId && f.UserId == followeeId);
-
+           
             var followRelation1 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(followerId, followeeId);
-
-            //var followRelation2 = dbContext.Follows
-            //                 .SingleOrDefault(f => f.FollowerId == followeeId && f.UserId == followerId);
 
             var followRelation2 = UnitOfWork.Follows.GetFollowRelationOfTwoUsers(followeeId, followerId);
 
@@ -47,13 +42,6 @@ namespace GamersGridApp.Controllers.api
         [HttpPost]
         public IHttpActionResult Follow(FollowsDto followDto)
         {
-            //checking for existing relation in db
-            //Follow existingFollowInDb = dbContext.Follows
-            //              .Include(f => f.User)
-            //              .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
-
-
-          
 
             // if not, a new follow gets created
             Follow newFollow = new Follow(followDto.FolloweeId, followDto.FollowerId);
@@ -77,17 +65,10 @@ namespace GamersGridApp.Controllers.api
                 var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
-                followee.Notify(Notification.FollowPersonal(follower));
+                var personalNotification = Notification.FollowPersonal(follower);
+                followee.Notify(personalNotification);
 
                 //Creating the list of users with mutual follows with the 2 interacting users
-                //var usersToNotifyBuffer = dbContext.Follows
-                //    .Include(f => f.Follower)
-                //    .Include(f => f.User)
-                //    .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
-                //    .Select(f => f.Follower)
-                //    .Distinct()
-                //    .Include(u => u.Followees)
-                //    .ToList();
                 var usersToNotifyBuffer = UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
 
                 var usersToNotify = new List<User>();
@@ -102,12 +83,12 @@ namespace GamersGridApp.Controllers.api
                         usersToNotify.Add(user);
                 }
 
-
+                var notification = Notification.Follow(followee, follower);
                 if (usersToNotify.Count != 0)
                 {
                     foreach (var user in usersToNotify)
                     {   //Notify all Users
-                        user.Notify(Notification.Follow(followee, follower));
+                        user.Notify(notification);
                     }
                 }
 
@@ -115,6 +96,11 @@ namespace GamersGridApp.Controllers.api
                 //dbContext.SaveChanges();
                 UnitOfWork.Complete();
 
+
+                //signlar logic start
+                NotificationsHub notificationsHub = new NotificationsHub();
+                notificationsHub.SendNotification(usersToNotify, notification);
+                notificationsHub.SendNotificationPersonal(followee, personalNotification);
             }
 
             return Ok();
@@ -123,18 +109,14 @@ namespace GamersGridApp.Controllers.api
         public IHttpActionResult UnFollow(FollowsDto followDto)
         {
             //checking for existing relation in db
-            //Follow existingFollowInDb = dbContext.Follows
-            //              .Include(f => f.User)
-            //              .SingleOrDefault(f => f.User.ID == followDto.FolloweeId && f.FollowerId == followDto.FollowerId);
+     
             Follow existingFollowInDb = UnitOfWork.Follows.GetFollowRelationOfTwoUsersIncludingUser(followDto.FolloweeId, followDto.FollowerId);
 
 
             // if yes
             try 
             {
-                //dbContext.Follows.Remove(existingFollowInDb);
                 UnitOfWork.Follows.Remove(existingFollowInDb);
-                //dbContext.SaveChanges();
                 UnitOfWork.Complete();
 
             }
@@ -144,22 +126,15 @@ namespace GamersGridApp.Controllers.api
             }
             finally
             {
-                //var follower = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FollowerId);
-                //var followee = dbContext.GamersGridUsers.Single(u => u.ID == followDto.FolloweeId);
+
                 var follower = UnitOfWork.GGUsers.GetUser(followDto.FollowerId);
                 var followee = UnitOfWork.GGUsers.GetUser(followDto.FolloweeId);
 
                 // Creating the personalized Message for followee
-                followee.Notify(Notification.UnfollowPersonal(follower));
+                var notificationPersonal = Notification.UnfollowPersonal(follower);
+                followee.Notify(notificationPersonal);
 
                 //Creating the list of users with mutual follows with the 2 interacting users
-                //var usersToNotifyBuffer = dbContext.Follows
-                //    .Include(f => f.Follower)
-                //    .Include(f => f.User)
-                //    .Where(f => f.UserId == followee.ID || f.UserId == follower.ID)
-                //    .Select(f => f.Follower)
-                //    .Include(u => u.Followees)
-                //    .ToList();
                 var usersToNotifyBuffer =  UnitOfWork.GGUsers.GetFollowersOfTwoUsersWithTheirFollowees(followee.ID, follower.ID);
 
                 var usersToNotify = new List<User>();
@@ -175,28 +150,25 @@ namespace GamersGridApp.Controllers.api
                         usersToNotify.Add(user);
                 }
 
-
+                var notification = Notification.Unfollow(followee, follower);
                 if (usersToNotify.Count != 0)
                 {
                     foreach (var user in usersToNotify)
                     {   //Notify all Users
-                        user.Notify(Notification.Unfollow(followee, follower));
+                        user.Notify(notification);
                     }
                 }
-
+                
 
                 //Write Notifications in Db
                 UnitOfWork.Complete();
+                NotificationsHub notificationsHub = new NotificationsHub();
+                notificationsHub.SendNotification(usersToNotify, notification);
+                notificationsHub.SendNotificationPersonal(followee, notificationPersonal);
 
             }
 
             return Ok();
         }
-        //[HttpGet] 
-        //public int GetFollowers(int id)
-        //{
-        //    var userfollowers = dbContext.Follows.Where(u => u.UserId == id).ToList().Count;
-        //    return userfollowers;
-        //}
     }
 }

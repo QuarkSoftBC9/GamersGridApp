@@ -20,6 +20,8 @@ namespace GamersGridApp.Core.Models
 
         public ICollection<Photo> Photos { get; set; }
 
+        public ICollection<Team> Teams { get; set; }
+
         public Game()
         {
             Photos = new List<Photo>() { };

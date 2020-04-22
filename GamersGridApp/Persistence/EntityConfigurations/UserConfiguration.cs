@@ -37,6 +37,10 @@ namespace GamersGridApp.Persistence.EntityConfigurations
 
               HasMany(m => m.MessageChatUsers)
                 .WithRequired(m => m.User);
+
+            HasMany(u => u.TeamUsers)
+               .WithRequired(f => f.User)
+               .WillCascadeOnDelete(false);
         }
     }
 }

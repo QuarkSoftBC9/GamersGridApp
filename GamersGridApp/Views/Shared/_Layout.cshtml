@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gamer's Grid</title>
-    <link rel="icon" href="@Url.Content("~/Content/Images/Icon/favicon.png")"/>
+    <link rel="icon" href="@Url.Content("~/Content/Images/Icon/favicon.png")" />
     <link href="https://fonts.googleapis.com/css?family=Sen:400,700,800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&display=swap" rel="stylesheet">
@@ -46,7 +46,7 @@
         </div>
     }
 
-
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/underscore")
@@ -64,40 +64,40 @@
 
     @*@Scripts.Render("~/bundles/popper")*@
     @RenderSection("scripts", required: false)
-    <script type="text/x-template" id="notifications-template">
-        <ul class="notifications">
-            <%
-            _.each(notifications, function(notification) { %>
-            <li>
-                <%= notification.content %>
-            </li>
-            <% }) %>
-        </ul>
-    </script>
-    <script>
-        $(document).ready(function () {
-            $.getJSON("/api/notifications", function (notifications) {
-                if (notifications.length == 0)
-                    return;
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="/signalr/hubs"></script>
 
-                $(".js-notifications-count")
-                    .text(notifications.length)
-                    .removeClass("hide")
-                    .addClass("animated bounceInDown");
+        <script type="text/x-template" id="notifications-template">
+            <ul class="notifications">
+                <%
+                _.each(notifications, function(notification) { %>
+                <li>
+                    <%= notification.content %>
+                </li>
+                <% }) %>
+            </ul>
+        </script>
 
-                $(".notifications").popover({
-                    html: true,
-                    title: "Notifications",
-                    content: function () {
-                        var compiled = _.template($("#notifications-template").html());
-                        var html = compiled({ notifications: notifications })
-                        return html;
-                    },
-                    placement: "bottom"
-                })
+        <script type="text/x-template" id="notification-template">
+            <ul class="notifications">
+                <li>
+                    <%= notification.content %>
+                </li>
+            </ul>
+        </script>
+
+        <script>
+            $(document).ready(function () {
+                let countElement = $(".js-notifications-count");
+                let badgeElement = $(".notifications");
+                NotificationsController.startNotifications(countElement, badgeElement);
+                let userid = $(".persistent-id").attr("id");
+                NotificationsController.enableSignalR(userid, countElement, badgeElement);
             });
-        });
-    </script>
+        </script>
+    }
+
 </body>
 
 </html>

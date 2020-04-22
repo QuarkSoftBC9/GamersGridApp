@@ -21,6 +21,9 @@ namespace GamersGridApp.App_Start
             CreateMap<User, UserDto>();
             CreateMap<UserDto, User>();
 
+            //CreateMap<Notification, NotificationDto>();
+            //CreateMap<NotificationDto, Notification>();
+
             //CreateMap<LOLDto, LOLAccount>();
             //CreateMap<LOLAccount, LOLDto>();
 
