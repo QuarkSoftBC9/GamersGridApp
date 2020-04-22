@@ -340,6 +340,8 @@
     <Compile Include="Core\Dtos\GameDto.cs" />
     <Compile Include="Core\Dtos\SearchEngine\DotaSearchDto.cs" />
     <Compile Include="Core\Dtos\UserDto.cs" />
+    <Compile Include="Core\Models\Team.cs" />
+    <Compile Include="Core\Models\TeamUser.cs" />
     <Compile Include="Enums\NotificationType.cs" />
     <Compile Include="Extensions\IdentityExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -348,6 +350,8 @@
     <Compile Include="Helpers\ExtraMethods.cs" />
     <Compile Include="Interfaces\INewsFeed.cs" />
     <Compile Include="NotificationsHub.cs" />
+    <Compile Include="Persistence\EntityConfigurations\TeamConfiguration.cs" />
+    <Compile Include="Persistence\EntityConfigurations\TeamUserConfiguration.cs" />
     <Compile Include="Persistence\Migrations\202002210115245_InitialModel.cs" />
     <Compile Include="Persistence\Migrations\202002210115245_InitialModel.Designer.cs">
       <DependentUpon>202002210115245_InitialModel.cs</DependentUpon>
