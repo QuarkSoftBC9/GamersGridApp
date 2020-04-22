@@ -21,9 +21,9 @@
                 <div class="card-header"> </div>
 
                 <div class="card-body">
-                    <input type="text" class="form-control" placeholder="Type ID of Player" id="dota-id" />
+                    <input type="text" class="form-control" placeholder="Type ID of Player" id="txtSearch" />
                     <div class="input-group-btn">
-                        <button class="btn btn-primary dota-search" type="submit">
+                        <button class="btn btn-primary" type="submit">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </div>
@@ -74,7 +74,7 @@
 
             <h4>Dota 2</h4>
             <div class="card card-default">
-                <div class="card-header" id="dota-name-output">Username</div>
+                <div class="card-header">Username</div>
                 <div class="card-body card-6-6">
                     <div class="card-left">
                         @*<img src="~/Content/Images/Games/DotaIcons/Ancient5.png" class="img-responsive">*@
@@ -82,19 +82,14 @@
 
                     </div>
                     <div class="card-right">
-                        <img src="~/Content/Images/Games/LOLIcons/platinum_ii.png" id="dota-rank-icon" class="img-responsive">
+                        <img src="~/Content/Images/Games/DotaIcons/Ancient5.png" class="img-responsive">
                     </div>
                 </div>
                 <div class="card-body">
-                    <p>
-                        Division MMR :<span id="dota-rank"> Diamond V</span><br />
-                        <br />KDA: <span id="dota-KDA">10</span>
-                        <br />Wins: <span id="dota-wins">10</span>
-                        <br />Losses: <span id="dota-losses">5</span>
-                    </p>
-                </div>
+                    <p>Division: Ancient V<br /><br />Kills: 10<br />Deaths: 5<br />  Assist:2</p>                </div>
                 <div class="card-footer">Footer</div>
             </div>
+
         </div>
         <div class="col-sm-4">
 
@@ -272,7 +267,6 @@
     <script>
         $(document).ready(function () {
             LeagueController.init();
-            DotaController.init();
         })
     </script>
 }

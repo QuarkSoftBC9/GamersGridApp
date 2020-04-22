@@ -60,9 +60,9 @@
                         {
                             int sum = gameStats.Value.Wins + gameStats.Value.Losses;
                             string width = ((double)gameStats.Value.Wins / (double)sum * 100).ToString("0,00") + "%";
-                            string tierIcon = gameStats.Key == "League Of Legends" ? "/Content/Images/Games/LOLIcons/tier-icons-base/" + gameStats.Value.GetLOLRank() :
-                                gameStats.Key == "Overwatch" ? "/Content/Images/Games/OverwatchIcons/" + gameStats.Value.GetOverWatchRank() :
-                                "/Content/Images/Games/DotaIcons/" + gameStats.Value.GetDota2Rank();
+                            string tierIcon = gameStats.Key == "League Of Legends" ? "/Content/Images/Games/LOLIcons/tier-icons-base/" + Model.GetLOLRank() :
+                                gameStats.Key == "Overwatch" ? "/Content/Images/Games/OverwatchIcons/" + Model.GetOverWatchRank() :
+                                "/Content/Images/Games/DotaIcons/" + Model.GetDota2Rank();
 
                             <div class="panel panel-default">
                                 <div class="panel-heading">

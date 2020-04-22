@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-6118e10b-72a0-406b-8d89-349fabb618eb";
+        private readonly string api = "RGAPI-4100f21e-cce1-4513-802c-c5f916f7ed4c";
         private readonly int lolID = 1;
 
         private readonly IUnitOfWork UnitOfWork;
@@ -68,20 +68,19 @@ namespace GamersGridApp.Controllers.api
             statsDto = LolDataService.GetStats(userGame.GameAccount.AccountRegions, userGame.GameAccount.AccountIdentifier, api);
 
             //Update or create Stats
-            if (statsDto == null)
-                return BadRequest("We encountered issues loading your stats, make sure your account isn't set to private");
+            if(statsDto != null)
+            {
+                userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
+                userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);//break here check
 
-            userGame.GameAccount.GameAccountStats = UnitOfWork.GameAccountStats.GetGameAccStatsByID(userGame.Id);
-            userGame.GameAccount.UpdateStats(statsDto[0].tier + " " + statsDto[0].rank, statsDto[0].wins, statsDto[0].losses);//break here check
+                //Getting List of matche ids
+                var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
+                var gameIds = matchIds.matches.Select(g => g.gameId);
 
-            //Getting List of matche ids
-            var matchIds = LolDataService.GetMatcheList(userGame.GameAccount.AccountIdentifier2, api);
-            var gameIds = matchIds.matches.Select(g => g.gameId);
-
-            //getting the list of matches
-            var matches = LolDataService.GetMatches(api, gameIds);
-            userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
-            
+                //getting the list of matches
+                var matches = LolDataService.GetMatches(api, gameIds);
+                userGame.GameAccount.GameAccountStats.UpdateKDA(matches, userGame.GameAccount.AccountIdentifier2);
+            }
             UnitOfWork.Complete();
             return Ok(statsDto[0]);
 
