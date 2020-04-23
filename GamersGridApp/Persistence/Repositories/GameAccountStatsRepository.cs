@@ -28,7 +28,7 @@ namespace GamersGridApp.Persistence.Repositories
                 .Where(g => g.GameAccount.UserGame.GameID == gameId)
                 .Include(g => g.GameAccount.UserGame.User)
                 .OrderByDescending(g => g.Wins)
-                .Take(4)
+                .Take(20)
                 .ToList();
         }
 

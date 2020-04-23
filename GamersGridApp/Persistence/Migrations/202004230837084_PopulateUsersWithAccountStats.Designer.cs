@@ -7,13 +7,13 @@ namespace GamersGridApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class PopulatingUsersAndAspNetUsers : IMigrationMetadata
+    public sealed partial class PopulateUsersWithAccountStats : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulatingUsersAndAspNetUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateUsersWithAccountStats));
         
         string IMigrationMetadata.Id
         {
-            get { return "202003181156006_PopulatingUsersAndAspNetUsers"; }
+            get { return "202004230837084_PopulateUsersWithAccountStats"; }
         }
         
         string IMigrationMetadata.Source

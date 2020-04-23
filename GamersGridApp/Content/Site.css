@@ -154,11 +154,11 @@ div.col-lg-8:nth-child(3) {
 
 
 .row {
-     margin-right: 0px; 
-     margin-left: 0px; 
+    margin-right: 0px;
+    margin-left: 0px;
 }
-body {
 
+body {
     padding-top: 105px;
     font-family: 'Sen', sans-serif;
     padding-top: 50px;
@@ -284,7 +284,7 @@ textarea {
 }
 
 .fa-comment-alt {
-    padding-top:2px;
+    padding-top: 2px;
 }
 
 .navbar-inverse .navbar-collapse, .navbar-inverse .navbar-form {
@@ -625,10 +625,10 @@ figcaption a {
 /* PROFILE */
 
 .profile__contact-hr::before {
-content: "OR";
+    content: "OR";
 }
 
-.profile-container{
+.profile-container {
     margin-top: 40px;
 }
 
@@ -638,10 +638,13 @@ content: "OR";
 
 .panel-heading {
     border-bottom: 0;
+    text-align: center;
 }
 
 .panel-title {
     font-size: 17px;
+    margin: 15px;
+    text-transform: uppercase;
 }
 
     .panel-title > small {
@@ -835,7 +838,7 @@ content: "OR";
     padding: 12px 20px;
     margin-bottom: 20px;
     color: #fff;
-    background-color: #333;
+    background-color: #333 !important;
     border-color: #333;
     font-size: medium;
     border-radius: 20px;
@@ -976,7 +979,6 @@ content: "OR";
 
 .caption-games > h4 {
     color: #222;
-    
 }
 
 
@@ -998,15 +1000,21 @@ content: "OR";
     border: none;
 }
 
-#Description{
+#Description {
     max-width: 100%;
 }
 
-input{
+input {
     max-width: 100%;
-
 }
+
 #users_paginate > span:nth-child(2) {
     margin-left: 10px;
     margin-right: 10px;
+}
+
+#league-rank-icon {
+    width: 150px;
+    display: block;
+    margin: auto;
 }

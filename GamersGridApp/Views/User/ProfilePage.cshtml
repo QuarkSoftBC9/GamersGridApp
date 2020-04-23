@@ -65,32 +65,35 @@
                                 "/Content/Images/Games/DotaIcons/" + gameStats.Value.GetDota2Rank();
 
                             <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <h2 class="panel-title"><strong>@gameStats.Key</strong><img src=@tierIcon id="league-rank-icon" class="img-responsive"></h2>
-                                </div>
-                                <div class="panel-body">
-                                    <table class="table profile__table">
-                                        <tbody>
-                                            <tr>
-                                                <th><strong>Rank</strong></th>
-                                                <td>@gameStats.Value.Rank</td>
-                                            </tr>
-                                            <tr>
-                                                <th><strong>Wins</strong></th>
-                                                <td>
-                                                    <div class="progress">
-                                                        <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="@gameStats.Value.Wins" aria-valuemin="0" aria-valuemax="@sum" style="width: @width;">
-                                                            @gameStats.Value.Wins
+                                <h2 class="panel-title"><strong>@gameStats.Key</strong></h2>
+                                <div class="row">
+                                    <div class="panel-heading col-xs-3">
+                                        <img src=@tierIcon id="league-rank-icon" class="img-responsive">
+                                    </div>
+                                    <div class="panel-body col-xs-9">
+                                        <table class="table profile__table">
+                                            <tbody>
+                                                <tr>
+                                                    <th><strong>Rank</strong></th>
+                                                    <td>@gameStats.Value.Rank</td>
+                                                </tr>
+                                                <tr>
+                                                    <th><strong>Wins</strong></th>
+                                                    <td>
+                                                        <div class="progress">
+                                                            <div class="progress-bar progress-bar-purple" role="progressbar" aria-valuenow="@gameStats.Value.Wins" aria-valuemin="0" aria-valuemax="@sum" style="width: @width;">
+                                                                @gameStats.Value.Wins
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th><strong>KDA</strong></th>
-                                                <td>@gameStats.Value.KDA</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th><strong>KDA</strong></th>
+                                                    <td>@gameStats.Value.KDA</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
                                 </div>
                             </div>
                         }

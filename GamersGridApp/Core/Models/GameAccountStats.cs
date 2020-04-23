@@ -112,7 +112,14 @@ namespace GamersGridApp.Core.Models
         {
             int rankInt;
             //string rankString = GamesStats.Where(gs => gs.Key == "Overwatch").Select(mmr => mmr.Value.Rank).SingleOrDefault();
-            rankInt = Int32.Parse(Rank);
+            if (Rank == null)
+            {
+                rankInt = 1;
+            }
+            else
+            {
+                rankInt = Int32.Parse(Rank);
+            }
             var rankString = rankInt > 4000 ? "Competitive_Grandmaster_Icon.png" :
             rankInt > 3500 ? "Competitive_Master_Icon.png" :
             rankInt > 3000 ? "Competitive_Diamond_Icon.png" :
@@ -126,7 +133,15 @@ namespace GamersGridApp.Core.Models
         {
             int rankInt;
             //string rankString = GamesStats.Where(gs => gs.Key == "Dota 2").Select(mmr => mmr.Value.Rank).SingleOrDefault();
-            rankInt = Int32.Parse(Rank);
+            if(Rank == null)
+            {
+                rankInt = 1;
+            }
+            else
+            {
+                rankInt = Int32.Parse(Rank);
+            }
+            
             var rankString = rankInt > 5420 ? "Divine5.png" :
                 rankInt > 5420 ? "Divine4.png" :
                 rankInt > 5220 ? "Divine3.png" :

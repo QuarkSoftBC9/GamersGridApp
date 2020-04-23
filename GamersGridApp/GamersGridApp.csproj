@@ -449,10 +449,6 @@
     <Compile Include="Persistence\Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.Designer.cs">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Persistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.cs" />
-    <Compile Include="Persistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.Designer.cs">
-      <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
-    </Compile>
     <Compile Include="Persistence\Migrations\202003181314389_AddingDotaAndCS.cs" />
     <Compile Include="Persistence\Migrations\202003181314389_AddingDotaAndCS.Designer.cs">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
@@ -572,6 +568,14 @@
     <Compile Include="Persistence\Migrations\202004182151374_somethingforstani.cs" />
     <Compile Include="Persistence\Migrations\202004182151374_somethingforstani.Designer.cs">
       <DependentUpon>202004182151374_somethingforstani.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202004211336526_TeamsAdded.cs" />
+    <Compile Include="Persistence\Migrations\202004211336526_TeamsAdded.Designer.cs">
+      <DependentUpon>202004211336526_TeamsAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Persistence\Migrations\202004230837084_PopulateUsersWithAccountStats.cs" />
+    <Compile Include="Persistence\Migrations\202004230837084_PopulateUsersWithAccountStats.Designer.cs">
+      <DependentUpon>202004230837084_PopulateUsersWithAccountStats.cs</DependentUpon>
     </Compile>
     <Compile Include="Persistence\Migrations\Configuration.cs" />
     <Compile Include="Enums\AccountRegions.cs" />
@@ -1412,9 +1416,6 @@
     <EmbeddedResource Include="Persistence\Migrations\202003181128254_AddingUniqueAnotationToUserInAspNetUser.resx">
       <DependentUpon>202003181128254_AddingUniqueAnotationToUserInAspNetUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Persistence\Migrations\202003181156006_PopulatingUsersAndAspNetUsers.resx">
-      <DependentUpon>202003181156006_PopulatingUsersAndAspNetUsers.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202003181314389_AddingDotaAndCS.resx">
       <DependentUpon>202003181314389_AddingDotaAndCS.cs</DependentUpon>
     </EmbeddedResource>
@@ -1504,6 +1505,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Persistence\Migrations\202004182151374_somethingforstani.resx">
       <DependentUpon>202004182151374_somethingforstani.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202004211336526_TeamsAdded.resx">
+      <DependentUpon>202004211336526_TeamsAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Persistence\Migrations\202004230837084_PopulateUsersWithAccountStats.resx">
+      <DependentUpon>202004230837084_PopulateUsersWithAccountStats.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
