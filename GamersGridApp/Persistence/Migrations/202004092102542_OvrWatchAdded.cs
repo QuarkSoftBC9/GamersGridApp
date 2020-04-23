@@ -7,7 +7,7 @@ namespace GamersGridApp.Migrations
     {
         public override void Up()
         {
-            Sql("INSERT INTO Games ( Title, ReleaseDate, Type, Description) VALUES ( 'Overwatch', '2016-05-24 00:00:00.000', 1, 'Overwatch is a team-based multiplayer first-person shooter developed and published by Blizzard Entertainment. Described as a hero shooter, Overwatch assigns players into two teams of six, with each player selecting from a roster of over 30 characters, known as heroes, each with a unique style of play that is divided into three general roles that fit their purpose. Players on a team work together to secure and defend control points on a map or escort a payload across the map in a limited amount of time. Players gain cosmetic rewards that do not affect gameplay, such as character skins and victory poses, as they play the game')");
+            Sql("INSERT INTO Games ( Title, ReleaseDate, Type, Description) VALUES ( 'Overwatch', '2016-05-24 00:00:00.000', 0, 'Overwatch is a team-based multiplayer first-person shooter developed and published by Blizzard Entertainment. Described as a hero shooter, Overwatch assigns players into two teams of six, with each player selecting from a roster of over 30 characters, known as heroes, each with a unique style of play that is divided into three general roles that fit their purpose. Players on a team work together to secure and defend control points on a map or escort a payload across the map in a limited amount of time. Players gain cosmetic rewards that do not affect gameplay, such as character skins and victory poses, as they play the game')");
             Sql("DELETE FROM Games WHERE Title IN('Counter-Strike: Global Offensive')");
         }
         
