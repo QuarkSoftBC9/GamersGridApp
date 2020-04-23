@@ -77,10 +77,9 @@ namespace GamersGridApp.WebServices
                 deaths += dotaMatch.deaths;
             }
             if (deaths == 0)
-            {
                 return KillsAssists;
-            }
-            double result = Math.Round((double)KillsAssists / deaths, 2);
+
+            var result = Math.Round((double)KillsAssists / deaths, 2);
             return result;
         }
 

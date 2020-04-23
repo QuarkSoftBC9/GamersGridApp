@@ -28,7 +28,7 @@ namespace GamersGridApp
             chatbox.ChatHistory.Add(new Message { MessageString = message, User = user, Time = DateTime.Now });
             db.SaveChanges();
             //Clients.All.getMessages(user.Email, message);
-            Clients.Group(chatbox.ID.ToString()).getMessages(user.NickName, message, DateTime.Now);
+            Clients.Group(chatbox.ID.ToString()).getMessages(user.NickName, message, DateTime.Now.ToShortDateString());
 
 
         }

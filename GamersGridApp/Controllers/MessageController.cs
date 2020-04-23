@@ -147,7 +147,7 @@ namespace GamersGridApp.Controllers
             var requestedGGuser = UnitOfWork.GGUsers.GetUser(requestedUserID);
 
 
-            var messageChatsUsersBoth = UnitOfWork.MessageChatUsers.GetMessageChatRelationsForTwoUsers(currentUserId, requestedUserID);
+           var messageChatsUsersBoth = UnitOfWork.MessageChatUsers.GetMessageChatRelationsForTwoUsers(currentUserId, requestedUserID);
             //db.MessageChatUsers.Where(mcu => mcu.UserId == currentGGuser.ID || mcu.UserId == requestedGGuser.ID).Include(mcu => mcu.Chat).ToList();
 
 
@@ -209,7 +209,7 @@ namespace GamersGridApp.Controllers
                 {
                     foreach (var messageChat2 in messageChatsOfRequestedUser)
                     {
-                        if (messageChat.ID == messageChat2.ID && messageChat.MessageChatUsers.Count == 2)
+                        if (messageChat.ID == messageChat2.ID )
                         {
                             requestedChatId = messageChat.ID;
                             break;

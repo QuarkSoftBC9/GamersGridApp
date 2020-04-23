@@ -53,7 +53,7 @@
                                 else
                                 {
                                     <div class="chat_people">
-                                        <div class="chat_img"> <img src="@(String.IsNullOrEmpty(messagechat.MessageChatUsers.LastOrDefault().User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{messagechat.ChatHistory.LastOrDefault().User.ID}/{messagechat.ChatHistory.LastOrDefault().User.Avatar}")" alt="sunil"> </div>
+                                        <div class="chat_img"> <img src="@(String.IsNullOrEmpty(messagechat.MessageChatUsers.LastOrDefault().User.Avatar) ? "/Content/Images/gamerdefault.jpg" : $"/Content/Images/UserPhotos/{messagechat.MessageChatUsers.LastOrDefault().User.ID}/{messagechat.MessageChatUsers.LastOrDefault().User.Avatar}")" alt="sunil"> </div>
                                         <div class="chat_ib">
 
                                             <h5>@messagechat.Name</h5>

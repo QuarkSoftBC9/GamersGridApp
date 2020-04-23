@@ -21,15 +21,12 @@ namespace GamersGridApp.Controllers.api
     {
         private readonly IUnitOfWork UnitOfWork;
 
-
-
         public DotaAccountsController(IUnitOfWork unitofwork)
         {
             UnitOfWork = unitofwork;
         }
 
         [HttpGet]
-
         public IHttpActionResult GetStats(string accountId)
         {
             if (string.IsNullOrEmpty(accountId))
