@@ -297,3 +297,15 @@ body {
 input, select, textarea {
     max-width: initial;
 }
+
+/* Element | https://localhost:44383/Home/SearchEngine */
+
+.league-btn {
+    margin-bottom: 34px;
+}
+
+/* Element | https://localhost:44383/Home/SearchEngine */
+
+.overwatch-search {
+    margin-bottom: 34px;
+}
