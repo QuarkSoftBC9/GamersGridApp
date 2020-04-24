@@ -20,7 +20,7 @@ namespace GamersGridApp.Controllers.api
     [System.Web.Http.Authorize]
     public class LOLAccountsController : ApiController
     {
-        private readonly string api = "RGAPI-6118e10b-72a0-406b-8d89-349fabb618eb";
+        private readonly string api = "RGAPI-284d7cd8-7694-489a-bb8c-6af55d45946a";
         private readonly int lolID = 1;
 
         private readonly IUnitOfWork UnitOfWork;
@@ -94,7 +94,7 @@ namespace GamersGridApp.Controllers.api
             fullStatsDto.Account = LolDataService.GetAccount(region, name, api);
 
             //get stats
-            fullStatsDto.Stats = LolDataService.GetStats(region, fullStatsDto.Account.id, api).Single();
+            fullStatsDto.Stats = LolDataService.GetStats(region, fullStatsDto.Account.id, api).First();
 
             //get latest match
             //if(fullStatsDto.Stats != null)
