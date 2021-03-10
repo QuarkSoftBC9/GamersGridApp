@@ -2,7 +2,136 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@section Styles {
+    <link href="~/css/Home/Index.css" rel="stylesheet" type="text/css" />
+}
+<!-- Full Page Intro -->
+<div class="view">
+    <!-- Mask & flexbox options-->
+    <div class="mask rgba-gradient align-items-right">
+        <!-- Content -->
+        <div class="container-fluid">
+            <!--Grid row-->
+            <div class="row ">
+                <!--Grid column-->
+                <div class="col-md-6 col-xl-5 mt-xl-5 ml-0 wow fadeInRight" data-wow-delay="0.3s">
+                </div>
+                <!--Grid column-->
+                <!--Grid column-->
+                <div class="col-md-6 white-text text-right text-md-right mt-xl-5 mb-5 pr-0 " data-wow-delay="0.3s">
+                    <div class="jumbotron text-white pr-0" style="background: transparent;">
+                        <h1 class="display-3">SOCIAL NETWORK</h1>
+                        <p class="lead display-4">MADE BY GAMERS FOR GAMERS</p>
+                        <hr class="my-2">
+                        <p>Stay on the pulse of gaming</p>
+                        <p class="lead">
+                            <a class="btn btn-secondary btn-lg" href="Jumbo action link" role="button">Join Now</a>
+                        </p>
+                    </div>
+                </div>
+                <!--Grid column-->
+
+            </div>
+            <!--Grid row-->
+
+        </div>
+        <!-- Content -->
+    </div>
+    <!-- Mask & flexbox options-->
+</div>
+<!-- BackGround Image -->
+<div class="viewport" style="background-color:hsl(225, 40%, 18%)">
+    <div class="mask rgba-gradient align-items-right">
+        <div class="container-fluid ">
+            <div class="row pt-5 pl-5 ">
+                <div class="col-md-12">
+                    <h1 class="display-3 text-white">DISCOVER THE LEADERS</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card-deck m-5  p-5" style="width: 90%;">
+                    <!-- Card1 -->
+                    <div class="card  text-white ml-5 ">
+                        <img class="card-img-top" src="~/Static/Images/topGamers.png" alt="Card image cap">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title" id="cardTitle">TOP GAMERS</h5>
+                        </div>
+                        <div class="card-body ">
+                            <h4 class="card-title">Discover the leading Gamers</h4>
+                        </div>
+                    </div>
+                    <!-- Card2 -->
+                    <div class="card text-white">
+                        <img class="card-img-top" src="~/Static/Images/topGames.png" alt="Card image cap">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title" id="cardTitle">TOP GAMES</h5>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title">Discover the most Famous eSports</h4>
+                        </div>
+                    </div>
+
+                    <!-- Card3 -->
+                    <!-- Trying to Align the title to the center of an image -->
+                    <div class="card  text-white">
+                        <img class="card-img-top" src="~/Static/Images/topPlays.png" alt="Card image cap">
+                        <div class="card-img-overlay">
+                            <h5 class="card-title" id="cardTitle">TOP PLAYS</h5>
+                        </div>
+                        <h4 class="card-title ">Discover the best Plays</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 pr-0">
+                <div class="jumbotron jumbotron-fluid" style="background:transparent">
+                    <div class="container" id="jumboHeader">
+                        <h2 class="display-4 text-white ">BE PART OF THE GAMING COMMUNITY</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Second Deck -->
+        <div class="row">
+            <div class="container-fluid ">
+
+                <div class="card-deck m-5  p-5 justify-content-center" style="width: 90%;">
+                    <!-- Card1 -->
+                    <div class="card  text-white ml-5 justify-content-center ">
+                        <img class="card-img-top" id="imageID" src="~/Static/Images/pie.png" alt="Card image cap">
+                        <div class="card-body ">
+                            <h4 class="card-title">Unified Profile for all your favourite eSports</h4>
+                        </div>
+                    </div>
+                    <!-- Card2 -->
+                    <div class="card text-white">
+                        <img class="card-img-top" id="imageID" src="~/Static/Images/data.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title">Track your stats for all your favourite eSports</h4>
+
+                        </div>
+                    </div>
+
+                    <!-- Card3 -->
+                    <div class="card  text-white">
+                        <img class="card-img-top" id="imageID" src="~/Static/Images/data2.png" alt="Card image cap">
+                        <div class="card-body">
+                            <h4 class="card-title ">Compare your stats with others</h4>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5"></div>
+            <div class="col-md-2 ">
+                <button type="button" name="" id="" class="btn btn-secondary btn-lg btn-block">Join Now</button>
+            </div>
+            <div class="col-md-5"></div>
+
+        </div>
+    </div>
+    <!-- COntainer-fluid -->
 </div>
