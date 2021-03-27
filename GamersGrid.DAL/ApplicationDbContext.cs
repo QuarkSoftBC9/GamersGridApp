@@ -1,4 +1,5 @@
-﻿using GamersGrid.DAL.Models.Identity;
+﻿using GamersGrid.DAL.Models;
+using GamersGrid.DAL.Models.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +19,10 @@ namespace GamersGrid.DAL
 
         }
 
+        public DbSet<UsersGamesRelation> UsersGames { get; set; }
+        public DbSet<VideoGame> Games { get; set; }
+        public DbSet<VideoGameAccount> GameAccounts { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -26,7 +31,20 @@ namespace GamersGrid.DAL
 
 
             builder.Entity<GGuser>().ToTable("Users");
+            builder.Entity<GGuser>().HasIndex(u => u.Email).IsUnique();
+            builder.Entity<GGuser>().HasIndex(u => u.NickName).IsUnique();
+
             builder.Entity<CustomRole>().ToTable("Roles");
+
+            builder.Entity<UsersGamesRelation>().ToTable("UsersGamesRelations");
+            builder.Entity<UsersGamesRelation>()
+                .HasIndex(usr => new { usr.UserId, usr.GameId })
+                .IsUnique();
+
+            builder.Entity<VideoGame>().ToTable("VideoGames");
+
+
+
 
         }
     }

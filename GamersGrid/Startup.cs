@@ -1,5 +1,7 @@
 using GamersGrid.DAL;
+using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
+using GamersGrid.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,7 +41,7 @@ namespace GamersGrid
                         .AddRoleStore<CustomRoleStore>()
                      .AddDefaultTokenProviders();
 
-
+            services.AddSingleton<CustomHelperService>();
             services.AddTransient<IUserStore<GGuser>, CustomUserStore>();
             services.AddTransient<IRoleStore<CustomRole>, CustomRoleStore>();
             services.AddControllersWithViews();
@@ -75,6 +77,30 @@ namespace GamersGrid
                     pattern: "{controller=Home}/{action=Index}/{id?}");
                 endpoints.MapRazorPages();
             });
+
+            using (var scope = app.ApplicationServices.CreateScope())
+            {
+                CreateSupportedGames(scope.ServiceProvider).Wait();
+            }
         }
+
+        private async Task CreateSupportedGames(IServiceProvider serviceProvider)
+        {
+            var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
+
+            List<string> supportedGames = new() { "Dota", "League of Legends", "Overwatch" };
+            var gamesInDb = await db.Games.ToListAsync();
+
+            supportedGames.ForEach(gameTitle =>
+            {
+                if (!gamesInDb.Any(gameInDb => gameTitle == gameInDb.Title))
+                    db.Add(VideoGame.GetGameInstance(gameTitle));
+            });
+
+            if (db.ChangeTracker.HasChanges())
+                await db.SaveChangesAsync();
+        }
+
+
     }
 }

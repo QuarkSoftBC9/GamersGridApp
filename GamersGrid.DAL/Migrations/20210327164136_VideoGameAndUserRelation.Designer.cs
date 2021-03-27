@@ -4,14 +4,16 @@ using GamersGrid.DAL;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GamersGrid.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210327164136_VideoGameAndUserRelation")]
+    partial class VideoGameAndUserRelation
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -131,14 +133,6 @@ namespace GamersGrid.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Email")
-                        .IsUnique()
-                        .HasFilter("[Email] IS NOT NULL");
-
-                    b.HasIndex("NickName")
-                        .IsUnique()
-                        .HasFilter("[NickName] IS NOT NULL");
-
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -157,7 +151,7 @@ namespace GamersGrid.DAL.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("GameId")
+                    b.Property<int>("GameID")
                         .HasColumnType("int");
 
                     b.Property<bool>("IsFavoriteGame")
@@ -168,9 +162,9 @@ namespace GamersGrid.DAL.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("GameId");
+                    b.HasIndex("GameID");
 
-                    b.HasIndex("UserId", "GameId")
+                    b.HasIndex("UserId", "GameID")
                         .IsUnique();
 
                     b.ToTable("UsersGamesRelations");
@@ -330,7 +324,7 @@ namespace GamersGrid.DAL.Migrations
                 {
                     b.HasOne("GamersGrid.DAL.Models.VideoGame", "Game")
                         .WithMany()
-                        .HasForeignKey("GameId")
+                        .HasForeignKey("GameID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

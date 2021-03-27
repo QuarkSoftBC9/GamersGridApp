@@ -11,27 +11,27 @@ namespace GamersGrid.DAL.Models.Identity
     public class GGuser : IdentityUser<int>
     {
         [StringLength(50, MinimumLength = 1)]
-        public string FirstName { get; private set; }
+        public string FirstName { get;  set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string LastName { get; private set; }
+        public string LastName { get;  set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string NickName { get; private set; }
+        public string NickName { get;  set; }
 
 
         [StringLength(255, MinimumLength = 1)]
-        public string Description { get; private set; }
+        public string Description { get;  set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string Country { get; private set; }
+        public string Country { get;  set; }
 
         //[Required]
         [StringLength(50, MinimumLength = 1)]
-        public string City { get; private set; }
+        public string City { get;  set; }
         public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
 
 
@@ -41,7 +41,7 @@ namespace GamersGrid.DAL.Models.Identity
         //public ICollection<Follow> Followees { get; set; }
 
         ////User Games N-N Relation
-        //public ICollection<UserGame> UserGames { get; set; }
+        public virtual List<UsersGamesRelation> GamesRelations { get; set; }
 
         //public ICollection<Photo> Photos { get; set; }
         //public ICollection<Video> Videos { get; set; }
@@ -90,5 +90,8 @@ namespace GamersGrid.DAL.Models.Identity
         //{
         //    UserNotifications.Add(new UserNotification(this, notification));
         //}
+
+
+        
     }
 }
