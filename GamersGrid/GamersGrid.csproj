@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\css\Account\" />
     <Folder Include="wwwroot\Static\Images\" />
     <Folder Include="wwwroot\Static\GamesIcons\" />
     <Folder Include="wwwroot\UsersAvatars\" />

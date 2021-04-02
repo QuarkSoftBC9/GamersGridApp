@@ -35,6 +35,12 @@ namespace GamersGrid.Controllers
             _helperService = helperService;
         }
 
+        [AllowAnonymous]
+        public ActionResult Login(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
 
         [HttpGet]
         [AllowAnonymous]
