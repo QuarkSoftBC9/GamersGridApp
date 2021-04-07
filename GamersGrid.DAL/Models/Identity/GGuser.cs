@@ -37,8 +37,8 @@ namespace GamersGrid.DAL.Models.Identity
 
         public string FullName => FirstName + " " + LastName;
 
-        //public ICollection<Follow> Followers { get; set; }
-        //public ICollection<Follow> Followees { get; set; }
+        public ICollection<FollowRelation> Followers { get; set; }
+        public ICollection<FollowRelation> Followees { get; set; }
 
         ////User Games N-N Relation
         public virtual List<UsersGamesRelation> GamesRelations { get; set; }

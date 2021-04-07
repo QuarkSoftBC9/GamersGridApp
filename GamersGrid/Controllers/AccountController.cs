@@ -40,6 +40,7 @@ namespace GamersGrid.Controllers
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
+            //return RedirectToAction("ProfilePage", "User", new { userid = userContent.ID });
         }
 
         [HttpGet]

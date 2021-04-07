@@ -19,13 +19,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GamersGrid.DAL\GamersGrid.DAL.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <Folder Include="Controllers\Api\" />
+    <Folder Include="Views\Profile\" />
     <Folder Include="wwwroot\Static\Images\" />
     <Folder Include="wwwroot\Static\GamesIcons\" />
     <Folder Include="wwwroot\UsersAvatars\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GamersGrid.BLL\GamersGrid.BLL.csproj" />
   </ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@ namespace GamersGrid.DAL
         public DbSet<VideoGame> Games { get; set; }
         public DbSet<VideoGameAccount> GameAccounts { get; set; }
 
+        public DbSet<FollowRelation> FollowRelations { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)
@@ -33,6 +34,26 @@ namespace GamersGrid.DAL
             builder.Entity<GGuser>().ToTable("Users");
             builder.Entity<GGuser>().HasIndex(u => u.Email).IsUnique();
             builder.Entity<GGuser>().HasIndex(u => u.NickName).IsUnique();
+
+            builder.Entity<GGuser>()
+                .HasMany(u => u.Followers)
+                .WithOne(f => f.User)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.Entity<GGuser>()
+                .HasMany(user => user.Followees)
+                .WithOne(fr => fr.Follower)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.NoAction);
+
+
+            builder.Entity<FollowRelation>().ToTable("FollowRelations");
+            builder.Entity<FollowRelation>()
+                .HasIndex(fr => new { fr.UserId, fr.FollowerId })
+                .IsUnique();
+
 
             builder.Entity<CustomRole>().ToTable("Roles");
 
