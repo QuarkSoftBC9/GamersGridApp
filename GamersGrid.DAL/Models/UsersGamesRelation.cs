@@ -18,13 +18,7 @@ namespace GamersGrid.DAL.Models
         // [Key]
         //[Column(Order = 2)]
         public int GameId { get; set; }
-
         public VideoGame Game { get; set; }
-
-        public VideoGameAccount GameAccount { get; set; }
-
-        //public int GameAccountId { get; set; }
-
 
         public bool IsFavoriteGame { get; set; }
 

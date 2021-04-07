@@ -1,6 +1,7 @@
 ﻿using GamersGrid.BLL.Repositories.Abstractions;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,17 +34,17 @@ namespace GamersGrid.BLL.Repositories
                 .SingleOrDefault(u => u.Id == userid);
         }
 
-        //public List<GGuser> GetFollowersOfTwoUsersWithTheirFollowees(int userId1, int userId2)
-        //{
-        //    return _context.FollowRelations
-        //            .Include(f => f.Follower)
-        //            .Include(f => f.User)
-        //            .Where(f => f.UserId == userId1 || f.UserId == userId2)
-        //            .Select(f => f.Follower)
-        //            .Distinct()
-        //            .Include(u => u.Followees)
-        //            .ToList();
-        //}
+        public List<GGuser> GetFollowersOfTwoUsersWithTheirFollowees(int userId1, int userId2)
+        {
+            return _context.FollowRelations
+                    .Include(f => f.Follower)
+                    .Include(f => f.User)
+                    .Where(f => f.UserId == userId1 || f.UserId == userId2)
+                    .Select(f => f.Follower)
+                    .Distinct()
+                    .Include(u => u.Followees)
+                    .ToList();
+        }
 
         public List<GGuser> SearchUsers(string searchstring)
         {
@@ -67,12 +68,12 @@ namespace GamersGrid.BLL.Repositories
         //        .SingleOrDefault();
         //}
 
-        public List<GGuser> GetOtherUsers(int loggeduserid)
-        {
-            return _context.Users
-                .Where(u => u.Id != loggeduserid)
-                .ToList();
-        }
+        //public List<GGuser> GetOtherUsers(int loggeduserid)
+        //{
+        //    return _context.Users
+        //        .Where(u => u.Id != loggeduserid)
+        //        .ToList();
+        //}
         //public int GetUserIdBasedOnAppID(int id)
         //{
         //    return _context.Users

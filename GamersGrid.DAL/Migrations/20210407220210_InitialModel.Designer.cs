@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GamersGrid.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210327195857_MinorColumnNameChange")]
-    partial class MinorColumnNameChange
+    [Migration("20210407220210_InitialModel")]
+    partial class InitialModel
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,91 @@ namespace GamersGrid.DAL.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("GamersGrid.DAL.Models.FollowRelation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("FollowerId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("TimeStamp")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FollowerId");
+
+                    b.HasIndex("UserId", "FollowerId")
+                        .IsUnique();
+
+                    b.ToTable("FollowRelations");
+                });
+
+            modelBuilder.Entity("GamersGrid.DAL.Models.GameAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AccountIdentifier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountIdentifier2")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("AccountRegions")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("GameId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NickName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GameId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("GameAccounts");
+                });
+
+            modelBuilder.Entity("GamersGrid.DAL.Models.GameAccountStats", b =>
+                {
+                    b.Property<int>("GameAccountId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("HoursPlayed")
+                        .HasColumnType("int");
+
+                    b.Property<string>("KDA")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Losses")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Rank")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Wins")
+                        .HasColumnType("int");
+
+                    b.HasKey("GameAccountId");
+
+                    b.ToTable("GameAccountStats");
+                });
 
             modelBuilder.Entity("GamersGrid.DAL.Models.Identity.CustomRole", b =>
                 {
@@ -133,6 +218,14 @@ namespace GamersGrid.DAL.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("Email")
+                        .IsUnique()
+                        .HasFilter("[Email] IS NOT NULL");
+
+                    b.HasIndex("NickName")
+                        .IsUnique()
+                        .HasFilter("[NickName] IS NOT NULL");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -195,28 +288,6 @@ namespace GamersGrid.DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("VideoGames");
-                });
-
-            modelBuilder.Entity("GamersGrid.DAL.Models.VideoGameAccount", b =>
-                {
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.Property<string>("AccountIdentifier")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AccountIdentifier2")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("AccountRegions")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("NickName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("GameAccounts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -320,6 +391,55 @@ namespace GamersGrid.DAL.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
+            modelBuilder.Entity("GamersGrid.DAL.Models.FollowRelation", b =>
+                {
+                    b.HasOne("GamersGrid.DAL.Models.Identity.GGuser", "Follower")
+                        .WithMany("Followees")
+                        .HasForeignKey("FollowerId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("GamersGrid.DAL.Models.Identity.GGuser", "User")
+                        .WithMany("Followers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Follower");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GamersGrid.DAL.Models.GameAccount", b =>
+                {
+                    b.HasOne("GamersGrid.DAL.Models.VideoGame", "Game")
+                        .WithMany()
+                        .HasForeignKey("GameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("GamersGrid.DAL.Models.Identity.GGuser", "User")
+                        .WithMany("GameAccounts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Game");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("GamersGrid.DAL.Models.GameAccountStats", b =>
+                {
+                    b.HasOne("GamersGrid.DAL.Models.GameAccount", "GameAccount")
+                        .WithOne("Statistics")
+                        .HasForeignKey("GamersGrid.DAL.Models.GameAccountStats", "GameAccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GameAccount");
+                });
+
             modelBuilder.Entity("GamersGrid.DAL.Models.UsersGamesRelation", b =>
                 {
                     b.HasOne("GamersGrid.DAL.Models.VideoGame", "Game")
@@ -337,17 +457,6 @@ namespace GamersGrid.DAL.Migrations
                     b.Navigation("Game");
 
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("GamersGrid.DAL.Models.VideoGameAccount", b =>
-                {
-                    b.HasOne("GamersGrid.DAL.Models.UsersGamesRelation", "UserGameRelationId")
-                        .WithOne("GameAccount")
-                        .HasForeignKey("GamersGrid.DAL.Models.VideoGameAccount", "Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("UserGameRelationId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -401,14 +510,20 @@ namespace GamersGrid.DAL.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("GamersGrid.DAL.Models.Identity.GGuser", b =>
+            modelBuilder.Entity("GamersGrid.DAL.Models.GameAccount", b =>
                 {
-                    b.Navigation("GamesRelations");
+                    b.Navigation("Statistics");
                 });
 
-            modelBuilder.Entity("GamersGrid.DAL.Models.UsersGamesRelation", b =>
+            modelBuilder.Entity("GamersGrid.DAL.Models.Identity.GGuser", b =>
                 {
-                    b.Navigation("GameAccount");
+                    b.Navigation("Followees");
+
+                    b.Navigation("Followers");
+
+                    b.Navigation("GameAccounts");
+
+                    b.Navigation("GamesRelations");
                 });
 #pragma warning restore 612, 618
         }

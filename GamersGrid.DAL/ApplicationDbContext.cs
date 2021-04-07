@@ -21,10 +21,12 @@ namespace GamersGrid.DAL
 
         public DbSet<UsersGamesRelation> UsersGames { get; set; }
         public DbSet<VideoGame> Games { get; set; }
-        public DbSet<VideoGameAccount> GameAccounts { get; set; }
+        public DbSet<GameAccount> GameAccounts { get; set; }
+        public DbSet<GameAccountStats> GameAccountsStats { get; set; }
 
         public DbSet<FollowRelation> FollowRelations { get; set; }
 
+        public DbSet<UsersGamesRelation> UsersGamesRelations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -34,6 +36,7 @@ namespace GamersGrid.DAL
             builder.Entity<GGuser>().ToTable("Users");
             builder.Entity<GGuser>().HasIndex(u => u.Email).IsUnique();
             builder.Entity<GGuser>().HasIndex(u => u.NickName).IsUnique();
+
 
             builder.Entity<GGuser>()
                 .HasMany(u => u.Followers)
@@ -63,6 +66,16 @@ namespace GamersGrid.DAL
                 .IsUnique();
 
             builder.Entity<VideoGame>().ToTable("VideoGames");
+
+            builder.Entity<GameAccount>().ToTable("GameAccounts");
+            builder.Entity<GameAccount>()
+                .HasOne(ga => ga.Statistics)
+                .WithOne(gas => gas.GameAccount)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            builder.Entity<GameAccountStats>().ToTable("GameAccountStats");
+
+
 
 
 

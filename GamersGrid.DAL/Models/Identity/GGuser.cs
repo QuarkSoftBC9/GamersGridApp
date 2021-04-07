@@ -40,6 +40,8 @@ namespace GamersGrid.DAL.Models.Identity
         public ICollection<FollowRelation> Followers { get; set; }
         public ICollection<FollowRelation> Followees { get; set; }
 
+        public ICollection<GameAccount> GameAccounts { get; set; }
+
         ////User Games N-N Relation
         public virtual List<UsersGamesRelation> GamesRelations { get; set; }
 
