@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class FollowRelationsRepository : Repository<FollowRelationsRepository>
+    public class FollowRelationsRepository : Repository<FollowRelation>
     {
         public FollowRelationsRepository(ApplicationDbContext db) : base(db)
         {

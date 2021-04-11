@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class GameAccountRepository : Repository<GameAccountRepository>
+    public class GameAccountRepository : Repository<GameAccount>
     {
         public GameAccountRepository(ApplicationDbContext db) : base(db)
         {

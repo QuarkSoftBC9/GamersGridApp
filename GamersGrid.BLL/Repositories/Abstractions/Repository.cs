@@ -31,6 +31,7 @@ namespace GamersGrid.BLL.Repositories.Abstractions
             return await dbSet.FindAsync(id);
         }
 
+
         public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;

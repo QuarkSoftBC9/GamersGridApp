@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class VideoGamesRepository : Repository<VideoGamesRepository>
+    public class VideoGamesRepository : Repository<VideoGame>
     {
         public VideoGamesRepository(ApplicationDbContext db) : base(db)
         {
