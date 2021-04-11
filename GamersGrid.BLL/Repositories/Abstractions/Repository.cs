@@ -12,7 +12,7 @@ namespace GamersGrid.BLL.Repositories.Abstractions
 {
     public class Repository<T> : IRepository<T> where T : class
     {
-        private readonly ApplicationDbContext _db;
+        protected readonly ApplicationDbContext _db;
         internal DbSet<T> dbSet;
 
         public Repository(ApplicationDbContext db)
@@ -26,12 +26,12 @@ namespace GamersGrid.BLL.Repositories.Abstractions
             dbSet.Add(entity);
         }
 
-        public T Get(int id)
+        public async Task<T> Get(int id)
         {
-            return dbSet.Find(id);
+            return await dbSet.FindAsync(id);
         }
 
-        public IEnumerable<T> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
+        public async Task<IEnumerable<T>> GetAll(Expression<Func<T, bool>> filter = null, Func<IQueryable<T>, IOrderedQueryable<T>> orderBy = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -47,12 +47,12 @@ namespace GamersGrid.BLL.Repositories.Abstractions
             }
 
             if (orderBy != null)
-                return orderBy(query).ToList();
+                return await orderBy(query).ToListAsync();
 
-            return query.ToList();
+            return await query.ToListAsync();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
+        public async Task<T> GetFirstOrDefault(Expression<Func<T, bool>> filter = null, string includeProperties = null)
         {
             IQueryable<T> query = dbSet;
 
@@ -68,7 +68,7 @@ namespace GamersGrid.BLL.Repositories.Abstractions
             }
 
 
-            return query.FirstOrDefault();
+            return await query.FirstOrDefaultAsync();
         }
 
         public void Remove(int id)

@@ -1,4 +1,5 @@
-﻿using GamersGrid.DAL;
+﻿using GamersGrid.BLL;
+using GamersGrid.DAL;
 using GamersGrid.DAL.Models.Identity;
 using GamersGrid.Helpers;
 using Microsoft.AspNetCore.Authorization;
@@ -12,29 +13,32 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.Controllers
 {
-    public class ProfileController : Controller
+    public class UserController : Controller
     {
         private readonly SignInManager<GGuser> _signInManager;
         private readonly UserManager<GGuser> _userManager;
-        private readonly ILogger<ProfileController> _logger;
+        private readonly ILogger<UserController> _logger;
         private readonly ApplicationDbContext _db;
         private readonly CustomHelperService _helperService;
+        private readonly IUnitOfWork unitOfWork;
 
-        public ProfileController(ILogger<ProfileController> logger,
+        public UserController(ILogger<UserController> logger,
             ApplicationDbContext dbContext,
             SignInManager<GGuser> signInManager,
             UserManager<GGuser> userManager,
-            CustomHelperService helperService)
+            CustomHelperService helperService,
+            UnitOfWork workUnit)
         {
             _logger = logger;
             _db = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
             _helperService = helperService;
+            unitOfWork = workUnit;
         }
-        public IActionResult Index(int? id)//userid
+        public IActionResult Index()
         {
-            return View();
+            return View("UsersList");
         }
 
         //[Authorize]

@@ -1,3 +1,4 @@
+using GamersGrid.BLL;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
@@ -44,6 +45,7 @@ namespace GamersGrid
             services.AddSingleton<CustomHelperService>();
             services.AddTransient<IUserStore<GGuser>, CustomUserStore>();
             services.AddTransient<IRoleStore<CustomRole>, CustomRoleStore>();
+            services.AddTransient<IUnitOfWork, UnitOfWork>();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }

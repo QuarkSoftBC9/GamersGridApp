@@ -23,9 +23,7 @@ namespace GamersGrid.DAL
         public DbSet<VideoGame> Games { get; set; }
         public DbSet<GameAccount> GameAccounts { get; set; }
         public DbSet<GameAccountStats> GameAccountsStats { get; set; }
-
         public DbSet<FollowRelation> FollowRelations { get; set; }
-
         public DbSet<UsersGamesRelation> UsersGamesRelations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
