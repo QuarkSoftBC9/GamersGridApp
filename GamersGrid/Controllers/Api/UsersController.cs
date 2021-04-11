@@ -16,7 +16,7 @@ namespace GamersGrid.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class UsersController : ControllerBase
     {
         private readonly SignInManager<GGuser> _signInManager;
@@ -26,10 +26,9 @@ namespace GamersGrid.Controllers.Api
 
 
         public UsersController(ILogger<UsersController> logger,
-            ApplicationDbContext dbContext,
             SignInManager<GGuser> signInManager,
             UserManager<GGuser> userManager,
-            UnitOfWork workUnit)
+            IUnitOfWork workUnit)
         {
             _logger = logger;
             _signInManager = signInManager;
@@ -42,7 +41,7 @@ namespace GamersGrid.Controllers.Api
         {
             List<GGUserSimpleDto> returnList = new();
 
-            var users = await unitOfWork.GGUsers.GetAll();
+            var users =  await unitOfWork.GGUsers.GetAll();
             var top200Users = users.Take(200);
             top200Users.ToList().ForEach(u =>  returnList.Add(GGUserSimpleDto.CreateFromUser(u)));
 

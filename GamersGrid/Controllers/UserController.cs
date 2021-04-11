@@ -18,19 +18,16 @@ namespace GamersGrid.Controllers
         private readonly SignInManager<GGuser> _signInManager;
         private readonly UserManager<GGuser> _userManager;
         private readonly ILogger<UserController> _logger;
-        private readonly ApplicationDbContext _db;
         private readonly CustomHelperService _helperService;
         private readonly IUnitOfWork unitOfWork;
 
         public UserController(ILogger<UserController> logger,
-            ApplicationDbContext dbContext,
             SignInManager<GGuser> signInManager,
             UserManager<GGuser> userManager,
             CustomHelperService helperService,
-            UnitOfWork workUnit)
+            IUnitOfWork workUnit)
         {
             _logger = logger;
-            _db = dbContext;
             _signInManager = signInManager;
             _userManager = userManager;
             _helperService = helperService;
@@ -38,6 +35,7 @@ namespace GamersGrid.Controllers
         }
         public IActionResult Index()
         {
+            
             return View("UsersList");
         }
 

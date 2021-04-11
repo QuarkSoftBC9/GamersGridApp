@@ -1,15 +1,16 @@
 ﻿using GamersGrid.BLL.Repositories;
+using GamersGrid.BLL.Repositories.Interfaces;
 
 namespace GamersGrid.BLL
 {
     public interface IUnitOfWork
     {
-        FollowRelationsRepository FollowRelations { get; set; }
-        GameAccountRepository GameAccounts { get; set; }
-        GameAccountStatsRepository GameAccountStats { get; set; }
-        VideoGamesRepository Games { get; set; }
-        GGUserRepository GGUsers { get; set; }
-        UserGameRelationsRepository UsersGamesRelations { get; set; }
+        IFollowRelationsRepository FollowRelations { get;  }
+        IGameAccountRepository GameAccounts { get;  }
+        IGameAccountStatsRepository GameAccountStats { get;  }
+        IVideoGamesRepository Games { get;  }
+        IGGUserRepository GGUsers { get;  }
+        IUserGameRelationsRepository UsersGamesRelations { get;  }
 
         void Save();
     }

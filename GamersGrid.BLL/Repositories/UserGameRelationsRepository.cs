@@ -1,4 +1,6 @@
-﻿using GamersGrid.BLL.Repositories.Abstractions;
+﻿using GamersGrid.BLL.Interfaces.Abstractions;
+using GamersGrid.BLL.Repositories.Abstractions;
+using GamersGrid.BLL.Repositories.Interfaces;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class UserGameRelationsRepository : Repository<UsersGamesRelation>
+    public class UserGameRelationsRepository : Repository<UsersGamesRelation>, IUserGameRelationsRepository
     {
         public UserGameRelationsRepository(ApplicationDbContext db) : base(db)
         {

@@ -1,4 +1,6 @@
-﻿using GamersGrid.BLL.Repositories.Abstractions;
+﻿using GamersGrid.BLL.Interfaces.Abstractions;
+using GamersGrid.BLL.Repositories.Abstractions;
+using GamersGrid.BLL.Repositories.Interfaces;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class FollowRelationsRepository : Repository<FollowRelation>
+    public class FollowRelationsRepository : Repository<FollowRelation>,IFollowRelationsRepository
     {
         public FollowRelationsRepository(ApplicationDbContext db) : base(db)
         {

@@ -1,4 +1,6 @@
-﻿using GamersGrid.BLL.Repositories.Abstractions;
+﻿using GamersGrid.BLL.Interfaces.Abstractions;
+using GamersGrid.BLL.Repositories.Abstractions;
+using GamersGrid.BLL.Repositories.Interfaces;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories
 {
-    public class GGUserRepository : Repository<GGuser>
+    public class GGUserRepository : Repository<GGuser>, IGGUserRepository
     {
         public GGUserRepository(ApplicationDbContext db) : base(db)
         {

@@ -1,4 +1,7 @@
 using GamersGrid.BLL;
+using GamersGrid.BLL.Repositories;
+using GamersGrid.BLL.Repositories.Abstractions;
+using GamersGrid.BLL.Repositories.Interfaces;
 using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
@@ -45,7 +48,17 @@ namespace GamersGrid
             services.AddSingleton<CustomHelperService>();
             services.AddTransient<IUserStore<GGuser>, CustomUserStore>();
             services.AddTransient<IRoleStore<CustomRole>, CustomRoleStore>();
+
+            services.AddTransient<IFollowRelationsRepository, FollowRelationsRepository>();
+            services.AddTransient<IVideoGamesRepository, VideoGamesRepository>();
+            services.AddTransient<IGameAccountRepository, GameAccountRepository>();
+            services.AddTransient<IGameAccountStatsRepository, GameAccountStatsRepository>();
+            services.AddTransient<IUserGameRelationsRepository, UserGameRelationsRepository>();
+            services.AddTransient<IGGUserRepository, GGUserRepository>();
+
             services.AddTransient<IUnitOfWork, UnitOfWork>();
+
+            services.AddControllers();
             services.AddControllersWithViews();
             services.AddRazorPages();
         }
@@ -64,6 +77,7 @@ namespace GamersGrid
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -72,11 +86,14 @@ namespace GamersGrid
             app.UseAuthentication();
             app.UseAuthorization();
 
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
 

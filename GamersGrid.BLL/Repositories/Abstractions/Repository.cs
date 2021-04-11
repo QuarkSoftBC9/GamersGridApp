@@ -10,10 +10,10 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.BLL.Repositories.Abstractions
 {
-    public class Repository<T> : IRepository<T> where T : class
+    public abstract class Repository<T> : IRepository<T> where T : class
     {
         protected readonly ApplicationDbContext _db;
-        internal DbSet<T> dbSet;
+        protected DbSet<T> dbSet;
 
         public Repository(ApplicationDbContext db)
         {

@@ -1,5 +1,6 @@
 ﻿using GamersGrid.BLL.Interfaces;
 using GamersGrid.BLL.Repositories;
+using GamersGrid.BLL.Repositories.Interfaces;
 using GamersGrid.DAL;
 using System;
 using System.Collections.Generic;
@@ -10,34 +11,39 @@ using System.Threading.Tasks;
 namespace GamersGrid.BLL
 {
     public class UnitOfWork : IUnitOfWork
-    //: IUnitOfWork
     {
         private readonly ApplicationDbContext _context;
 
-        public FollowRelationsRepository FollowRelations { get; set; }
-        public VideoGamesRepository Games { get; set; }
-        public GameAccountRepository GameAccounts { get; set; }
-        public GameAccountStatsRepository GameAccountStats { get; set; }
+        public IFollowRelationsRepository FollowRelations { get; }
+        public IVideoGamesRepository Games { get; }
+        public IGameAccountRepository GameAccounts { get; }
+        public IGameAccountStatsRepository GameAccountStats { get; }
         //public IMessageChatRepository MessageChats { get; set; }
         //public IMessageChatUserRepository MessageChatUsers { get; set; }
         //public INotificationsRepository Notifications { get; set; }
-        public UserGameRelationsRepository UsersGamesRelations { get; set; }
+        public IUserGameRelationsRepository UsersGamesRelations { get; }
         //public IUserNotificationRepository UserNotifications { get; set; }
-        public GGUserRepository GGUsers { get; set; }
+        public IGGUserRepository GGUsers { get; }
         //public ITeamRepository Teams { get; set; }
 
-        public UnitOfWork(ApplicationDbContext context)
+        public UnitOfWork(ApplicationDbContext context,
+            IFollowRelationsRepository followsRepo,
+            IVideoGamesRepository gamesRepo,
+            IGameAccountRepository gameaccountsRepo,
+            IGameAccountStatsRepository gameAccountStatsRepo,
+            IUserGameRelationsRepository userGamesRelationRepo,
+            IGGUserRepository usersRepo)
         {
             _context = context;
-            FollowRelations = new FollowRelationsRepository(context);
-            Games = new VideoGamesRepository(context);
-            GameAccounts = new GameAccountRepository(context);
-            GameAccountStats = new GameAccountStatsRepository(context);
+            FollowRelations = followsRepo;
+            Games = gamesRepo;
+            GameAccounts = gameaccountsRepo;
+            GameAccountStats = gameAccountStatsRepo;
             //MessageChats = new MessageChatRepository(context);
             //MessageChatUsers = new MessageChatUserRepository(context);
             //Notifications = new NotificationsRepository(context);
-            UsersGamesRelations = new UserGameRelationsRepository(context);
-            GGUsers = new GGUserRepository(context);
+            UsersGamesRelations = userGamesRelationRepo;
+            GGUsers = usersRepo;
             //UserNotifications = new UserNotificationRepository(context);
             //Teams = new TeamRepository(context);
         }
