@@ -16,7 +16,7 @@ namespace GamersGrid.Controllers.Api
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    
     public class UsersController : ControllerBase
     {
         private readonly SignInManager<GGuser> _signInManager;

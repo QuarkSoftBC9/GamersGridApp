@@ -5,133 +5,114 @@
 @section Styles {
     <link href="~/css/Home/Index.css" rel="stylesheet" type="text/css" />
 }
-<!-- Full Page Intro -->
-<div class="view">
-    <!-- Mask & flexbox options-->
-    <div class="mask rgba-gradient align-items-right">
-        <!-- Content -->
-        <div class="container-fluid">
-            <!--Grid row-->
-            <div class="row ">
-                <!--Grid column-->
-                <div class="col-md-6 col-xl-5 mt-xl-5 ml-0 wow fadeInRight" data-wow-delay="0.3s">
-                </div>
-                <!--Grid column-->
-                <!--Grid column-->
-                <div class="col-md-6 white-text text-right text-md-right mt-xl-5 mb-5 pr-0 " data-wow-delay="0.3s">
-                    <div class="jumbotron text-white pr-0" style="background: transparent;">
-                        <h1 class="display-3">SOCIAL NETWORK</h1>
-                        <p class="lead display-4">MADE BY GAMERS FOR GAMERS</p>
-                        <hr class="my-2">
-                        <p>Stay on the pulse of gaming</p>
-                        <p class="lead">
-                            <a class="btn btn-secondary btn-lg" href="Jumbo action link" role="button">Join Now</a>
-                        </p>
-                    </div>
-                </div>
-                <!--Grid column-->
 
-            </div>
-            <!--Grid row-->
+@{
+    ViewData["Title"] = "Home";
+}
 
-        </div>
-        <!-- Content -->
+<div class="jumbotron">
+    <div class="container">
+        <h1>Stay on the <br> pulse of gaming</h1>
+        <p>Made by gamers for gamers</p>
+        <p>
+            <a class="btn btn-primary btn-lg sign-in-btn"
+               href='@(User.Identity.IsAuthenticated ? "#" : Url.Action("Register", "Account"))'
+               role="button">
+                Register
+            </a>
+        </p>
     </div>
-    <!-- Mask & flexbox options-->
 </div>
-<!-- BackGround Image -->
-<div class="viewport" style="background-color:hsl(225, 40%, 18%)">
-    <div class="mask rgba-gradient align-items-right">
-        <div class="container-fluid ">
-            <div class="row pt-5 pl-5 ">
-                <div class="col-md-12">
-                    <h1 class="display-3 text-white">DISCOVER THE LEADERS</h1>
-                </div>
-            </div>
-            <div class="row">
-                <div class="card-deck m-5  p-5" style="width: 90%;">
-                    <!-- Card1 -->
-                    <div class="card  text-white ml-5 ">
-                        <img class="card-img-top" src="~/Static/Images/topGamers.png" alt="Card image cap">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title" id="cardTitle">TOP GAMERS</h5>
-                        </div>
-                        <div class="card-body ">
-                            <h4 class="card-title">Discover the leading Gamers</h4>
-                        </div>
-                    </div>
-                    <!-- Card2 -->
-                    <div class="card text-white">
-                        <img class="card-img-top" src="~/Static/Images/topGames.png" alt="Card image cap">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title" id="cardTitle">TOP GAMES</h5>
-                        </div>
-                        <div class="card-body">
-                            <h4 class="card-title">Discover the most Famous eSports</h4>
-                        </div>
-                    </div>
+<div class="black">
+</div>
 
-                    <!-- Card3 -->
-                    <!-- Trying to Align the title to the center of an image -->
-                    <div class="card  text-white">
-                        <img class="card-img-top" src="~/Static/Images/topPlays.png" alt="Card image cap">
-                        <div class="card-img-overlay">
-                            <h5 class="card-title" id="cardTitle">TOP PLAYS</h5>
-                        </div>
-                        <h4 class="card-title ">Discover the best Plays</h4>
-                    </div>
+<div class="container-fluid container-thubnails-char">
+    <div class="center-header ">
+        <h1> DISCOVER THE LEADERS </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>PLAYERS</h3>
+                @*<img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the leading gamers </h4>
+                    <p><a href="@Url.Action("Index", "User")" class="btn btn-primary" role="button">Discover</a></p>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-12 pr-0">
-                <div class="jumbotron jumbotron-fluid" style="background:transparent">
-                    <div class="container" id="jumboHeader">
-                        <h2 class="display-4 text-white ">BE PART OF THE GAMING COMMUNITY</h2>
-                    </div>
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>GAMES</h3>
+                @*<img src="~/Content/images/esports bw.jpg" alt="esports" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the most famous eSports</h4>
+                    <p><a href="@Url.Action("Index", "Game")" class="btn btn-primary" role="button">Discover</a></p>
                 </div>
             </div>
         </div>
-        <!-- Second Deck -->
-        <div class="row">
-            <div class="container-fluid ">
-
-                <div class="card-deck m-5  p-5 justify-content-center" style="width: 90%;">
-                    <!-- Card1 -->
-                    <div class="card  text-white ml-5 justify-content-center ">
-                        <img class="card-img-top" id="imageID" src="~/Static/Images/pie.png" alt="Card image cap">
-                        <div class="card-body ">
-                            <h4 class="card-title">Unified Profile for all your favourite eSports</h4>
-                        </div>
-                    </div>
-                    <!-- Card2 -->
-                    <div class="card text-white">
-                        <img class="card-img-top" id="imageID" src="~/Static/Images/data.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title">Track your stats for all your favourite eSports</h4>
-
-                        </div>
-                    </div>
-
-                    <!-- Card3 -->
-                    <div class="card  text-white">
-                        <img class="card-img-top" id="imageID" src="~/Static/Images/data2.png" alt="Card image cap">
-                        <div class="card-body">
-                            <h4 class="card-title ">Compare your stats with others</h4>
-
-                        </div>
-                    </div>
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>CLANS</h3>
+                @*<img src="~/Content/images/clans bw.jpg" alt="clans" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the best clans</h4>
+                    <p><a href="#" class="btn btn-primary" role="button">Discover</a></p>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5"></div>
-            <div class="col-md-2 ">
-                <button type="button" name="" id="" class="btn btn-secondary btn-lg btn-block">Join Now</button>
-            </div>
-            <div class="col-md-5"></div>
-
         </div>
     </div>
-    <!-- COntainer-fluid -->
+</div>
+<div class="black">
+</div>
+
+<div class="container-fluid container-thubnails-char2">
+    <div class="center-header ">
+        <h1> BE PART OF THE GAMING COMMUNITY </h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+
+                        <img src="~/Static/Images/LandingPage/Frame.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                A unified  profile for all your favorite eSports
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+
+                        <img src="~/Static/Images/LandingPage/Group.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                Track your stats for all your favorite eSports
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+
+                        <img src="~/Static/Images/pie.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                Compare your stats with others
+                            </h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
