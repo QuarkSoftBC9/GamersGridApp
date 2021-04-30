@@ -1,4 +1,4 @@
-﻿@*@model GamersGrid.Models.Account.LoginVM*@
+﻿@model GamersGrid.Models.Account.LoginVM
 @{
     ViewData["Title"] = "Register";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -14,15 +14,16 @@
         </div><!-- /.logo -->
         <div class="controls">
 
-            @*@using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal login-form", role = "form" }))
-                {*@
-            <form action="/" method="post" class="form-horizontal login-form">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "form-horizontal login-form", role = "form" }))
+            {
+                @*<form asp-controller="Account" asp-action="Login" method="post" class="form-horizontal login-form">*@
                 @Html.AntiForgeryToken()
-                <input type="text" class="form-control margin-bot" name="Email" placeholder="Your Email" />
+              
+                <input type="text" class="form-control margin-bot" name="Email" placeholder="Your email address" />
                 <input type="password" class="form-control" name="Password" placeholder="Your password" />
                 <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
-            </form>
-            @*}*@
+                @*</form>*@
+            }
         </div><!-- /.controls -->
     </div><!-- /#login-box -->
 </div><!-- /.container -->

@@ -91,7 +91,7 @@ namespace GamersGrid
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}");
 
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
@@ -107,7 +107,7 @@ namespace GamersGrid
         {
             var db = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
-            List<string> supportedGames = new() { "Dota", "League of Legends", "Overwatch" };
+            List<string> supportedGames = new() { "Dota 2", "League of Legends", "Overwatch" };
             var gamesInDb = await db.Games.ToListAsync();
 
             supportedGames.ForEach(gameTitle =>

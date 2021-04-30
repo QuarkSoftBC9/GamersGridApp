@@ -37,7 +37,7 @@ namespace GamersGrid.DAL.Models
         {
             switch (gameTitle)
             {
-                case "Dota":
+                case "Dota 2":
                     return GetDotaGameInstance();
 
                 case "Overwatch":
@@ -51,7 +51,7 @@ namespace GamersGrid.DAL.Models
         private static VideoGame GetDotaGameInstance()
          => new VideoGame
          {
-             Title = "Dota",
+             Title = "Dota 2",
              Description = "Dota 2 is a multiplayer online battle arena video game developed and published by Valve. The game is a sequel to Defense of the Ancients, which was a community-created mod for Blizzard Entertainments Warcraft III: Reign of Chaos and its expansion pack, The Frozen Throne.",
              ReleaseDate = new DateTime(2013,7,9),
              Type = GameGenre.RTS,

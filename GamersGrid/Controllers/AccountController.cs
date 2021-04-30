@@ -1,4 +1,5 @@
-﻿using GamersGrid.DAL;
+﻿using GamersGrid.BLL;
+using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
 using GamersGrid.Helpers;
@@ -19,28 +20,59 @@ namespace GamersGrid.Controllers
         private readonly SignInManager<GGuser> _signInManager;
         private readonly UserManager<GGuser> _userManager;
         private readonly ILogger<AccountController> _logger;
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork unitOfWork;
         private readonly CustomHelperService _helperService;
 
         public AccountController(ILogger<AccountController> logger,
-            ApplicationDbContext dbContext,
             SignInManager<GGuser> signInManager,
             UserManager<GGuser> userManager,
-            CustomHelperService helperService)
+            CustomHelperService helperService,
+            IUnitOfWork uow)
         {
             _logger = logger;
-            _db = dbContext;
+            unitOfWork = uow;
             _signInManager = signInManager;
             _userManager = userManager;
             _helperService = helperService;
         }
 
         [AllowAnonymous]
-        public ActionResult Login(string returnUrl)
+        public async Task<ActionResult> Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
             //return RedirectToAction("ProfilePage", "User", new { userid = userContent.ID });
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> Login(LoginVM model, string returnUrl)
+
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+
+            // This doesn't count login failures towards account lockout
+            // To enable password failures to trigger account lockout, change to shouldLockout: true
+            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, false);
+
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                return RedirectToAction("Index", "Profile", new { userid = user.Id });
+            }
+            else if (result.IsLockedOut)
+                return View("Lockout");
+            //else if (result.RequiresTwoFactor)
+            //    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+            else
+            {
+                ModelState.AddModelError("", "Invalid login attempt.");
+                return View(model);
+            }
         }
 
         [HttpGet]
@@ -55,13 +87,13 @@ namespace GamersGrid.Controllers
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
-        public async Task< IActionResult> Register(RegisterVM model)
+        public async Task<IActionResult> Register(RegisterVM model)
         {
             if (ModelState.IsValid)
             {
                 GGuser newUser = model.ExportGGUser();
                 var result = await _userManager.CreateAsync(newUser, model.Password);
-                if(result.Succeeded)
+                if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(newUser, isPersistent: false);
 
@@ -70,12 +102,13 @@ namespace GamersGrid.Controllers
                     if (model.AvatarImage != null)
                         userObj.Avatar = await _helperService.SaveAvatar(model.AvatarImage);
 
-                    var favoriteGame = _db.Games.First(g => g.Title == model.FavoriteGame);
+                    var favoriteGame = await unitOfWork.Games.GetFirstOrDefault(g => g.Title == model.FavoriteGame);
                     UsersGamesRelation newUserGameRelation = new(userObj.Id, favoriteGame.Id);
+                    userObj.GamesRelations = new List<UsersGamesRelation>();
                     userObj.GamesRelations.Add(newUserGameRelation);
 
-                    await _db.SaveChangesAsync();
-                    return RedirectToAction("ProfilePage", "User", new { userid = userObj.Id });
+                    await unitOfWork.Save();
+                    return RedirectToAction("Index", "Profile", new { userid = userObj.Id });
                 }
             }
 

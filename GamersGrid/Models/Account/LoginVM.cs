@@ -9,8 +9,8 @@ namespace GamersGrid.Models.Account
     public class LoginVM
     {
         [Required]
-        [Display(Name = "Username")]
-        public string UserName { get; set; }
+        [Display(Name = "Email")]
+        public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]

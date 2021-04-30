@@ -1,0 +1,39 @@
+﻿.container-thubnails-char-game {
+    /*background-image: url("images/gamer bw op.jpg");
+    background-size: cover;
+    background-position: 50% 50%;*/
+    padding-top: 2px;
+    background-color: #222;
+}
+
+
+.container-thubnails-char-games h1 {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #533b99;
+}
+
+.thubnail-game > h3 {
+    color: black;
+    font-weight: 500;
+}
+
+.thumbnail > img {
+    margin-top: 10px;
+    max-width: 70%;
+}
+
+.editcontainer {
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.gameimg {
+    height: 250px !important;
+    border-radius: 50%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.caption-games > h4 {
+    color: #222;
+}

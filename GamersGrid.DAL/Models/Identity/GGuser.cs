@@ -56,6 +56,7 @@ namespace GamersGrid.DAL.Models.Identity
         {
 
         }
+
         public GGuser(string nickname, string city, string country, string avatar)
         {
             NickName = nickname ?? throw new ArgumentNullException("Nickname is null");

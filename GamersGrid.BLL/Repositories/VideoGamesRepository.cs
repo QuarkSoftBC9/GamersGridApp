@@ -19,31 +19,31 @@ namespace GamersGrid.BLL.Repositories
         {
         }
 
-        public async Task<VideoGame> GetFavouriteGame(int favoriteGameId)
+        public async Task<VideoGame> GetFavouriteGameAsync(int favoriteGameId)
         {
             return await _db.Games
                .SingleAsync(g => g.Id == favoriteGameId);
         }
-        public async Task<int> GetFavouriteGameId(int UserId)
+        public async Task<int> GetFavouriteGameIdAsync(int UserId)
         {
             return await _db.UsersGamesRelations
                                 .Where(u => u.UserId == UserId && u.IsFavoriteGame == true)
                                 .Select(g => g.GameId)
                                 .SingleOrDefaultAsync();
         }
-        public async Task<string> GetFavouriteGameTitle(int favoriteGameId)
+        public async Task<string> GetFavouriteGameTitleAsync(int favoriteGameId)
         {
             return await _db.Games
                .Where(g => g.Id == favoriteGameId)
                .Select(g => g.Title).SingleOrDefaultAsync();
         }
 
-        public async Task<VideoGame> GetGame(string title)
+        public async Task<VideoGame> GetGameAsync(string title)
         {
             return await _db.Games
                 .SingleOrDefaultAsync(g => g.Title.Contains(title));
         }
-        public async Task<int> GetGameId(string title)
+        public async Task<int> GetGameIdAsync(string title)
         {
             return await _db.Games
                 .Where(g => g.Title == title)

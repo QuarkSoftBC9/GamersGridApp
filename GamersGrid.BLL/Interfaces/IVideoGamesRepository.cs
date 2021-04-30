@@ -6,10 +6,10 @@ namespace GamersGrid.BLL.Repositories.Interfaces
 {
     public interface IVideoGamesRepository : IRepository<VideoGame>
     {
-        Task<VideoGame> GetFavouriteGame(int favoriteGameId);
-        Task<int> GetFavouriteGameId(int UserId);
-        Task<string> GetFavouriteGameTitle(int favoriteGameId);
-        Task<VideoGame> GetGame(string title);
-        Task<int> GetGameId(string title);
+        Task<VideoGame> GetFavouriteGameAsync(int favoriteGameId);
+        Task<int> GetFavouriteGameIdAsync(int UserId);
+        Task<string> GetFavouriteGameTitleAsync(int favoriteGameId);
+        Task<VideoGame> GetGameAsync(string title);
+        Task<int> GetGameIdAsync(string title);
     }
 }
