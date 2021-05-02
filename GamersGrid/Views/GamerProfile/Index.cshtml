@@ -5,7 +5,7 @@
 }
 
 @section Styles {
-    <link href="~/css/User/ProfilePage.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/Profile/Index.css" rel="stylesheet" type="text/css" />
 }
 
 @{
@@ -34,7 +34,7 @@
 
                     </div>
                     <div class="profile__avatar col-xs-12 col-sm-5">
-                        <img src="@((Model.User.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.User.Avatar)) ? "/Static/Images/gamerdefault.jpg" : $"/Static/Images/UserAvatars/{Model.User.Id}/{Model.User.Avatar}")">
+                        <img src="@((Model.User.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.User.Avatar)) ? "/Static/Images/gamerdefault.jpg" : $"/UsersAvatars/{Model.User.Avatar}")">
                     </div>
                     <div class="profile__header col-xs-12 col-sm-7">
                         <h2>@Html.DisplayFor(u => u.User.FirstName) @Html.DisplayFor(u => u.User.LastName)</h2>
@@ -185,7 +185,7 @@
                     else
                     {
                         <p>
-                            @Html.ActionLink("Customize", "Customize", "User", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
+                            @Html.ActionLink("Customize", "Edit", "GamerProfile", null, new { @class = "profile__contact-btn btn btn-lg btn-block btn-info" })
 
                         </p>
 
@@ -242,9 +242,15 @@
     @section scripts{
 
 
+        <script src="~/js/Services/followsService.js"></script>
+        <script src="~/js/Services/messagesService.js"></script>
+        <script src="~/js/Controllers/followsController.js"></script>
+
+        <script>
             $(document).ready(function () {
                 FollowsController.enableFollows("#followbtn");
                 FollowsController.enableMessaging("#messageBtn");
             });
         </script>
+
     }

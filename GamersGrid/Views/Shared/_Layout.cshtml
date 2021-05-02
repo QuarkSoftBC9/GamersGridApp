@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - GamersGrid</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     @*<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />*@
     @await RenderSectionAsync("Styles", false)
@@ -14,16 +15,17 @@
 
     <partial name="_NavBar" />
     @*<div style="margin-top:35px" class="container-fluid p-0">*@
-        <main role="main">
-            @RenderBody()
-        </main>
-@*    </div>*@
+    <main role="main">
+        @RenderBody()
+    </main>
+    @*    </div>*@
     <partial name="_Footer" />
 
 
 
     <script src="~/lib/jquery/dist/jquery.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/font-awesome/js/all.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @*<script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>*@
     @await RenderSectionAsync("Scripts", required: false)

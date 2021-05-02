@@ -15,15 +15,16 @@ using System.Threading.Tasks;
 
 namespace GamersGrid.Controllers
 {
-    public class ProfileController : Controller
+    [Authorize]
+    public class GamerProfileController : Controller
     {
         private readonly SignInManager<GGuser> _signInManager;
         private readonly UserManager<GGuser> _userManager;
-        private readonly ILogger<ProfileController> _logger;
+        private readonly ILogger<GamerProfileController> _logger;
         private readonly CustomHelperService _helperService;
         private readonly IUnitOfWork unitOfWork;
 
-        public ProfileController(ILogger<ProfileController> logger,
+        public GamerProfileController(ILogger<GamerProfileController> logger,
             SignInManager<GGuser> signInManager,
             UserManager<GGuser> userManager,
             CustomHelperService helperService,
@@ -41,7 +42,7 @@ namespace GamersGrid.Controllers
         //    return View("UsersList");
         //}
 
-        [Authorize]
+        [HttpGet]
         public async Task<ActionResult> Index(int? userid)
         {
             //Get currently logged user
@@ -103,6 +104,40 @@ namespace GamersGrid.Controllers
             return View(viewModel);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Edit()
+        {
+            //Get currently logged user
+            var currentLoggedUser = await _userManager.GetUserAsync(User);
+
+            var userGameAccounts = await unitOfWork.GameAccounts.GetAll(gameAccount => gameAccount.UserId == currentLoggedUser.Id);
+
+            var userEditVM = new UserEditVM(currentLoggedUser, userGameAccounts.ToList());
+
+            return View("Edit", userEditVM);
+        }
+
+
+        [HttpPost]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(UserEditVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.GetUserAsync(User);
+                user.Update(
+                    model.FirstName, model.LastName, model.NickName,
+                    model.Description, model.Country, model.City);
+
+                if (model.AvatarImage != null)
+                    user.UpdateAvatar(await _helperService.SaveAvatar(model.AvatarImage, user.Avatar));
+
+                await unitOfWork.Save();
+
+            }
+
+            return RedirectToAction("Edit", model);
+        }
 
     }
 }

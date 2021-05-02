@@ -23,8 +23,10 @@
 
   <ItemGroup>
     <Folder Include="Models\Game\" />
+    <Folder Include="wwwroot\js\Controllers\" />
+    <Folder Include="wwwroot\js\Services\" />
+    <Folder Include="wwwroot\js\Profile\" />
     <Folder Include="wwwroot\Static\GamesIcons\" />
-    <Folder Include="wwwroot\UsersAvatars\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -57,12 +57,12 @@ namespace GamersGrid.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await _signInManager.PasswordSignInAsync(model.Username, model.Password, true, false);
+            var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, true, false);
 
             if (result.Succeeded)
             {
                 var user = await _userManager.FindByEmailAsync(model.Email);
-                return RedirectToAction("Index", "Profile", new { userid = user.Id });
+                return RedirectToAction("Index", "GamerProfile");
             }
             else if (result.IsLockedOut)
                 return View("Lockout");
@@ -108,13 +108,22 @@ namespace GamersGrid.Controllers
                     userObj.GamesRelations.Add(newUserGameRelation);
 
                     await unitOfWork.Save();
-                    return RedirectToAction("Index", "Profile", new { userid = userObj.Id });
+                    return RedirectToAction("Index", "GamerProfile");
                 }
             }
 
             return View(model);
         }
 
+
+        [HttpPost]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+
+        }
 
     }
 }

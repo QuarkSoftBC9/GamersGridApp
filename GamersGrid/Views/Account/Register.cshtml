@@ -47,7 +47,8 @@
                                                 <div class="picture">
                                                     <img src="~/Static/Images/default-avatar02.jpg" class="picture-src"
                                                          id="wizardPicturePreview" title="" />
-                                                    <input type='file' name="file" id="wizard-picture" accept=".png, .jpg, .jpeg">
+                                                    @Html.TextBoxFor(m => m.AvatarImage, new { id= "wizard-picture", @class = "custom-file-input", type = "file", accept = "image/png,image/jpeg,image/jpg" })
+                                                    @*<input type='file' name="file" id="wizard-picture" accept=".png, .jpg, .jpeg">*@
                                                 </div>
                                                 <h6>Choose Picture</h6>
                                             </div>
@@ -108,7 +109,7 @@
                                                     <div class="icon">
                                                         <i class="fas fa-crosshairs"></i>
                                                     </div>
-                                                    <h6>Counter Strike</h6>
+                                                    <h6>Overwatch</h6>
                                                 </div>
 
                                             </div>

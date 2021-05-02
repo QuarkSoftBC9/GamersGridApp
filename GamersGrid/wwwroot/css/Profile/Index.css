@@ -1,4 +1,50 @@
-﻿/**
+﻿
+/* PROFILE */
+
+.profile__contact-hr::before {
+    content: "OR";
+}
+
+.profile-container {
+    margin-top: 40px;
+}
+
+.panel {
+    box-shadow: none;
+}
+
+.panel-heading {
+    border-bottom: 0;
+    text-align: center;
+}
+
+.panel-title {
+    font-size: 17px;
+    margin: 15px;
+    text-transform: uppercase;
+}
+
+    .panel-title > small {
+        font-size: .75em;
+        color: #999999;
+    }
+
+.panel-body *:first-child {
+    margin-top: 0;
+}
+
+.panel-footer {
+    border-top: 0;
+}
+
+.panel-default > .panel-heading {
+    color: #333333;
+    background-color: transparent;
+    border-color: rgba(0, 0, 0, 0.07);
+}
+
+
+/**
  * Profile
  */
 /*** Profile: Header  ***/

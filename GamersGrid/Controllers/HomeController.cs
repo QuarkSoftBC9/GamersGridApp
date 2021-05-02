@@ -1,4 +1,5 @@
 ﻿using GamersGrid.Models;
+using GamersGrid.Models.Seach;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -32,6 +33,12 @@ namespace GamersGrid.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public ActionResult SearchEngine()
+        {
+            var viewModel = new SearchEngineVM();
+            return View(viewModel);
         }
     }
 }

@@ -1,0 +1,159 @@
+﻿@model GamersGrid.Models.Seach.SearchEngineVM
+@{
+    ViewBag.Title = "SeachEngine";
+}
+@section Styles {
+    <link href="~/css/Home/SearchEngine.css" rel="stylesheet" type="text/css" />
+}
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 pen">
+            <div class="page-header">
+                <h1>Search Engine</h1>
+                <p class="lead">Search players from your favorite games.</p>
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
+            @*dota*@
+            <div class="card card-default">
+                <div class="card-header"> </div>
+
+                <div class="card-body">
+                    <input type="text" class="form-control" placeholder="Type ID of Player" id="dota-id" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary dota-search" type="submit">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+
+            @*lol*@
+            <div class="card card-default">
+                <div class="card-header"> </div>
+
+                <div class="card-body">
+                    @*<input type="text" class="form-control" placeholder="Type Region of Player" id="league-region" />*@
+                    @Html.DropDownListFor(m => m.RiotGamesRegions, new SelectList(Model.RiotGamesRegions), "Select Region of Player", new { @class = "form-control ", id = "league-region" })
+                    <input type="text" class="form-control" placeholder="Type ID of Player" id="league-name" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary league-btn" type="submit">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-sm-4">
+
+            @*overwatch*@
+            <div class="card card-default">
+                <div class="card-header"> </div>
+
+                <div class="card-body">
+                    @Html.DropDownListFor(m => m.BattleNetRegions, new SelectList(Model.BattleNetRegions), "Select Region of Player", new { @class = "form-control ", id = "battlenet-region" })
+
+                    <input type="text" class="form-control" placeholder="Type ID of Player" id="overwatch-id" />
+                    <div class="input-group-btn">
+                        <button class="btn btn-primary overwatch-search" type="submit">
+                            <span class="fa fa-search"></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+
+            <h4>Dota 2</h4>
+            <div class="card card-default">
+                <div class="card-header" id="dota-name-output"></div>
+                <div class="card-body card-6-6">
+                    <div class="card-left">
+                        <img src="https://emblemsbf.com/img/115.webp" class="img-responsive">
+
+                    </div>
+                    <div class="card-right">
+                        <img src="" id="dota-rank-icon" class="img-responsive">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Match-making Rating:<span id="dota-rank"> </span><br />
+                        <br />KDA: <span id="dota-KDA"></span>
+                        <br />Wins: <span id="dota-wins"></span>
+                        <br />Losses: <span id="dota-losses"></span>
+                    </p>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+            <h4>League Of Legends</h4>
+            <div class="card card-default">
+                <div class="card-header" id="league-name-output"></div>
+                <div class="card-body card-6-6">
+                    <div class="card-left">
+
+                        <img src="https://is5-ssl.mzstatic.com/image/thumb/Purple123/v4/4f/ed/7f/4fed7f64-e3ec-abe2-d090-82ac70096c97/Prod_AppIcon-0-1x_U007emarketing-0-0-GLES2_U002c0-512MB-sRGB-0-0-0-85-220-0-0-0-7.png/320x0w.jpg" class="img-responsive">
+                    </div>
+                    <div class="card-right">
+                        <img src="" id="league-rank-icon" class="img-responsive">
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Match-making Rating:<span id="league-rank"> </span><br />
+                        <br />Level: <span id="league-level"></span>
+                        <br />Wins: <span id="league-wins"></span>
+                        <br />Losses: <span id="league-losses"><span>
+                    </p>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+
+            <h4>Overwatch</h4>
+            <div class="card card-default">
+                <div id="owHeader" class="card-header"></div>
+                <div class="card-body card-6-6">
+                    <div class="card-left">
+                        <img src="https://pbs.twimg.com/profile_images/774244317418299392/BCchF00k_400x400.jpg" class="img-responsive">
+
+                        @*<img src="~/Content/Images/Games/OverwatchIcons/Competitive_Grandmaster_Icon.png" class="img-responsive">*@
+                    </div>
+                    <div class="card-right">
+                        <img id="overwatchRankIcon" src="" class="img-responsive">
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <p>
+                        Match-making Rating:<span id="overwatch-rank"> </span><br />
+                        <br />Average Kills: <span id="overwatch-Kills"></span>
+                        <br />Average Deaths: <span id="overwatch-Deaths"></span>
+                        <br />KDA: <span id="overwatch-KDA"></span>
+                    </p>
+                </div>
+                <div class="card-footer"></div>
+            </div>
+
+        </div>
+    </div>

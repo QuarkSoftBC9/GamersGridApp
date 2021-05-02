@@ -32,7 +32,7 @@ namespace GamersGrid.DAL.Models.Identity
         //[Required]
         [StringLength(50, MinimumLength = 1)]
         public string City { get;  set; }
-        public string Avatar { get; set; } = "/Content/Images/UserAvatars/boyAvatar.jpg";
+        public string Avatar { get; set; }
 
 
         public string FullName => FirstName + " " + LastName;
@@ -85,7 +85,7 @@ namespace GamersGrid.DAL.Models.Identity
             Country = country;
             City = city;
         }
-        public void Update(string avatar)
+        public void UpdateAvatar(string avatar)
         {
             Avatar = avatar;
         }
