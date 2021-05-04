@@ -27,10 +27,12 @@
     <Folder Include="wwwroot\js\Services\" />
     <Folder Include="wwwroot\js\Profile\" />
     <Folder Include="wwwroot\Static\GamesIcons\" />
+    <Folder Include="wwwroot\Static\Images\Games\LoLIcons\" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\GamersGrid.BLL\GamersGrid.BLL.csproj" />
+    <ProjectReference Include="..\GamersGrid.Services\GamersGrid.Services.csproj" />
   </ItemGroup>
 
 </Project>

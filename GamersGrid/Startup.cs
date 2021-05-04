@@ -6,6 +6,9 @@ using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
 using GamersGrid.Helpers;
+using GamersGrid.Services.GameAPIs.Dota;
+using GamersGrid.Services.GameAPIs.LeagueOfLegends;
+using GamersGrid.Services.GameAPIs.Overwatch;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -44,6 +47,13 @@ namespace GamersGrid
                  .AddUserStore<CustomUserStore>()
                         .AddRoleStore<CustomRoleStore>()
                      .AddDefaultTokenProviders();
+
+            services.AddHttpClient();
+
+            services.AddTransient<OverwatchService>();
+            services.AddTransient<DotaService>();
+            services.AddTransient<LoLService>();
+
 
             services.AddSingleton<CustomHelperService>();
             services.AddTransient<IUserStore<GGuser>, CustomUserStore>();
@@ -92,6 +102,10 @@ namespace GamersGrid
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}");
+
+                endpoints.MapControllerRoute(
+                    name: "api",
+                    pattern: "api/{controller}");
 
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();

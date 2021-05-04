@@ -23,62 +23,22 @@ namespace GamersGrid.DAL.Models
         public int HoursPlayed { get; set; }
 
 
-        //public void Update(OverWatchCompleteDto completeOwProfileDto)
-        //{
-        //    string kda;
 
-        //    if (completeOwProfileDto.competitiveStats.careerStats == null)
-        //        kda = 0.ToString();
-        //    else
-        //    {
-        //        kda = Convert.ToString(ExtraMethods.CalculateKda(
-        //   completeOwProfileDto.competitiveStats.careerStats.allHeroes.average.deathsAvgPer10Min,
-        //   completeOwProfileDto.competitiveStats.careerStats.allHeroes.average.eliminationsAvgPer10Min));
-        //    }
-        //    KDA = kda;
-        //    Wins = completeOwProfileDto.gamesWon;
-        //    Losses = 0;
-        //    Rank = Convert.ToString(completeOwProfileDto.rating);
-        //}
+        public void UpdateStats(string rank, int wins, int losses,string kda)
+        {
+            Rank = rank;
+            Wins = wins;
+            Losses = losses;
+            KDA = kda;
+        }
+
         public void UpdateStats(string rank, int wins, int losses)
         {
             Rank = rank;
             Wins = wins;
             Losses = losses;
         }
-        //public void UpdateKDA(List<LOLMatchesDto> listOfMatches, string accountId)
-        //{
-        //    //some defensive programming should be added for values
-        //    var kda = new List<double>();
-        //    for (int i = 0, let = listOfMatches.Count; i < let; i++)
-        //    {
-        //        int playerId = listOfMatches[0].participantIdentities
-        //        .Where(p => p.player.accountId == accountId)
-        //        .Select(p => p.participantId).SingleOrDefault();
 
-        //        kda.Add(GetKDA(listOfMatches[i], playerId));
-        //    }
-        //    var average = kda.Average();
-        //    KDA = average.ToString("0.00");
-        //}
-        //public double GetKDA(LOLMatchesDto match, int playerID)
-        //{
-        //    int kills = match.participants
-        //        .Where(p => p.participantId == playerID)
-        //        .Select(p => p.stats.kills)
-        //        .SingleOrDefault();
-        //    int deaths = match.participants
-        //        .Where(p => p.participantId == playerID)
-        //        .Select(p => p.stats.deaths)
-        //        .SingleOrDefault();
-        //    int assists = match.participants
-        //        .Where(p => p.participantId == playerID)
-        //        .Select(p => p.stats.assists)
-        //        .SingleOrDefault();
-        //    if (deaths == 0)
-        //        return (double)kills + (double)assists;
-        //    return ((double)kills + (double)assists) / (double)deaths;
-        //}
         public string GetOverWatchRank()
         {
             int rankInt;

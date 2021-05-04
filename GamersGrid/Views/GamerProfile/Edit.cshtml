@@ -2,6 +2,7 @@
 
 @section Styles {
     <link href="~/css/Profile/Edit.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/toastr/css/toastr.min.css" rel="stylesheet" type="text/css" />
 }
 
 @{
@@ -15,14 +16,7 @@
             <div class="col-sm-10"><h1>@Model.NickName</h1></div>
         </div>
         @:<div class="row">
-            @:<div class="col-sm-3">
-
-
-
-
-
-
-
+            @:<div class="col-sm-3"
 
                 <div class="text-center">
                     <img src="@((Model.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.Avatar)) ? "/Static/Images/gamerdefault.jpg" : $"/UsersAvatars/{Model.Avatar}")" class="avatar avatar-edit img-circle img-thumbnail" id="imagePreview">
@@ -122,7 +116,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
-                                <button id="dotaSave" type="button" class="btn btn-lg btn-default"><i class="fa fa-check"></i> Save</button>
+                                <button id="dotaSave" type="button" class="btn btn-dark btn-default"><i class="fa fa-check"></i> Save</button>
                             </div>
                         </div>
 
@@ -148,7 +142,7 @@
 
                             <div class="col-xs-12">
                                 <br>
-                                <button id="lolSave" type="button" class="btn btn-lg btn-default js-validate-user league-btn"><i class="fa fa-check"></i> Save</button>
+                                <button id="lolSave" type="button" class="btn btn-dark btn-default js-validate-user league-btn"><i class="fa fa-check"></i> Save</button>
                             </div>
                         </div>
                     </div>
@@ -175,7 +169,7 @@
                         <div class="form-group">
                             <div class="col-xs-12">
                                 <br>
-                                <button id="overwatchSave" type="button" class="btn btn-lg btn-default"><i class="fa fa-check"></i> Save</button>
+                                <button id="overwatchSave" type="button" class="btn btn-dark btn-default"><i class="fa fa-check"></i> Save</button>
                             </div>
                         </div>
 
@@ -188,6 +182,8 @@
     }
 </div><!--/row-->
 @section scripts{
+
+    <script src="~/lib/toastr/js/toastr.min.js"></script>
 
     <script>
         $(() => {
@@ -211,61 +207,105 @@
 
     </script>
 
+    <script>
 
-
-
-        @*<script>
-
-            $("#overwatchSave").on("click", function () {
-                let userName = $("#overwatchId").val();
-                let region = $("#battlenetRegion").val();
-                let viewModel = { battleTag: userName, region: region };
-                $.ajax({
-                    url: "/api/OverwatchAccounts",
-                    data: viewModel,
-                    method: "POST"
-                }).done(function () {
-                    toastr.success("Account saved");
-                }).fail(function (e) {
-                    toastr.error(e.message);
-                });
+        $("#overwatchSave").on("click", function () {
+            let userName = $("#overwatchId").val();
+            let region = $("#battlenetRegion").val();
+            let viewModel = { BattleTag: userName, Region: region };
+            $.ajax({
+                url: "/api/OverwatchAccounts",
+                data: viewModel,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
             });
+        });
 
-            $("#dotaSave").on("click", function () {
-                let accountid = $("#dotaId").val();
-                $.ajax({
-                    url: "/api/DotaAccounts?accountid=" + accountid,
-                    method: "post"
-                }).done(function () {
-                    toastr.success("Account saved");
-                }).fail(function (e) {
-                    toastr.error(e.message);
-                });
+        $("#dotaSave").on("click", function () {
+            let accountid = $("#dotaId").val();
+            $.ajax({
+                url: "/api/DotaAccounts?accountid=" + accountid,
+                method: "post"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
             });
+        });
 
-            function readURL(input) {
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function (e) {
-                        $('#imagePreview').attr("src", e.target.result);
-                        $('#imagePreview').hide();
-                        $('#imagePreview').fadeIn(650);
-                    }
-                    reader.readAsDataURL(input.files[0]);
+        $("#lolSave").on("click", function () {
+            let userName = $("#league-name").val();
+            let region = $("#league-region").val();
+            let model = { UserName: userName, Region: region };
+            $.ajax({
+                url: "/api/LoLAccounts",
+                data: model,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
+            });
+        });
+
+
+    </script>
+
+}
+@*<script>
+
+        $("#overwatchSave").on("click", function () {
+            let userName = $("#overwatchId").val();
+            let region = $("#battlenetRegion").val();
+            let viewModel = { battleTag: userName, region: region };
+            $.ajax({
+                url: "/api/OverwatchAccounts",
+                data: viewModel,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error(e.message);
+            });
+        });
+
+        $("#dotaSave").on("click", function () {
+            let accountid = $("#dotaId").val();
+            $.ajax({
+                url: "/api/DotaAccounts?accountid=" + accountid,
+                method: "post"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error(e.message);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').attr("src", e.target.result);
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
                 }
+                reader.readAsDataURL(input.files[0]);
             }
-            $("#imageUpload").change(function () {
-                readURL(this);
-            });
+        }
+        $("#imageUpload").change(function () {
+            readURL(this);
+        });
 
-        </script>
-        @Scripts.Render("~/bundles/costumize")
-        <script>
-            $(document).ready(function () {
-                lolEditController.init();
-            });
+    </script>
+    @Scripts.Render("~/bundles/costumize")
+    <script>
+        $(document).ready(function () {
+            lolEditController.init();
+        });
 
-        </script>*@
+    </script>*@
 
 
-    }

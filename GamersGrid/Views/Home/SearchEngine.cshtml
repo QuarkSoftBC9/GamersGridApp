@@ -4,8 +4,8 @@
 }
 @section Styles {
     <link href="~/css/Home/SearchEngine.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/toastr/css/toastr.min.css" rel="stylesheet" type="text/css" />
 }
-
 
 
 
@@ -157,3 +157,37 @@
 
         </div>
     </div>
+
+
+    @section scripts{
+
+        <script src="~/lib/toastr/js/toastr.min.js"></script>
+
+        <script>
+            $(".league-btn").on("click", function () {
+                let userName = $("#league-name").val();
+                let region = $("#league-region").val();
+                //let model = { UserName: userName, Region: region };
+
+                $.ajax({
+                    url: `/api/LoLAccounts?region=${region}&name=${userName}`,
+                    method: "GET"
+                }).done(function (data) {
+                    toastr.success("Account saved");
+
+                    $('#league-name-output').html(data.accountName);
+                    $('#league-rank').html(data.rank);
+                    $('#league-level').html(data.summonerLevel);
+                    $('#league-wins').html(data.wins);
+                    $('#league-losses').html(data.losses);
+                    $('#league-rank-icon').html(data.rankImagePath);
+
+
+                }).fail(function (e) {
+                    toastr.error(e.responseText);
+                });
+            });
+
+
+        </script>
+    }
