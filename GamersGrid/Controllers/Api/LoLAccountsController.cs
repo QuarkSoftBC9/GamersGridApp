@@ -65,7 +65,8 @@ namespace GamersGrid.Controllers.Api
             }
             catch(Exception ex)
             {
-                return BadRequest(ex.ToString());
+                _logger.LogError(ex.Message, ex);
+                return BadRequest("Failed fetching data");
             }
         }
 

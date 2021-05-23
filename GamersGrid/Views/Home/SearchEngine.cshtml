@@ -85,7 +85,7 @@
                 <div class="card-header" id="dota-name-output"></div>
                 <div class="card-body card-6-6">
                     <div class="card-left">
-                        <img src="https://emblemsbf.com/img/115.webp" class="img-responsive">
+                        <img src="~/Static/Images/Games/dota2logo.jpg" class="img-responsive">
 
                     </div>
                     <div class="card-right">
@@ -173,14 +173,14 @@
                     url: `/api/LoLAccounts?region=${region}&name=${userName}`,
                     method: "GET"
                 }).done(function (data) {
-                    toastr.success("Account saved");
+                    toastr.success("Sucess");
 
                     $('#league-name-output').html(data.accountName);
                     $('#league-rank').html(data.rank);
                     $('#league-level').html(data.summonerLevel);
                     $('#league-wins').html(data.wins);
                     $('#league-losses').html(data.losses);
-                    $('#league-rank-icon').html(data.rankImagePath);
+                    $('#league-rank-icon').attr("src",data.rankImagePath);
 
 
                 }).fail(function (e) {
@@ -189,5 +189,54 @@
             });
 
 
+
+            $('.overwatch-search').on("click", function () {
+                let battleTag = $("#overwatch-id").val();
+                let region = $("#battlenet-region").val();
+
+                $.ajax({
+                    url: '/api/OverwatchAccounts',
+                    method: "GET",
+                    data: { battleTag: battleTag, region: region }
+                }).done(function (data) {
+                    toastr.success("Sucess");
+
+                    $("#owHeader").html(data.battleTag);
+                    $("#overwatchRankIcon").attr("src", data.ratingIcon);
+                    $("#overwatch-rank").html(data.rank);
+                    $("#overwatch-Kills").html(data.averageKills);
+                    $("#overwatch-Deaths").html(data.averageDeaths);
+                    $("#overwatch-KDA").html(data.kda);
+
+
+                }).fail(function (e) {
+                    toastr.error(e.responseText);
+                });
+
+            });
+
+            $('.dota-search').on("click", function () {
+                let dotaId = $('#dota-id').val();
+
+                $.ajax({
+                    url: '/api/DotaAccounts?',
+                    method: "GET",
+                    data: { accountid: dotaId}
+                }).done(function (data) {
+                    toastr.success("Sucess");
+
+                    $("#dota-name-output").html(data.personName);
+                    $("#dota-rank").html( data.competitiveRank);
+                    $("#dota-KDA").html(data.kda);
+                    $("#dota-wins").html(data.wins);
+                    $("#dota-losses").html(data.losses);
+                    $("#dota-rank-icon").attr("src",data.rankIconPath);
+
+
+                }).fail(function (e) {
+                    toastr.error(e.responseText);
+                });
+
+            });
         </script>
     }

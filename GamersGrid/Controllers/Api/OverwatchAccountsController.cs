@@ -1,6 +1,7 @@
 ﻿using GamersGrid.BLL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
+using GamersGrid.Models.Dtos;
 using GamersGrid.Models.User;
 using GamersGrid.Services.GameAPIs;
 using GamersGrid.Services.GameAPIs.Overwatch;
@@ -36,11 +37,23 @@ namespace GamersGrid.Controllers.Api
             overwatchAPI = overwatchService;
         }
 
-
         [HttpGet]
-        public async Task<IActionResult> Test()
+        public async Task<IActionResult> GetStats(string battleTag, string region)
         {
-            return Ok();
+
+            try
+            {
+                var statsDTO = await overwatchAPI.GetCompleteProfileDto(battleTag, region);
+
+                OverwatchSearchDto owsearchDto = OverwatchSearchDto.From(statsDTO, battleTag, region);
+
+                return Ok(owsearchDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest("Failed fetching data");
+            }
         }
 
         [HttpPost]
@@ -59,7 +72,7 @@ namespace GamersGrid.Controllers.Api
 
             try
             {
-                overwatchStatisticsResult = await overwatchAPI.GetCompleteProfileDto(viewModel.BattleTag, viewModel.Region);
+                overwatchStatisticsResult = await overwatchAPI.GetProfileDtoResults(viewModel.BattleTag, viewModel.Region);
             }
             catch (Exception e)
             {

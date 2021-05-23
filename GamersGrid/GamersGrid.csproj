@@ -28,6 +28,8 @@
     <Folder Include="wwwroot\js\Profile\" />
     <Folder Include="wwwroot\Static\GamesIcons\" />
     <Folder Include="wwwroot\Static\Images\Games\LoLIcons\" />
+    <Folder Include="wwwroot\Static\Images\Games\DotaIcons\" />
+    <Folder Include="wwwroot\Static\Images\Games\OverwatchIcons\" />
   </ItemGroup>
 
   <ItemGroup>

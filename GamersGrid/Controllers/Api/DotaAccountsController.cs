@@ -1,6 +1,7 @@
 ﻿using GamersGrid.BLL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
+using GamersGrid.Models.Dtos;
 using GamersGrid.Services.GameAPIs.Dota;
 using GamersGrid.Services.GameAPIs.Dota.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -37,12 +38,45 @@ namespace GamersGrid.Controllers.Api
 
 
 
+        [HttpGet]
+        public async Task<IActionResult> GetStats(string accountId)
+        {
+            if (string.IsNullOrEmpty(accountId))
+                return BadRequest("Account value cannot be null");
+
+            DotaDTO dotaDto;
+            DotaWinsLosesDTO dotaWLDto;
+            List<DotaMatchDTO> dotaMatchesDto;
+            string kda;
+            string rankIcon;
+            try
+            {
+                string steamId = dotaApi.ConvertCommunityIdToSteamID(accountId);
+
+                dotaDto = await dotaApi.GetAccountDto(steamId);
+                dotaWLDto = await dotaApi.GetWLDto(steamId);
+                dotaMatchesDto = await dotaApi.GetMatches(steamId);
+                kda = dotaApi.CalculateKda(dotaMatchesDto).ToString();
+                rankIcon = dotaApi.GetDota2RankIcon(dotaDto.competitive_rank);
+
+                DotaSearchDto searchDto = DotaSearchDto.From(dotaDto, dotaWLDto, kda, rankIcon);
+
+                return Ok(searchDto);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex.Message, ex);
+                return BadRequest("Failed fetching data");
+            }
+        }
+
+
         [HttpPost]
         [Authorize]
         public async  Task<IActionResult> AddDotaAccount(string accountid)
         {
             if (string.IsNullOrEmpty(accountid))
-                return BadRequest();
+                return BadRequest("Account value cannot be null");
 
 
             string steamId = dotaApi.ConvertCommunityIdToSteamID(accountid);

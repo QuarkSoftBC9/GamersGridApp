@@ -20,7 +20,7 @@ namespace GamersGrid.Services.GameAPIs.Overwatch
         }
 
 
-        public async Task<StatisticsResult> GetCompleteProfileDto(string battleTag, string region)
+        public async Task<StatisticsResult> GetProfileDtoResults(string battleTag, string region)
         {
             battleTag = BattleTagQueryFormatConversion(battleTag);
 
@@ -32,6 +32,20 @@ namespace GamersGrid.Services.GameAPIs.Overwatch
 
 
             return StatisticsResult.From(completeDto);
+        }
+
+        public async Task<OverWatchCompleteDTO> GetCompleteProfileDto(string battleTag, string region)
+        {
+            battleTag = BattleTagQueryFormatConversion(battleTag);
+
+            var requestUrl = $"https://ow-api.com/v1/stats/pc/{region}/{battleTag}/complete";
+            var responseMessage = await Client.GetAsync(requestUrl);
+            var messageBody = await responseMessage.Content.ReadAsStringAsync();
+
+            var completeDto = JsonConvert.DeserializeObject<OverWatchCompleteDTO>(messageBody);
+
+
+            return completeDto;
         }
 
 

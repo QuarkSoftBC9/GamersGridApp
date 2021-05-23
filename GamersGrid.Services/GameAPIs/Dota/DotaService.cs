@@ -81,5 +81,48 @@ namespace GamersGrid.Services.GameAPIs.Dota
             return result;
         }
 
+
+        public string GetDota2RankIcon(string rank)
+        {
+            int rankInt= int.Parse(rank);
+
+            var rankString = rankInt > 5420 ? "Divine5.png" :
+                rankInt > 5420 ? "Divine4.png" :
+                rankInt > 5220 ? "Divine3.png" :
+                rankInt > 5020 ? "Divine2.png" :
+                rankInt > 4820 ? "Divine1.png" :
+                rankInt > 4620 ? "Ancient5.png" :
+                rankInt > 4466 ? "Ancient4.png" :
+                rankInt > 4312 ? "Ancient3.png" :
+                rankInt > 4158 ? "Ancient2.png" :
+                rankInt > 4004 ? "Ancient1.png" :
+                rankInt > 3850 ? "Legend5.png" :
+                rankInt > 3696 ? "Legend4.png" :
+                rankInt > 3542 ? "Legend3.png" :
+                rankInt > 3388 ? "Legend2.png" :
+                rankInt > 3234 ? "Legend1.png" :
+                rankInt > 3080 ? "Archon5.png" :
+                rankInt > 2926 ? "Archon4.png" :
+                rankInt > 2618 ? "Archon3.png" :
+                rankInt > 2464 ? "Archon2.png" :
+                rankInt > 2310 ? "Archon1.png" :
+                rankInt > 2156 ? "Crusader5.png" :
+                rankInt > 2002 ? "Crusader4.png" :
+                rankInt > 1848 ? "Crusader3.png" :
+                rankInt > 1694 ? "Crusader2.png" :
+                rankInt > 1540 ? "Crusader1.png" :
+                rankInt > 1386 ? "Guardian5.png" :
+                rankInt > 1232 ? "Guardian4.png" :
+                rankInt > 1078 ? "Guardian3.png" :
+                rankInt > 924 ? "Guardian2.png" :
+                rankInt > 770 ? "Guardian1.png" :
+                rankInt > 616 ? "Herald5.png" :
+                rankInt > 462 ? "Herald4.png" :
+                rankInt > 308 ? "Herald3.png" :
+                rankInt > 154 ? "Herald2.png" :
+                 "Herald1.png";
+            return rankString;
+        }
+
     }
 }
