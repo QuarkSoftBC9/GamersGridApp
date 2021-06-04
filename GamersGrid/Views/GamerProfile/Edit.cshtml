@@ -17,8 +17,7 @@
         </div>
         @:<div class="row">
             @:<div class="col-sm-3"
-
-                <div class="text-center">
+                    <div class="text-center">
                     <img src="@((Model.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.Avatar)) ? "/Static/Images/gamerdefault.jpg" : $"/UsersAvatars/{Model.Avatar}")" class="avatar avatar-edit img-circle img-thumbnail" id="imagePreview">
                     <h6>Upload a different photo</h6>
                     @*<input type='file' name="file" id="imageUpload" class="text-center center-block file-upload">*@
@@ -182,6 +181,11 @@
     }
 </div><!--/row-->
 @section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    @*<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>*@
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @*<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js></script>*@
 
     <script src="~/lib/toastr/js/toastr.min.js"></script>
 

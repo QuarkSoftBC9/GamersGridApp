@@ -15,16 +15,16 @@ namespace GamersGrid.Models.User
         public int Id { get; set; }
 
         public string Avatar { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Field is required")]
         public string FirstName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field is required")]
         public string LastName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Field is required")]
         public string NickName { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Field is required")]
         public string Description { get; set; }
 
         public string Country { get; set; }
