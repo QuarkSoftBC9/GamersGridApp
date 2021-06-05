@@ -80,7 +80,7 @@ namespace GamersGrid.Controllers
             else
             {
                 //var followRelation = context.Follows.SingleOrDefault(f => f.FollowerId == currentLoggedUser.ID && f.UserId == user.ID);
-                var followRelation = unitOfWork.FollowRelations.GetFollowRelationOfTwoUsers(currentLoggedUser.Id, user.Id);
+                var followRelation = await unitOfWork.FollowRelations.GetFollowRelationOfTwoUsers(currentLoggedUser.Id, user.Id);
                 if (followRelation == null)
                     viewModel.IsFollowing = false;
                 else
@@ -137,6 +137,12 @@ namespace GamersGrid.Controllers
             }
 
             return RedirectToAction("Edit", model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> TestHub()     
+        {
+            return View();
         }
 
     }

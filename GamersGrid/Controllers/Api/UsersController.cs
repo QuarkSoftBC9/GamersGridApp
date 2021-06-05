@@ -19,20 +19,14 @@ namespace GamersGrid.Controllers.Api
     
     public class UsersController : ControllerBase
     {
-        private readonly SignInManager<GGuser> _signInManager;
-        private readonly UserManager<GGuser> _userManager;
         private readonly ILogger<UsersController> _logger;
         private readonly IUnitOfWork unitOfWork;
 
 
         public UsersController(ILogger<UsersController> logger,
-            SignInManager<GGuser> signInManager,
-            UserManager<GGuser> userManager,
             IUnitOfWork workUnit)
         {
             _logger = logger;
-            _signInManager = signInManager;
-            _userManager = userManager;
             unitOfWork = workUnit;
         }
 

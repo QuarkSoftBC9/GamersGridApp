@@ -1,17 +1,18 @@
-﻿using GamersGrid.BLL.Repositories;
-using GamersGrid.BLL.Repositories.Interfaces;
+﻿using GamersGrid.BLL.Repositories.Interfaces;
+using GamersGrid.DAL;
 using System.Threading.Tasks;
 
 namespace GamersGrid.BLL
 {
     public interface IUnitOfWork
     {
-        IFollowRelationsRepository FollowRelations { get;  }
-        IGameAccountRepository GameAccounts { get;  }
-        IGameAccountStatsRepository GameAccountStats { get;  }
-        IVideoGamesRepository Games { get;  }
-        IGGUserRepository GGUsers { get;  }
-        IUserGameRelationsRepository UsersGamesRelations { get;  }
+        ApplicationDbContext db { get; }
+        IFollowRelationsRepository FollowRelations { get; }
+        IGameAccountRepository GameAccounts { get; }
+        IGameAccountStatsRepository GameAccountStats { get; }
+        IVideoGamesRepository Games { get; }
+        IGGUserRepository GGUsers { get; }
+        IUserGameRelationsRepository UsersGamesRelations { get; }
 
         Task Save();
     }

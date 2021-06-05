@@ -1,0 +1,26 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.css" integrity="sha512-AQG3JVpy/h0TsLsFs/HDLjnkq1ih9uUliGGXdQ7LQcGQt7GD+1b7HWOQ2oeCH7tKdtrfRg75CGApafi+//9Dbw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<input type="button" class="btn btn-primary" id="btnTest" name="name" value="" />
+
+
+@section scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.11.0/jquery.typeahead.js" integrity="sha512-hIaMZEgNK4DTnrqBvp0sV7bUhmT8hfbhT+6RQ3YX5e3x25xaH5W1kLi4KLAy16gKiebweip2Ng1udOYHSkBMBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="~/lib/signalr/dist/browser/signalr.js"></script>
+    <script src="~/js/chatHub.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btnTest").on("click", function () {
+                connection.invoke("Connect", "13");
+            });
+
+
+
+        });
+    </script>
+}

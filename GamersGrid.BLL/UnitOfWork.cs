@@ -12,7 +12,7 @@ namespace GamersGrid.BLL
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly ApplicationDbContext _context;
+        public ApplicationDbContext db { get; private set; }
 
         public IFollowRelationsRepository FollowRelations { get; }
         public IVideoGamesRepository Games { get; }
@@ -26,7 +26,7 @@ namespace GamersGrid.BLL
         public IGGUserRepository GGUsers { get; }
         //public ITeamRepository Teams { get; set; }
 
-        public UnitOfWork(ApplicationDbContext context,
+        public UnitOfWork(ApplicationDbContext _db,
             IFollowRelationsRepository followsRepo,
             IVideoGamesRepository gamesRepo,
             IGameAccountRepository gameaccountsRepo,
@@ -34,7 +34,7 @@ namespace GamersGrid.BLL
             IUserGameRelationsRepository userGamesRelationRepo,
             IGGUserRepository usersRepo)
         {
-            _context = context;
+            db = _db;
             FollowRelations = followsRepo;
             Games = gamesRepo;
             GameAccounts = gameaccountsRepo;
@@ -50,7 +50,7 @@ namespace GamersGrid.BLL
 
         public async Task Save()
         {
-            await _context.SaveChangesAsync();
+            await db.SaveChangesAsync();
         }
     }
 }

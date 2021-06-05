@@ -6,13 +6,14 @@
 
 @section Styles {
     <link href="~/css/Profile/Index.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/toastr/css/toastr.min.css" rel="stylesheet" type="text/css" />
 }
 
 @{
     string followText;
     if (Model.IsFollowing)
     {
-        followText = "Unfollow";
+        followText = "UnFollow";
     }
     else
     {
@@ -241,6 +242,7 @@
 
     @section scripts{
 
+        <script src="~/lib/toastr/js/toastr.min.js"></script>
 
         <script src="~/js/Services/followsService.js"></script>
         <script src="~/js/Services/messagesService.js"></script>

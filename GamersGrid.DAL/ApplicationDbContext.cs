@@ -25,6 +25,9 @@ namespace GamersGrid.DAL
         public DbSet<GameAccountStats> GameAccountsStats { get; set; }
         public DbSet<FollowRelation> FollowRelations { get; set; }
         public DbSet<UsersGamesRelation> UsersGamesRelations { get; set; }
+        public DbSet<ChatGroup> ChatGroups { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<UserChatGroup> UserChatGroups { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -49,6 +52,11 @@ namespace GamersGrid.DAL
                 .IsRequired()
                 .OnDelete(DeleteBehavior.NoAction);
 
+            builder.Entity<GGuser>()
+                .HasMany<UserChatGroup>(u => u.RelatedChatGroups)
+                .WithOne(ucg => ucg.User)
+                .IsRequired()
+                .HasForeignKey(ucg=>ucg.UserId);
 
             builder.Entity<FollowRelation>().ToTable("FollowRelations");
             builder.Entity<FollowRelation>()
@@ -74,8 +82,42 @@ namespace GamersGrid.DAL
             builder.Entity<GameAccountStats>().ToTable("GameAccountStats");
 
 
+            builder.Entity<ChatGroup>().ToTable("ChatGroups");
+            builder.Entity<ChatGroup>()
+                .HasMany(cg => cg.Messages)
+                .WithOne(m => m.Group);
 
+            builder.Entity<ChatGroup>()
+                .HasMany<UserChatGroup>(cg=>cg.UserChatGroups)
+                .WithOne(ucg => ucg.Group)
+                .IsRequired()
+                .HasForeignKey(ucg => ucg.GroupId);
 
+            builder.Entity<Message>().ToTable("Messages");
+            builder.Entity<Message>()
+                .HasOne<GGuser>(m=>m.User)
+                .WithMany(u => u.Messages)
+                .IsRequired()
+                .HasForeignKey(m => m.UserId);
+
+            builder.Entity<Message>()
+                .HasOne<ChatGroup>(m => m.Group)
+                 .WithMany(cg => cg.Messages)
+                .IsRequired()
+                  .HasForeignKey(m => m.GroupId);
+
+            builder.Entity<UserChatGroup>().ToTable("UserChatGroups");
+            builder.Entity<UserChatGroup>()
+                .HasIndex(ucg => new { ucg.UserId, ucg.GroupId })
+                .IsUnique();
+            //builder.Entity<UserChatGroup>()
+            //    .HasOne<GGuser>(ucg => ucg.User);
+
+            //builder.Entity<UserChatGroup>()
+            //    .HasOne<ChatGroup>(ucg => ucg.Group);
+            //.WithMany()
+            //.IsRequired()
+            //.HasForeignKey(ucg => ucg.GroupId);
 
 
         }

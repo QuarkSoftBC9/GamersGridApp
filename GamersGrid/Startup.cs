@@ -6,6 +6,7 @@ using GamersGrid.DAL;
 using GamersGrid.DAL.Models;
 using GamersGrid.DAL.Models.Identity;
 using GamersGrid.Helpers;
+using GamersGrid.Hubs;
 using GamersGrid.Services.GameAPIs.Dota;
 using GamersGrid.Services.GameAPIs.LeagueOfLegends;
 using GamersGrid.Services.GameAPIs.Overwatch;
@@ -27,9 +28,11 @@ namespace GamersGrid
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IWebHostEnvironment Env { get; set; }
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
+            Env = env;
         }
 
         public IConfiguration Configuration { get; }
@@ -68,9 +71,16 @@ namespace GamersGrid
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
 
+
+            services.AddSignalR();
             services.AddControllers();
-            services.AddControllersWithViews();
+            var mvcBuilder = services.AddControllersWithViews();
+            if (Env.IsDevelopment())
+            {
+                mvcBuilder.AddRazorRuntimeCompilation();
+            }
             services.AddRazorPages();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -107,8 +117,10 @@ namespace GamersGrid
                     name: "api",
                     pattern: "api/{controller}");
 
+
                 endpoints.MapControllers();
                 endpoints.MapRazorPages();
+                endpoints.MapHub<ChatHub>("/chatHub");
             });
 
             using (var scope = app.ApplicationServices.CreateScope())

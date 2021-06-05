@@ -43,8 +43,10 @@ namespace GamersGrid.DAL.Models.Identity
         public ICollection<GameAccount> GameAccounts { get; set; }
 
         ////User Games N-N Relation
-        public virtual List<UsersGamesRelation> GamesRelations { get; set; }
+        public virtual ICollection<UsersGamesRelation> GamesRelations { get; set; }
 
+        public virtual ICollection<UserChatGroup> RelatedChatGroups { get; set; }
+        public virtual ICollection<Message> Messages { get; set; }
         //public ICollection<Photo> Photos { get; set; }
         //public ICollection<Video> Videos { get; set; }
 
