@@ -1,0 +1,36 @@
+﻿html, body {
+    margin: 0;
+    height: 100%;
+}
+
+main {
+    padding: 40px 0px 0px 0px;
+    margin: 0px;
+    margin-top: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+
+/* Footer */
+
+.foot {
+    background: #1f1f1f;
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 60px;
+    width: 100%;
+}
+
+.white-txt {
+    color: #FFF;
+    position: absolute;
+    right: 20px;
+}
+
+
+.footing {
+    width: 85px;
+    height: 40px;
+}

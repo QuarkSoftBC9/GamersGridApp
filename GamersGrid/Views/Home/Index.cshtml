@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@section Styles {
+    <link href="~/css/Home/Index.css" rel="stylesheet" type="text/css" />
+}
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="jumbotron">
+    <div class="container">
+        <h1>Stay on the <br> pulse of gaming</h1>
+        <p>Made by gamers for gamers</p>
+        <p>
+            <a class="btn btn-primary btn-lg sign-in-btn"
+               href='@(User.Identity.IsAuthenticated ? "#" : Url.Action("Register", "Account"))'
+               role="button">
+                Register
+            </a>
+        </p>
+    </div>
+</div>
+<div class="black">
+</div>
+
+<div class="container-fluid container-thubnails-char">
+    <div class="center-header ">
+        <h1> DISCOVER THE LEADERS </h1>
+    </div>
+
+    <div class="row">
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>PLAYERS</h3>
+                @*<img src="~/Content/images/gamer bw.jpg" alt="gamer" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the leading gamers </h4>
+                    <p><a href="@Url.Action("Index", "User")" class="btn btn-primary" role="button">Discover</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>GAMES</h3>
+                @*<img src="~/Content/images/esports bw.jpg" alt="esports" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the most famous eSports</h4>
+                    <p><a href="@Url.Action("Index", "Game")" class="btn btn-primary" role="button">Discover</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-6 col-md-4">
+            <div class="thumbnail">
+                <h3>CLANS</h3>
+                @*<img src="~/Content/images/clans bw.jpg" alt="clans" class="img-circle">*@
+                <div class="caption">
+                    <h4>Discover the best clans</h4>
+                    <p><a href="#" class="btn btn-primary" role="button">Discover</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="black">
+</div>
+
+<div class="container-fluid container-thubnails-char2">
+    <div class="center-header ">
+        <h1> BE PART OF THE GAMING COMMUNITY </h1>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <ol class="carousel-indicators">
+                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                </ol>
+                <div class="carousel-inner">
+
+                    <div class="carousel-item active">
+
+                        <img src="~/Static/Images/LandingPage/Frame.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                A unified  profile for all your favorite eSports
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+
+                        <img src="~/Static/Images/LandingPage/Group.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                Track your stats for all your favorite eSports
+                            </h4>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+
+                        <img src="~/Static/Images/pie.png" class="image-carousel">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h4>
+                                Compare your stats with others
+                            </h4>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

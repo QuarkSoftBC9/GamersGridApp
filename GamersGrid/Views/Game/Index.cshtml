@@ -1,0 +1,55 @@
+﻿@model IEnumerable<GamersGrid.DAL.Models.VideoGame>
+
+@{
+    ViewBag.Title = "Games";
+}
+
+@section Styles {
+    <link href="~/css/Game/Index.css" rel="stylesheet" type="text/css" />
+}
+
+
+
+
+<div class="container-thubnails-char-games">
+    <div class="center-header ">
+        <h1> THE GAMES </h1>
+    </div>
+
+
+    <div class="row ">
+
+        @foreach (var game in Model)
+        {
+            string imagePath;
+            if (game.Id == 1)
+            {
+                imagePath = "~/Static/Images/Games/lol1.jpg";
+            }
+            else if (game.Id == 2)
+            {
+                imagePath = "~/Static/Images/Games/dota1.jpg";
+
+            }
+            else
+            {
+                imagePath = "~/Static/Images/Games/overwatch1.jpg";
+
+            }
+
+            <div class="col-6 col-md-4">
+                <div class="thumbnail thubnail-game">
+                    <h3>@game.Title</h3>
+                    <a href="@Url.Action("About", "Game",new { gameName = @game.Title })"><img src=@Url.Content(imagePath) alt="gamer" class="gameimg"></a>
+                    <div class="caption-games">
+                        <h4>@game.Type</h4>
+                        @*<p><a href="#" class="btn btn-primary" role="button">See</a></p>*@
+                    </div>
+                </div>
+            </div>
+        }
+
+
+    </div>
+</div>
+

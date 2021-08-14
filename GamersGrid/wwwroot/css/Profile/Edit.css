@@ -1,0 +1,30 @@
+﻿
+.avatar-edit {
+    height: 220px;
+    width: 220px;
+}
+
+
+.customclassmsg {
+    background-color: initial;
+    border: none;
+}
+
+#Description {
+    max-width: 100%;
+}
+
+input {
+    max-width: 100%;
+}
+
+#users_paginate > span:nth-child(2) {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#league-rank-icon {
+    width: 150px;
+    display: block;
+    margin: auto;
+}

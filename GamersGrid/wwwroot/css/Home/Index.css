@@ -1,0 +1,147 @@
+﻿
+/* Content - Body */
+.jumbotron {
+    background-image: url('../../Static/Images/LandingPage/index bw.jpg');
+    background-size: cover;
+    text-align: center;
+    color: #545483;
+    margin-bottom: 0px;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #333;
+    border-color: #333;
+    font-size: medium;
+    border-radius: 20px;
+    border-color: rgba(0, 0, 0, 0.00);
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #222;
+        border-color: #222;
+        border-color: rgba(0, 0, 0, 0.00);
+    }
+
+.black {
+    background-color: #222;
+    height: 15px
+}
+
+.thumbnail {
+    text-align: center;
+    border: none;
+    background-color: rgba(0, 0, 0, 0.00);
+}
+
+    .thumbnail > h3 {
+        font-family: 'Josefin Sans', sans-serif;
+        font-weight: 700;
+        color: rgb(241, 241, 241);
+        margin-bottom: 0px;
+        color: #fff;
+    }
+
+
+    .thumbnail .caption {
+        /*padding: 9px;*/
+        /*margin-bottom: 40px;*/
+        color: #e8dfdf;
+    }
+
+.container-thubnails-char {
+    background-image: url('../../Static/Images/LandingPage/gamer bw op.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    padding-top: 2px;
+    background-color: #fff;
+}
+
+
+
+.center-header {
+    font-family: 'Josefin Sans', sans-serif;
+    letter-spacing: 5px;
+    font-size: 35px;
+    text-align: center;
+    margin-top: 50px;
+    margin-bottom: 0px;
+    color: rgb(212, 212, 212);
+}
+
+.img-char {
+    margin-top: 20px;
+    width: 70px;
+    height: 70px;
+}
+
+h1 {
+    font-size: 2.2rem;
+}
+
+@media (min-width: 400px) {
+    h1 {
+        font-size: 2.3rem;
+    }
+}
+
+@media (min-width: 600px) {
+    h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (min-width: 800px) {
+    h1 {
+        font-size: 3.0rem;
+    }
+}
+
+@media (min-width: 1000px) {
+    h1 {
+        font-size: 3.2rem;
+    }
+}
+
+
+container-thubnails-char h1 {
+    color: #545483;
+}
+
+.copyrights .btn-primary, .thumbnail .btn-primary {
+    background-color: #545483;
+}
+
+    .copyrights .btn-primary:hover, .thumbnail .btn-primary:hover {
+        background-color: rgb(136, 136, 136);..
+    }
+
+/*.image-carousel {
+    margin-top: 30px;
+    margin-bottom: 20px;
+    width: 82px;
+    height: 82px;
+}*/
+
+.carousel-inner {
+    background-color: #545483;
+    align-content: center;
+    text-align: center;
+}
+
+.container-thubnails-char2 {
+    padding-top: 2px;
+    background-color: #545483;
+    text-align: center;
+}
+
+div.new_html_code {
+    width: 150px;
+    height: 220px;
+    overflow: hidden;
+    display: block;
+}
+
+
+

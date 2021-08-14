@@ -1,0 +1,50 @@
+﻿@model IEnumerable<GamersGrid.DAL.Models.Identity.GGuser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section Styles {
+    <link href="~/lib/JQueryDataTables/CSS/dataTables.min.css" rel="stylesheet" type="text/css" />
+}
+
+<h2>Users</h2>
+
+<table id="users" class="table">
+    <thead>
+        <tr>
+            <th>Nickname</th>
+            <th>Country</th>
+            <th>City</th>
+        </tr>
+    </thead>
+
+</table>
+
+@section scripts
+{
+
+    <script src="~/lib/JQueryDataTables/JS/dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#users").DataTable({
+                ajax: {
+                    url: "/api/users?count=200",
+                    dataSrc: ""
+                },
+                columns: [
+                    {
+                        data: "nickName",
+                    },
+                    {
+                        data: "country",
+                    },
+                    {
+                        data: "city",
+                    }
+                ]
+            });
+        });
+    </script>
+}

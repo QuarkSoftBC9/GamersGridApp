@@ -1,0 +1,315 @@
+﻿@model GamersGrid.Models.User.UserEditVM
+
+@section Styles {
+    <link href="~/css/Profile/Edit.css" rel="stylesheet" type="text/css" />
+    <link href="~/lib/toastr/css/toastr.min.css" rel="stylesheet" type="text/css" />
+}
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="container bootstrap snippet editcontainer">
+    @using (Html.BeginForm("Edit", "GamerProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+        <div class="row">
+            <div class="col-sm-10"><h1>@Model.NickName</h1></div>
+        </div>
+        @:<div class="row">
+            @:<div class="col-sm-3"
+                    <div class="text-center">
+                    <img src="@((Model.Avatar == "nofile.png" || @String.IsNullOrWhiteSpace(Model.Avatar)) ? "/Static/Images/gamerdefault.jpg" : $"/UsersAvatars/{Model.Avatar}")" class="avatar avatar-edit img-circle img-thumbnail" id="imagePreview">
+                    <h6>Upload a different photo</h6>
+                    @*<input type='file' name="file" id="imageUpload" class="text-center center-block file-upload">*@
+                    @Html.TextBoxFor(m => m.AvatarImage, new { id = "imageUpload", @class = "text-center center-block file-upload", type = "file", accept = "image/png,image/jpeg,image/jpg" })
+                </div>
+                <br>
+
+
+            @:</div><!--/col-3-->
+            <div class="col-sm-9">
+                <ul class="nav nav-tabs nav-justified">
+                    <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#home">Personal Info</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Dota">Dota 2</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Lol">League of Legends</a></li>
+                    <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#Overwatch">Overwatch</a></li>
+
+                </ul>
+
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="home">
+                        <form class="form" action="##" method="post" id="registrationForm">
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>Nickname</h4></label>
+                                    @Html.TextBoxFor(m => m.NickName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="email"><h4>Country</h4></label>
+                                    @Html.TextBoxFor(m => m.Country, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="first_name"><h4>First name</h4></label>
+                                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="email"><h4>City</h4></label>
+                                    @Html.TextBoxFor(m => m.City, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-xs-6">
+                                    <label for="last_name"><h4>Last name</h4></label>
+                                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+
+                                <div class="col-xs-12">
+                                    <label for="email"><h4>Quote</h4></label>
+                                    @Html.TextBoxFor(m => m.Description, new { @class = "form-control" })
+                                </div>
+                            </div>
+                            @Html.HiddenFor(m => m.Id)
+
+
+                            <div class="form-group">
+                                <div class="col-xs-12">
+                                    <br>
+                                    <button class="btn btn-dark  btn-default" type="submit"><i class="fa fa-check"></i> Save</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <hr>
+
+                    </div><!--/tab-pane-->
+                    <div class="tab-pane" id="Dota">
+
+                        <h2>Dota Account Setup</h2>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Steam community ID</label>
+                                    <input type="text" class="form-control" id="dotaId" value="@Model.SteamId">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button id="dotaSave" type="button" class="btn btn-dark btn-default"><i class="fa fa-check"></i> Save</button>
+                            </div>
+                        </div>
+
+
+                    </div><!--/tab-pane-->
+                    <div class="tab-pane" id="Lol">
+
+
+                        <h2>League Of Legends Account Setup</h2>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Region</label>
+                                    @Html.DropDownListFor(m => m.RiotGamesRegions, new SelectList(Model.RiotGamesRegions), "--Select--", new { @class = "form-control ", id = "league-region" })
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>Summoner Name</label>
+                                    <input type="text" class="form-control" id="league-name" value="@Model.LolUsername">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <div class="col-xs-12">
+                                <br>
+                                <button id="lolSave" type="button" class="btn btn-dark btn-default js-validate-user league-btn"><i class="fa fa-check"></i> Save</button>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="tab-pane" id="Overwatch">
+
+
+                        <h2>Overwatch Account Setup</h2>
+
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-xs-6">
+                                    <label>Region</label>
+                                    @Html.DropDownListFor(m => m.BattleNetRegions, new SelectList(Model.BattleNetRegions), "--Select--", new { @class = "form-control ", id = "battlenetRegion" })
+                                </div>
+                                <div class="col-xs-6">
+                                    <label>BattleTag</label>
+                                    <input type="text" class="form-control" id="overwatchId" value="@Model.BattleTag">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-xs-12">
+                                <br>
+                                <button id="overwatchSave" type="button" class="btn btn-dark btn-default"><i class="fa fa-check"></i> Save</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div><!--/tab-pane-->
+            </div><!--/tab-content-->
+        @:</div>
+ <!--/col-9-->
+
+    }
+</div><!--/row-->
+@section scripts{
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    @*<script src="~/lib/jquery-validation/dist/additional-methods.js"></script>*@
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    @*<script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.js"></script>*@
+    @*<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-ajax-unobtrusive/3.2.6/jquery.unobtrusive-ajax.js></script>*@
+
+    <script src="~/lib/toastr/js/toastr.min.js"></script>
+
+    <script>
+        $(() => {
+            $('#imageUpload').change(function () {
+                processUpload(this);
+            });
+        });
+
+
+        function processUpload(input) {
+            //var fileName = $(input).val();
+            //$('#lblImage').html(fileName.substring(fileName.lastIndexOf("\\") + 1));
+
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#imagePreview').attr('src', e.target.result)
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+
+    </script>
+
+    <script>
+
+        $("#overwatchSave").on("click", function () {
+            let userName = $("#overwatchId").val();
+            let region = $("#battlenetRegion").val();
+            let viewModel = { BattleTag: userName, Region: region };
+            $.ajax({
+                url: "/api/OverwatchAccounts",
+                data: viewModel,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
+            });
+        });
+
+        $("#dotaSave").on("click", function () {
+            let accountid = $("#dotaId").val();
+            $.ajax({
+                url: "/api/DotaAccounts?accountid=" + accountid,
+                method: "post"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
+            });
+        });
+
+        $("#lolSave").on("click", function () {
+            let userName = $("#league-name").val();
+            let region = $("#league-region").val();
+            let model = { UserName: userName, Region: region };
+            $.ajax({
+                url: "/api/LoLAccounts",
+                data: model,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error('Failed saving account');
+            });
+        });
+
+
+    </script>
+
+}
+@*<script>
+
+        $("#overwatchSave").on("click", function () {
+            let userName = $("#overwatchId").val();
+            let region = $("#battlenetRegion").val();
+            let viewModel = { battleTag: userName, region: region };
+            $.ajax({
+                url: "/api/OverwatchAccounts",
+                data: viewModel,
+                method: "POST"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error(e.message);
+            });
+        });
+
+        $("#dotaSave").on("click", function () {
+            let accountid = $("#dotaId").val();
+            $.ajax({
+                url: "/api/DotaAccounts?accountid=" + accountid,
+                method: "post"
+            }).done(function () {
+                toastr.success("Account saved");
+            }).fail(function (e) {
+                toastr.error(e.message);
+            });
+        });
+
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $('#imagePreview').attr("src", e.target.result);
+                    $('#imagePreview').hide();
+                    $('#imagePreview').fadeIn(650);
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+        $("#imageUpload").change(function () {
+            readURL(this);
+        });
+
+    </script>
+    @Scripts.Render("~/bundles/costumize")
+    <script>
+        $(document).ready(function () {
+            lolEditController.init();
+        });
+
+    </script>*@
+
+

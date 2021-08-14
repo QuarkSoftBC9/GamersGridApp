@@ -1,0 +1,26 @@
+﻿@model ICollection<GamersGrid.DAL.Models.ChatGroup>
+
+    <div class="inbox_chat">
+        @if (Model != null)
+        {
+            foreach (var chatGroup in Model)
+            {
+                <div class="chat_list chatLeft" id="@chatGroup.Id" @*onclick="ShowChat(@messagechat.ID,@Model.User.UserID)*@>
+                    <div class="chat_people">
+                        <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                        <div class="chat_ib">
+
+                            <h5>@chatGroup.Name</h5>
+                            @*@if (messagechat.ChatHistory.Count != 0)
+                            {
+                            <h5>@messagechat.ChatHistory.Last().User.NickName <span class="chat_date">Dec 25</span></h5>
+                            <p>
+                                @messagechat.ChatHistory.OrderByDescending(m => m.Time).Last().MessageString
+                            </p>
+                            }*@
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>

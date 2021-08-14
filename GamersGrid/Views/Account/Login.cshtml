@@ -1,0 +1,36 @@
+﻿@model GamersGrid.Models.Account.LoginVM
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Styles {
+    <link href="~/css/Account/login.css" rel="stylesheet" type="text/css" />
+}
+
+<div class="container">
+    <div id="login-box">
+        <div class="logo">
+            <h1 class="logo-caption"><span class="tweak">L</span>ogin</h1>
+        </div><!-- /.logo -->
+        <div class="controls">
+
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, true, new { @class = "form-horizontal login-form", role = "form" }))
+            {
+                @*<form asp-controller="Account" asp-action="Login" method="post" class="form-horizontal login-form">*@
+                @Html.AntiForgeryToken()
+              
+                <input type="text" class="form-control margin-bot" name="Email" placeholder="Your email address" />
+                <input type="password" class="form-control" name="Password" placeholder="Your password" />
+                <button type="submit" class="btn btn-default btn-block btn-custom">Login</button>
+                @*</form>*@
+            }
+        </div><!-- /.controls -->
+    </div><!-- /#login-box -->
+</div><!-- /.container -->
+<div id="particles-js"></div>
+
+@section Scripts {
+    <script src="~/lib/particlesJs/particles-min.js"></script>
+    <script src="~/js/Account/Login.js"></script>
+}
+

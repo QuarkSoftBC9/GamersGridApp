@@ -1,0 +1,119 @@
+﻿@model GamersGrid.DAL.Models.VideoGame
+
+@{
+    ViewBag.Title = "GameProfile";
+
+    string gameAvatar;
+    string gameImg;
+    string gameLink;
+    string gameYoutube;
+    string gameTwitch;
+    string gameTwitter;
+
+    if (Model.Id == 2)
+    {
+        gameAvatar = "~/Content/Images/Games/lolback1.jpg";
+        gameImg = "~/Content/Images/Games/lollogo.jpg";
+        gameLink = "https://play.euw.leagueoflegends.com/en_GB";
+        gameYoutube = "https://www.youtube.com/user/RiotGamesInc?hl=el&gl=GR";
+        gameTwitch = "https://www.twitch.tv/riotgames";
+        gameTwitter = "https://twitter.com/riotgames?lang=el";
+    }
+    else if (Model.Id == 1)
+    {
+        gameAvatar = "~/Content/Images/dotaback1.jpg";
+        gameImg = "~/Content/Images/Games/dota2logo.jpg";
+        gameLink = "https://store.steampowered.com/app/570/Dota_2/";
+        gameYoutube = "https://www.youtube.com/user/dota2";
+        gameTwitch = "https://www.twitch.tv/directory/game/Dota%202";
+        gameTwitter = "https://twitter.com/dota2";
+    }
+    else
+    {
+        gameAvatar = "~/Content/Images/Games/overwatchback.jpg";
+        gameImg = "~/Content/Images/Games/overwatchlogo.jpg";
+        gameLink = "https://playoverwatch.com/en-us/";
+        gameYoutube = "https://www.youtube.com/channel/UClOf1XXinvZsy4wKPAkro2A";
+        gameTwitch = "https://www.twitch.tv/directory/game/Overwatch";
+        gameTwitter = "https://twitter.com/overwatcheu?lang=en";
+    }
+}
+
+
+@section Styles {
+    <link href="~/css/Game/Index.css" rel="stylesheet" type="text/css" />
+}
+
+<style>
+    .links-list li {
+        padding: 10px;
+    }
+
+    body {
+        background-color:#ffffff;
+    }
+</style>
+
+
+
+<div class="rela-block container">
+    <div class="rela-block profile-card">
+        <div class="profile-pic" id="profile_pic" style="background:url(@Url.Content(gameImg))">
+
+        </div>
+        <div class="rela-block profile-name-container">
+            <div class="rela-block user-num " id="user_name">USERS' FAVORITE </div>
+            @*<div class="rela-block user-num-num " id="user_name">@Model.UsersFocusing </div>*@
+            <div class="rela-block user-name" id="user_name">@Model.Title</div>
+            <div class="rela-block user-desc" id="user_description">@Model.Description</div>
+        </div>
+        <div class="rela-block profile-card-stats">
+            <div class="floated profile-stat up" id="num_following">
+                <p>RELEASE DATE</p>
+                @Model.ReleaseDate.ToString(string.Format("dd/MM/yyyy"))<br>
+            </div>
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameTwitch)">
+                    <i class="fab fa-twitch fa-3x"></i>
+                </a>
+            </div>
+            <div class="floated profile-stat up" id="num_following">
+                <p>TYPE</p>
+                @Model.Type<br>
+            </div>
+        </div>
+        <div class="rela-block profile-card-stats">
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameYoutube)">
+                    <i class="fab fa-youtube fa-3x"></i>
+                </a>
+            </div>
+            <div class="floated profile-stat ">
+                <a href="@Url.Content(gameLink)">
+                    <i class="fas fa-info-circle fa-3x"></i>
+                </a>
+            </div>
+
+            <div class="floated profile-stat">
+                <a href="@Url.Content(gameTwitter)">
+                    <i class="fab fa-twitter-square fa-3x"></i>
+                </a>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="rela-block container">
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+    <div class="rela-inline image">
+    </div>
+</div>
